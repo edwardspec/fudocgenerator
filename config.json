@@ -1,8 +1,11 @@
 {
-	"@doc1": "Path to FU sources.",
+	"@doc": "Path to FU sources.",
 	"pathToMod": "/usr/src/FrackinUniverse",
 
-	"@doc2": "Array of Extractor names. Should be in the same order as outputs in [extractionlab_recipes.config]",
+	"@doc": "Path to unpacked Starbound assets. See https://starbounder.org/Modding:Modding_Basics for how to obtain them.",
+	"pathToVanilla": "/usr/src/Starbound",
+
+	"@doc": "Array of Extractor names. Should be in the same order as outputs in [extractionlab_recipes.config]",
 	"extractorStageBuildings":  [
 		"Extraction Lab",
 		"Extraction Lab MK II",
