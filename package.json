@@ -1,6 +1,8 @@
 {
   "private": true,
   "dependencies": {
+    "cli-progress": "^3.8.2",
+    "fast-glob": "^3.2.4",
     "fs": "^0.0.2",
     "mwbot": "^1.0.10"
   },
