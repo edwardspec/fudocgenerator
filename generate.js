@@ -9,8 +9,8 @@
 
 var config = require( './config.json' ),
 	RecipeDatabase = require( './lib/RecipeDatabase' ),
+	ItemDatabase = require( './lib/ItemDatabase' ),
 	util = require( './lib/util' );
-
 
 // Load configs of all processing stations.
 // NOTE: centrifugeConf covers not only centrifuges, but also powder sifters, honey jars, etc.
@@ -51,6 +51,28 @@ for ( var extractorRecipe of extractorConf ) {
 
 var SearchIndex = RecipeDatabase.makeSearchIndex();
 
+/*
 console.log( JSON.stringify( SearchIndex.getRecipesWhereInputIs( 'fu_salt' ), null, '  ' ) );
 console.log( JSON.stringify( SearchIndex.getRecipesWhereOutputIs( 'fu_salt' ), null, '  ' ) );
 console.log( SearchIndex.listKnownItems().join( ', ' ) );
+*/
+
+ItemDatabase.load();
+
+for ( var ItemCode of SearchIndex.listKnownItems() ) {
+	var item = ItemDatabase.find( ItemCode );
+	if ( !item ) {
+		// Must be tolerant to bad input (ignore unknown items, continue with known items),
+		// because a typo somewhere in the mod shouldn't stop the script.
+		//console.log( "Unknown item: " + ItemCode );
+		continue;
+	}
+
+	// Obtain the human-readable item name.
+	var ItemName = item.shortdescription;
+
+	// Remove the color codes from the name (e.g. "^#e43774;" or "^reset;" ).
+	ItemName = ItemName.replace( /\^[^;^]+;/g, '' );
+
+	console.log( ItemCode + ' => ' + ItemName );
+}
