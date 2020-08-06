@@ -47,4 +47,10 @@ for ( var extractorRecipe of extractorConf ) {
 
 /*-------------------------------------------------------------------------------------------- */
 
-RecipeDatabase.dump();
+//RecipeDatabase.dump();
+
+var SearchIndex = RecipeDatabase.makeSearchIndex();
+
+console.log( JSON.stringify( SearchIndex.getRecipesWhereInputIs( 'fu_salt' ), null, '  ' ) );
+console.log( JSON.stringify( SearchIndex.getRecipesWhereOutputIs( 'fu_salt' ), null, '  ' ) );
+console.log( SearchIndex.listKnownItems().join( ', ' ) );
