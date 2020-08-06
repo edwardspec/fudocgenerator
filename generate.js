@@ -64,7 +64,7 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	if ( !item ) {
 		// Must be tolerant to bad input (ignore unknown items, continue with known items),
 		// because a typo somewhere in the mod shouldn't stop the script.
-		//console.log( "Unknown item: " + ItemCode );
+		util.log( "[warning] Unknown item in the recipe: " + ItemCode );
 		continue;
 	}
 
@@ -74,5 +74,5 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	// Remove the color codes from the name (e.g. "^#e43774;" or "^reset;" ).
 	ItemName = ItemName.replace( /\^[^;^]+;/g, '' );
 
-	console.log( ItemCode + ' => ' + ItemName );
+	//console.log( ItemCode + ' => ' + ItemName );
 }

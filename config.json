@@ -10,6 +10,9 @@
 		"Extraction Lab",
 		"Extraction Lab MK II",
 		"Quantum Extractor"
-	]
+	],
+
+	"@doc": "Path to logfile. This script can write warnings and/or debugging information into this file.",
+	"logfile": "debug.log"
 }
 
