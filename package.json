@@ -1,8 +1,8 @@
 {
   "private": true,
   "dependencies": {
-    "mwbot": "^1.0.10",
-    "fs": "^0.0.2"
+    "fs": "^0.0.2",
+    "mwbot": "^1.0.10"
   },
   "devDependencies": {
     "eslint": "^7.6.0"
