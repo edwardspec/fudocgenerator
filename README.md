@@ -6,7 +6,7 @@ This script:
 
 Usage:
 - have the sources of Frackin' Universe in some directory on the local computer.
-- edit `config.json`: its setting `pathToMod` should be the full path to the directory with FU.
+- edit `config.json`: 1) setting `pathToMod` should be the full path to the directory with FU, 2) setting `pathToVanilla` should be the full path to unpacked Starbound assets (see https://starbounder.org/Modding:Modding_Basics for how to obtain them).
 - install Node.js dependencies of this script: run `npm install`.
 - run the script itself: `node generate.js`.
 
