@@ -13,6 +13,8 @@
 	],
 
 	"@doc": "Path to logfile. This script can write warnings and/or debugging information into this file.",
-	"logfile": "debug.log"
-}
+	"logfile": "debug.log",
 
+	"@doc": "Directory where to write the resulting wikitext files.",
+	"outputDir": "RESULT"
+}

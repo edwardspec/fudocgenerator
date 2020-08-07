@@ -8,6 +8,7 @@
  */
 
 var config = require( './config.json' ),
+	fs = require( 'fs' ),
 	RecipeDatabase = require( './lib/RecipeDatabase' ),
 	ItemDatabase = require( './lib/ItemDatabase' ),
 	util = require( './lib/util' );
@@ -57,7 +58,34 @@ console.log( JSON.stringify( SearchIndex.getRecipesWhereOutputIs( 'fu_salt' ), n
 console.log( SearchIndex.listKnownItems().join( ', ' ) );
 */
 
-ItemDatabase.load();
+/**
+ * Format the output of getRecipesWhereInputIs() or getRecipesWhereOutputIs() as wikitext.
+ * @param {array} recipeList
+ * @return {string}
+ */
+function recipeListToWikitext( recipeList ) {
+	if ( !recipeList ) {
+		return '';
+	}
+
+	var wikitext = '';
+
+	for ( var [ CraftingStation, recipes ] of Object.entries( recipeList ) ) {
+		wikitext += '=== ' + CraftingStation + ' ===\n\n';
+
+		recipes.forEach( function ( Recipe ) {
+			wikitext += Recipe.toWikitext() + '\n';
+		} );
+
+		wikitext += '\n';
+	}
+
+	return wikitext;
+}
+
+if ( !fs.statSync( config.outputDir ) ) {
+	fs.mkdirSync( config.outputDir );
+}
 
 for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	var item = ItemDatabase.find( ItemCode );
@@ -69,7 +97,21 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	}
 
 	// Obtain the human-readable item name.
-	var ItemName = item.displayName;
+	var ItemName = item.displayName,
+		recipesWhereInput = SearchIndex.getRecipesWhereInputIs( ItemCode ),
+		recipesWhereOutput = SearchIndex.getRecipesWhereOutputIs( ItemCode );
 
-	console.log( ItemCode + ' => ' + ItemName );
+	// Form the automatically generated wikitext of recipes.
+	var wikitext = '';
+
+	wikitext += '== How to obtain ==\n\n' + recipeListToWikitext( recipesWhereOutput );
+	wikitext += '== Used for ==\n\n' + recipeListToWikitext( recipesWhereInput );
+
+	// TODO: creating these files is temporary (for checking the correctness of files).
+	// Ultimately the output should be something like *.xml dump for Special:Import
+	// or an import file for pywikipediabot - something that would allow quick creation of pages.
+
+	var fd = fs.openSync( config.outputDir + '/' + ItemName.replace( / /g, '_' ) + '.txt', 'w' );
+	fs.writeSync( fd, wikitext );
+	fs.closeSync( fd );
 }
