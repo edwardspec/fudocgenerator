@@ -69,10 +69,7 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	}
 
 	// Obtain the human-readable item name.
-	var ItemName = item.shortdescription;
+	var ItemName = item.displayName;
 
-	// Remove the color codes from the name (e.g. "^#e43774;" or "^reset;" ).
-	ItemName = ItemName.replace( /\^[^;^]+;/g, '' );
-
-	//console.log( ItemCode + ' => ' + ItemName );
+	console.log( ItemCode + ' => ' + ItemName );
 }
