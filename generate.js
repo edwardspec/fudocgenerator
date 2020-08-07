@@ -44,11 +44,30 @@ for ( var mixerRecipe of mixerConf ) {
 	RecipeDatabase.add( 'Liquid Mixer', mixerRecipe.inputs, mixerRecipe.outputs );
 }
 
+/*-------------------------------------------------------------------------------------------- */
+/* Step 3: Add recipes from Centrifuges into RecipeDatabase ---------------------------------- */
+/*-------------------------------------------------------------------------------------------- */
+
+for ( var [ inputItem, outputToRarityMap ] of Object.entries( centrifugeConf.itemMapPowder ) ) {
+	// TODO: our Recipe object should support rarities. Currently it only supports counts,
+	// while the output of sifters is probability-based.
+	var outputs = {};
+	Object.keys( outputToRarityMap ).forEach( function ( outputItem ) {
+		// UNKNOWN is a special-meaning value to use in Recipe class instead of count.
+		outputs[outputItem] = 'UNKNOWN';
+	} );
+
+	var inputs = [];
+	inputs[inputItem] = 'UNKNOWN';
+
+	RecipeDatabase.add( 'Sifter', inputs, outputs );
+}
+
+
+
+
+
 // TODO: add recipes from other Stations.
-
-
-
-
 
 
 /*-------------------------------------------------------------------------------------------- */
