@@ -5,12 +5,21 @@
 	"@doc": "Path to unpacked Starbound assets. See https://starbounder.org/Modding:Modding_Basics for how to obtain them.",
 	"pathToVanilla": "/usr/src/Starbound",
 
-	"@doc": "Array of Extractor names. Should be in the same order as outputs in [extractionlab_recipes.config]",
+	"@doc": "Array of Extractor names. Should be in the same order as outputs in [extractionlab_recipes.config]. Note: Hand Mill shouldn't be listed, because its output is the same as output of tier 1 Extraction Lab.",
 	"extractorStageBuildings":  [
 		"Extraction Lab",
 		"Extraction Lab MK II",
 		"Quantum Extractor"
 	],
+
+	"@doc": "Converts names of recipe groups from [centrifuge_recipes.config] to name of associated Centrifuge-like building. Note: Wooden Centrifuge is currently not handled (itemMapLiquids can't be centrifuged by it, but we still show Any Centrifuge for this group).",
+	"centrifugeRecipeGroups":  {
+		"itemMapPowder": "Sifter",
+		"itemMapFarm": "Any Centrifuge",
+		"itemMapBees": "Any Centrifuge",
+		"itemMapLiquids": "Any Centrifuge",
+		"itemMapIsotopes": "Gas Centrifuge"
+	},
 
 	"@doc": "Path to logfile. This script can write warnings and/or debugging information into this file.",
 	"logfile": "debug.log",

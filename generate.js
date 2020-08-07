@@ -14,7 +14,7 @@ var config = require( './config.json' ),
 	util = require( './lib/util' );
 
 // Load configs of all processing stations.
-// NOTE: centrifugeConf covers not only centrifuges, but also powder sifters, honey jars, etc.
+// NOTE: centrifugeConf covers not only centrifuges, but also powder sifters, etc.
 var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.config' ),
 	extractorConf = util.loadModFile( 'objects/generic/extractionlab_recipes.config' ),
 	blastFurnaceConf = util.loadModFile( 'objects/power/fu_blastfurnace/fu_blastfurnace.object' ),
@@ -48,19 +48,21 @@ for ( var mixerRecipe of mixerConf ) {
 /* Step 3: Add recipes from Centrifuges into RecipeDatabase ---------------------------------- */
 /*-------------------------------------------------------------------------------------------- */
 
-for ( var [ inputItem, outputToRarityMap ] of Object.entries( centrifugeConf.itemMapPowder ) ) {
-	// TODO: our Recipe object should support rarities. Currently it only supports counts,
-	// while the output of sifters is probability-based.
-	var outputs = {};
-	Object.keys( outputToRarityMap ).forEach( function ( outputItem ) {
-		// UNKNOWN is a special-meaning value to use in Recipe class instead of count.
-		outputs[outputItem] = 'UNKNOWN';
-	} );
+for ( var [ recipeGroup, buildingName ] of Object.entries( config.centrifugeRecipeGroups ) ) {
+	for ( var [ inputItem, outputToRarityMap ] of Object.entries( centrifugeConf[recipeGroup] ) ) {
+		// TODO: our Recipe object should support rarities. Currently it only supports counts,
+		// while the output of sifters is probability-based.
+		var outputs = {};
+		Object.keys( outputToRarityMap ).forEach( function ( outputItem ) {
+			// UNKNOWN is a special-meaning value to use in Recipe class instead of count.
+			outputs[outputItem] = 'UNKNOWN';
+		} );
 
-	var inputs = [];
-	inputs[inputItem] = 'UNKNOWN';
+		var inputs = [];
+		inputs[inputItem] = 'UNKNOWN';
 
-	RecipeDatabase.add( 'Sifter', inputs, outputs );
+		RecipeDatabase.add( buildingName, inputs, outputs );
+	}
 }
 
 
@@ -95,7 +97,7 @@ function recipeListToWikitext( recipeList ) {
 	var wikitext = '';
 
 	for ( var [ CraftingStation, recipes ] of Object.entries( recipeList ) ) {
-		wikitext += '=== ' + CraftingStation + ' ===\n\n';
+		wikitext += '=== [[' + CraftingStation + ']] ===\n\n';
 
 		recipes.forEach( function ( Recipe ) {
 			wikitext += Recipe.toWikitext() + '\n';
