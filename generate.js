@@ -21,6 +21,7 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	arcSmelterConf = util.loadModFile( 'objects/power/isn_arcsmelter/isn_arcsmelter.object' ),
 	mixerConf = util.loadModFile( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' );
 
+// No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
 
 /*-------------------------------------------------------------------------------------------- */
 /* Step 1: Add recipes from Extractors into RecipeDatabase ----------------------------------- */
@@ -65,11 +66,34 @@ for ( var [ recipeGroup, buildingName ] of Object.entries( config.centrifugeReci
 	}
 }
 
+/*-------------------------------------------------------------------------------------------- */
+/* Step 4: Add recipes from Blast Furnace into RecipeDatabase -------------------------------- */
+/*-------------------------------------------------------------------------------------------- */
 
+// TODO: support Arc Smelter too.
+// While it's easy to add, it would result in multiple duplicate recipes (they are often the same
+// for Arc Smelter and Blast Furnate), so extra code to suppress such duplicates is requires.
 
+for ( var [ inputItem, outputItem ] of Object.entries( blastFurnaceConf.inputsToOutputs ) ) {
+	var bonusOutputs = blastFurnaceConf.bonusOutputs[inputItem] || [];
+
+	var inputs = [];
+	inputs[inputItem] = 2; // Base output for smelters is 2 Ore -> 1 Bar.
+
+	var outputs = [];
+	outputs[outputItem] = 1;
+
+	Object.keys( bonusOutputs ).forEach( function ( bonusOutputItem ) {
+		outputs[bonusOutputItem] = 'UNKNOWN';
+	} );
+
+	RecipeDatabase.add( 'Blast Furnace', inputs, outputs );
+}
 
 
 // TODO: add recipes from other Stations.
+
+
 
 
 /*-------------------------------------------------------------------------------------------- */
