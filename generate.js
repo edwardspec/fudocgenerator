@@ -27,8 +27,6 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 /*-------------------------------------------------------------------------------------------- */
 
 for ( var extractorRecipe of extractorConf ) {
-	var outputs = extractorRecipe.outputs;
-
 	config.extractorStageBuildings.forEach( function ( buildingName, extractorStage ) {
 		RecipeDatabase.add(
 			buildingName,
@@ -38,6 +36,13 @@ for ( var extractorRecipe of extractorConf ) {
 	} );
 }
 
+/*-------------------------------------------------------------------------------------------- */
+/* Step 2: Add recipes from Liquid Mixer into RecipeDatabase --------------------------------- */
+/*-------------------------------------------------------------------------------------------- */
+
+for ( var mixerRecipe of mixerConf ) {
+	RecipeDatabase.add( 'Liquid Mixer', mixerRecipe.inputs, mixerRecipe.outputs );
+}
 
 // TODO: add recipes from other Stations.
 
