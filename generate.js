@@ -85,9 +85,9 @@ for ( var [ buildingName, buildingConf ] of Object.entries( smelterBuildings ) )
 		var outputs = [];
 		outputs[outputItem] = 1;
 
-		Object.keys( bonusOutputs ).forEach( function ( bonusOutputItem ) {
-			outputs[bonusOutputItem] = 'UNKNOWN';
-		} );
+		for ( var [ bonusOutputItem, chance ] of Object.entries( bonusOutputs ) ) {
+			outputs[bonusOutputItem] = chance + '%';
+		}
 
 		RecipeDatabase.add( buildingName, inputs, outputs );
 	}
