@@ -78,9 +78,6 @@ for ( var [ recipeGroup, buildingName ] of Object.entries( config.centrifugeReci
 /* Step 4: Add recipes from Blast Furnace into RecipeDatabase -------------------------------- */
 /*-------------------------------------------------------------------------------------------- */
 
-// TODO: remove duplicate recipes (they are often the same for Arc Smelter and Blast Furnate)
-// or, alternatively, show the chances of bonus output (in which case they will be the same).
-
 var smelterBuildings = { 'Blast Furnace': blastFurnaceConf, 'Arc Smelter': arcSmelterConf };
 
 for ( var [ buildingName, buildingConf ] of Object.entries( smelterBuildings ) ) {
