@@ -55,6 +55,13 @@ for ( var mixerRecipe of mixerConf ) {
 
 for ( var [ recipeGroup, buildingName ] of Object.entries( config.centrifugeRecipeGroups ) ) {
 	for ( var [ inputItem, outputToRarityMap ] of Object.entries( centrifugeConf[recipeGroup] ) ) {
+		if ( recipeGroup === 'itemMapFarm' && inputItem === 'liquidwater' ) {
+			// Ignore farm recipe for Water, because it is overridden in non-Wooden Centrifuges,
+			// and we don't show Wooden Centrifuge anyway.
+			// (this is the only situation where such override exists)
+			continue;
+		}
+
 		var outputs = {};
 		for ( var [ outputItem, rarityInfo ] of Object.entries( outputToRarityMap ) ) {
 			outputs[outputItem] = { rarity: rarityInfo };
