@@ -67,7 +67,7 @@ for ( var [ recipeGroup, buildingName ] of Object.entries( config.centrifugeReci
 			outputs[outputItem] = { rarity: rarityInfo };
 		}
 
-		var inputs = [];
+		var inputs = {};
 		inputs[inputItem] = {};
 
 		RecipeDatabase.add( buildingName, inputs, outputs );
@@ -84,10 +84,10 @@ for ( var [ buildingName, buildingConf ] of Object.entries( smelterBuildings ) )
 	for ( var [ inputItem, outputItem ] of Object.entries( buildingConf.inputsToOutputs ) ) {
 		var bonusOutputs = buildingConf.bonusOutputs[inputItem] || [];
 
-		var inputs = [];
+		var inputs = {};
 		inputs[inputItem] = { count: 2 }; // Base output for smelters is 2 Ore -> 1 Bar.
 
-		var outputs = [];
+		var outputs = {};
 		outputs[outputItem] = { count: 1 };
 
 		for ( var [ bonusOutputItem, percent ] of Object.entries( bonusOutputs ) ) {
