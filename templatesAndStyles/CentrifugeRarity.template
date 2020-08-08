@@ -1,0 +1,13 @@
+<noinclude>Usage: <nowiki>{{CentrifugeRarity|rarest|3}}</nowiki> -> {{CentrifugeRarity|rarest|3}}.
+* First parameter: rarity: one of <code>rarest</code>, <code>rare</code>, <code>uncommon</code>, <code>normal</code>, <code>common</code>.
+* Second parameter: chanceDivisor (integer, e.g. 2 or 3), same value as in '''objects/generic/centrifuge_recipes.config'''.
+* Optional parameter: onlyGasCentrifuge=1 - if this parameter is present, then don't show chances for [[Any Centrifuge|lower-tier centrifuges]]. (for items that can only be obtained from [[Gas Centrifuge]])
+
+For example, if the item is "rarest" and has chanceDivisor=4, then the chances of getting this item from centriguration are 4 times less than the the usual chances for "rarest" items.
+</noinclude><!--
+
+-->{{#if: {{{onlyGasCentrifuge|}}}||
+{{popup|2=Iron Centrifuge|{{#expr: {{CentrifugeChance/IronCentrifuge|{{{1|normal}}}}} / {{{2|1}}} * 100 round 2}}%}}/<!--
+-->{{popup|2=Lab Centrifuge|{{#expr: {{CentrifugeChance/LabCentrifuge|{{{1|normal}}}}} / {{{2|1}}} * 100 round 2}}%}}/
+}}<!--
+-->{{popup|2=Gas Centrifuge|{{#expr: {{CentrifugeChance/GasCentrifuge|{{{1|normal}}}}} / {{{2|1}}} * 100 round 2}}%}}
