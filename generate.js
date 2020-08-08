@@ -70,31 +70,32 @@ for ( var [ recipeGroup, buildingName ] of Object.entries( config.centrifugeReci
 /* Step 4: Add recipes from Blast Furnace into RecipeDatabase -------------------------------- */
 /*-------------------------------------------------------------------------------------------- */
 
-// TODO: support Arc Smelter too.
-// While it's easy to add, it would result in multiple duplicate recipes (they are often the same
-// for Arc Smelter and Blast Furnate), so extra code to suppress such duplicates is requires.
+// TODO: remove duplicate recipes (they are often the same for Arc Smelter and Blast Furnate)
+// or, alternatively, show the chances of bonus output (in which case they will be the same).
 
-for ( var [ inputItem, outputItem ] of Object.entries( blastFurnaceConf.inputsToOutputs ) ) {
-	var bonusOutputs = blastFurnaceConf.bonusOutputs[inputItem] || [];
+var smelterBuildings = { 'Blast Furnace': blastFurnaceConf, 'Arc Smelter': arcSmelterConf };
 
-	var inputs = [];
-	inputs[inputItem] = 2; // Base output for smelters is 2 Ore -> 1 Bar.
+for ( var [ buildingName, buildingConf ] of Object.entries( smelterBuildings ) ) {
+	for ( var [ inputItem, outputItem ] of Object.entries( buildingConf.inputsToOutputs ) ) {
+		var bonusOutputs = buildingConf.bonusOutputs[inputItem] || [];
 
-	var outputs = [];
-	outputs[outputItem] = 1;
+		var inputs = [];
+		inputs[inputItem] = 2; // Base output for smelters is 2 Ore -> 1 Bar.
 
-	Object.keys( bonusOutputs ).forEach( function ( bonusOutputItem ) {
-		outputs[bonusOutputItem] = 'UNKNOWN';
-	} );
+		var outputs = [];
+		outputs[outputItem] = 1;
 
-	RecipeDatabase.add( 'Blast Furnace', inputs, outputs );
+		Object.keys( bonusOutputs ).forEach( function ( bonusOutputItem ) {
+			outputs[bonusOutputItem] = 'UNKNOWN';
+		} );
+
+		RecipeDatabase.add( buildingName, inputs, outputs );
+	}
 }
 
 
-// TODO: add recipes from other Stations.
 
-
-
+// TODO: add recipes from other Stations (if any).
 
 /*-------------------------------------------------------------------------------------------- */
 
