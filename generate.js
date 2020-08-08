@@ -42,7 +42,11 @@ for ( var extractorRecipe of extractorConf ) {
 /*-------------------------------------------------------------------------------------------- */
 
 for ( var mixerRecipe of mixerConf ) {
-	RecipeDatabase.add( 'Liquid Mixer', mixerRecipe.inputs, mixerRecipe.outputs );
+	RecipeDatabase.add(
+		'Liquid Mixer',
+		util.getStageValues( mixerRecipe.inputs, 0 ),
+		util.getStageValues( mixerRecipe.outputs, 0 )
+	);
 }
 
 /*-------------------------------------------------------------------------------------------- */
@@ -51,16 +55,13 @@ for ( var mixerRecipe of mixerConf ) {
 
 for ( var [ recipeGroup, buildingName ] of Object.entries( config.centrifugeRecipeGroups ) ) {
 	for ( var [ inputItem, outputToRarityMap ] of Object.entries( centrifugeConf[recipeGroup] ) ) {
-		// TODO: our Recipe object should support rarities. Currently it only supports counts,
-		// while the output of sifters is probability-based.
 		var outputs = {};
-		Object.keys( outputToRarityMap ).forEach( function ( outputItem ) {
-			// UNKNOWN is a special-meaning value to use in Recipe class instead of count.
-			outputs[outputItem] = 'UNKNOWN';
-		} );
+		for ( var [ outputItem, rarityInfo ] of Object.entries( outputToRarityMap ) ) {
+			outputs[outputItem] = { rarity: rarityInfo };
+		}
 
 		var inputs = [];
-		inputs[inputItem] = 'UNKNOWN';
+		inputs[inputItem] = {};
 
 		RecipeDatabase.add( buildingName, inputs, outputs );
 	}
@@ -80,13 +81,13 @@ for ( var [ buildingName, buildingConf ] of Object.entries( smelterBuildings ) )
 		var bonusOutputs = buildingConf.bonusOutputs[inputItem] || [];
 
 		var inputs = [];
-		inputs[inputItem] = 2; // Base output for smelters is 2 Ore -> 1 Bar.
+		inputs[inputItem] = { count: 2 }; // Base output for smelters is 2 Ore -> 1 Bar.
 
 		var outputs = [];
-		outputs[outputItem] = 1;
+		outputs[outputItem] = { count: 1 };
 
-		for ( var [ bonusOutputItem, chance ] of Object.entries( bonusOutputs ) ) {
-			outputs[bonusOutputItem] = chance + '%';
+		for ( var [ bonusOutputItem, percent ] of Object.entries( bonusOutputs ) ) {
+			outputs[bonusOutputItem] = { chance: percent };
 		}
 
 		RecipeDatabase.add( buildingName, inputs, outputs );
