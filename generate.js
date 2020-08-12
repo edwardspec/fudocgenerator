@@ -133,21 +133,25 @@ function recipeListToWikitext( recipeList ) {
 	var wikitext = '';
 
 	for ( var [ CraftingStation, recipes ] of Object.entries( recipeList ) ) {
-		wikitext += '=== [[' + CraftingStation + ']] ===\n\n';
+		var thisStationWikitext = '';
 
 		recipes.forEach( function ( Recipe ) {
-			wikitext += Recipe.toWikitext();
+			thisStationWikitext += Recipe.toWikitext();
 		} );
 
-		wikitext += '\n';
+		if ( thisStationWikitext ) {
+			wikitext += '=== [[' + CraftingStation + ']] ===\n\n' + thisStationWikitext + '\n';
+		}
 	}
 
 	return wikitext;
 }
 
-if ( !fs.statSync( config.outputDir ) ) {
-	fs.mkdirSync( config.outputDir );
-}
+// Create the output files with wikitext.
+// TODO: this is temporary (for checking the correctness of output).
+// Ultimately the output should be something like *.xml dump for Special:Import
+// or an import file for pywikipediabot - something that would allow quick creation of pages.
+fs.mkdirSync( config.outputDir, { recursive: true } );
 
 for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	var item = ItemDatabase.find( ItemCode );
@@ -161,17 +165,22 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	// Obtain the human-readable item name.
 	var ItemName = item.displayName,
 		recipesWhereInput = SearchIndex.getRecipesWhereInputIs( ItemCode ),
-		recipesWhereOutput = SearchIndex.getRecipesWhereOutputIs( ItemCode );
+		recipesWhereOutput = SearchIndex.getRecipesWhereOutputIs( ItemCode ),
+		howToObtainWikitext = recipeListToWikitext( recipesWhereOutput ),
+		usedForWikitext = recipeListToWikitext( recipesWhereInput );
 
 	// Form the automatically generated wikitext of recipes.
 	var wikitext = '';
 
-	wikitext += '== How to obtain ==\n\n' + recipeListToWikitext( recipesWhereOutput );
-	wikitext += '== Used for ==\n\n' + recipeListToWikitext( recipesWhereInput );
+	if ( howToObtainWikitext ) {
+		wikitext += '== How to obtain ==\n\n' + howToObtainWikitext;
+	}
 
-	// TODO: creating these files is temporary (for checking the correctness of files).
-	// Ultimately the output should be something like *.xml dump for Special:Import
-	// or an import file for pywikipediabot - something that would allow quick creation of pages.
+	if ( usedForWikitext ) {
+		wikitext += '== Used for ==\n\n' + usedForWikitext;
+	}
+
+	// TODO: if this item is a crafting station, then additionally add the recipes that are crafted here.
 
 	var validFilename = ItemName.replace( / /g, '_' ).replace( '/', '%2F' );
 
