@@ -122,7 +122,25 @@ console.log( SearchIndex.listKnownItems().join( ', ' ) );
 
 /**
  * Format the output of getRecipesWhereInputIs() or getRecipesWhereOutputIs() as wikitext.
- * @param {array} recipeList
+ * @param {Recipe[]} recipes
+ * @return {string}
+ */
+function singleStationRecipesToWikitext( recipes ) {
+	if ( !recipes ) {
+		return '';
+	}
+
+	var wikitext = '';
+	recipes.forEach( function ( Recipe ) {
+		wikitext += Recipe.toWikitext();
+	} );
+
+	return wikitext;
+}
+
+/**
+ * Format the output of getRecipesWhereInputIs() or getRecipesWhereOutputIs() as wikitext.
+ * @param {object} recipeList E.g. { "Crafting Station1": [ Recipe1, ... ], ... }
  * @return {string}
  */
 function recipeListToWikitext( recipeList ) {
@@ -133,12 +151,7 @@ function recipeListToWikitext( recipeList ) {
 	var wikitext = '';
 
 	for ( var [ CraftingStation, recipes ] of Object.entries( recipeList ) ) {
-		var thisStationWikitext = '';
-
-		recipes.forEach( function ( Recipe ) {
-			thisStationWikitext += Recipe.toWikitext();
-		} );
-
+		var thisStationWikitext = singleStationRecipesToWikitext( recipes );
 		if ( thisStationWikitext ) {
 			wikitext += '=== [[' + CraftingStation + ']] ===\n\n' + thisStationWikitext + '\n';
 		}
@@ -166,8 +179,10 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	var ItemName = item.displayName,
 		recipesWhereInput = SearchIndex.getRecipesWhereInputIs( ItemCode ),
 		recipesWhereOutput = SearchIndex.getRecipesWhereOutputIs( ItemCode ),
+		recipesWhereStation = SearchIndex.getRecipesWhereStationIs( ItemName ),
 		howToObtainWikitext = recipeListToWikitext( recipesWhereOutput ),
-		usedForWikitext = recipeListToWikitext( recipesWhereInput );
+		usedForWikitext = recipeListToWikitext( recipesWhereInput ),
+		craftedHereWikitext = singleStationRecipesToWikitext( recipesWhereStation );
 
 	// Form the automatically generated wikitext of recipes.
 	var wikitext = '';
@@ -180,7 +195,9 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 		wikitext += '== Used for ==\n\n' + usedForWikitext;
 	}
 
-	// TODO: if this item is a crafting station, then additionally add the recipes that are crafted here.
+	if ( craftedHereWikitext ) {
+		wikitext += '== Items crafted here ==\n\n' + craftedHereWikitext;
+	}
 
 	var validFilename = ItemName.replace( / /g, '_' ).replace( '/', '%2F' );
 
