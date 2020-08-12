@@ -136,7 +136,7 @@ function recipeListToWikitext( recipeList ) {
 		wikitext += '=== [[' + CraftingStation + ']] ===\n\n';
 
 		recipes.forEach( function ( Recipe ) {
-			wikitext += Recipe.toWikitext() + '\n';
+			wikitext += Recipe.toWikitext();
 		} );
 
 		wikitext += '\n';
