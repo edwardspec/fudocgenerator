@@ -21,6 +21,7 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	arcSmelterConf = util.loadModFile( 'objects/power/isn_arcsmelter/isn_arcsmelter.object' ),
 	mixerConf = util.loadModFile( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' );
 
+// TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
 
 /*-------------------------------------------------------------------------------------------- */
@@ -99,8 +100,13 @@ for ( var [ buildingName, buildingConf ] of Object.entries( smelterBuildings ) )
 }
 
 
+/*-------------------------------------------------------------------------------------------- */
+/* Step 5: Add crafting recipes into RecipeDatabase ------------------------------------------ */
+/*-------------------------------------------------------------------------------------------- */
 
-// TODO: add recipes from other Stations (if any).
+util.loadModFilesGlob( config.pathToMod + '/**/*.recipe', ( loadedData, filename ) => {
+	RecipeDatabase.addNativeCraftingRecipe( loadedData );
+} );
 
 /*-------------------------------------------------------------------------------------------- */
 
@@ -167,7 +173,9 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	// Ultimately the output should be something like *.xml dump for Special:Import
 	// or an import file for pywikipediabot - something that would allow quick creation of pages.
 
-	var fd = fs.openSync( config.outputDir + '/' + ItemName.replace( / /g, '_' ) + '.txt', 'w' );
+	var validFilename = ItemName.replace( / /g, '_' ).replace( '/', '%2F' );
+
+	var fd = fs.openSync( config.outputDir + '/' + validFilename + '.txt', 'w' );
 	fs.writeSync( fd, wikitext );
 	fs.closeSync( fd );
 }
