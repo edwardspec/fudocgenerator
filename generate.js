@@ -244,5 +244,5 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	wikitext += '|upgradeable = ' + ( item.isUpgradeable ? 1 : 0 ) + '\n';
 	wikitext += '}}</noinclude>\n';
 
-	ResultsWriter.write( ItemName, wikitext );
+	ResultsWriter.write( ItemName, wikitext, ItemCode );
 }
