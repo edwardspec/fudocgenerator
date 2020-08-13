@@ -31,3 +31,4 @@ Note that `-force` means that this will overwrite the pages about items if they 
 - add item tags into the database? (can possibly be used for wiki categories)
 - sort the recipes in pywikibot.import.txt alphabetically? (to more clearly see the progress when using pywikibot)
 - output format of results: add XML file for Special:Import? (may be much faster than pywikibot, but can't have rules like "don't overwrite the page if it already has the words "Automatic item info")
+- fix stations like Rustic Skath Workbench (not available to many players) taking precedence over generalized crafting stations (such as Foraging Table).
