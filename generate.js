@@ -223,8 +223,8 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	wikitext += '|price = ' + ( item.price || 0 ) + '\n';
 	wikitext += '|stackSize = ' + ( item.maxStack || 1 ) + '\n';
 
-	if ( item.tier ) {
-		wikitext += '|tier = ' + item.tier + '\n';
+	if ( item.level ) {
+		wikitext += '|tier = ' + item.level + '\n';
 	}
 
 	// TODO: what is the default if this parameter is not specified? Two-handed or one-handed?
@@ -233,15 +233,15 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	}
 
 	var isUpgradeable = false;
-	if ( Array.isArray( item.tags ) ) {
-		if ( item.tags.indexOf( 'upgradeableWeapon' ) !== -1 ) {
+	if ( Array.isArray( item.itemTags ) ) {
+		if ( item.itemTags.indexOf( 'upgradeableWeapon' ) !== -1 ) {
 			isUpgradeable = true;
-		} else if ( item.tags.indexOf( 'upgradeableTool' ) !== -1 ) {
+		} else if ( item.itemTags.indexOf( 'upgradeableTool' ) !== -1 ) {
 			isUpgradeable = true;
 		}
 	}
 
-	wikitext += '|upgradeable = ' + ( item.isUpgradeable ? 1 : 0 ) + '\n';
+	wikitext += '|upgradeable = ' + ( isUpgradeable ? 1 : 0 ) + '\n';
 	wikitext += '}}</noinclude>\n';
 
 	ResultsWriter.write( ItemName, wikitext, ItemCode );
