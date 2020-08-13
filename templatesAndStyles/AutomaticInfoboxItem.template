@@ -1,0 +1,11 @@
+<noinclude>Shows {{tl|Infobox item}} using the information about items that was automatically gathered by a bot.
+
+Usage: <nowiki>{{Automatic Infobox item|fu_carbon}}</nowiki>, where <code>fu_carbon</code> is item ID.
+
+</noinclude>{{#cargo_query:tables=item
+|where=item.id="{{{1|fu_carbon}}}"
+|fields=name,description,category,tier,rarity,price,stackSize,twoHanded,upgradeable
+|format=template
+|template=Infobox item
+|named args=yes
+}}

@@ -1,0 +1,16 @@
+<noinclude>{{#cargo_declare:
+_table = item
+|id = String
+|name = String
+|category = String
+|description = String
+|icon = String
+|tier = Float
+|rarity = String
+|price = Integer
+|stackSize = Integer
+|twoHanded = Boolean
+|upgradeable = Boolean
+}}
+
+This table is used by {{tl|Automatic infobox item}} to auto-populate the fields of {{tl|Infobox item}}</noinclude> based on [[Special:Prefixindex/Template:Automatic item info|information gathered by bot]].
