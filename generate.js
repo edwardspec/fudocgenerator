@@ -221,7 +221,10 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	}
 
 	wikitext += '|price = ' + ( item.price || 0 ) + '\n';
-	wikitext += '|stackSize = ' + ( item.maxStack || 1 ) + '\n';
+
+	if ( item.maxStack ) {
+		wikitext += '|stackSize = ' + item.maxStack + '\n';
+	}
 
 	if ( item.level ) {
 		wikitext += '|tier = ' + item.level + '\n';
