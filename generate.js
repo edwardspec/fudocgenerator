@@ -209,7 +209,7 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	}
 
 	if ( item.description ) {
-		wikitext += '|description = ' + item.description + '\n';
+		wikitext += '|description = ' + util.cleanDescription( item.description ) + '\n';
 	}
 
 	if ( item.inventoryIcon ) {
