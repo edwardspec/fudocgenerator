@@ -19,7 +19,8 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	extractorConf = util.loadModFile( 'objects/generic/extractionlab_recipes.config' ),
 	blastFurnaceConf = util.loadModFile( 'objects/power/fu_blastfurnace/fu_blastfurnace.object' ),
 	arcSmelterConf = util.loadModFile( 'objects/power/isn_arcsmelter/isn_arcsmelter.object' ),
-	mixerConf = util.loadModFile( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' );
+	mixerConf = util.loadModFile( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' ),
+	xenolabConf = util.loadModFile( 'objects/generic/xenostation_recipes.config' );
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
@@ -39,7 +40,7 @@ for ( var extractorRecipe of extractorConf ) {
 }
 
 /*-------------------------------------------------------------------------------------------- */
-/* Step 2: Add recipes from Liquid Mixer into RecipeDatabase --------------------------------- */
+/* Step 2: Add recipes from Liquid Mixer and Xeno Research Lab into RecipeDatabase ----------- */
 /*-------------------------------------------------------------------------------------------- */
 
 for ( var mixerRecipe of mixerConf ) {
@@ -47,6 +48,14 @@ for ( var mixerRecipe of mixerConf ) {
 		'Liquid Mixer',
 		util.getStageValues( mixerRecipe.inputs, 0 ),
 		util.getStageValues( mixerRecipe.outputs, 0 )
+	);
+}
+
+for ( var xenolabRecipe of xenolabConf ) {
+	RecipeDatabase.add(
+		'Xeno Research Lab',
+		util.getStageValues( xenolabRecipe.inputs, 0 ),
+		util.getStageValues( xenolabRecipe.outputs, 0 )
 	);
 }
 

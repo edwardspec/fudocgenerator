@@ -22,7 +22,6 @@ Note that `-force` means that this will overwrite the pages about items if they 
 ### TODO (things to improve)
 
 - support situation when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles (how to name these pages?).
-- support Xenolab recipes
 - support Erchius Converter recipes
 - support items that have "[" or "]" in their name (e.g. "Kiri Fruit [FU]") - these are invalid characters for MediaWiki titles.
 - add images (can we do it, given the way images are stored in the mod)?
