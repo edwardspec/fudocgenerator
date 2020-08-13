@@ -8,9 +8,9 @@
  */
 
 var config = require( './config.json' ),
-	fs = require( 'fs' ),
 	RecipeDatabase = require( './lib/RecipeDatabase' ),
 	ItemDatabase = require( './lib/ItemDatabase' ),
+	ResultsWriter = require( './lib/ResultsWriter' ),
 	util = require( './lib/util' );
 
 // Load configs of all processing stations.
@@ -160,11 +160,8 @@ function recipeListToWikitext( recipeList ) {
 	return wikitext;
 }
 
-// Create the output files with wikitext.
-// TODO: this is temporary (for checking the correctness of output).
-// Ultimately the output should be something like *.xml dump for Special:Import
-// or an import file for pywikipediabot - something that would allow quick creation of pages.
-fs.mkdirSync( config.outputDir, { recursive: true } );
+// Generate the wikitext for each item that has at least 1 Recipe.
+// Then send the results to ResultsWriter.write().
 
 for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	var item = ItemDatabase.find( ItemCode );
@@ -247,9 +244,5 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	wikitext += '|upgradeable = ' + ( item.isUpgradeable ? 1 : 0 ) + '\n';
 	wikitext += '}}</noinclude>\n';
 
-	var validFilename = ItemName.replace( / /g, '_' ).replace( '/', '%2F' );
-
-	var fd = fs.openSync( config.outputDir + '/' + validFilename + '.txt', 'w' );
-	fs.writeSync( fd, wikitext );
-	fs.closeSync( fd );
+	ResultsWriter.write( ItemName, wikitext );
 }
