@@ -20,7 +20,8 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	blastFurnaceConf = util.loadModFile( 'objects/power/fu_blastfurnace/fu_blastfurnace.object' ),
 	arcSmelterConf = util.loadModFile( 'objects/power/isn_arcsmelter/isn_arcsmelter.object' ),
 	mixerConf = util.loadModFile( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' ),
-	xenolabConf = util.loadModFile( 'objects/generic/xenostation_recipes.config' );
+	xenolabConf = util.loadModFile( 'objects/generic/xenostation_recipes.config' ),
+	erchiusConverterConf = util.loadModFile( 'objects/minibiome/precursor/precursorconverter/console.object' );
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
@@ -40,7 +41,7 @@ for ( var extractorRecipe of extractorConf ) {
 }
 
 /*-------------------------------------------------------------------------------------------- */
-/* Step 2: Add recipes from Liquid Mixer and Xeno Research Lab into RecipeDatabase ----------- */
+/* Step 2: Add recipes from Liquid Mixer, Xeno Research Lab, etc. into RecipeDatabase -------- */
 /*-------------------------------------------------------------------------------------------- */
 
 for ( var mixerRecipe of mixerConf ) {
@@ -56,6 +57,14 @@ for ( var xenolabRecipe of xenolabConf ) {
 		'Xeno Research Lab',
 		util.getStageValues( xenolabRecipe.inputs, 0 ),
 		util.getStageValues( xenolabRecipe.outputs, 0 )
+	);
+}
+
+for ( var converterRecipe of erchiusConverterConf.recipeTable ) {
+	RecipeDatabase.add(
+		'Erchius Converter',
+		util.getStageValues( converterRecipe.inputs, 0 ),
+		util.getStageValues( converterRecipe.outputs, 0 )
 	);
 }
 
