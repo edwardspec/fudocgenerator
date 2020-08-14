@@ -21,7 +21,8 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	arcSmelterConf = util.loadModFile( 'objects/power/isn_arcsmelter/isn_arcsmelter.object' ),
 	mixerConf = util.loadModFile( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' ),
 	xenolabConf = util.loadModFile( 'objects/generic/xenostation_recipes.config' ),
-	erchiusConverterConf = util.loadModFile( 'objects/minibiome/precursor/precursorconverter/console.object' );
+	erchiusConverterConf = util.loadModFile( 'objects/minibiome/precursor/precursorconverter/console.object' ),
+	embalmingConf = util.loadModFile( 'objects/minibiome/elder/embalmingtable/embalmingtable_recipes.config' );
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
@@ -65,6 +66,14 @@ for ( var converterRecipe of erchiusConverterConf.recipeTable ) {
 		'Erchius Converter',
 		util.getStageValues( converterRecipe.inputs, 0 ),
 		util.getStageValues( converterRecipe.outputs, 0 )
+	);
+}
+
+for ( var embalmingRecipe of embalmingConf ) {
+	RecipeDatabase.add(
+		'Autopsy Table',
+		util.getStageValues( embalmingRecipe.inputs, 0 ),
+		util.getStageValues( embalmingRecipe.outputs, 0 )
 	);
 }
 
