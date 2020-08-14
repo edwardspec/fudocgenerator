@@ -214,7 +214,7 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 
 	// Most of these fields are optional, because we must be tolerant to bad input.
 	if ( item.category ) {
-		wikitext += '|category = ' + item.category + '\n';
+		wikitext += '|category = ' + util.cleanDescription( item.category ) + '\n';
 	}
 
 	if ( item.description ) {
