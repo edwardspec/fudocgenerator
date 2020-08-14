@@ -25,5 +25,71 @@
 	"logfile": "debug.log",
 
 	"@doc": "Directory where to write the resulting wikitext files.",
-	"outputDir": "RESULT"
+	"outputDir": "RESULT",
+
+	"@doc": "Ordered list of Crafting Stations, from low-tier to high-tier, from most common to rare/specialized. How is this used: if some item can be crafted on several Stations, then a Station that is closer to beginning of this list will be chosen. If some Crafting Station is NOT on this list, it will have the lowest possible priority (will only be shown if no Stations on this list can craft this item).",
+	"craftingStationPriorities": [
+		"Campfire",
+		"Kitchen Counter",
+
+		"Foraging Table",
+		"Agricultural Table",
+
+		"Alchemy Table",
+		"Chemistry Lab",
+		"Bio-Chem Lab",
+
+		"Apothecary",
+		"Medical Station",
+
+		"Inventor's Table",
+		"Engineer's Table",
+		"Architect's Table",
+
+		"Wooden Workbench",
+		"Industrial Workbench",
+
+		"Armorworks",
+		"Assembly Line",
+		"Armory",
+
+		"Machining Table",
+		"Auto-Assembler",
+		"Matter Assembler",
+
+		"Tome Dais",
+		"Writing Desk",
+		"Ancient Texts",
+		"Antediluvian Texts",
+
+		"Greenhouse",
+		"Botany Lab",
+		"Gene Design Lab",
+
+		"Tinkering Table",
+		"Engineering Bench",
+		"Nanofabricator",
+
+		"Electronics Center",
+		"Power Station",
+
+		"Anvil",
+		"Forge",
+		"Replicator",
+
+		"Spinning Wheel",
+		"Sewing Machine",
+		"Clothing Fabricator",
+
+		"Linguistics Table",
+		"Snarshing Table",
+		"Esoteric Research",
+
+		"Industrial Centrifuge",
+		"Atomic Furnace",
+		"Plating Table",
+
+		"Prop Pack Online Catalog",
+		"Prop Pack Truck"
+	]
 }
