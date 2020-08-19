@@ -14,10 +14,12 @@ Usage:
 
 You can use Pywikibot in the following way to autocreate pages:
 ```bash
-python3 pwb.py pagefromfile -log -file:/home/edward/TEST/fudocgenerator/RESULT/pywikibot.import.txt -force -notitle -nocontent:'Automatic item info'
+python3 pwb.py pagefromfile -log -notitle -force -file:/path/to/RESULT/pywikibot/cargoDatabase.import.txt
+python3 pwb.py pagefromfile -log -notitle -file:/path/to/RESULT/pywikibot/precreateArticles.import.txt
 ```
 
-Note that `-force` means that this will overwrite the pages about items if they don't have "Automatic item info" included (normally 99,9% of item pages should have it, and the rest can just add `<!-- Automatic item info -->` into their wikitext to become excluded from being overwritten).
+The first command will overwrite "Template:Automatic item info/..." pages, which are only meant to be edited by bot.
+Second command will precreate the articles for items (infobox + inclusion of above-mentioned template), but only if the article doesn't exist. **You can skip the second command if no new items were recently added into the game.**
 
 ### TODO (things to improve)
 
@@ -31,4 +33,5 @@ Note that `-force` means that this will overwrite the pages about items if they 
 - output format of results: add XML file for Special:Import? (may be much faster than pywikibot, but can't have rules like "don't overwrite the page if it already has the words "Automatic item info")
 - gather "Unlocked by" and "What it unlocks" lists for items.
 
-
+- IMPORTANT: Cargo database for recipes. (not necessarily the full database structure, the recipe can be an already formatted wikitext, maybe just Station+AffectedItem+Wikitext?)
+- IMPORTANT: place all Cargo databases on several pages (100-200k chunks?) to make updates very quick (there would be no need to modify thousands of templates). Note: don't place everything on 1 page, because MediaWiki doesn't handle huge pages very well.
