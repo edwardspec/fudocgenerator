@@ -1,0 +1,12 @@
+<noinclude>{{#cargo_declare:
+_table = recipe
+|station_id = String
+|affected_item_id = String
+|type = String (allowed values=input,output)
+|wikitext = Wikitext
+}}
+
+This table is used to automatically show "list of recipes that produce/need this item" on the item pages.
+
+[[Category:Cargo templates]]
+</noinclude>

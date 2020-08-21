@@ -12,5 +12,7 @@ _table = item
 |twoHanded = Boolean
 |upgradeable = Boolean
 }}
+This table is used by {{tl|Automatic infobox item}} to auto-populate the fields of {{tl|Infobox item}} based on [[Special:Prefixindex/Template:Automatic item info|information gathered by bot]].
 
-This table is used by {{tl|Automatic infobox item}} to auto-populate the fields of {{tl|Infobox item}}</noinclude> based on [[Special:Prefixindex/Template:Automatic item info|information gathered by bot]].
+[[Category:Cargo templates]]
+</noinclude>
