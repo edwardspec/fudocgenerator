@@ -33,11 +33,15 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 
 for ( var extractorRecipe of extractorConf ) {
 	config.extractorStageBuildings.forEach( function ( buildingName, extractorStage ) {
-		RecipeDatabase.add(
-			buildingName,
-			util.getStageValues( extractorRecipe.inputs, extractorStage ),
-			util.getStageValues( extractorRecipe.outputs, extractorStage )
-		);
+		var inputs = util.getStageValues( extractorRecipe.inputs, extractorStage ),
+			outputs = util.getStageValues( extractorRecipe.outputs, extractorStage );
+
+		RecipeDatabase.add( buildingName, inputs, outputs );
+
+		if ( extractorRecipe.reversible ) {
+			// This is currently only used for Nitrogen <-> Liquid Nitrogen
+			RecipeDatabase.add( buildingName, outputs, inputs );
+		}
 	} );
 }
 
