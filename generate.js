@@ -22,7 +22,8 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	mixerConf = util.loadModFile( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' ),
 	xenolabConf = util.loadModFile( 'objects/generic/xenostation_recipes.config' ),
 	erchiusConverterConf = util.loadModFile( 'objects/minibiome/precursor/precursorconverter/console.object' ),
-	embalmingConf = util.loadModFile( 'objects/minibiome/elder/embalmingtable/embalmingtable_recipes.config' );
+	embalmingConf = util.loadModFile( 'objects/minibiome/elder/embalmingtable/embalmingtable_recipes.config' ),
+	psiAmplifierConf = util.loadModFile( 'objects/generic/extractionlabmadness_recipes.config' );
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
@@ -78,6 +79,15 @@ for ( var embalmingRecipe of embalmingConf ) {
 		'Autopsy Table',
 		util.getStageValues( embalmingRecipe.inputs, 0 ),
 		util.getStageValues( embalmingRecipe.outputs, 0 )
+	);
+}
+
+for ( var psiAmplifierRecipe of psiAmplifierConf ) {
+	RecipeDatabase.add(
+		'Psionic Amplifier',
+		// This station is Tier 3 (extractorStage=2). Stage=0 is used for Tier 1 extractors.
+		util.getStageValues( psiAmplifierRecipe.inputs, 2 ),
+		util.getStageValues( psiAmplifierRecipe.outputs, 2 )
 	);
 }
 
