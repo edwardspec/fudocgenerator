@@ -23,7 +23,9 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	xenolabConf = util.loadModFile( 'objects/generic/xenostation_recipes.config' ),
 	erchiusConverterConf = util.loadModFile( 'objects/minibiome/precursor/precursorconverter/console.object' ),
 	embalmingConf = util.loadModFile( 'objects/minibiome/elder/embalmingtable/embalmingtable_recipes.config' ),
-	psiAmplifierConf = util.loadModFile( 'objects/generic/extractionlabmadness_recipes.config' );
+	psiAmplifierConf = util.loadModFile( 'objects/generic/extractionlabmadness_recipes.config' ),
+	condenserConf = util.loadModFile( 'objects/power/isn_atmoscondenser/isn_atmoscondenser.object' ),
+	planetTypeNames = util.loadModFile( 'interface/cockpit/cockpit.config' ).planetTypeNames;
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
@@ -140,9 +142,78 @@ for ( var [ buildingName, buildingConf ] of Object.entries( smelterBuildings ) )
 	}
 }
 
+/*-------------------------------------------------------------------------------------------- */
+/* Step 5: Add outputs of Atmospheric Condenser into RecipeDatabase -------------------------- */
+/*-------------------------------------------------------------------------------------------- */
+
+var condenserWeights = condenserConf.namedWeights,
+	sumOfWeights = 0,
+	outputsPerBiome = {};
+
+for ( var weight of Object.values( condenserWeights ) ) {
+	sumOfWeights += weight;
+}
+
+for ( var [ biomeCode, pool ] of Object.entries( condenserConf.outputs ) ) {
+	if ( biomeCode == 'sulphuricocean' ) {
+		// Sulphur Sea planets are disabled (no longer generated for new players), no need to show them.
+		continue;
+	}
+
+
+	if ( typeof( pool ) == 'string' ) {
+		// Alias, e.g. "moon_desert" : "moon".
+		// This means that the output for "moon" will be used.
+		outputsPerBiome[biomeCode] = { sameAsBiome: pool };
+		continue;
+	}
+
+	// Calculate the chance for each item in "pool".
+	// Atmospheric Condenser creates 1 random item every 2 seconds, so items in the same rarity
+	// will compete with each other. The more items there are, the lower the chance of each.
+	var outputs = {}
+
+	for ( var subpool of pool ) {
+		var chanceOfOneItem = 100. * condenserWeights[subpool.weight] / sumOfWeights;
+		chanceOfOneItem /= subpool.items.length; // Competition
+
+		for ( var ItemCode of subpool.items ) {
+			var chance = chanceOfOneItem;
+			if ( outputs[ItemCode] ) {
+				// Some biomes have the same item in "common" and "rare" pools
+				// (for example, Carbon for "moon" biome).
+				chance += outputs[ItemCode].chance;
+			}
+
+			outputs[ItemCode] = { chance: chance };
+		}
+	}
+
+	outputsPerBiome[biomeCode] = outputs;
+}
+
+for ( var [ biomeCode, outputs ] of Object.entries( outputsPerBiome ) ) {
+	if ( outputs.sameAsBiome ) {
+		// TODO: instead of showing duplicate recipes for Moon and Rocky Moon,
+		// show this recipe once with "Air (Moon, Rocky Moon planets)" as input.
+		outputs = outputsPerBiome[outputs.sameAsBiome];
+	}
+
+	var wikitext = 'Air (normal planets)';
+
+	var biomeName = planetTypeNames[biomeCode];
+	if ( biomeName ) {
+		wikitext = 'Air ([[' + biomeName  + ']] planets)';
+	}
+
+	var inputs = {}
+	inputs['PSEUDO_ITEM'] = { wikitext: wikitext };
+
+	RecipeDatabase.add( 'Atmospheric Condenser', inputs, outputs );
+}
 
 /*-------------------------------------------------------------------------------------------- */
-/* Step 5: Add crafting recipes into RecipeDatabase ------------------------------------------ */
+/* Step 6: Add crafting recipes into RecipeDatabase ------------------------------------------ */
 /*-------------------------------------------------------------------------------------------- */
 
 util.loadModFilesGlob( config.pathToMod + '/**/*.recipe', ( loadedData, filename ) => {
