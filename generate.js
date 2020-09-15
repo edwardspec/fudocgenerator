@@ -216,7 +216,7 @@ for ( var [ biomeCode, outputs ] of Object.entries( outputsPerBiome ) ) {
 	var wikitext = 'Air (' + allBiomeLinks.join( ', ') + ' planets)';
 
 	var inputs = {}
-	inputs['PSEUDO_ITEM'] = { wikitext: wikitext };
+	inputs['PSEUDO_ITEM'] = { displayNameWikitext: wikitext };
 
 	RecipeDatabase.add( 'Atmospheric Condenser', inputs, outputs );
 }
