@@ -150,6 +150,10 @@ var condenserWeights = condenserConf.namedWeights,
 	sumOfWeights = 0,
 	outputsPerBiome = {};
 
+// Format: { "moon": [ "moon_desert", "moon_toxic" ] }
+// Records facts like "Desert Moon and Toxic Moon has the same outputs as Moon".
+var sameOutputBiomes = {};
+
 for ( var weight of Object.values( condenserWeights ) ) {
 	sumOfWeights += weight;
 }
@@ -164,7 +168,13 @@ for ( var [ biomeCode, pool ] of Object.entries( condenserConf.outputs ) ) {
 	if ( typeof( pool ) == 'string' ) {
 		// Alias, e.g. "moon_desert" : "moon".
 		// This means that the output for "moon" will be used.
-		outputsPerBiome[biomeCode] = { sameAsBiome: pool };
+		var mainBiome = pool;
+
+		if ( !sameOutputBiomes[mainBiome] ) {
+			sameOutputBiomes[mainBiome] = [];
+		}
+
+		sameOutputBiomes[mainBiome].push( biomeCode );
 		continue;
 	}
 
@@ -193,18 +203,17 @@ for ( var [ biomeCode, pool ] of Object.entries( condenserConf.outputs ) ) {
 }
 
 for ( var [ biomeCode, outputs ] of Object.entries( outputsPerBiome ) ) {
-	if ( outputs.sameAsBiome ) {
-		// TODO: instead of showing duplicate recipes for Moon and Rocky Moon,
-		// show this recipe once with "Air (Moon, Rocky Moon planets)" as input.
-		outputs = outputsPerBiome[outputs.sameAsBiome];
-	}
+	// It's possible that multiple biomes have the same output, e.g. 'Rocky Moon' and 'Lunar'.
+	// Create a string like "[[Rocky Moon]] planets, [[Lunar]] planets, ..." for all these biomes.
+	// Note that some biomes have the same name (e.g. "fugasgiant1" and "fugasgiant2" are Gas Giant).
+	var allBiomeCodes = [ biomeCode ].concat( sameOutputBiomes[biomeCode] || [] ),
+		allBiomeNames = allBiomeCodes.map( ( thisBiomeCode ) => planetTypeNames[thisBiomeCode] ),
+		uniqueBiomeNames = Array.from( new Set( allBiomeNames ) ),
+		allBiomeLinks = uniqueBiomeNames.map( ( biomeName ) => {
+			return ( biomeName ? ( '[[' + biomeName + ']]' ) : 'normal' );
+		} );
 
-	var wikitext = 'Air (normal planets)';
-
-	var biomeName = planetTypeNames[biomeCode];
-	if ( biomeName ) {
-		wikitext = 'Air ([[' + biomeName  + ']] planets)';
-	}
+	var wikitext = 'Air (' + allBiomeLinks.join( ', ') + ' planets)';
 
 	var inputs = {}
 	inputs['PSEUDO_ITEM'] = { wikitext: wikitext };
