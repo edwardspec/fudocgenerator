@@ -8,7 +8,7 @@
 	"@doc": "Array of Extractor names. Should be in the same order as outputs in [extractionlab_recipes.config]. Note: Hand Mill shouldn't be listed, because its output is the same as output of tier 1 Extraction Lab.",
 	"extractorStageBuildings":  [
 		"Extraction Lab",
-		"Extraction Lab MK II",
+		"Extraction Lab MKII",
 		"Quantum Extractor"
 	],
 
