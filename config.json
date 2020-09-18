@@ -15,6 +15,7 @@
 	"@doc": "Converts names of recipe groups from [centrifuge_recipes.config] to name of associated Centrifuge-like building. Note: Wooden Centrifuge is currently not handled (itemMapLiquids can't be centrifuged by it, but we still show Any Centrifuge for this group).",
 	"centrifugeRecipeGroups":  {
 		"itemMapPowder": "Sifter",
+		"itemMapRocks": "Rock Crusher",
 		"itemMapFarm": "Any Centrifuge",
 		"itemMapBees": "Any Centrifuge",
 		"itemMapLiquids": "Any Centrifuge",
