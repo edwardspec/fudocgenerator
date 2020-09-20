@@ -100,7 +100,7 @@ for ( var psiAmplifierRecipe of psiAmplifierConf ) {
 /*-------------------------------------------------------------------------------------------- */
 
 for ( var [ recipeGroup, buildingName ] of Object.entries( config.centrifugeRecipeGroups ) ) {
-	for ( var [ inputItem, outputToRarityMap ] of Object.entries( centrifugeConf[recipeGroup] ) ) {
+	for ( var [ inputItem, outputToRarityMap ] of Object.entries( centrifugeConf[recipeGroup] || {} ) ) {
 		if ( recipeGroup === 'itemMapFarm' && inputItem === 'liquidwater' ) {
 			// Ignore farm recipe for Water, because it is overridden in non-Wooden Centrifuges,
 			// and we don't show Wooden Centrifuge anyway.
