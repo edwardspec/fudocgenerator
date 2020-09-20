@@ -293,7 +293,7 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	if ( !item ) {
 		// Must be tolerant to bad input (ignore unknown items, continue with known items),
 		// because a typo somewhere in the mod shouldn't stop the script.
-		util.log( "[warning] Unknown item in the recipe: " + ItemCode );
+		util.warnAboutUnknownItem( ItemCode );
 		continue;
 	}
 
