@@ -10,6 +10,7 @@
 var config = require( './config.json' ),
 	RecipeDatabase = require( './lib/RecipeDatabase' ),
 	ItemDatabase = require( './lib/ItemDatabase' ),
+	AssetDatabase = require( './lib/AssetDatabase' ),
 	ResultsWriter = require( './lib/ResultsWriter' ),
 	util = require( './lib/util' );
 
@@ -26,6 +27,7 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	psiAmplifierConf = util.loadModFile( 'objects/generic/extractionlabmadness_recipes.config' ),
 	condenserConf = util.loadModFile( 'objects/power/isn_atmoscondenser/isn_atmoscondenser.object' ),
 	planetTypeNames = util.loadModFile( 'interface/cockpit/cockpit.config' ).planetTypeNames;
+
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
@@ -225,8 +227,10 @@ for ( var [ biomeCode, outputs ] of Object.entries( outputsPerBiome ) ) {
 /* Step 6: Add crafting recipes into RecipeDatabase ------------------------------------------ */
 /*-------------------------------------------------------------------------------------------- */
 
-util.loadModFilesGlob( config.pathToMod + '/**/*.recipe', ( loadedData, filename ) => {
-	RecipeDatabase.addNativeCraftingRecipe( loadedData );
+AssetDatabase.forEach( ( filename, asset ) => {
+	if ( asset.fileExtension === '.recipe' ) {
+		RecipeDatabase.addNativeCraftingRecipe( asset.data );
+	}
 } );
 
 /*-------------------------------------------------------------------------------------------- */
