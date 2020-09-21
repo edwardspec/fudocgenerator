@@ -92,5 +92,12 @@
 
 		"Prop Pack Online Catalog",
 		"Prop Pack Truck"
-	]
+	],
+
+	"@doc": "Map of item ID to wikipage title. This is only needed for items with ambiguous names: for example, redflashlight/greenflashlight are both called Flashlight in the game, but are different items.",
+	"overrideItemPageTitles": {
+		"redflashlight": "Red Flashlight",
+		"greenflashlight": "Green Flashlight",
+		"yellowflashlight": "Yellow Flashlight"
+	}
 }

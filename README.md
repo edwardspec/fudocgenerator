@@ -23,6 +23,7 @@ Second command will precreate the articles for items (infobox + inclusion of abo
 
 ### TODO (things to improve)
 
+- add buying recipes (pixels for item) for shops like Infinity Express.
 - improve handling of situations when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles (how to name these pages?).
 - add images (can we do it, given the way images are stored in the mod)?
 - support color cores in descriptions, etc. (like "^green;Some green text^reset;")
