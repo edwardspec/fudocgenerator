@@ -23,8 +23,7 @@ Second command will precreate the articles for items (infobox + inclusion of abo
 
 ### TODO (things to improve)
 
-- support situation when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles (how to name these pages?).
-- support items that have "[" or "]" in their name (e.g. "Kiri Fruit [FU]") - these are invalid characters for MediaWiki titles.
+- improve handling of situations when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles (how to name these pages?).
 - add images (can we do it, given the way images are stored in the mod)?
 - support color cores in descriptions, etc. (like "^green;Some green text^reset;")
 - guess maxStack for items that don't have it listed, but which have understandable maxStack? (e.g. 1000 for all blocks and liquids)
