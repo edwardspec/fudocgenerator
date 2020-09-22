@@ -246,16 +246,19 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 
 	var shopName = data.displayName;
 
-	data.interactData.items.map( ( shopSlot ) => shopSlot.item ).forEach( ( soldItemCode ) => {
-		var soldItem = ItemDatabase.find( soldItemCode );
+	data.interactData.items.forEach( ( shopSlot ) => {
+		var soldItemCode = shopSlot.item,
+			soldItem = ItemDatabase.find( soldItemCode );
 		if ( !soldItem ) {
 			// Some shops sell items from other mods, e.g. "impvase3" in "Forum Decorum" shop.
 			util.warnAboutUnknownItem( soldItemCode );
 			return;
 		}
 
+		var buyPrice = Math.ceil( ( shopSlot.price || soldItem.price ) * data.interactData.buyFactor );
+
 		RecipeDatabase.add( shopName,
-			{ money: { count: Math.ceil( soldItem.price * data.interactData.buyFactor ) } },
+			{ money: { count: buyPrice } },
 			{ [ soldItemCode ]: { count: 1 } }
 		);
 	} );
