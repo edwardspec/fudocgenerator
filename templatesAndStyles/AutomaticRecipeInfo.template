@@ -1,12 +1,14 @@
 <noinclude>{{#cargo_declare:
 _table = recipe
-|station_id = String
-|affected_item_id = String
-|type = String (allowed values=input,output)
+|station = String
+|inputs = List (,) of String
+|outputs = List (,) of String
 |wikitext = Wikitext
 }}
 
 This table is used to automatically show "list of recipes that produce/need this item" on the item pages.
+
+Note: <code>station</code> is the visible name of station (e.g. "Greenhouse"), while <code>inputs</code> and <code>outputs</code> are arrays of item IDs (e.g. "ironore,copperbar").
 
 [[Category:Cargo templates]]
 </noinclude>

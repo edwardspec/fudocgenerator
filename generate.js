@@ -320,6 +320,11 @@ function recipeListToWikitext( recipeList ) {
 	return wikitext;
 }
 
+// Generate Cargo database of all known recipes.
+for ( var Recipe of RecipeDatabase.knownRecipes ) {
+	ResultsWriter.writeIntoCargoDatabase( Recipe );
+}
+
 // Generate the wikitext for each item that has at least 1 Recipe.
 // Then send the results to ResultsWriter.write().
 
