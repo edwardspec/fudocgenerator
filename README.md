@@ -23,7 +23,6 @@ Second command will precreate the articles for items (infobox + inclusion of abo
 
 ### TODO (things to improve)
 
-- generate pages for uncraftable crafting stations (e.g. Infinity Express) if they have recipes. (currently the page "Infinity Express" is not generated, because it's not Input/Output of any recipe)
 - improve handling of situations when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles (how to name these pages?).
 - add images (can we do it, given the way images are stored in the mod)?
 - support color cores in descriptions, etc. (like "^green;Some green text^reset;")
