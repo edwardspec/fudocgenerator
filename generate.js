@@ -234,6 +234,34 @@ AssetDatabase.forEach( ( filename, asset ) => {
 } );
 
 /*-------------------------------------------------------------------------------------------- */
+/* Step 7: Add "pixels for item" recipes for shops (like Infinity Express) into RecipeDatabase */
+/*-------------------------------------------------------------------------------------------- */
+
+ItemDatabase.forEach( ( itemCode, data ) => {
+	if ( data.interactAction !== 'OpenMerchantInterface' || !data.interactData.items ) {
+		// Not a merchant.
+		// This also skips Biggy's Reputable Weaponry (vanilla shop), because it sells random items.
+		return;
+	}
+
+	var shopName = data.displayName;
+
+	data.interactData.items.map( ( shopSlot ) => shopSlot.item ).forEach( ( soldItemCode ) => {
+		var soldItem = ItemDatabase.find( soldItemCode );
+		if ( !soldItem ) {
+			// Some shops sell items from other mods, e.g. "impvase3" in "Forum Decorum" shop.
+			util.warnAboutUnknownItem( soldItemCode );
+			return;
+		}
+
+		RecipeDatabase.add( shopName,
+			{ money: { count: Math.ceil( soldItem.price * data.interactData.buyFactor ) } },
+			{ [ soldItemCode ]: { count: 1 } }
+		);
+	} );
+} );
+
+/*-------------------------------------------------------------------------------------------- */
 
 //RecipeDatabase.dump();
 
