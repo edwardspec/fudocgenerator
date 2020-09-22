@@ -1,0 +1,11 @@
+{| class="recipe"
+ | class="recipe-input" |
+{{{inputs}}}
+ | class="recipe-output" |
+{{{outputs}}}
+ |}<noinclude>
+This template is used to show one crafting/extraction Recipe on item pages.
+
+Usage: <nowiki>{{Recipe|inputs=something|outputs=something}}</nowiki>
+
+</noinclude>
