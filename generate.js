@@ -26,8 +26,8 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	embalmingConf = util.loadModFile( 'objects/minibiome/elder/embalmingtable/embalmingtable_recipes.config' ),
 	psiAmplifierConf = util.loadModFile( 'objects/generic/extractionlabmadness_recipes.config' ),
 	condenserConf = util.loadModFile( 'objects/power/isn_atmoscondenser/isn_atmoscondenser.object' ),
-	planetTypeNames = util.loadModFile( 'interface/cockpit/cockpit.config' ).planetTypeNames;
-
+	planetTypeNames = util.loadModFile( 'interface/cockpit/cockpit.config' ).planetTypeNames,
+	geologistNpcConf = util.loadModFile( 'npcs/crew/crewmembergeologist.npctype' );
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
@@ -237,6 +237,8 @@ AssetDatabase.forEach( ( filename, asset ) => {
 /* Step 7: Add "pixels for item" recipes for shops (like Infinity Express) into RecipeDatabase */
 /*-------------------------------------------------------------------------------------------- */
 
+var shops = { 'Geologist': geologistNpcConf.scriptConfig.crew };
+
 ItemDatabase.forEach( ( itemCode, data ) => {
 	if ( data.interactAction !== 'OpenMerchantInterface' || !data.interactData.items ) {
 		// Not a merchant.
@@ -244,8 +246,10 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 		return;
 	}
 
-	var shopName = data.displayName;
+	shops[data.displayName] = data;
+} );
 
+for ( var [ shopName, data ] of Object.entries( shops ) ) {
 	data.interactData.items.forEach( ( shopSlot ) => {
 		var soldItemCode = shopSlot.item,
 			soldItem = ItemDatabase.find( soldItemCode );
@@ -262,7 +266,7 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 			{ [ soldItemCode ]: { count: 1 } }
 		);
 	} );
-} );
+}
 
 /*-------------------------------------------------------------------------------------------- */
 
