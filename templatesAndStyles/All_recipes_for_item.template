@@ -1,0 +1,18 @@
+{{Recipes where item is|item={{{id}}}|role=outputs|header=How to obtain}}<!--
+-->{{Recipes where item is|item={{{id}}}|role=inputs|header=Used for}}<!--
+-->{{Recipes crafted at|{{{name}}}}}<!--
+
+--><noinclude>
+This template shows ALL recipes where this item is a part of.
+Parameters:
+; id : Item ID, e.g. "ironore". This is used to obtain recipes that use and/or produce this item.
+; name : Human-readable name of the item. This is only used for crafting stations (to show "Items crafted here" section).
+
+Usage:
+* <code><nowiki>{{All recipes for item|id=fu_carbon|name=Carbon}}</nowiki></code>
+* <code><nowiki>{{All recipes for item|id=centrifuge2|name=Gas Centrifuge}}</nowiki></code>
+
+This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
+
+[[Category:Cargo templates]]
+</noinclude>

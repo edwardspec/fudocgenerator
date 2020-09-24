@@ -1,0 +1,18 @@
+<!-- This comment ensures that "==" would start at the new line -->
+{{#cargo_query:
+tables=recipe
+|where=station="{{{1}}}"
+|default=
+|intro=
+== Items crafted here ==
+|format = list
+|delimiter =
+|fields=wikitext
+}}<noinclude>
+
+This template shows "Items crafted here" section for a crafting station. This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
+
+Usage: <code><nowiki>{{Recipes crafted at|Wooden Workbench}}</nowiki></code>.
+
+[[Category:Cargo templates]]
+</noinclude>

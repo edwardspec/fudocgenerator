@@ -1,0 +1,31 @@
+<includeonly><!-- This comment ensures that "==" would start at the new line -->
+{{#cargo_query:
+tables=recipe
+|where={{{role}}} HOLDS "{{{item}}}"
+|default=
+|intro=
+== {{{header}}} ==
+|group by=station
+|format = template
+|fields=station,TRIM("{{{item}}}")=item,TRIM("{{{role}}}")=role
+|template = Recipes for item at
+|named args = yes
+}}</includeonly><noinclude>
+
+This template shows [[Template:Recipes for item at]] for ALL crafting stations where item A can be either created (<code>role=outputs</code>) or spent (<code>role=inputs</code>). This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
+
+__NOTOC__
+Usage:
+{| class="wikitable"
+ ! Wikitext
+ ! Result
+ |-
+ | style="vertical-align:top" | <code><nowiki>{{Recipes where item is|item=cookedfish|role=outputs|header=How to obtain}}</nowiki></code>
+ | <small>{{Recipes where item is|item=cookedfish|role=outputs|header=How to obtain}}</small>
+ |-
+ | style="vertical-align:top" | <code><nowiki>{{Recipes where item is|item=cookedfish|role=inputs|header=Used for}}</nowiki><code>
+ | <small>{{Recipes where item is|item=cookedfish|role=inputs|header=Used for}}</small>
+ |}
+
+[[Category:Cargo templates]]
+</noinclude>

@@ -1,0 +1,18 @@
+<!-- This comment ensures that "===" would start at the new line -->
+=== [[{{{station}}}]] ===
+{{#cargo_query:
+tables=recipe
+|where={{{role|outputs}}} HOLDS "{{{item}}}" AND station="{{{station}}}"
+|fields=wikitext
+|format=list
+|delimiter=
+}}<noinclude>
+
+This template shows all recipes to either create (<code>role=outputs</code>) or spend (<code>role=inputs</code>) item A at crafting station B. This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
+
+Usage:
+* <code><nowiki>{{Recipes for item at|item=fu_carbon|role=outputs|station=Blast Furnace}}</nowiki></code>
+* <code><nowiki>{{Recipes for item at|item=coalore|role=inputs|station=Arc Smelter}}</nowiki></code>
+
+[[Category:Cargo templates]]
+</noinclude>
