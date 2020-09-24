@@ -414,3 +414,6 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 
 	ResultsWriter.write( item.wikiPageName, wikitext, ItemCode );
 }
+
+ResultsWriter.finalize();
+
