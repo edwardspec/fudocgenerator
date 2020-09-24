@@ -14,7 +14,7 @@ Usage:
 
 You can use Pywikibot in the following way to autocreate pages:
 ```bash
-python3 pwb.py pagefromfile -log -notitle -force -file:/path/to/RESULT/pywikibot/cargoDatabase.import.txt
+python3 pwb.py pagefromfile -log -notitle -force -file:/path/to/RESULT/pywikibot/itemDatabase.import.txt
 python3 pwb.py pagefromfile -log -notitle -file:/path/to/RESULT/pywikibot/precreateArticles.import.txt
 ```
 
