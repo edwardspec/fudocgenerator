@@ -5,11 +5,11 @@ tables=recipe
 |default=
 |intro=
 == Items crafted here ==
-|format = list
-|delimiter =
+<div></div> <!-- workaround to prevent the line with "==" from being concatenated with following lines, which would break the header -->
+|format=template <!-- Normally format=list would be enough, but it causes "intro" to not be parsed as wikitext, while format=template enforces full parsing -->
+|template=Template:Recipes crafted at/wrap
 |fields=wikitext
 }}<noinclude>
-
 This template shows "Items crafted here" section for a crafting station. This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
 
 Usage: <code><nowiki>{{Recipes crafted at|Wooden Workbench}}</nowiki></code>.

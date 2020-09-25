@@ -1,11 +1,11 @@
-{| class="recipe"
- | class="recipe-input" |
+<table class="recipe"><tr><td class="recipe-input">
 {{{inputs}}}
- | class="recipe-output" |
+</td><td class="recipe-output">
 {{{outputs}}}
- |}<noinclude>
+</td></tr></table><noinclude>
 This template is used to show one crafting/extraction Recipe on item pages.
 
 Usage: <nowiki>{{Recipe|inputs=something|outputs=something}}</nowiki>
 
+Note: if you edit the wikitext of this template, don't replace tags like <code><nowiki><table></nowiki></code> with MediaWiki wikitext markup like <code><nowiki>{|</nowiki></code>, because the wikitext markup requires the table to start at the new line, which is inconvenient for Cargo database queries.
 </noinclude>
