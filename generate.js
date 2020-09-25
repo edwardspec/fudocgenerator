@@ -364,53 +364,7 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	// Write information about this item into the Cargo database.
 	// NOTE: this automatically generated page is a template that can be included into the article
 	// (for example, [[Template:Automatic item info/Carbon]] for [[Carbon]]).
-	wikitext += '<noinclude>{{#cargo_store:_table = item\n';
-	wikitext += '|id = ' + ItemCode + '\n';
-	wikitext += '|name = ' + ItemName + '\n';
-
-	// Most of these fields are optional, because we must be tolerant to bad input.
-	if ( item.category ) {
-		wikitext += '|category = ' + util.cleanDescription( item.category ) + '\n';
-	}
-
-	if ( item.description ) {
-		wikitext += '|description = ' + util.cleanDescription( item.description ) + '\n';
-	}
-
-	if ( item.inventoryIcon ) {
-		wikitext += '|icon = ' + item.inventoryIcon + '\n';
-	}
-
-	if ( item.rarity ) {
-		wikitext += '|rarity = ' + item.rarity + '\n';
-	}
-
-	wikitext += '|price = ' + ( item.price || 0 ) + '\n';
-
-	if ( item.maxStack ) {
-		wikitext += '|stackSize = ' + item.maxStack + '\n';
-	}
-
-	if ( item.level ) {
-		wikitext += '|tier = ' + item.level + '\n';
-	}
-
-	// TODO: what is the default if this parameter is not specified? Two-handed or one-handed?
-	if ( item.twoHanded !== undefined ) {
-		wikitext += '|twoHanded = ' + ( item.twoHanded ? 1 : 0 ) + '\n';
-	}
-
-	var isUpgradeable = false;
-	if ( Array.isArray( item.itemTags ) ) {
-		if ( item.itemTags.indexOf( 'upgradeableWeapon' ) !== -1 ) {
-			isUpgradeable = true;
-		} else if ( item.itemTags.indexOf( 'upgradeableTool' ) !== -1 ) {
-			isUpgradeable = true;
-		}
-	}
-
-	wikitext += '|upgradeable = ' + ( isUpgradeable ? 1 : 0 ) + '\n';
-	wikitext += '}}</noinclude>\n';
+	wikitext += '<noinclude>' + util.itemToCargoDatabase( item ) + '</noinclude>\n';
 
 	ResultsWriter.write( item.wikiPageName, wikitext, ItemCode );
 }
