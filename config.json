@@ -109,5 +109,5 @@
 	},
 
 	"@doc": "Maximum size (in kilobytes) of page with {{#cargo_store:}} directives. MediaWiki is not optimized for handling large pages, so we must be responsible and keep this value relatively low (e.g. 100). Values higher than 200 shouldn't be used outside of local testwiki.",
-	"cargoChunkSizeKBytes": 100
+	"cargoChunkSizeKBytes": 50
 }
