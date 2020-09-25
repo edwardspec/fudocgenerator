@@ -14,23 +14,21 @@ Usage:
 
 You can use Pywikibot in the following way to autocreate pages:
 ```bash
-python3 pwb.py pagefromfile -log -notitle -force -file:/path/to/RESULT/pywikibot/itemDatabase.import.txt
+python3 pwb.py pagefromfile -log -notitle -force -pt:20 -file:/path/to/RESULT/pywikibot/cargoDatabase.import.txt
 python3 pwb.py pagefromfile -log -notitle -file:/path/to/RESULT/pywikibot/precreateArticles.import.txt
 ```
 
-The first command will overwrite "Template:Automatic item info/..." pages, which are only meant to be edited by bot.
-Second command will precreate the articles for items (infobox + inclusion of above-mentioned template), but only if the article doesn't exist. **You can skip the second command if no new items were recently added into the game.**
+The first command will overwrite the Cargo database pages ("Template:Cargo/..."), which are only meant to be edited by bot. Note that this requires a lot of processing on the server side, so we absolutely must instruct the bot to wait at least 20 seconds (`-pt:20`) between writes.
+
+Second command will precreate the articles for items (infobox + inclusion of {{All recipes for item}}), but only if the article doesn't exist. **You can skip the second command if no new items were recently added into the game.**
 
 ### TODO (things to improve)
 
-- improve handling of situations when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles (how to name these pages?).
+- improve handling of situations when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles, but the challenge is that auto-detecting "how to name these pages?" heavily depends on type of item. Such logic already exists for certain types of items (like decorative foods).
 - add images (can we do it, given the way images are stored in the mod)?
 - support color cores in descriptions, etc. (like "^green;Some green text^reset;")
 - guess maxStack for items that don't have it listed, but which have understandable maxStack? (e.g. 1000 for all blocks and liquids)
 - add item tags into the database? (can possibly be used for wiki categories)
 - sort the recipes in pywikibot.import.txt alphabetically? (to more clearly see the progress when using pywikibot)
 - output format of results: add XML file for Special:Import? (may be much faster than pywikibot, but can't have rules like "don't overwrite the page if it already has the words "Automatic item info")
-- gather "Unlocked by" and "What it unlocks" lists for items.
-
-- IMPORTANT: Cargo database for recipes. (not necessarily the full database structure, the recipe can be an already formatted wikitext, maybe just Station+AffectedItem+Wikitext?)
-- IMPORTANT: place all Cargo databases on several pages (100-200k chunks?) to make updates very quick (there would be no need to modify thousands of templates). Note: don't place everything on 1 page, because MediaWiki doesn't handle huge pages very well.
+- gather "Unlocked by <link to research tree node>" for items.

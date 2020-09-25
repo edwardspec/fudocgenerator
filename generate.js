@@ -322,7 +322,7 @@ function recipeListToWikitext( recipeList ) {
 
 // Generate Cargo database of all known recipes.
 for ( var Recipe of RecipeDatabase.knownRecipes ) {
-	ResultsWriter.writeIntoCargoDatabase( Recipe );
+	ResultsWriter.writeIntoCargoDatabase( Recipe.toCargoDatabase() );
 }
 
 // Generate the wikitext for each item that has at least 1 Recipe.
@@ -337,35 +337,12 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 		continue;
 	}
 
-	// Obtain the human-readable item name.
-	var ItemName = item.displayName,
-		recipesWhereInput = SearchIndex.getRecipesWhereInputIs( ItemCode ),
-		recipesWhereOutput = SearchIndex.getRecipesWhereOutputIs( ItemCode ),
-		recipesWhereStation = SearchIndex.getRecipesWhereStationIs( ItemName ),
-		howToObtainWikitext = recipeListToWikitext( recipesWhereOutput ),
-		usedForWikitext = recipeListToWikitext( recipesWhereInput ),
-		craftedHereWikitext = singleStationRecipesToWikitext( recipesWhereStation );
+	// Generate Cargo database of all known items.
+	ResultsWriter.writeIntoCargoDatabase( util.itemToCargoDatabase( item ) );
 
-	// Form the automatically generated wikitext of recipes.
-	var wikitext = '';
+	// Legacy: overwrite [[Template:Automatic item info/NameOfItemHere]].
 
-	if ( howToObtainWikitext ) {
-		wikitext += '== How to obtain ==\n\n' + howToObtainWikitext;
-	}
-
-	if ( usedForWikitext ) {
-		wikitext += '== Used for ==\n\n' + usedForWikitext;
-	}
-
-	if ( craftedHereWikitext ) {
-		wikitext += '== Items crafted here ==\n\n' + craftedHereWikitext;
-	}
-
-	// Write information about this item into the Cargo database.
-	// NOTE: this automatically generated page is a template that can be included into the article
-	// (for example, [[Template:Automatic item info/Carbon]] for [[Carbon]]).
-	wikitext += '<noinclude>' + util.itemToCargoDatabase( item ) + '</noinclude>\n';
-
+	var wikitext = '{{All recipes for item|id=' + ItemCode + '|name=' + item.displayName + '}}\n';
 	ResultsWriter.write( item.wikiPageName, wikitext, ItemCode );
 }
 
