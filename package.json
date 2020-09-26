@@ -5,7 +5,8 @@
     "fast-glob": "^3.2.4",
     "fs": "^0.0.2",
     "lodash": "^4.17.20",
-    "mwbot": "^1.0.10"
+    "mwbot": "^1.0.10",
+    "shell-quote": "^1.7.2"
   },
   "devDependencies": {
     "eslint": "^7.6.0"
