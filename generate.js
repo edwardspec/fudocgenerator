@@ -290,8 +290,8 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 			}
 
 			var harvestResults = pool[0][1];
-			var possibleItems = ( harvestResults.pool || [] )
-				.concat( harvestResults.fill || [] )
+			var possibleItems = ( harvestResults.fill || [] )
+				.concat( harvestResults.pool || [] )
 				.map( ( poolElement ) => poolElement.item )
 				.map( ( item ) => Array.isArray( item ) ? item[0] : item );
 
