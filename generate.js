@@ -269,6 +269,56 @@ for ( var [ shopName, data ] of Object.entries( shops ) ) {
 }
 
 /*-------------------------------------------------------------------------------------------- */
+/* Step 8: Add "crop seed -> produce" recipes                                                  */
+/*-------------------------------------------------------------------------------------------- */
+
+var harvestConf = AssetDatabase.get( 'treasure/cropharvest.treasurepools' ).data;
+
+ItemDatabase.forEach( ( itemCode, data ) => {
+	if ( data.category !== 'seed' || !data.stages ) {
+		// Not a seed.
+		return;
+	}
+
+	for ( var stage of data.stages ) {
+		var poolName = stage.harvestPool;
+		if ( poolName ) {
+			var pool = harvestConf[poolName];
+			if ( !pool ) {
+				util.log( '[error] No such harvest pool: ' + poolName + ' (seed=' + itemCode + ')' );
+				continue;
+			}
+
+			var harvestResults = pool[0][1];
+			var possibleItems = ( harvestResults.pool || [] )
+				.concat( harvestResults.fill || [] )
+				.map( ( poolElement ) => poolElement.item )
+				.map( ( item ) => Array.isArray( item ) ? item[0] : item );
+
+			// Unique list.
+			possibleItems = Array.from( new Set( possibleItems ) );
+
+			var outputs = {};
+			for ( var possibleItemCode of possibleItems ) {
+				if ( possibleItemCode === itemCode ) {
+					// Don't show the seed itself. All plants return their own seed, so this information is useless.
+					continue;
+				}
+
+				// Currently not collecting the information on weights or counts.
+				// Simply saying "seed A results in crops B, C, D" without showing "how many of them".
+				outputs[possibleItemCode] = {};
+			}
+
+			// Show this as a recipe for Growing Tray (which requires 3 seeds).
+			// Growing the crops on soil has the same results.
+			RecipeDatabase.add( 'Growing Tray', { [itemCode]: { count: 3 } }, outputs );
+		}
+	}
+} );
+
+
+/*-------------------------------------------------------------------------------------------- */
 
 //RecipeDatabase.dump();
 
