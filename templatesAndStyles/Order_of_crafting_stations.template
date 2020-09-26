@@ -4,6 +4,7 @@ _table = crafting_station_order
 |stations = List (\n) of String
 }}
 {{#cargo_store:_table=crafting_station_order|stations=
+Growing Tray
 Extraction Lab
 Extraction Lab MKII
 Quantum Extractor
