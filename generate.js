@@ -347,6 +347,12 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 
 	var wikitext = '{{All recipes for item|id=' + ItemCode + '|name=' + item.displayName + '}}\n';
 	ResultsWriter.write( item.wikiPageName, wikitext, ItemCode );
+
+	// Add discovered icon of this item (small PNG image) into "upload these icons" list.
+	var iconPath = item.inventoryIconPath;
+	if ( iconPath ) {
+		ResultsWriter.writeToUploadThisList( ItemCode, iconPath );
+	}
 }
 
 ResultsWriter.finalize();
