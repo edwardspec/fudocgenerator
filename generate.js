@@ -320,55 +320,7 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 
 /*-------------------------------------------------------------------------------------------- */
 
-//RecipeDatabase.dump();
-
-var SearchIndex = RecipeDatabase.makeSearchIndex();
-
-/*
-console.log( JSON.stringify( SearchIndex.getRecipesWhereInputIs( 'fu_salt' ), null, '  ' ) );
-console.log( JSON.stringify( SearchIndex.getRecipesWhereOutputIs( 'fu_salt' ), null, '  ' ) );
-console.log( SearchIndex.listKnownItems().join( ', ' ) );
-*/
-
-/**
- * Format the output of getRecipesWhereInputIs() or getRecipesWhereOutputIs() as wikitext.
- * @param {Recipe[]} recipes
- * @return {string}
- */
-function singleStationRecipesToWikitext( recipes ) {
-	if ( !recipes ) {
-		return '';
-	}
-
-	var wikitext = '';
-	recipes.forEach( function ( Recipe ) {
-		wikitext += Recipe.toWikitext();
-	} );
-
-	return wikitext;
-}
-
-/**
- * Format the output of getRecipesWhereInputIs() or getRecipesWhereOutputIs() as wikitext.
- * @param {object} recipeList E.g. { "Crafting Station1": [ Recipe1, ... ], ... }
- * @return {string}
- */
-function recipeListToWikitext( recipeList ) {
-	if ( !recipeList ) {
-		return '';
-	}
-
-	var wikitext = '';
-
-	for ( var [ CraftingStation, recipes ] of Object.entries( recipeList ) ) {
-		var thisStationWikitext = singleStationRecipesToWikitext( recipes );
-		if ( thisStationWikitext ) {
-			wikitext += '=== [[' + CraftingStation + ']] ===\n\n' + thisStationWikitext + '\n';
-		}
-	}
-
-	return wikitext;
-}
+/*-------------------------------------------------------------------------------------------- */
 
 // Generate Cargo database of all known recipes.
 for ( var Recipe of RecipeDatabase.knownRecipes ) {
@@ -377,6 +329,7 @@ for ( var Recipe of RecipeDatabase.knownRecipes ) {
 
 // Generate the wikitext for each item that has at least 1 Recipe.
 // Then send the results to ResultsWriter.write().
+var SearchIndex = RecipeDatabase.makeSearchIndex();
 
 for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	var item = ItemDatabase.find( ItemCode );
