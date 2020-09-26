@@ -6,6 +6,7 @@ tables=recipe
 |fields=wikitext
 |format=list
 |delimiter=
+|limit=300
 }}<noinclude>
 
 This template shows all recipes to either create (<code>role=outputs</code>) or spend (<code>role=inputs</code>) item A at crafting station B. This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
