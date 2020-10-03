@@ -228,7 +228,7 @@ for ( var [ biomeCode, outputs ] of Object.entries( outputsPerBiome ) ) {
 /*-------------------------------------------------------------------------------------------- */
 
 AssetDatabase.forEach( ( filename, asset ) => {
-	if ( asset.fileExtension === '.recipe' ) {
+	if ( asset.type === 'recipe' ) {
 		RecipeDatabase.addNativeCraftingRecipe( asset.data );
 	}
 } );
