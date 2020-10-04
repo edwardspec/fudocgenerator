@@ -1,3 +1,5 @@
+== List of nodes ==
+__NOEDITSECTION__{{TOC right}}
 {{#cargo_query:
 tables=research_node
 |where=tree="{{{1}}}"
