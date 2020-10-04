@@ -119,5 +119,10 @@
 	"cargoChunkSizeKBytes": 50,
 
 	"@doc": "Console command to invoke pywikibot. Note that we don't actually run pywikibot here: knowing this command is needed to automatically generate [uploadInventoryIcons.sh] script.",
-	"pywikibotCommand": "python3 pwb.py"
+	"pywikibotCommand": "python3 pwb.py",
+
+	"@doc": "Map of research tree ID to wikipage-friendly title. This is used to remove [Madness] from the name of Metaphysics tree, because 1) [ and ] are not valid symbols for wikipage titles, 2) the fact that this is Madness tree doesn't need to be in the name of each page, it can be written once in the article about the tree itself.",
+	"overrideResearchTreeName": {
+		"frackinuniversemadness": "Metaphysics"
+	}
 }
