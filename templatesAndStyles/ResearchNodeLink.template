@@ -1,0 +1,10 @@
+[[{{{1}}} tree#{{{2}}}|{{{2}}} ({{{1}}} tree)]]<noinclude>
+
+Helper template to create wikitext link to Research Tree Node.
+
+Usage: <nowiki>{{ResearchNodeLink|Geology|Silversmithing}}</nowiki> = {{ResearchNodeLink|Geology|Silversmithing}}.
+* First parameter is name of the tree.
+* Second parameter is name of the node.
+
+[[Category:Cargo templates]]
+</noinclude>
