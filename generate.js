@@ -323,11 +323,6 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 
 /*-------------------------------------------------------------------------------------------- */
 
-// Generate Cargo database of all known recipes.
-for ( var Recipe of RecipeDatabase.knownRecipes ) {
-	ResultsWriter.writeIntoCargoDatabase( Recipe.toCargoDatabase() );
-}
-
 // Generate the wikitext for each item that has at least 1 Recipe.
 // Then send the results to ResultsWriter.write().
 var SearchIndex = RecipeDatabase.makeSearchIndex();
@@ -354,6 +349,11 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	if ( iconPath ) {
 		ResultsWriter.writeToUploadThisList( ItemCode, iconPath );
 	}
+}
+
+// Generate Cargo database of all known recipes.
+for ( var Recipe of RecipeDatabase.knownRecipes ) {
+	ResultsWriter.writeIntoCargoDatabase( Recipe.toCargoDatabase() );
 }
 
 // Generate Cargo database of all research nodes.
