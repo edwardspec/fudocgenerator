@@ -1,0 +1,20 @@
+<noinclude>{{#cargo_declare:
+_table = research_node
+|tree = String
+|id = String
+|name = String
+|description = Text
+|unlocks = List (,) of String
+|children = List (,) of String
+|priceWikitext = Wikitext
+|wikiPageName = Page
+}}<noinclude>
+
+This table lists all nodes of all Research Trees. It is used to automatically show "unlocked by <nowiki>[[NameOfNode (NameOfTree tree)]]</nowiki>" on the item pages.
+
+Note that neither <code>id</code> nor <code>name</code> are unique: different Research Trees can have a node with the same ID and/or name, most importantly the "Basic Training" node). However, combination of <code>id</code> and <code>tree</code> is unique.
+
+Parameter <code>unlocks</code> is the list of Item IDs from [[Special:CargoTables/item|Cargo table "item"]]. Parameter <code>children</code> is the list of IDs of other nodes '''in the same tree'''.
+
+[[Category:Cargo templates]]
+</noinclude>

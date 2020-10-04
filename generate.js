@@ -10,6 +10,7 @@
 var config = require( './config.json' ),
 	RecipeDatabase = require( './lib/RecipeDatabase' ),
 	ItemDatabase = require( './lib/ItemDatabase' ),
+	ResearchTreeDatabase = require( './lib/ResearchTreeDatabase' ),
 	AssetDatabase = require( './lib/AssetDatabase' ),
 	ResultsWriter = require( './lib/ResultsWriter' ),
 	util = require( './lib/util' );
@@ -355,5 +356,9 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 	}
 }
 
-ResultsWriter.finalize();
+// Generate Cargo database of all research nodes.
+ResearchTreeDatabase.forEach( ( node ) => {
+	ResultsWriter.writeIntoCargoDatabase( util.researchNodeToCargoDatabase( node ) );
+} );
 
+ResultsWriter.finalize();
