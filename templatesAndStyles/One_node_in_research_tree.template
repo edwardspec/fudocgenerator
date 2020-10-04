@@ -1,10 +1,10 @@
 <div></div>
 === {{{name}}} ===
 
-{{{description}}}
-{{#if: {{{parents|}}}|<div>''''Requirements''' (nodes that must be researched first): {{{parents}}}.</div>}}
-{{#if: {{{unlocks|}}}|<div>'''Unlocks''': {{{unlocks}}}.</div>}}
-{{#if: {{{children|}}}|<div>Allows to research: {{{children}}}.</div>}}<noinclude>
+{{{description}}}{{#if: {{{unlocks|}}}|<div style="margin-bottom: 0.5em;">'''Unlocks''': {{{unlocks}}}.</div>}}
+
+{{#if: {{{parents|}}}|<div>'''Requirements''' (nodes that must be researched first): {{{parents}}}.</div>}}<!--
+-->{{#if: {{{children|}}}|<div>'''Allows to research''': {{{children}}}.</div>}}<noinclude>
 
 This is subtemplate used by [[Template:All nodes in research tree]] to display one reseach node.
 

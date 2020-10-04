@@ -1,7 +1,7 @@
 {{#cargo_query:
 tables=research_node
 |where=tree="{{{1}}}"
-|fields=name,description,unlocksWikitext=unlocks,childrenWikitext=children
+|fields=name,description,unlocksWikitext=unlocks,childrenWikitext=children,parentsWikitext=parents
 |format=template
 |named args=yes
 |template=One node in research tree
