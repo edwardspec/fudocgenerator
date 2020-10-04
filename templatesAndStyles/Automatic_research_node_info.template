@@ -7,7 +7,7 @@ _table = research_node
 |unlocks = List (,) of String
 |children = List (,) of String
 |priceWikitext = Wikitext
-|wikiPageName = Page
+|wikiPageLink = Wikitext
 }}<noinclude>
 
 This table lists all nodes of all Research Trees. It is used to automatically show "unlocked by <nowiki>[[NameOfNode (NameOfTree tree)]]</nowiki>" on the item pages.
