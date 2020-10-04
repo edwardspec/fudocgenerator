@@ -8,6 +8,8 @@ _table = research_node
 |unlocksWikitext = Wikitext
 |children = List (,) of String
 |childrenWikitext = Wikitext
+|parents = List (,) of String
+|parentsWikitext = Wikitext
 |priceWikitext = Wikitext
 |wikiPageLink = Wikitext
 }}<noinclude>
