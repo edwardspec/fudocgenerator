@@ -1,0 +1,18 @@
+{{#cargo_query:
+tables=research_node
+|where=unlocks HOLDS "{{{1}}}"
+|fields=wikiPageName
+|format=list
+|intro=<div>Unlocked by&nbsp;
+|outro=.</div>
+|format=list
+|delimiter=,
+|limit=20
+|more results text=
+|default=
+}}<noinclude>
+
+This template shows "Unlocked by (link to the Research Tree node)" on the pages about items.
+
+[[Category:Cargo templates]]
+</noinclude>

@@ -1,4 +1,5 @@
-{{Recipes where item is|item={{{id}}}|role=outputs|header=How to obtain}}<!--
+{{Unlocked by|{{{id}}}}}<!--
+-->{{Recipes where item is|item={{{id}}}|role=outputs|header=How to obtain}}<!--
 -->{{Recipes where item is|item={{{id}}}|role=inputs|header=Used for}}<!--
 -->{{Recipes crafted at|{{{name}}}}}<!--
 
