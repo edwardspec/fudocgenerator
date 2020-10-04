@@ -5,7 +5,9 @@ _table = research_node
 |name = String
 |description = Text
 |unlocks = List (,) of String
+|unlocksWikitext = Wikitext
 |children = List (,) of String
+|childrenWikitext = Wikitext
 |priceWikitext = Wikitext
 |wikiPageLink = Wikitext
 }}<noinclude>
