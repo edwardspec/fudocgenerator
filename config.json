@@ -105,7 +105,8 @@
 		"redflashlight": "Red Flashlight",
 		"greenflashlight": "Green Flashlight",
 		"yellowflashlight": "Yellow Flashlight",
-		"cookedchickenobject": "Cooked Poultry (decorative)"
+		"cookedchickenobject": "Cooked Poultry (decorative)",
+		"fieldgenerator": "Field Generator (EPP)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
