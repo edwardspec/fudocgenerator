@@ -12,6 +12,7 @@ var config = require( './config.json' ),
 	ItemDatabase = require( './lib/ItemDatabase' ),
 	ResearchTreeDatabase = require( './lib/ResearchTreeDatabase' ),
 	TreasurePoolDatabase = require( './lib/TreasurePoolDatabase' ),
+	MonsterDatabase = require( './lib/MonsterDatabase' ),
 	AssetDatabase = require( './lib/AssetDatabase' ),
 	ResultsWriter = require( './lib/ResultsWriter' ),
 	util = require( './lib/util' );
@@ -280,7 +281,7 @@ for ( var [ shopName, data ] of Object.entries( shops ) ) {
 }
 
 /*-------------------------------------------------------------------------------------------- */
-/* Step 8: Add "crop seed -> produce" recipes                                                  */
+/* Step 8: Add "crop seed -> produce" recipes, "farm animal -> harvest" recipes                */
 /*-------------------------------------------------------------------------------------------- */
 
 ItemDatabase.forEach( ( itemCode, data ) => {
@@ -314,6 +315,29 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 			RecipeDatabase.add( 'Growing Tray', { [itemCode]: { count: 3 } }, outputs );
 		}
 	}
+} );
+
+MonsterDatabase.forEach( ( monsterCode, monster ) => {
+	var poolName = monster.baseParameters.harvestPool;
+	if ( !poolName ) {
+		return;
+	}
+
+	var possibleItems = TreasurePoolDatabase.getPossibleItems( poolName );
+	if ( possibleItems.length === 0 ) {
+		util.log( '[warning] Nothing in treasurepool of ' + monster.displayName + ': ' + poolName );
+		return;
+	}
+
+	var outputs = {};
+	for ( var possibleItemCode of TreasurePoolDatabase.getPossibleItems( poolName ) ) {
+		outputs[possibleItemCode] = {};
+	}
+
+	var inputs = {}
+	inputs['PSEUDO_ITEM'] = { displayNameWikitext: '[[' + monster.displayName + ']]' };
+
+	RecipeDatabase.add( 'Farm Beasts', inputs, outputs );
 } );
 
 /*-------------------------------------------------------------------------------------------- */
