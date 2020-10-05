@@ -25,6 +25,8 @@ Second command will precreate the articles for items (infobox + inclusion of {{A
 ### TODO (things to improve)
 
 - gather food values, food effects, etc. for consumables.
+- gather damage, elemental type and attack rate of swords, etc.
+- gather Tech recipes (for things like Micro Sphere).
 - automatically gather information of which biomes have which plants, seeds, ores, etc.
 - improve handling of situations when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles, but the challenge is that auto-detecting "how to name these pages?" heavily depends on type of item. Such logic already exists for certain types of items (like decorative foods).
 - support color cores in descriptions, etc. (like "^green;Some green text^reset;")
