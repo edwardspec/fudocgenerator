@@ -1,9 +1,18 @@
-<div></div>
+<div style="border: 1px solid #c9c9c9; padding: 0 0 5px 10px; margin-bottom: 2px;">
 === {{{name}}} ===
 
-{{{description}}}{{#if: {{{unlocks|}}}|<div style="margin-bottom: 0.5em;">'''Unlocks''': {{{unlocks}}}.</div>}}
+{{{description}}}{{#if: {{{unlocks|}}}|<div>'''Unlocks''': {{{unlocks}}}.</div>}}
 
-{{#if: {{{parents|}}}|<div>'''Requirements''' (nodes that must be researched first): {{{parents}}}.</div>}}<!--
+{{#if: {{{parents|}}}{{{price|}}}|
+<table class="wikitable">
+{{#if: {{{parents|}}}|
+<tr><th>Requires</th><td>{{{parents}}}</td></tr>
+}}
+{{#if: {{{price|}}}|
+<tr><th>Price</th><td>
+{{{price}}}</td></tr>
+}}
+</table>}}<!--
 -->{{#if: {{{children|}}}|<div>'''Allows to research''': {{{children}}}.</div>}}<noinclude>
 
 This is subtemplate used by [[Template:All nodes in research tree]] to display one reseach node.
@@ -13,3 +22,4 @@ where all parameters are arbitrary, and only "name" and "description" are requir
 
 [[Category:Cargo templates]]
 </noinclude>
+</div>
