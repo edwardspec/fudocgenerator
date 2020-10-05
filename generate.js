@@ -28,7 +28,8 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	psiAmplifierConf = util.loadModFile( 'objects/generic/extractionlabmadness_recipes.config' ),
 	condenserConf = util.loadModFile( 'objects/power/isn_atmoscondenser/isn_atmoscondenser.object' ),
 	planetTypeNames = util.loadModFile( 'interface/cockpit/cockpit.config' ).planetTypeNames,
-	geologistNpcConf = util.loadModFile( 'npcs/crew/crewmembergeologist.npctype' );
+	geologistNpcConf = util.loadModFile( 'npcs/crew/crewmembergeologist.npctype' ),
+	techshopConf = util.loadModFile( 'interface/scripted/techshop/techshop.config' );
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
@@ -93,6 +94,14 @@ for ( var psiAmplifierRecipe of psiAmplifierConf ) {
 		// This station is Tier 3 (extractorStage=2). Stage=0 is used for Tier 1 extractors.
 		util.getStageValues( psiAmplifierRecipe.inputs, 2 ),
 		util.getStageValues( psiAmplifierRecipe.outputs, 2 )
+	);
+}
+
+for ( var tech of techshopConf.techs ) {
+	RecipeDatabase.add(
+		'Tricorder',
+		util.craftingInputToRecipeInput( tech.recipe ),
+		{ [tech.item]: {} }
 	);
 }
 
