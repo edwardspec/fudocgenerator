@@ -11,6 +11,7 @@ var config = require( './config.json' ),
 	RecipeDatabase = require( './lib/RecipeDatabase' ),
 	ItemDatabase = require( './lib/ItemDatabase' ),
 	ResearchTreeDatabase = require( './lib/ResearchTreeDatabase' ),
+	TreasurePoolDatabase = require( './lib/TreasurePoolDatabase' ),
 	AssetDatabase = require( './lib/AssetDatabase' ),
 	ResultsWriter = require( './lib/ResultsWriter' ),
 	util = require( './lib/util' );
@@ -282,8 +283,6 @@ for ( var [ shopName, data ] of Object.entries( shops ) ) {
 /* Step 8: Add "crop seed -> produce" recipes                                                  */
 /*-------------------------------------------------------------------------------------------- */
 
-var harvestConf = AssetDatabase.get( 'treasure/cropharvest.treasurepools' ).data;
-
 ItemDatabase.forEach( ( itemCode, data ) => {
 	if ( data.category !== 'seed' || !data.stages ) {
 		// Not a seed.
@@ -293,23 +292,8 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 	for ( var stage of data.stages ) {
 		var poolName = stage.harvestPool;
 		if ( poolName ) {
-			var pool = harvestConf[poolName];
-			if ( !pool ) {
-				util.log( '[error] No such harvest pool: ' + poolName + ' (seed=' + itemCode + ')' );
-				continue;
-			}
-
-			var harvestResults = pool[0][1];
-			var possibleItems = ( harvestResults.fill || [] )
-				.concat( harvestResults.pool || [] )
-				.map( ( poolElement ) => poolElement.item )
-				.map( ( item ) => Array.isArray( item ) ? item[0] : item );
-
-			// Unique list.
-			possibleItems = Array.from( new Set( possibleItems ) );
-
 			var outputs = {};
-			for ( var possibleItemCode of possibleItems ) {
+			for ( var possibleItemCode of TreasurePoolDatabase.getPossibleItems( poolName ) ) {
 				if ( possibleItemCode === itemCode ) {
 					// Don't show the seed itself. All plants return their own seed, so this information is useless.
 					continue;
@@ -320,13 +304,17 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 				outputs[possibleItemCode] = {};
 			}
 
+			if ( Object.keys( outputs ).length === 0 ) {
+				util.log( '[warning] Nothing in treasurepool of ' + itemCode + ': ' + poolName );
+				continue;
+			}
+
 			// Show this as a recipe for Growing Tray (which requires 3 seeds).
 			// Growing the crops on soil has the same results.
 			RecipeDatabase.add( 'Growing Tray', { [itemCode]: { count: 3 } }, outputs );
 		}
 	}
 } );
-
 
 /*-------------------------------------------------------------------------------------------- */
 
