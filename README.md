@@ -24,11 +24,11 @@ Second command will precreate the articles for items (infobox + inclusion of {{A
 
 ### TODO (things to improve)
 
+- gather food values, food effects, etc. for consumables.
+- automatically gather information of which biomes have which plants, seeds, ores, etc.
 - improve handling of situations when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles, but the challenge is that auto-detecting "how to name these pages?" heavily depends on type of item. Such logic already exists for certain types of items (like decorative foods).
-- add images (can we do it, given the way images are stored in the mod)?
 - support color cores in descriptions, etc. (like "^green;Some green text^reset;")
 - guess maxStack for items that don't have it listed, but which have understandable maxStack? (e.g. 1000 for all blocks and liquids)
 - add item tags into the database? (can possibly be used for wiki categories)
-- sort the recipes in pywikibot.import.txt alphabetically? (to more clearly see the progress when using pywikibot)
-- output format of results: add XML file for Special:Import? (may be much faster than pywikibot, but can't have rules like "don't overwrite the page if it already has the words "Automatic item info")
-- gather "Unlocked by <link to research tree node>" for items.
+- sort the recipes in pywikibot import files alphabetically? (to more clearly see the progress when using pywikibot)
+- Cargo chunks: split them alphabetically or something like that (e.g. 1 chunk for items that start with "A", with "B", etc. - splitting by the second letter if necessary to not exceed the maximum chunk size), because currently a change in 1 item can cause 60 chunk pages to be unnecessarily overwritten. Also don't mix chunks with items, chunks with recipes and chunks with research nodes on the same pages.
