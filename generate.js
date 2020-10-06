@@ -101,7 +101,7 @@ for ( var psiAmplifierRecipe of psiAmplifierConf ) {
 
 for ( var tech of techshopConf.techs ) {
 	RecipeDatabase.add(
-		'Tricorder',
+		'Personal Tricorder',
 		util.craftingInputToRecipeInput( tech.recipe ),
 		{ [tech.item]: {} }
 	);
