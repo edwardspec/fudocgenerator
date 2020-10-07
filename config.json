@@ -106,7 +106,8 @@
 		"greenflashlight": "Green Flashlight",
 		"yellowflashlight": "Yellow Flashlight",
 		"cookedchickenobject": "Cooked Poultry (decorative)",
-		"fieldgenerator": "Field Generator (EPP)"
+		"fieldgenerator": "Field Generator (EPP)",
+		"matterblock": "Matter Block (block)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
