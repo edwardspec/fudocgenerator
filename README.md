@@ -33,6 +33,3 @@ Second command will precreate the articles for items (infobox + inclusion of {{A
 - add item tags into the database? (can possibly be used for wiki categories)
 - sort the recipes in pywikibot import files alphabetically? (to more clearly see the progress when using pywikibot)
 - Cargo chunks: split them alphabetically or something like that (e.g. 1 chunk for items that start with "A", with "B", etc. - splitting by the second letter if necessary to not exceed the maximum chunk size), because currently a change in 1 item can cause 60 chunk pages to be unnecessarily overwritten. Also don't mix chunks with items, chunks with recipes and chunks with research nodes on the same pages.
-
-FIXME:
-- patch [recipes/furnace3/ingredients/siliconboard.recipe.patch] uses "add" operation on path_to_array/0, path_to_array/1 for existing array (we don't support it yet), and this operation is ignored, because path_to_array/0 already exists (and this is "add", not "replace").
