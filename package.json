@@ -2,6 +2,7 @@
   "private": true,
   "dependencies": {
     "cli-progress": "^3.8.2",
+    "consistent-hashing": "^0.3.0",
     "fast-glob": "^3.2.4",
     "fs": "^0.0.2",
     "jsonpack": "^1.1.5",
