@@ -118,7 +118,7 @@
 	],
 
 	"@doc": "Average size (in kilobytes) of page with {{#cargo_store:}} directives. MediaWiki is not optimized for handling large pages, so we must be responsible and keep this value relatively low (e.g. 50). Values higher than 100 shouldn't be used outside of local testwiki.",
-	"cargoChunkSizeKBytes": 50,
+	"cargoChunkSizeKBytes": 40,
 
 	"@doc": "Console command to invoke pywikibot. Note that we don't actually run pywikibot here: knowing this command is needed to automatically generate [uploadInventoryIcons.sh] script.",
 	"pywikibotCommand": "python3 pwb.py",
