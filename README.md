@@ -31,5 +31,3 @@ Second command will precreate the articles for items (infobox + inclusion of {{A
 - support color cores in descriptions, etc. (like "^green;Some green text^reset;")
 - guess maxStack for items that don't have it listed, but which have understandable maxStack? (e.g. 1000 for all blocks and liquids)
 - add item tags into the database? (can possibly be used for wiki categories)
-- sort the recipes in pywikibot import files alphabetically? (to more clearly see the progress when using pywikibot)
-- Cargo chunks: split them alphabetically or something like that (e.g. 1 chunk for items that start with "A", with "B", etc. - splitting by the second letter if necessary to not exceed the maximum chunk size), because currently a change in 1 item can cause 60 chunk pages to be unnecessarily overwritten. Also don't mix chunks with items, chunks with recipes and chunks with research nodes on the same pages.
