@@ -31,7 +31,8 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	condenserConf = util.loadModFile( 'objects/power/isn_atmoscondenser/isn_atmoscondenser.object' ),
 	planetTypeNames = util.loadModFile( 'interface/cockpit/cockpit.config' ).planetTypeNames,
 	geologistNpcConf = util.loadModFile( 'npcs/crew/crewmembergeologist.npctype' ),
-	techshopConf = util.loadModFile( 'interface/scripted/techshop/techshop.config' );
+	techshopConf = util.loadModFile( 'interface/scripted/techshop/techshop.config' ),
+	beeConf = util.loadModFile( 'bees/beeData.config' );
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
@@ -281,7 +282,7 @@ for ( var [ shopName, data ] of Object.entries( shops ) ) {
 }
 
 /*-------------------------------------------------------------------------------------------- */
-/* Step 8: Add "crop seed -> produce" recipes, "farm animal -> harvest" recipes                */
+/* Step 8: Add "crop seed -> produce" recipes                                                  */
 /*-------------------------------------------------------------------------------------------- */
 
 ItemDatabase.forEach( ( itemCode, data ) => {
@@ -317,6 +318,10 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 	}
 } );
 
+/*-------------------------------------------------------------------------------------------- */
+/* Step 9: Add "farm animal -> harvest" recipes                                                */
+/*-------------------------------------------------------------------------------------------- */
+
 MonsterDatabase.forEach( ( monsterCode, monster ) => {
 	var poolName = monster.baseParameters.harvestPool;
 	if ( !poolName ) {
@@ -339,6 +344,25 @@ MonsterDatabase.forEach( ( monsterCode, monster ) => {
 
 	RecipeDatabase.add( 'Farm Beasts', inputs, outputs );
 } );
+
+/*-------------------------------------------------------------------------------------------- */
+/* Step 10: Add "bee queen -> possible output" recipes                                         */
+/*-------------------------------------------------------------------------------------------- */
+
+for ( var [ beeType, subtypes ] of Object.entries( beeConf.stats ) ) {
+	subtypes.forEach( ( info ) => {
+		var inputs = {};
+		inputs['bee_' + beeType + '_queen'] = { subtype: info.name };
+
+		var outputs = {};
+		Object.keys( info.production ).forEach( ( itemCode ) => {
+			// We don't collect the weights of items yet, only the list of possible items.
+			outputs[itemCode] = {};
+		} );
+
+		RecipeDatabase.add( 'Apiary', inputs, outputs );
+	} );
+}
 
 /*-------------------------------------------------------------------------------------------- */
 
