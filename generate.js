@@ -355,10 +355,10 @@ for ( var [ beeType, subtypes ] of Object.entries( beeConf.stats ) ) {
 		inputs['bee_' + beeType + '_queen'] = { subtype: info.name };
 
 		var outputs = {};
-		Object.keys( info.production ).forEach( ( itemCode ) => {
+		for ( var [ itemCode, infrequency ] of Object.entries( info.production ) ) {
 			// We don't collect the weights of items yet, only the list of possible items.
-			outputs[itemCode] = {};
-		} );
+			outputs[itemCode] = { infrequency: infrequency };
+		}
 
 		RecipeDatabase.add( 'Apiary', inputs, outputs );
 	} );
