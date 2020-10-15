@@ -114,7 +114,8 @@
 	"ignoredItems": [
 		"lunarbaselaser",
 		"laserminer",
-		"fu_scriptedfarmableexample"
+		"fu_scriptedfarmableexample",
+		"futram"
 	],
 
 	"@doc": "Average size (in kilobytes) of page with {{#cargo_store:}} directives. MediaWiki is not optimized for handling large pages, so we must be responsible and keep this value relatively low (e.g. 50). Values higher than 100 shouldn't be used outside of local testwiki.",
