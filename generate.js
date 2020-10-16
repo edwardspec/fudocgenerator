@@ -294,17 +294,9 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 	for ( var stage of data.stages ) {
 		var poolName = stage.harvestPool;
 		if ( poolName ) {
-			var outputs = {};
-			for ( var possibleItemCode of TreasurePoolDatabase.getPossibleItems( poolName ) ) {
-				if ( possibleItemCode === itemCode ) {
-					// Don't show the seed itself. All plants return their own seed, so this information is useless.
-					continue;
-				}
-
-				// Currently not collecting the information on weights or counts.
-				// Simply saying "seed A results in crops B, C, D" without showing "how many of them".
-				outputs[possibleItemCode] = {};
-			}
+			// Note: we don't show the seed itself (specifying it as second parameter to exclude it).
+			// All plants return their own seed, so this information is useless.
+			var outputs = TreasurePoolDatabase.getPossibleOutputs( poolName, itemCode );
 
 			if ( Object.keys( outputs ).length === 0 ) {
 				util.log( '[warning] Nothing in treasurepool of ' + itemCode + ': ' + poolName );
@@ -328,15 +320,11 @@ MonsterDatabase.forEach( ( monsterCode, monster ) => {
 		return;
 	}
 
-	var possibleItems = TreasurePoolDatabase.getPossibleItems( poolName );
-	if ( possibleItems.length === 0 ) {
+	var outputs = TreasurePoolDatabase.getPossibleOutputs( poolName );
+
+	if ( Object.keys( outputs ).length === 0 ) {
 		util.log( '[warning] Nothing in treasurepool of ' + monster.displayName + ': ' + poolName );
 		return;
-	}
-
-	var outputs = {};
-	for ( var possibleItemCode of TreasurePoolDatabase.getPossibleItems( poolName ) ) {
-		outputs[possibleItemCode] = {};
 	}
 
 	var inputs = {}
