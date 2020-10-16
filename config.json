@@ -118,10 +118,10 @@
 		"futram"
 	],
 
-	"@doc": "Average size (in kilobytes) of page with {{#cargo_store:}} directives. MediaWiki is not optimized for handling large pages, so we must be responsible and keep this value relatively low (e.g. 50). Values higher than 100 shouldn't be used outside of local testwiki.",
-	"cargoChunkSizeKBytes": 40,
+	"@doc": "Into how many Chunk subpages to split the {{#cargo_store:}} directives. This is necessary for performance (so that the entire Cargo database is not overwritten every time one item gets modified). Note: increasing/decreasing this variable shouldn't be frequent (keeping this number the same allows Consistent Hashing to minimize the number of edits). Note: actual number of chunks will be slightly higher than this value, because their size is additionally limited by 'cargoMaxChunkSizeKBytes' variable.",
+	"cargoChunksCount": 129,
 
-	"@doc": "Maximum size (in kilobytes) of page with {{#cargo_store:}} directives. If the chunk exceeds that, it will be forcefully split with no regard for Consistent Hashing.",
+	"@doc": "Maximum size (in kilobytes) of page with {{#cargo_store:}} directives. If the chunk exceeds that, it will be forcefully split with no regard for Consistent Hashing. MediaWiki is not optimized for handling large pages, so we must be responsible and keep this value relatively low (e.g. 50).",
 	"cargoMaxChunkSizeKBytes": 50,
 
 	"@doc": "Console command to invoke pywikibot. Note that we don't actually run pywikibot here: knowing this command is needed to automatically generate [uploadInventoryIcons.sh] script.",
