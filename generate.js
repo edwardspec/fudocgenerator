@@ -255,13 +255,14 @@ for ( var [ biomeCode, output ] of Object.entries( liquidCollectorConf.liquids )
 		continue;
 	}
 
-	var wikitext = 'Air (' + ( planetTypeNames[biomeCode] || 'normal' ) + ' planets)';
+	var biomeName = planetTypeNames[biomeCode];
+	var wikitext = 'Air (' + ( biomeName ? ( '[[' + biomeName + ']]' ) : 'normal' ) + ' planets)';
 
 	var inputs = {};
 	inputs['PSEUDO_ITEM'] = { displayNameWikitext: wikitext };
 
 	var outputs = {};
-	outputs[item.itemCode] = {};
+	outputs[item.itemCode] = { secondsToCraft: output.cooldown };
 
 	RecipeDatabase.add( 'Liquid Collector', inputs, outputs );
 }
