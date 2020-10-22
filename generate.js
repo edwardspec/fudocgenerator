@@ -240,10 +240,8 @@ for ( var [ biomeCode, outputs ] of Object.entries( outputsPerBiome ) ) {
 /* Step 6: Add crafting recipes into RecipeDatabase ------------------------------------------ */
 /*-------------------------------------------------------------------------------------------- */
 
-AssetDatabase.forEach( ( filename, asset ) => {
-	if ( asset.type === 'recipe' ) {
-		RecipeDatabase.addNativeCraftingRecipe( asset.data, filename );
-	}
+AssetDatabase.forEach( 'recipe', ( filename, asset ) => {
+	RecipeDatabase.addNativeCraftingRecipe( asset.data, filename );
 } );
 
 /*-------------------------------------------------------------------------------------------- */

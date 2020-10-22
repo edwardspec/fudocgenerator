@@ -9,11 +9,7 @@ var CraftingStationDatabase = require( '../lib/CraftingStationDatabase' ),
 // { normalizedRecipeString: [ filename1, filename2, ... ], ... }
 var recipes = {};
 
-AssetDatabase.forEach( ( filename, asset ) => {
-	if ( asset.type !== 'recipe' ) {
-		return;
-	}
-
+AssetDatabase.forEach( 'recipe', ( filename, asset ) => {
 	var loadedData = asset.data;
 	if ( !CraftingStationDatabase.findByGroups( loadedData.groups ) ) {
 		// Skip recipes that can't be crafted anywhere.
