@@ -223,17 +223,10 @@ for ( var [ biomeCode, outputs ] of Object.entries( outputsPerBiome ) ) {
 	// It's possible that multiple biomes have the same output, e.g. 'Rocky Moon' and 'Lunar'.
 	// Create a string like "[[Rocky Moon]] planets, [[Lunar]] planets, ..." for all these biomes.
 	// Note that some biomes have the same name (e.g. "fugasgiant1" and "fugasgiant2" are Gas Giant).
-	var allBiomeCodes = [ biomeCode ].concat( sameOutputBiomes[biomeCode] || [] ),
-		allBiomeNames = allBiomeCodes.map( ( thisBiomeCode ) => planetTypeNames[thisBiomeCode] ),
-		uniqueBiomeNames = Array.from( new Set( allBiomeNames ) ),
-		allBiomeLinks = uniqueBiomeNames.map( ( biomeName ) => {
-			return ( biomeName ? ( '[[' + biomeName + ']]' ) : 'normal' );
-		} );
-
-	var wikitext = 'Air (' + allBiomeLinks.join( ', ') + ' planets)';
+	var allBiomeCodes = [ biomeCode ].concat( sameOutputBiomes[biomeCode] || [] );
 
 	var inputs = {};
-	inputs['PSEUDO_ITEM'] = { displayNameWikitext: wikitext };
+	inputs['PSEUDO_ITEM'] = { displayNameWikitext: 'Air', planets: allBiomeCodes };
 
 	RecipeDatabase.add( 'Atmospheric Condenser', inputs, outputs );
 }
@@ -255,11 +248,8 @@ for ( var [ biomeCode, output ] of Object.entries( liquidCollectorConf.liquids )
 		continue;
 	}
 
-	var biomeName = planetTypeNames[biomeCode];
-	var wikitext = 'Air (' + ( biomeName ? ( '[[' + biomeName + ']]' ) : 'normal' ) + ' planets)';
-
 	var inputs = {};
-	inputs['PSEUDO_ITEM'] = { displayNameWikitext: wikitext };
+	inputs['PSEUDO_ITEM'] = { displayNameWikitext: 'Air', planets: [ biomeCode ] };
 
 	var outputs = {};
 	outputs[item.itemCode] = { secondsToCraft: output.cooldown };
