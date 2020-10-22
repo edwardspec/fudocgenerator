@@ -13,6 +13,7 @@ var config = require( './config.json' ),
 	ResearchTreeDatabase = require( './lib/ResearchTreeDatabase' ),
 	TreasurePoolDatabase = require( './lib/TreasurePoolDatabase' ),
 	MonsterDatabase = require( './lib/MonsterDatabase' ),
+	LiquidDatabase = require( './lib/LiquidDatabase' ),
 	AssetDatabase = require( './lib/AssetDatabase' ),
 	ResultsWriter = require( './lib/ResultsWriter' ),
 	util = require( './lib/util' );
@@ -29,6 +30,7 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	embalmingConf = util.loadModFile( 'objects/minibiome/elder/embalmingtable/embalmingtable_recipes.config' ),
 	psiAmplifierConf = util.loadModFile( 'objects/generic/extractionlabmadness_recipes.config' ),
 	condenserConf = util.loadModFile( 'objects/power/isn_atmoscondenser/isn_atmoscondenser.object' ),
+	liquidCollectorConf = util.loadModFile( 'objects/power/fu_liquidcondenser/fu_liquidcondenser.object' ),
 	planetTypeNames = util.loadModFile( 'interface/cockpit/cockpit.config' ).planetTypeNames,
 	geologistNpcConf = util.loadModFile( 'npcs/crew/crewmembergeologist.npctype' ),
 	techshopConf = util.loadModFile( 'interface/scripted/techshop/techshop.config' ),
@@ -230,10 +232,38 @@ for ( var [ biomeCode, outputs ] of Object.entries( outputsPerBiome ) ) {
 
 	var wikitext = 'Air (' + allBiomeLinks.join( ', ') + ' planets)';
 
-	var inputs = {}
+	var inputs = {};
 	inputs['PSEUDO_ITEM'] = { displayNameWikitext: wikitext };
 
 	RecipeDatabase.add( 'Atmospheric Condenser', inputs, outputs );
+}
+
+/*-------------------------------------------------------------------------------------------- */
+/* Step 5.1: Add outputs of Luquid Collector into RecipeDatabase ----------------------------- */
+/*-------------------------------------------------------------------------------------------- */
+
+for ( var [ biomeCode, output ] of Object.entries( liquidCollectorConf.liquids ) ) {
+	var liquid = LiquidDatabase.find( output.liquid );
+	if ( !liquid ) {
+		util.log( '[error] Unknown liquid in outputs of Liquid Collector: ' + output.liquid );
+		continue;
+	}
+
+	var item = ItemDatabase.find( liquid.itemDrop );
+	if ( !item ) {
+		util.log( '[error] Liquid #' + output.liquid + ' drops unknown item ' + liquid.itemDrop + ' when collected.' );
+		continue;
+	}
+
+	var wikitext = 'Air (' + ( planetTypeNames[biomeCode] || 'normal' ) + ' planets)';
+
+	var inputs = {};
+	inputs['PSEUDO_ITEM'] = { displayNameWikitext: wikitext };
+
+	var outputs = {};
+	outputs[item.itemCode] = {};
+
+	RecipeDatabase.add( 'Liquid Collector', inputs, outputs );
 }
 
 /*-------------------------------------------------------------------------------------------- */
