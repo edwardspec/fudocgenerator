@@ -2,9 +2,11 @@
 _table = item
 |id = String
 |name = String
+|wikiPage = Page
 |category = String
+|tags = List (,) of String
+|colonyTags = List (,) of String
 |description = String
-|icon = String
 |tier = Float
 |rarity = String
 |price = Integer
