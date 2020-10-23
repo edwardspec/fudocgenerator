@@ -21,15 +21,18 @@ switch ( process.argv[2] ) {
 		throw new Error( 'Usage:\n\tnode listweapons.js weapon\n\tnode listweapons.js armor' );
 }
 
-var nonbuildscriptCount = 0;
 var buildscriptItems = [];
-
 var tierToMult = [ 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5 ];
 
 ItemDatabase.forEach( ( code, item ) => {
-	if ( mode == 'weapon' ) {
-		if ( !item.itemTags || item.itemTags.indexOf( 'weapon' ) === -1 ) {
-			// Not a weapon.
+	if ( item.builder ) {
+		if ( mode == 'weapon' && !item.builder.match( /\/buildunrandweapon\.lua$/ ) ) {
+			// Not a weapon
+			return;
+		}
+
+		if ( mode == 'armor' && !item.builder.match( /\/fubuildarmor\.lua$/ ) ) {
+			// Not an armor.
 			return;
 		}
 
@@ -37,21 +40,8 @@ ItemDatabase.forEach( ( code, item ) => {
 			// NPC-only weapon without Tier.
 			return;
 		}
-	} else if ( mode === 'armor' ) {
-		if ( !item.category || !item.category.match( /(armour|wear)$/ ) ) {
-			// Not an armor.
-			return;
-		}
-	}
 
-	if ( !item.price ) {
-		item.price = 0;
-	}
-
-	if ( item.builder ) {
 		buildscriptItems.push( item );
-	} else {
-		nonbuildscriptCount ++;
 	}
 } );
 
@@ -59,19 +49,21 @@ ItemDatabase.forEach( ( code, item ) => {
 buildscriptItems = buildscriptItems.sort( ( a, b ) => ( b.price - a.price ) );
 
 
-console.log( '<!-- Buildscript items: ' + buildscriptItems.length + ', non-buildscript items: ' + nonbuildscriptCount + ' -->' );
+console.log( '<!-- Buildscript items: ' + buildscriptItems.length + ' -->' );
 console.log( '{| class="wikitable sortable"\n!Tier\n!ID\n!Name\n!Price\n!Price multiplied by tier-based multiplier\n!Price at tier 8' );
 
 for ( var item of buildscriptItems ) {
-	var line = '|-\n|' + ( item.level || '?' ) + ' || ' + item.itemName + ' || [[' + util.cleanDescription( item.shortdescription ) + ']] || ' + item.price;
+	var line = '|-\n|' + ( item.level || '?' ) + ' || ' + item.itemName + ' || [[' + util.cleanDescription( item.shortdescription ) + ']] ';
 
-	if ( !item.level ) {
-		line += '|| ?';
+	if ( item.level === undefined ) {
+		line += '|| ' + item.price +  ' || ? || ?';
 	} else {
-		line += ' ||' + util.trimFloatNumber( item.price * tierToMult[item.level], 2 );
-	}
+		var priceWithoutMultiplier = item.price / tierToMult[item.level];
 
-	line += ' ||' +  util.trimFloatNumber( item.price * tierToMult[8], 2 );
+		line += '|| ' + util.trimFloatNumber( priceWithoutMultiplier, 2 );
+		line += '|| ' + item.price;
+		line += '|| ' + util.trimFloatNumber( priceWithoutMultiplier * tierToMult[8], 2 );
+	}
 
 	console.log( line );
 }
