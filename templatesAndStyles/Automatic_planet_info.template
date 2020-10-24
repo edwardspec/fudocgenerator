@@ -1,0 +1,22 @@
+<noinclude>{{#cargo_declare:
+_table = planet
+|id = String
+|name = String
+|minTier = Float
+|maxTier = Float
+|minGravity = Integer
+|maxGravity = Integer
+|minDayLight = Float
+|maxDayLight = Float
+}}<noinclude>
+
+This table lists all types of planets.
+
+NOTE:
+* detailed information about '''layers''' (which biomes can be on the surface/underground/core, etc.) is in another Cargo table (see {{Automatic layer info}}).
+* detailed information about '''biomes''' (including primary biome!) is in another Cargo table (see {{Automatic biome info}}).
+
+TODO: maybe add "possible_stars" list here? (normally we would create Cargo table for stars, but we don't really need any other information about them except "which planets can this star have").
+
+[[Category:Cargo templates]]
+</noinclude>

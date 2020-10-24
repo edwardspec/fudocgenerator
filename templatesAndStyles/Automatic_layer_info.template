@@ -1,0 +1,18 @@
+<noinclude>{{#cargo_declare:
+_table = layer
+|planet = String
+|layer = String
+|biomeRole = String (allowed values=main,subbiome)
+|biome = String
+|oceanLiquid = List (,) of String
+|caveLiquid = List (,) of String
+}}<noinclude>
+
+This table tells "which layers of which planets contain which biomes".
+
+See also:
+* information about '''planets''' (name, tier, gravity, etc.) is in another Cargo table (see {{Automatic layer info}}).
+* detailed information about '''biomes''' (including primary biome!) is in another Cargo table (see {{Automatic biome info}}).
+
+[[Category:Cargo templates]]
+</noinclude>
