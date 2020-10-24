@@ -379,17 +379,18 @@ for ( var [ beeType, subtypes ] of Object.entries( beeConf.stats ) ) {
 // Then send the results to ResultsWriter.write().
 var SearchIndex = RecipeDatabase.makeSearchIndex();
 
-for ( var ItemCode of SearchIndex.listKnownItems() ) {
-	var item = ItemDatabase.find( ItemCode );
-	if ( !item ) {
-		// Must be tolerant to bad input (ignore unknown items, continue with known items),
-		// because a typo somewhere in the mod shouldn't stop the script.
-		util.warnAboutUnknownItem( ItemCode );
-		continue;
+ItemDatabase.forEach( ( itemCode, item ) => {
+	if ( !SearchIndex.hasRecipe( item.itemCode ) ) {
+		// We skip items without any recipes, because there are thousands of unobtainable decorations, etc.
+		// that are only used in some rare microdungeon or even not used at all.
+		if ( config.warnAboutUnobtainableItems ) {
+			util.log( '[debug] Unobtainable item: ' + item.itemCode + " | " + item.displayName );
+		}
+		return;
 	}
 
 	ResultsWriter.writeItem( item );
-}
+} );
 
 // Generate Cargo database of all known recipes.
 for ( var Recipe of RecipeDatabase.knownRecipes ) {

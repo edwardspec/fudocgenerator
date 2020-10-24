@@ -145,5 +145,8 @@
 	},
 
 	"@doc": "Incrementing this number will cause all Chunk pages to become modified. This can be used to populate \"replacement table\" of Extension:Cargo.",
-	"cargoSchemaVersion": "1"
+	"cargoSchemaVersion": "1",
+
+	"@doc": "If true, debug.log will contain the list of all items that don't have any recipes (disabled by default, because it's thousands of lines).",
+	"warnAboutUnobtainableItems": false
 }
