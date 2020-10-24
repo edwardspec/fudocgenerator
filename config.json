@@ -107,7 +107,19 @@
 		"yellowflashlight": "Yellow Flashlight",
 		"cookedchickenobject": "Cooked Poultry (decorative)",
 		"fieldgenerator": "Field Generator (EPP)",
-		"matterblock": "Matter Block (block)"
+		"matterblock": "Matter Block (block)",
+		"electronicgoods": "Electronic Goods (vanilla)",
+		"foodgoods": "Food Rations (vanilla)",
+		"medicalgoods": "Medical Supplies (vanilla)",
+		"militarygoods": "Weapon Parts (vanilla)",
+		"lobster": "Lobster (decorative)",
+		"coconutmilkobject": "Coconut Milk (decorative)",
+		"isn_flamethrower": "Incinerator (weapon)",
+		"artifact1": "Ancient Artifact/1",
+		"artifact2": "Ancient Artifact/2",
+		"artifact3": "Ancient Artifact/3",
+		"artifact4": "Ancient Artifact/4",
+		"artifact5": "Ancient Artifact/5"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
