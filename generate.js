@@ -13,7 +13,9 @@ var config = require( './config.json' ),
 	ResearchTreeDatabase = require( './lib/ResearchTreeDatabase' ),
 	TreasurePoolDatabase = require( './lib/TreasurePoolDatabase' ),
 	MonsterDatabase = require( './lib/MonsterDatabase' ),
+	BiomeDatabase = require( './lib/BiomeDatabase' ),
 	LiquidDatabase = require( './lib/LiquidDatabase' ),
+	MaterialDatabase = require( './lib/MaterialDatabase' ),
 	AssetDatabase = require( './lib/AssetDatabase' ),
 	ResultsWriter = require( './lib/ResultsWriter' ),
 	util = require( './lib/util' );
@@ -383,6 +385,43 @@ for ( var [ beeType, subtypes ] of Object.entries( beeConf.stats ) ) {
 		RecipeDatabase.add( 'Apiary', inputs, outputs );
 	} );
 }
+
+/*-------------------------------------------------------------------------------------------- */
+/* Step 11: Add "which biome has which blocks" recipes                                         */
+/*-------------------------------------------------------------------------------------------- */
+
+BiomeDatabase.forEach( ( biomeCode, biome ) => {
+	var outputs = {};
+	for ( var materialName of [ biome.mainBlock ].concat( biome.subBlocks || [] ) ) {
+		if ( !materialName ) {
+			continue;
+		}
+
+		var material = MaterialDatabase.find( materialName );
+		if ( !material ) {
+			util.log( '[error] Biome ' + biomeCode + ' refers to unknown block: ' + materialName );
+			continue;
+		}
+
+		var itemCode = material.itemDrop;
+		if ( !itemCode ) {
+			// Unobtainable block like Dead Moon Core.
+			continue;
+		}
+
+		outputs[itemCode] = {};
+	}
+
+	if ( Object.keys( outputs ).length === 0 ) {
+		util.log( '[info] Biome ' + biomeCode + " doesn't have any blocks." );
+		return;
+	}
+
+	var inputs = {};
+	inputs['PSEUDO_ITEM'] = { displayNameWikitext: 'Land ({{BiomeLink|' + biome.friendlyName + '}})' };
+
+	RecipeDatabase.add( 'Mining', inputs, outputs );
+} );
 
 /*-------------------------------------------------------------------------------------------- */
 

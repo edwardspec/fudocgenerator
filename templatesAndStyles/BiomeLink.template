@@ -1,0 +1,8 @@
+''{{{1}}} biome''<noinclude>
+
+Helper template to create wikitext link to Biome. '''Note''': currently it doesn't create an actual link (only shows the name of biome), because we don't have articles about subbiomes yet.
+
+Usage: <nowiki>{{BiomeLink|Ice Clouds}}</nowiki> = {{BiomeLink|Ice Clouds}}.
+
+[[Category:Cargo templates]]
+</noinclude>
