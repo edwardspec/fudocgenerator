@@ -387,9 +387,9 @@ for ( var [ beeType, subtypes ] of Object.entries( beeConf.stats ) ) {
 }
 
 /*-------------------------------------------------------------------------------------------- */
-/* Step 11: Add "which biome has which blocks" recipes                                         */
+/* Step 11: Add "which biome has which blocks" recipes - DISABLED until we have biome articles */
 /*-------------------------------------------------------------------------------------------- */
-
+if ( 0 ) { // TODO: re-enable if/when we can autogenerate pages about biomes.
 BiomeDatabase.forEach( ( biomeCode, biome ) => {
 	var outputs = {};
 	for ( var materialName of [ biome.mainBlock ].concat( biome.subBlocks || [] ) ) {
@@ -420,8 +420,9 @@ BiomeDatabase.forEach( ( biomeCode, biome ) => {
 	var inputs = {};
 	inputs['PSEUDO_ITEM'] = { displayNameWikitext: 'Land ({{BiomeLink|' + biome.friendlyName + '}})' };
 
-	RecipeDatabase.add( 'Mining', inputs, outputs );
+	RecipeDatabase.add( 'Matter Manipulator', inputs, outputs );
 } );
+}
 
 /*-------------------------------------------------------------------------------------------- */
 
