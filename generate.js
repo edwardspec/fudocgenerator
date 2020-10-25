@@ -301,12 +301,27 @@ for ( var [ shopName, data ] of Object.entries( shops ) ) {
 }
 
 /*-------------------------------------------------------------------------------------------- */
-/* Step 8: Add "crop seed -> produce" recipes                                                  */
+/* Step 8: Add "crop seed -> produce" recipes, and also outputs of Moth Trap, Bug House, etc.  */
 /*-------------------------------------------------------------------------------------------- */
 
 ItemDatabase.forEach( ( itemCode, data ) => {
-	if ( data.category !== 'seed' || !data.stages ) {
-		// Not a seed.
+	if ( !data.stages ) {
+		// Not harvestable.
+		return;
+	}
+
+	var station, inputs;
+	if ( data.category === 'seed' ) {
+		// Show this as a recipe for Growing Tray (which requires 3 seeds).
+		// Growing the crops on soil has the same results.
+		station = 'Growing Tray';
+		inputs = { [itemCode]: { count: 3 } };
+	} else if ( data.scripts && data.scripts.includes( "/objects/scripts/harvestable.lua" ) ) {
+		// These are objects like Moth Trap. They yield materials when player interacts with them.
+		station = data.displayName;
+		inputs = { PSEUDO_ITEM: { displayNameWikitext: "''(per harvest)''" } };
+	} else {
+		// Not harvestable.
 		return;
 	}
 
@@ -322,9 +337,7 @@ ItemDatabase.forEach( ( itemCode, data ) => {
 				continue;
 			}
 
-			// Show this as a recipe for Growing Tray (which requires 3 seeds).
-			// Growing the crops on soil has the same results.
-			RecipeDatabase.add( 'Growing Tray', { [itemCode]: { count: 3 } }, outputs );
+			RecipeDatabase.add( station, inputs, outputs );
 		}
 	}
 } );
