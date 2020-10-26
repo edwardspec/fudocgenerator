@@ -2,10 +2,17 @@
 
 Usage: <nowiki>{{Automatic Infobox item|fu_carbon}}</nowiki>, where <code>fu_carbon</code> is item ID.
 
+Additionally an image can be added: <nowiki>{{Automatic Infobox item|fu_carbon|image=Something.png}}</nowiki> or <nowiki>{{Automatic Infobox item|fu_carbon|image=Something.png|image_size=300px}}</nowiki>.
+
+[[Category:Cargo templates]]
 </noinclude>{{#cargo_query:tables=item
 |where=item.id="{{{1|fu_carbon}}}"
-|fields=name,description,category,tier,rarity,price,stackSize,twoHanded,upgradeable
+|fields=name,description,category,tier,rarity,price,stackSize,twoHanded,upgradeable,id,CONCAT("{{{image|}}}")=image,CONCAT("{{{image_size|250px}}}")=image_size
 |format=template
 |template=Infobox item
 |named args=yes
+|limit=1
+|more results text=
+|default=[[Category:Item pages with broken automatic infobox]]
 }}
+{{TOC right}}
