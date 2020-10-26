@@ -25,7 +25,6 @@ var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.confi
 	psiAmplifierConf = util.loadModFile( 'objects/generic/extractionlabmadness_recipes.config' ),
 	condenserConf = util.loadModFile( 'objects/power/isn_atmoscondenser/isn_atmoscondenser.object' ),
 	liquidCollectorConf = util.loadModFile( 'objects/power/fu_liquidcondenser/fu_liquidcondenser.object' ),
-	planetTypeNames = util.loadModFile( 'interface/cockpit/cockpit.config' ).planetTypeNames,
 	geologistNpcConf = util.loadModFile( 'npcs/crew/crewmembergeologist.npctype' ),
 	techshopConf = util.loadModFile( 'interface/scripted/techshop/techshop.config' ),
 	beeConf = util.loadModFile( 'bees/beeData.config' );
