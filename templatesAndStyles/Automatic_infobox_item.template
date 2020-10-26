@@ -7,7 +7,7 @@ Additionally an image can be added: <nowiki>{{Automatic Infobox item|fu_carbon|i
 [[Category:Cargo templates]]
 </noinclude>{{#cargo_query:tables=item
 |where=item.id="{{{1|fu_carbon}}}"
-|fields=name,description,category,tier,rarity,price,stackSize,twoHanded,upgradeable,id,CONCAT("{{{image|}}}")=image,CONCAT("{{{image_size|250px}}}")=image_size
+|fields=name,description,category,tier,rarity,price,stackSize,twoHanded,upgradeable,tags,colonyTags,wikiPage,id,CONCAT("{{{image|}}}")=image,CONCAT("{{{image_size|250px}}}")=image_size
 |format=template
 |template=Infobox item
 |named args=yes
