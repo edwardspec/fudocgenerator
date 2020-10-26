@@ -7,14 +7,14 @@
  * Usage: node generate.js
  */
 
-var config = require( './config.json' ),
+const config = require( './config.json' ),
 	{ AssetDatabase, ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
 		TreasurePoolDatabase, MonsterDatabase, BiomeDatabase, LiquidDatabase, MaterialDatabase,
 		ResultsWriter, RecipeSide, util } = require( './lib' );
 
 // Load configs of all processing stations.
 // NOTE: centrifugeConf covers not only centrifuges, but also powder sifters, etc.
-var centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.config' ),
+const centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.config' ),
 	extractorConf = util.loadModFile( 'objects/generic/extractionlab_recipes.config' ),
 	blastFurnaceConf = util.loadModFile( 'objects/power/fu_blastfurnace/fu_blastfurnace.object' ),
 	arcSmelterConf = util.loadModFile( 'objects/power/isn_arcsmelter/isn_arcsmelter.object' ),

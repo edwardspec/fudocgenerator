@@ -4,9 +4,8 @@
 
 'use strict';
 
-var process = require( 'process' ),
-	ItemDatabase = require( '../lib/ItemDatabase' ),
-	util = require( '../lib/util' );
+const process = require( 'process' ),
+	{ ItemDatabase, util } = require( '../lib' );
 
 var mode;
 switch ( process.argv[2] ) {

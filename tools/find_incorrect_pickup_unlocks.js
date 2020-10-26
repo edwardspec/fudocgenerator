@@ -4,7 +4,7 @@
 
 'use strict';
 
-var ItemDatabase = require( '../lib/ItemDatabase' );
+const { ItemDatabase } = require( '../lib' );
 
 ItemDatabase.forEach( ( itemCode, data ) => {
 	var blueprints = data.learnBlueprintsOnPickup;
