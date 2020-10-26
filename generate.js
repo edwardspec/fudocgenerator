@@ -7,8 +7,7 @@
  * Usage: node generate.js
  */
 
-const config = require( './config.json' ),
-	{ AssetDatabase, ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
+const { config, AssetDatabase, ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
 		TreasurePoolDatabase, MonsterDatabase, BiomeDatabase, LiquidDatabase, MaterialDatabase,
 		ResultsWriter, RecipeSide, util } = require( './lib' );
 
