@@ -8,17 +8,9 @@
  */
 
 var config = require( './config.json' ),
-	RecipeDatabase = require( './lib/RecipeDatabase' ),
-	ItemDatabase = require( './lib/ItemDatabase' ),
-	ResearchTreeDatabase = require( './lib/ResearchTreeDatabase' ),
-	TreasurePoolDatabase = require( './lib/TreasurePoolDatabase' ),
-	MonsterDatabase = require( './lib/MonsterDatabase' ),
-	BiomeDatabase = require( './lib/BiomeDatabase' ),
-	LiquidDatabase = require( './lib/LiquidDatabase' ),
-	MaterialDatabase = require( './lib/MaterialDatabase' ),
-	AssetDatabase = require( './lib/AssetDatabase' ),
-	ResultsWriter = require( './lib/ResultsWriter' ),
-	util = require( './lib/util' );
+	{ AssetDatabase, ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
+		TreasurePoolDatabase, MonsterDatabase, BiomeDatabase, LiquidDatabase, MaterialDatabase,
+		ResultsWriter, util } = require( './lib' );
 
 // Load configs of all processing stations.
 // NOTE: centrifugeConf covers not only centrifuges, but also powder sifters, etc.
