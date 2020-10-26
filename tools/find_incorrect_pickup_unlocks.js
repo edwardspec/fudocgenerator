@@ -2,6 +2,8 @@
  * Find all references to nonexistent items in learnBlueprintsOnPickup[] array of existing items.
  */
 
+'use strict';
+
 var ItemDatabase = require( '../lib/ItemDatabase' );
 
 ItemDatabase.forEach( ( itemCode, data ) => {

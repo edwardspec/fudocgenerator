@@ -2,6 +2,8 @@
  * Finds all situations when two (or more) *.recipe files have exactly the same Input/Output.
  */
 
+'use strict';
+
 var { CraftingStationDatabase, AssetDatabase, RecipeSide } = require( '../lib' );
 
 // { normalizedRecipeString: [ filename1, filename2, ... ], ... }

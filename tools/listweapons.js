@@ -2,6 +2,8 @@
  * Makes the list of armors/weapons in the game (sorted by price).
  */
 
+'use strict';
+
 var process = require( 'process' ),
 	ItemDatabase = require( '../lib/ItemDatabase' ),
 	util = require( '../lib/util' );
