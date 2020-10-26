@@ -10,7 +10,7 @@
 var config = require( './config.json' ),
 	{ AssetDatabase, ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
 		TreasurePoolDatabase, MonsterDatabase, BiomeDatabase, LiquidDatabase, MaterialDatabase,
-		ResultsWriter, util } = require( './lib' );
+		ResultsWriter, RecipeSide, util } = require( './lib' );
 
 // Load configs of all processing stations.
 // NOTE: centrifugeConf covers not only centrifuges, but also powder sifters, etc.
@@ -99,7 +99,7 @@ for ( var psiAmplifierRecipe of psiAmplifierConf ) {
 for ( var tech of techshopConf.techs ) {
 	RecipeDatabase.add(
 		'Personal Tricorder',
-		util.craftingInputToRecipeInput( tech.recipe ),
+		RecipeSide.newFromCraftingInput( tech.recipe ),
 		{ [tech.item]: {} }
 	);
 }

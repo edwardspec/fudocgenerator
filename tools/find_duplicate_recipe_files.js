@@ -2,9 +2,7 @@
  * Finds all situations when two (or more) *.recipe files have exactly the same Input/Output.
  */
 
-var CraftingStationDatabase = require( '../lib/CraftingStationDatabase' ),
-	AssetDatabase = require( '../lib/AssetDatabase' ),
-	util = require( '../lib/util' );
+var { CraftingStationDatabase, AssetDatabase, RecipeSide } = require( '../lib' );
 
 // { normalizedRecipeString: [ filename1, filename2, ... ], ... }
 var recipes = {};
@@ -27,8 +25,8 @@ AssetDatabase.forEach( 'recipe', ( filename, asset ) => {
 		return ret.join( ',' );
 	};
 
-	var normalizedRecipe = normalize( util.craftingInputToRecipeInput( loadedData.input ) ) +
-		' => ' + normalize( util.craftingInputToRecipeInput( loadedData.output ) );
+	var normalizedRecipe = normalize( RecipeSide.newFromCraftingInput( loadedData.input ) ) +
+		' => ' + normalize( RecipeSide.newFromCraftingInput( loadedData.output ) );
 
 	if ( !recipes[normalizedRecipe] ) {
 		recipes[normalizedRecipe] = [];
