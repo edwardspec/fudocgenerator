@@ -11,6 +11,10 @@ const { config, AssetDatabase, ItemDatabase, RecipeDatabase, ResearchTreeDatabas
 		TreasurePoolDatabase, MonsterDatabase, BiomeDatabase, LiquidDatabase, MaterialDatabase,
 		ResultsWriter, RecipeSide, util } = require( './lib' );
 
+( async () => {
+
+await AssetDatabase.load();
+
 // Load configs of all processing stations.
 // NOTE: centrifugeConf covers not only centrifuges, but also powder sifters, etc.
 const centrifugeConf = AssetDatabase.getData( 'objects/generic/centrifuge_recipes.config' ),
@@ -445,3 +449,7 @@ ResearchTreeDatabase.forEach( ( node ) => {
 } );
 
 ResultsWriter.finalize();
+
+
+// ---- end of async function ---------
+} )();
