@@ -13,20 +13,20 @@ const { config, AssetDatabase, ItemDatabase, RecipeDatabase, ResearchTreeDatabas
 
 // Load configs of all processing stations.
 // NOTE: centrifugeConf covers not only centrifuges, but also powder sifters, etc.
-const centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.config' ),
-	extractorConf = util.loadModFile( 'objects/generic/extractionlab_recipes.config' ),
-	blastFurnaceConf = util.loadModFile( 'objects/power/fu_blastfurnace/fu_blastfurnace.object' ),
-	arcSmelterConf = util.loadModFile( 'objects/power/isn_arcsmelter/isn_arcsmelter.object' ),
-	mixerConf = util.loadModFile( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' ),
-	xenolabConf = util.loadModFile( 'objects/generic/xenostation_recipes.config' ),
-	erchiusConverterConf = util.loadModFile( 'objects/minibiome/precursor/precursorconverter/console.object' ),
-	embalmingConf = util.loadModFile( 'objects/minibiome/elder/embalmingtable/embalmingtable_recipes.config' ),
-	psiAmplifierConf = util.loadModFile( 'objects/generic/extractionlabmadness_recipes.config' ),
-	condenserConf = util.loadModFile( 'objects/power/isn_atmoscondenser/isn_atmoscondenser.object' ),
-	liquidCollectorConf = util.loadModFile( 'objects/power/fu_liquidcondenser/fu_liquidcondenser.object' ),
-	geologistNpcConf = util.loadModFile( 'npcs/crew/crewmembergeologist.npctype' ),
-	techshopConf = util.loadModFile( 'interface/scripted/techshop/techshop.config' ),
-	beeConf = util.loadModFile( 'bees/beeData.config' );
+const centrifugeConf = AssetDatabase.getData( 'objects/generic/centrifuge_recipes.config' ),
+	extractorConf = AssetDatabase.getData( 'objects/generic/extractionlab_recipes.config' ),
+	blastFurnaceConf = AssetDatabase.getData( 'objects/power/fu_blastfurnace/fu_blastfurnace.object' ),
+	arcSmelterConf = AssetDatabase.getData( 'objects/power/isn_arcsmelter/isn_arcsmelter.object' ),
+	mixerConf = AssetDatabase.getData( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' ),
+	xenolabConf = AssetDatabase.getData( 'objects/generic/xenostation_recipes.config' ),
+	erchiusConverterConf = AssetDatabase.getData( 'objects/minibiome/precursor/precursorconverter/console.object' ),
+	embalmingConf = AssetDatabase.getData( 'objects/minibiome/elder/embalmingtable/embalmingtable_recipes.config' ),
+	psiAmplifierConf = AssetDatabase.getData( 'objects/generic/extractionlabmadness_recipes.config' ),
+	condenserConf = AssetDatabase.getData( 'objects/power/isn_atmoscondenser/isn_atmoscondenser.object' ),
+	liquidCollectorConf = AssetDatabase.getData( 'objects/power/fu_liquidcondenser/fu_liquidcondenser.object' ),
+	geologistNpcConf = AssetDatabase.getData( 'npcs/crew/crewmembergeologist.npctype' ),
+	techshopConf = AssetDatabase.getData( 'interface/scripted/techshop/techshop.config' ),
+	beeConf = AssetDatabase.getData( 'bees/beeData.config' );
 
 // TODO: add recipes from other Stations (if any).
 // No Honey Jarring Machine for now, because its recipes are not in JSON (they are in Lua script).
