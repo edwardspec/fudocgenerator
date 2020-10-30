@@ -37,8 +37,8 @@ const centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.con
 
 for ( var extractorRecipe of extractorConf ) {
 	config.extractorStageBuildings.forEach( function ( buildingName, extractorStage ) {
-		var inputs = util.getStageValues( extractorRecipe.inputs, extractorStage ),
-			outputs = util.getStageValues( extractorRecipe.outputs, extractorStage );
+		var inputs = RecipeSide.newFromExtraction( extractorRecipe.inputs, extractorStage ),
+			outputs = RecipeSide.newFromExtraction( extractorRecipe.outputs, extractorStage );
 
 		RecipeDatabase.add( buildingName, inputs, outputs );
 
@@ -56,32 +56,32 @@ for ( var extractorRecipe of extractorConf ) {
 for ( var mixerRecipe of mixerConf ) {
 	RecipeDatabase.add(
 		'Liquid Mixer',
-		util.getStageValues( mixerRecipe.inputs, 0 ),
-		util.getStageValues( mixerRecipe.outputs, 0 )
+		RecipeSide.newFromExtraction( mixerRecipe.inputs ),
+		RecipeSide.newFromExtraction( mixerRecipe.outputs )
 	);
 }
 
 for ( var xenolabRecipe of xenolabConf ) {
 	RecipeDatabase.add(
 		'Xeno Research Lab',
-		util.getStageValues( xenolabRecipe.inputs, 0 ),
-		util.getStageValues( xenolabRecipe.outputs, 0 )
+		RecipeSide.newFromExtraction( xenolabRecipe.inputs ),
+		RecipeSide.newFromExtraction( xenolabRecipe.outputs )
 	);
 }
 
 for ( var converterRecipe of erchiusConverterConf.recipeTable ) {
 	RecipeDatabase.add(
 		'Erchius Converter',
-		util.getStageValues( converterRecipe.inputs, 0 ),
-		util.getStageValues( converterRecipe.outputs, 0 )
+		RecipeSide.newFromExtraction( converterRecipe.inputs ),
+		RecipeSide.newFromExtraction( converterRecipe.outputs )
 	);
 }
 
 for ( var embalmingRecipe of embalmingConf ) {
 	RecipeDatabase.add(
 		'Autopsy Table',
-		util.getStageValues( embalmingRecipe.inputs, 0 ),
-		util.getStageValues( embalmingRecipe.outputs, 0 )
+		RecipeSide.newFromExtraction( embalmingRecipe.inputs ),
+		RecipeSide.newFromExtraction( embalmingRecipe.outputs )
 	);
 }
 
@@ -89,8 +89,8 @@ for ( var psiAmplifierRecipe of psiAmplifierConf ) {
 	RecipeDatabase.add(
 		'Psionic Amplifier',
 		// This station is Tier 3 (extractorStage=2). Stage=0 is used for Tier 1 extractors.
-		util.getStageValues( psiAmplifierRecipe.inputs, 2 ),
-		util.getStageValues( psiAmplifierRecipe.outputs, 2 )
+		RecipeSide.newFromExtraction( psiAmplifierRecipe.inputs, 2 ),
+		RecipeSide.newFromExtraction( psiAmplifierRecipe.outputs, 2 )
 	);
 }
 
