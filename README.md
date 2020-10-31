@@ -10,7 +10,7 @@ Usage:
 
 ### Using with pywikibot to automatically create/update pages
 
-`generate.py` creates an import file for Pywikibot (see https://www.mediawiki.org/wiki/Manual:Pywikibot/pagefromfile.py for details): RESULT/pywikibot.import.txt
+`generate.py` creates an import file for Pywikibot (see https://www.mediawiki.org/wiki/Manual:Pywikibot/pagefromfile.py for details).
 
 You can use Pywikibot in the following way to autocreate pages:
 ```bash
@@ -21,6 +21,16 @@ python3 pwb.py pagefromfile -log -notitle -file:/path/to/RESULT/pywikibot/precre
 The first command will overwrite the Cargo database pages ("Template:Cargo/..."), which are only meant to be edited by bot. Note that this requires a lot of processing on the server side, so we absolutely must instruct the bot to wait at least 20 seconds (`-pt:20`) between writes.
 
 Second command will precreate the articles for items (infobox + inclusion of {{All recipes for item}}), but only if the article doesn't exist. **You can skip the second command if no new items were recently added into the game.**
+
+### Using with pywikibot to automatically upload icons of items
+
+`generate.py` creates a file `RESULT/pywikibot/uploadInventoryIcons.sh`, which is the list of console commands to `python3 pwb.py upload`. This won't overwrite existing images. You might need to modify the parameter `pywikibotCommand` in your `config.json` if you have Python installed in non-standard location, etc.
+
+Because Pywikibot is not caching "does this image exist?", trying to reupload thousands of images (even though the image does exist, and the upload will be skipped) can be rather slow. To avoid this, you can run the following script:
+`node update_status_cache.js`
+This will query the MediaWiki API for "which articles and/or images already exist?", allowing `generate.js` to create a much smaller `RESULT/pywikibot/uploadInventoryIcons.onlyNew.sh` (which is the same as `uploadInventoryIcons.sh`, but doesn't include any images that are already in the wiki).
+
+Note that this cache will not be updated automatically (this is on purpose, to keep `generate.js` as offline tool); you need to manually re-run `update_status_cache.js` if a long time has passed since the last run.
 
 ### TODO (things to improve)
 
