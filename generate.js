@@ -415,6 +415,39 @@ BiomeDatabase.forEach( ( biomeCode, biome ) => {
 }
 
 /*-------------------------------------------------------------------------------------------- */
+/* Step 12: Add "upgrade this building" recipes (e.g. Armorworks -> Assembly Line)             */
+/*-------------------------------------------------------------------------------------------- */
+
+ItemDatabase.forEach( ( itemCode, item ) => {
+	var stages = item.upgradedItems;
+	if ( !stages ) {
+		return;
+	}
+
+	for ( var i = 0; i < stages.length - 1; i ++ ) {
+		var prevStage = stages[i];
+		var nextStage = stages[i + 1];
+
+		var upgradeMaterials = prevStage.interactData.upgradeMaterials;
+		if ( i == 0 ) {
+			// For stage 1 buildings: use the main item instead of pseudo-item of stage 1.
+			prevStage = item;
+		}
+
+		var outputs = {};
+		outputs[nextStage.itemCode] = { count: 1 };
+
+		var inputs = {};
+		inputs[prevStage.itemCode] = { isBuildingToUpgrade: true };
+
+		// Add the crafting cost.
+		Object.assign( inputs, RecipeSide.newFromCraftingInput( upgradeMaterials ) );
+
+		RecipeDatabase.add( 'Upgrade crafting station', inputs, outputs );
+	}
+} );
+
+/*-------------------------------------------------------------------------------------------- */
 
 /*-------------------------------------------------------------------------------------------- */
 
