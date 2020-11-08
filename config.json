@@ -119,7 +119,8 @@
 		"artifact2": "Ancient Artifact/2",
 		"artifact3": "Ancient Artifact/3",
 		"artifact4": "Ancient Artifact/4",
-		"artifact5": "Ancient Artifact/5"
+		"artifact5": "Ancient Artifact/5",
+		"fuchocolatechipcookie2": "Chocolate Chip Cookies (sugar)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
