@@ -70,10 +70,13 @@ for ( var xenolabRecipe of xenolabConf ) {
 }
 
 for ( var converterRecipe of erchiusConverterConf.recipeTable ) {
+	var outputs = RecipeSide.newFromExtraction( converterRecipe.outputs );
+	Object.values( outputs )[0].secondsToCraft = converterRecipe.time;
+
 	RecipeDatabase.add(
 		'Erchius Converter',
 		RecipeSide.newFromExtraction( converterRecipe.inputs ),
-		RecipeSide.newFromExtraction( converterRecipe.outputs )
+		outputs
 	);
 }
 
