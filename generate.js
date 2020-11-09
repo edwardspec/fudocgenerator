@@ -456,6 +456,31 @@ ItemDatabase.forEach( ( itemCode, item ) => {
 } );
 
 /*-------------------------------------------------------------------------------------------- */
+/* Step 13: Add outputs of well-style buildings: Water Generator, Pest Trap, etc.              */
+/*-------------------------------------------------------------------------------------------- */
+
+ItemDatabase.forEach( ( itemCode, data ) => {
+	var wellSlots = data.wellslots;
+	if ( !wellSlots && data.wellConfig ) {
+		wellSlots = data.wellConfig.wellSlots;
+	}
+
+	if ( !wellSlots ) {
+		// Not a well.
+		return;
+	}
+
+	var inputs = { PSEUDO_ITEM: { displayNameWikitext: "''(over time)''" } };
+	var outputs = {};
+
+	for ( var slot of wellSlots ) {
+		outputs[slot.name] = {};
+	}
+
+	RecipeDatabase.add( data.displayName, inputs, outputs );
+} );
+
+/*-------------------------------------------------------------------------------------------- */
 
 /*-------------------------------------------------------------------------------------------- */
 
