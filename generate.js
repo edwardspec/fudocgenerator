@@ -15,6 +15,7 @@ const { config, AssetDatabase, ItemDatabase, RecipeDatabase, ResearchTreeDatabas
 // NOTE: centrifugeConf covers not only centrifuges, but also powder sifters, etc.
 const centrifugeConf = util.loadModFile( 'objects/generic/centrifuge_recipes.config' ),
 	extractorConf = util.loadModFile( 'objects/generic/extractionlab_recipes.config' ),
+	electricFurnaceConf = util.loadModFile( 'objects/power/electricfurnace/electricfurnace.object' ),
 	blastFurnaceConf = util.loadModFile( 'objects/power/fu_blastfurnace/fu_blastfurnace.object' ),
 	arcSmelterConf = util.loadModFile( 'objects/power/isn_arcsmelter/isn_arcsmelter.object' ),
 	mixerConf = util.loadModFile( 'objects/power/fu_liquidmixer/fu_liquidmixer_recipes.config' ),
@@ -134,7 +135,11 @@ for ( var [ recipeGroup, buildingName ] of Object.entries( config.centrifugeReci
 /* Step 4: Add recipes from Blast Furnace into RecipeDatabase -------------------------------- */
 /*-------------------------------------------------------------------------------------------- */
 
-var smelterBuildings = { 'Blast Furnace': blastFurnaceConf, 'Arc Smelter': arcSmelterConf };
+var smelterBuildings = {
+	'Electric Furnace': electricFurnaceConf,
+	'Blast Furnace': blastFurnaceConf,
+	'Arc Smelter': arcSmelterConf
+};
 
 for ( var [ buildingName, buildingConf ] of Object.entries( smelterBuildings ) ) {
 	for ( var [ inputItem, outputItem ] of Object.entries( buildingConf.inputsToOutputs ) ) {
