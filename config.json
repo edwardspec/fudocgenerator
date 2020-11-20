@@ -153,9 +153,6 @@
 		"frackinuniversemadness": "Metaphysics"
 	},
 
-	"@doc": "Incrementing this number will cause all Chunk pages to become modified. This can be used to populate \"replacement table\" of Extension:Cargo.",
-	"cargoSchemaVersion": "1",
-
 	"@doc": "List of asset keys that we don't use anywhere. They won't be stored in the cache, which slightly improves the loading time.",
 	"ignoredAssetKeys": [
 		"orientations",
