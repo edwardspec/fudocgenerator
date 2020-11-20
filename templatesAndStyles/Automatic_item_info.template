@@ -13,6 +13,7 @@ _table = item
 |stackSize = Integer
 |twoHanded = Boolean
 |upgradeable = Boolean
+|unlocks = List (,) of String
 }}
 This table is used by {{tl|Automatic infobox item}} to auto-populate the fields of {{tl|Infobox item}} based on [[Special:Prefixindex/Template:Automatic item info|information gathered by bot]].
 
