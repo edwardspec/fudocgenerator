@@ -1,0 +1,14 @@
+<noinclude>{{#cargo_declare:
+_table = item_metadata
+|id = String
+|prop = String
+|value = String
+}}
+This table is supplementary to [[Special:CargoTable/items|item]] table (defined in {{tl|Automatic item info}}). It contains item properties that only make sense for a small subset of items, such as "food value" for consumables or "elemental type" for weapons.
+
+These properties (if found in the database by item ID) may be used/printed in [[Module:AutomaticInfoboxItem]].
+
+Note that <code>prop</code> is an arbitrary string, and new keys can be added without changing the schema of this Cargo table.
+
+[[Category:Cargo templates]]
+</noinclude>

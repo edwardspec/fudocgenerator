@@ -157,8 +157,6 @@
 	"ignoredAssetKeys": [
 		"orientations",
 		"colorOptions",
-		"primaryAbility",
-		"altAbility",
 		"paneLayout",
 		"leveledStatusEffects",
 		"gui",
