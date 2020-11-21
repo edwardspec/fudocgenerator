@@ -17,7 +17,7 @@ local function tagCloud( tagsString, categoryPrefix, nocat )
 
 		-- TODO: move inline CSS into TemplateStyles or something
 		tagsLine = tagsLine .. ' <span class="infobox-tag" style="border: 1px solid #7f7f7f; padding: 3px; display: inline-block; margin: 2px 1px;">[[:' ..
-		   	category .. '|' .. tag .. ']]</span>'
+			category .. '|' .. tag .. ']]</span>'
 
 		if not nocat then
 			tagsLine = tagsLine .. '[[' .. category .. ']]'
