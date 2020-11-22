@@ -57,6 +57,73 @@ local function queryItemMetadata( itemId )
 	return metadata
 end
 
+-- Maps damage type (e.g. "cosmic") to the name of image in the wiki.
+local damageTypeIcons = {
+	physical = 'Physical (Attack).png',
+	fire = 'Fire (Attack).png',
+	ice = 'Frost (Attack).png',
+	poison = 'Poison (Attack).png',
+	electric = 'Electric (Attack).png',
+	radioactive = 'Radioactive (Attack).png',
+	shadow = 'Shadow (Attack).png',
+	cosmic = 'Cosmic (Attack).png'
+}
+
+-- Based on item metadata, return wikitext that describes primaryAbility or altAbility of item.
+-- @param {table} metadata Result of queryItemMetadata()
+-- @param {bool} isPrimary True for primary ability, false for alt ability.
+-- @return {table|nil} Either array of arguments to {{Infobox/field}} (if ability can be described) or nil.
+local function describeAbility( metadata, isPrimary )
+	local keyPrefix = 'alt.'
+	if isPrimary then
+		keyPrefix = ''
+	end
+
+	local damagePerHit = metadata[keyPrefix .. 'damagePerHit']
+	local hitsPerSecond = metadata[keyPrefix .. 'hitsPerSecond']
+	local comboSteps = metadata[keyPrefix .. 'comboSteps']
+	local damageType = metadata[keyPrefix .. 'damageType']
+	local abilityName = metadata[keyPrefix .. 'ability']
+
+	local ret = ''
+	if damagePerHit then
+		ret = ret .. 'Damage per hit: ' .. damagePerHit .. "<br>"
+	end
+
+	if hitsPerSecond then
+		ret = ret .. 'Rate of fire: ' .. hitsPerSecond .. "<br>"
+	end
+
+	if comboSteps then
+		ret = ret .. comboSteps .. '-hit combo<br>'
+	end
+
+	if abilityName then
+		ret = ret .. "'''Special''': " .. abilityName
+	end
+
+	if ret == '' then
+		return
+	end
+
+
+	local fieldName = 'Alt'
+	if isPrimary then
+		fieldName = 'Primary'
+	end
+
+	if damageType then
+		if damageTypeIcons[damageType] then
+			fieldName = fieldName .. ' [[File:' .. damageTypeIcons[damageType] .. '|32px|' .. damageType .. ']]\n'
+		else
+			-- Unknown type, doesn't have an icon (yet?).
+			ret = damageType .. "\n" .. ret
+		end
+	end
+
+	return { fieldName, ret }
+end
+
 -- Print the automatic infobox of item. (based on [[Special:CargoTables/item]])
 -- Usage: {{#invoke: AutomaticInfoboxItem|Main|carbonpickaxe}}
 -- First parameter: item ID, e.g. "aentimber".
@@ -156,6 +223,16 @@ function p.Main( frame )
 				metadata.foodValue
 			} }
 		end
+	end
+
+	local primaryAbility = describeAbility( metadata, true )
+	if primaryAbility then
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = primaryAbility }
+	end
+
+	local altAbility = describeAbility( metadata, false )
+	if altAbility then
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = altAbility }
 	end
 
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Rarity', row.rarity } }
