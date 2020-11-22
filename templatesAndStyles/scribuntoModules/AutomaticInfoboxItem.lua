@@ -27,6 +27,36 @@ local function tagCloud( tagsString, categoryPrefix, nocat )
 	return tagsLine
 end
 
+-- Perform a SQL query to "item" table in the Cargo database (see Special:CargoTables/item).
+-- @param {string} itemId
+-- @return {table} Database row.
+local function queryItem( itemId )
+	local tables = 'item'
+	local fields = 'name,description,category,tier,rarity,price,stackSize,twoHanded,upgradeable,wikiPage,id,tags,colonyTags'
+	local queryOpt = {
+		where = 'id="' .. itemId .. '"',
+		limit = 1
+	}
+	return ( cargo.query( tables, fields, queryOpt ) or {} )[1]
+end
+
+-- Perform a SQL query to "item_metadata" table in the Cargo database (see Special:CargoTables/item_metadata).
+-- @param {string} itemId
+-- @return {table} Array with arbitrary information: { key1 = value1, ... }, where both keys and values are strings.
+local function queryItemMetadata( itemId )
+	local queryOpt = {
+		where = 'id="' .. itemId .. '"'
+	}
+	local rows = cargo.query( 'item_metadata', 'prop,value', queryOpt )
+	local metadata = {}
+
+	for _, row in ipairs( rows or {} ) do
+		metadata[row.prop] = row.value
+	end
+
+	return metadata
+end
+
 -- Print the automatic infobox of item. (based on [[Special:CargoTables/item]])
 -- Usage: {{#invoke: AutomaticInfoboxItem|Main|carbonpickaxe}}
 -- First parameter: item ID, e.g. "aentimber".
@@ -46,13 +76,7 @@ function p.Main( frame )
 	local image = args['image']
 
 	-- Perform a SQL query to the Cargo database (see Special:CargoTables/item).
-	local tables = 'item'
-	local fields = 'name,description,category,tier,rarity,price,stackSize,twoHanded,upgradeable,wikiPage,id,tags,colonyTags'
-	local queryOpt = {
-		where = 'item.id="' .. id .. '"',
-		limit = 1
-	}
-	local row = ( cargo.query( tables, fields, queryOpt ) or {} )[1]
+	local row = queryItem( id )
 	if not row then
 		-- Item not found in the database.
 		if nocat then
@@ -60,6 +84,10 @@ function p.Main( frame )
 		end
 		return '[[Category:Item pages with broken automatic infobox]]'
 	end
+
+	-- Also load item metadata (properties like "foodValue" don't have their own column,
+	-- because they only make sense for a small subset of items)
+	local metadata = queryItemMetadata( id )
 
 	local ret = ''
 	if not nocat then
@@ -117,10 +145,22 @@ function p.Main( frame )
 	ret = ret .. frame:expandTemplate{ title = 'infobox/line', args = { row.description } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Category', row.category } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Tier', row.tier } }
+
+	-- Item-specific properties like "Food value" must be shown higher than generic properties like "Price".
+	if metadata.foodValue then
+		-- Some items (such as Wheat and Algae) have foodValue, but are a FarmBeast-specific food.
+		-- They are not edible by player, so we don't show them as edible.
+		if row.category == "food" or row.category == "preparedFood" or row.category == "drink" then
+			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+				'[[File:Rpb food icon.svg|16px|left|link=]] Food value',
+				metadata.foodValue
+			} }
+		end
+	end
+
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Rarity', row.rarity } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Price', row.price } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Stack size', row.stackSize } }
-
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field/bool', args = { 'Two-handed?', row.twoHanded } }
 	if row.upgradeable == '1' then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Upgradeable?', 'Yes' } }
