@@ -214,15 +214,23 @@ function p.Main( frame )
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Tier', row.tier } }
 
 	-- Item-specific properties like "Food value" must be shown higher than generic properties like "Price".
-	if metadata.foodValue then
-		-- Some items (such as Wheat and Algae) have foodValue, but are a FarmBeast-specific food.
-		-- They are not edible by player, so we don't show them as edible.
-		if row.category == "food" or row.category == "preparedFood" or row.category == "drink" then
-			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-				'[[File:Rpb food icon.svg|16px|left|link=]] Food value',
-				metadata.foodValue
-			} }
+	local edibleByHuman = row.category == "food" or row.category == "preparedFood" or row.category == "drink"
+	if edibleByHuman or row.category == "petFood" or metadata.foodValue then
+		local foodValue = metadata.foodValue or 20 -- Some foods don't have foodValue key, but 20 is default
+
+		local foodFieldName
+		if edibleByHuman and not ( id:find( 'cattlefeed' ) == 1 or id:find( 'slew' ) == 1 ) then
+			-- Human-edible food found.
+			foodFieldName = '[[File:Rpb food icon.svg|16px|left|link=]] Food value'
 		end
+
+		if not foodFieldName then
+			-- Animal-only food, e.g. Wheat or Algae.
+			foodFieldName = '[[File:Nutrition (583) - The Noun Project.svg|24px|left|link=]] Farm beast food value'
+			foodValue = foodValue .. '<br><small>(not edible by player! Only for farm beasts)</small>'
+		end
+
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { foodFieldName, foodValue } }
 	end
 
 	local primaryAbility = describeAbility( metadata, true )
