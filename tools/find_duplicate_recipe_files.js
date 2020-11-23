@@ -17,11 +17,11 @@ AssetDatabase.forEach( 'recipe', ( filename, asset ) => {
 	}
 
 	// Reduce the normal input/output of Recipe to normalized string.
-	var normalize = function ( ingredients ) {
+	var normalize = function ( recipeSide ) {
 		var ret = [];
 
-		for ( var item of Object.keys( ingredients ).sort() ) {
-			ret.push( item + '(' + ingredients[item].count + ')' );
+		for ( var [ item, counts ] of Object.entries( recipeSide.items ).sort() ) {
+			ret.push( item + '(' + counts.map( ( count ) => JSON.stringify( count ) ).join( ',' ) + ')' );
 		}
 
 		return ret.join( ',' );
