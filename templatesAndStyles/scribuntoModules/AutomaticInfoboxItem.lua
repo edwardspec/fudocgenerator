@@ -114,7 +114,8 @@ local function describeAbility( metadata, isPrimary )
 
 	if damageType then
 		if damageTypeIcons[damageType] then
-			fieldName = fieldName .. ' [[File:' .. damageTypeIcons[damageType] .. '|32px|' .. damageType .. ']]\n'
+			local tooltip = mw.getContentLanguage():ucfirst( damageType )
+			fieldName = fieldName .. ' [[File:' .. damageTypeIcons[damageType] .. '|32px|' .. tooltip .. '|link=]]\n'
 		else
 			-- Unknown type, doesn't have an icon (yet?).
 			ret = damageType .. "\n" .. ret
