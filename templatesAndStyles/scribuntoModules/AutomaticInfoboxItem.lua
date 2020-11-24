@@ -215,35 +215,26 @@ function p.Main( frame )
 
 	-- Item-specific properties like "Food value" must be shown higher than generic properties like "Price".
 	local edibleByHuman = row.category == "food" or row.category == "preparedFood" or row.category == "drink"
-	if edibleByHuman or row.category == "petfood" or metadata.foodValue then
+	local animalDiet = metadata.whichAnimalsEat
+
+	if edibleByHuman or animalDiet then
 		-- Note: some foods don't have foodValue key.
 		-- Default is 0 for player (buff foods that don't satisfy hunger) and 20 for farm beasts.
 		local foodValue = metadata.foodValue
-		local poisonousToHuman = row.category == "petfood" or id:find( 'cattlefeed' ) == 1 or id:find( 'slew' ) == 1
 
-		local foodFieldName
-		if foodValue and edibleByHuman and not poisonousToHuman then
-			-- Human-edible food that restores hunger.
-			foodFieldName = '[[File:Rpb food icon.svg|16px|left|link=]] Food value'
+		if edibleByHuman and foodValue then
+			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+				'[[File:Rpb food icon.svg|16px|left|link=]] Food value',
+				foodValue
+			} }
 		end
 
-		if not foodFieldName then
-			-- Determine the reason why this doesn't satisfy hunger of humans.
-			local reason
-			if poisonousToHuman then
-				reason = 'poisonous to players! Only for farm beasts'
-			elseif edibleByHuman then
-				reason = 'can be consumed by players, but doesn\'t satisfy their hunger'
-			else
-				reason = 'not edible by player! Only for farm beasts'
-			end
-
-			-- Showthe
-			foodFieldName = '[[File:Nutrition (583) - The Noun Project.svg|24px|left|link=]] Farm beast food value'
-			foodValue = ( foodValue or 20 ) .. '<br><small>(' .. reason ..')'
+		if animalDiet then
+			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+				'[[File:Nutrition (583) - The Noun Project.svg|24px|left|link=]] Farm beast food value',
+				( foodValue or 20 ) .. '<br><small>(' .. animalDiet .. ')</small>'
+			} }
 		end
-
-		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { foodFieldName, foodValue } }
 	end
 
 	local primaryAbility = describeAbility( metadata, true )
