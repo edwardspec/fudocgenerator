@@ -215,19 +215,32 @@ function p.Main( frame )
 
 	-- Item-specific properties like "Food value" must be shown higher than generic properties like "Price".
 	local edibleByHuman = row.category == "food" or row.category == "preparedFood" or row.category == "drink"
-	if edibleByHuman or row.category == "petFood" or metadata.foodValue then
-		local foodValue = metadata.foodValue or 20 -- Some foods don't have foodValue key, but 20 is default
+	if edibleByHuman or row.category == "petfood" or metadata.foodValue then
+		-- Note: some foods don't have foodValue key.
+		-- Default is 0 for player (buff foods that don't satisfy hunger) and 20 for farm beasts.
+		local foodValue = metadata.foodValue
+		local poisonousToHuman = row.category == "petfood" or id:find( 'cattlefeed' ) == 1 or id:find( 'slew' ) == 1
 
 		local foodFieldName
-		if edibleByHuman and not ( id:find( 'cattlefeed' ) == 1 or id:find( 'slew' ) == 1 ) then
-			-- Human-edible food found.
+		if foodValue and edibleByHuman and not poisonousToHuman then
+			-- Human-edible food that restores hunger.
 			foodFieldName = '[[File:Rpb food icon.svg|16px|left|link=]] Food value'
 		end
 
 		if not foodFieldName then
-			-- Animal-only food, e.g. Wheat or Algae.
+			-- Determine the reason why this doesn't satisfy hunger of humans.
+			local reason
+			if poisonousToHuman then
+				reason = 'poisonous to players! Only for farm beasts'
+			elseif edibleByHuman then
+				reason = 'can be consumed by players, but doesn\'t satisfy their hunger'
+			else
+				reason = 'not edible by player! Only for farm beasts'
+			end
+
+			-- Showthe
 			foodFieldName = '[[File:Nutrition (583) - The Noun Project.svg|24px|left|link=]] Farm beast food value'
-			foodValue = foodValue .. '<br><small>(not edible by player! Only for farm beasts)</small>'
+			foodValue = ( foodValue or 20 ) .. '<br><small>(' .. reason ..')'
 		end
 
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { foodFieldName, foodValue } }
