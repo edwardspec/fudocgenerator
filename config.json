@@ -180,5 +180,42 @@
 	],
 
 	"@doc": "URL of the MediaWiki API that should be used in [update_status_cache.js] script. Leave as empty string to disable cache updates.",
-	"mediawikiApiUrl": "https://frackinuniverse.miraheze.org/w/api.php"
+	"mediawikiApiUrl": "https://frackinuniverse.miraheze.org/w/api.php",
+
+	"@doc": "List of file extensions that should be loaded as JSON assets. Maps them to internal type (e.g. '.miningtool' files have the type 'item').",
+	"extensionToAssetType": {
+		"activeitem": "item",
+		"augment": "item",
+		"back": "item",
+		"beamaxe": "item",
+		"biome": "biome",
+		"chest": "item",
+		"config": "config",
+		"consumable": "item",
+		"currency": "item",
+		"flashlight": "item",
+		"harvestingtool": "item",
+		"head": "item",
+		"inspectiontool": "item",
+		"item": "item",
+		"legs": "item",
+		"liqitem": "item",
+		"liquid": "liquid",
+		"material": "material",
+		"matitem": "item",
+		"miningtool": "item",
+		"monstertype": "monster",
+		"npctype": "npc",
+		"object": "item",
+		"painttool": "item",
+		"patch": "patch",
+		"recipe": "recipe",
+		"species": "species",
+		"thrownitem": "item",
+		"tillingtool": "item",
+		"treasurepools": "treasurepools",
+		"weaponability": "ability",
+		"wiretool": "item"
+	}
 }
+
