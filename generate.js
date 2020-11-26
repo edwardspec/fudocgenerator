@@ -15,12 +15,12 @@ const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
 // Generate the wikitext for each item that has at least 1 Recipe.
 // Then send the results to ResultsWriter.write().
 
-for ( var ItemCode of RecipeDatabase.listMentionedItemCodes() ) {
-	var item = ItemDatabase.find( ItemCode );
+for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
+	var item = ItemDatabase.find( itemCode );
 	if ( !item ) {
 		// Must be tolerant to bad input (ignore unknown items, continue with known items),
 		// because a typo somewhere in the mod shouldn't stop the script.
-		util.warnAboutUnknownItem( ItemCode );
+		util.warnAboutUnknownItem( itemCode );
 		continue;
 	}
 
