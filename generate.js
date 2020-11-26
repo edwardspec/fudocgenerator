@@ -10,16 +10,12 @@
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
 	ResultsWriter, util } = require( './lib' );
 
-// Find all recipes.
-RecipeDatabase.load();
-
 /*-------------------------------------------------------------------------------------------- */
 
 // Generate the wikitext for each item that has at least 1 Recipe.
 // Then send the results to ResultsWriter.write().
-var SearchIndex = RecipeDatabase.makeSearchIndex();
 
-for ( var ItemCode of SearchIndex.listKnownItems() ) {
+for ( var ItemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	var item = ItemDatabase.find( ItemCode );
 	if ( !item ) {
 		// Must be tolerant to bad input (ignore unknown items, continue with known items),
@@ -32,9 +28,9 @@ for ( var ItemCode of SearchIndex.listKnownItems() ) {
 }
 
 // Generate Cargo database of all known recipes.
-for ( var Recipe of RecipeDatabase.knownRecipes ) {
-	ResultsWriter.writeRecipe( Recipe );
-}
+RecipeDatabase.forEach( ( recipe ) => {
+	ResultsWriter.writeRecipe( recipe );
+} );
 
 // Generate Cargo database of all research nodes.
 ResearchTreeDatabase.forEach( ( node ) => {
