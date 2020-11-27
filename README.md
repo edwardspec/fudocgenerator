@@ -34,11 +34,9 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 
 ### TODO (things to improve)
 
-- gather food values, food effects, etc. for consumables.
-- gather damage, elemental type and attack rate of swords, etc.
+- gather status effects for food and other consumables.
 - automatically gather information of which biomes have which plants, seeds, ores, etc.
 - improve handling of situations when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles, but the challenge is that auto-detecting "how to name these pages?" heavily depends on type of item. Such logic already exists for certain types of items (like decorative foods).
 - support color cores in descriptions, etc. (like "^green;Some green text^reset;")
 - guess maxStack for items that don't have it listed, but which have understandable maxStack? (e.g. 1000 for all blocks and liquids)
 - all templates/styles in "templatesAndStyles" category should be a Pywikibot import file. Reasons: 1) it's becoming increasingly inconvenient to keep them in sync in-wiki and in the Git repository, 2) some templates have "/" in their name, which can't be a part of filename (and is currently substrituted by "_"), meaning that pagename and filename are not always the same.
-- FIXME: inventory icons for building stages (e.g. "prototyper:3") are currently not uploaded, because ":" is not a valid symbol for MediaWiki images names.

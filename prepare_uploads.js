@@ -77,6 +77,11 @@ function locateImage( relativePath, relativeToAsset ) {
  * @param {LoadedAsset|null} Asset that contains that "inventoryIcon", "dualImage", etc.
  */
 function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
+	// Normalize the title (space and underscore are the same, so let's avoid spaces in filenames).
+	// Also  ":" is not a valid symbol for MediaWiki images names, so replace it with "."
+	// (this is necessary for pseudo-items like "prototyper:3").
+	targetTitle = targetTitle.replace( ' ', '_' ).replace( ':', '.' );
+
 	var absolutePath = locateImage( relativePath, relativeToAsset );
 	if ( absolutePath ) {
 		fs.symlinkSync( absolutePath, outputPath + '/all/' + targetTitle );
