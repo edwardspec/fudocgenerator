@@ -6,21 +6,30 @@
  * Usage: node prepare_uploads.js
  */
 
-const { ItemDatabase, RecipeDatabase, ResultsWriter, config, util } = require( './lib' ),
+const { ItemDatabase, RecipeDatabase, WikiStatusCache, config, util } = require( './lib' ),
 	fs = require( 'fs' ),
 	nodePath = require( 'path' );
 
-/*-------------------------------------------------------------------------------------------- */
+/*-----------------------------------------------------------------------------------------------*/
+
+// A symlink will be created in this directory for each image that needs to be uploaded.
+// This directory can then be provided to "pwb.py upload", and it will upload everything there.
+const outputPath = config.outputDir + '/pywikibot/filesToUpload';
+fs.rmSync( outputPath, { recursive: true, force: true } );
+fs.mkdirSync( outputPath + '/all', { recursive: true } );
+fs.mkdirSync( outputPath + '/onlyNew', { recursive: true } );
+
+/*-----------------------------------------------------------------------------------------------*/
 
 /**
  * Discover the full path (e.g. /usr/src/FrackinUniverse/items/generic/crafting/algaegreen.png)
  * of an image that is referenced in "inventoryIcon", "dualImage", etc. keys of JSON asset files.
- * @param {string} relativePath Value of "inventoryIcon" key, or "dualImage" key, etc.
+ * @param {string|undefined} relativePath Value of "inventoryIcon" key, or "dualImage" key, etc.
  * @param {LoadedAsset|null} If not null, relativePath that doesn't start with "/" is considered
  * to be relative to this asset's directory.
  * @return {string|false} Full path to existing image (if found) or false (if not found).
  */
-function locateImage( relativePath, relativeToAsset = null ) {
+function locateImage( relativePath, relativeToAsset ) {
 	if ( !relativePath || typeof ( relativePath ) !== 'string' ) {
 		// No image or unsupported format.
 		return false;
@@ -62,6 +71,22 @@ function locateImage( relativePath, relativeToAsset = null ) {
 	return false;
 }
 
+/**
+ * @param {string} targetTitle Name of File: page in the wiki, e.g. "Item_icon_ironore.png".
+ * @param {string|undefined} relativePath Value of "inventoryIcon" key, or "dualImage" key, etc.
+ * @param {LoadedAsset|null} Asset that contains that "inventoryIcon", "dualImage", etc.
+ */
+function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
+	var absolutePath = locateImage( relativePath, relativeToAsset );
+	if ( absolutePath ) {
+		fs.symlinkSync( absolutePath, outputPath + '/all/' + targetTitle );
+		if ( !WikiStatusCache.pageExists( 'File:' + targetTitle ) ) {
+			fs.symlinkSync( absolutePath, outputPath + '/onlyNew/' + targetTitle );
+		}
+	}
+}
+
+
 // Iterate over every item that has at least 1 Recipe.
 for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	var item = ItemDatabase.find( itemCode );
@@ -73,10 +98,5 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	}
 
 	// Add discovered icon of this item (small PNG image) into "upload these icons" list.
-	var pathToIcon = locateImage( item.inventoryIcon, item.asset );
-	if ( pathToIcon ) {
-		ResultsWriter.writeToUploadThisList( itemCode, pathToIcon );
-	}
+	prepareUpload( 'Item_icon_' + itemCode + '.png', item.inventoryIcon, item.asset );
 }
-
-ResultsWriter.finalize();
