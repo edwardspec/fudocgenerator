@@ -182,13 +182,14 @@ function p.Main( frame )
 	else
 		-- Check if there are images that can be added automatically.
 		-- Most obtainable items have "File:Item_icon_<id>.png" (their 16x16 inventory icon).
-		local iconTitle = mw.title.new( 'Item icon ' .. id .. '.png', 6 )
+		local normalizedId = string.gsub( row.id, ':', '.' )
+		local iconTitle = mw.title.new( 'Item icon ' .. normalizedId .. '.png', 6 )
 		if iconTitle.fileExists then
 			-- Also check if we have "3x3 placed blocks" image: "Block_image_<id>.png".
 			local hasBlockImage = false
 			local blockImageTitle
 			if row.category == "block" then
-				blockImageTitle = mw.title.new( 'Block image ' .. id .. '.png', 6 )
+				blockImageTitle = mw.title.new( 'Block image ' .. normalizedId .. '.png', 6 )
 				hasBlockImage = blockImageTitle.fileExists
 			end
 
