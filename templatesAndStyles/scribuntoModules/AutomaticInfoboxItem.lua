@@ -106,7 +106,6 @@ local function describeAbility( metadata, isPrimary )
 		return
 	end
 
-
 	local fieldName = 'Alt'
 	if isPrimary then
 		fieldName = 'Primary'
@@ -237,6 +236,13 @@ function p.Main( frame )
 				( foodValue or 20 ) .. '<br><small>(' .. animalDiet .. ')</small>'
 			} }
 		end
+	end
+
+	if metadata.slotCount then
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+			'[[File:Farm-Fresh box open.png|32px|left|link=]] Slot count',
+			metadata.slotCount
+		} }
 	end
 
 	local primaryAbility = describeAbility( metadata, true )
