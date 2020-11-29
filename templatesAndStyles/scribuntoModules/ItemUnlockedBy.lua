@@ -19,13 +19,14 @@ function p.Main( frame )
 
 	-- Find research nodes that unlock this item
 	-- by performing a SQL query to the Cargo database (see Special:CargoTables/research_node).
-	local researchRows = cargo.query( 'research_node', 'tree,name', {
+	local researchRows = cargo.query( 'research_node', 'tree,name,id', {
 		where = 'unlocks HOLDS "' .. id .. '"',
 		limit = 20
 	} ) or {}
 
 	for _, row in ipairs( researchRows ) do
-		local link = frame:expandTemplate{ title = 'ResearchNodeLink', args = { row.tree, row.name } }
+		local normalizedId = string.gsub( row.id, ':', '.' )
+		local link = frame:expandTemplate{ title = 'ResearchNodeLink', args = { row.tree, row.name, normalizedId } }
 		table.insert( whatUnlocksThis, link )
 	end
 
