@@ -6,7 +6,8 @@
  * Usage: node prepare_uploads.js
  */
 
-const { ItemDatabase, RecipeDatabase, WikiStatusCache, config, util } = require( './lib' ),
+const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
+	WikiStatusCache, config, util } = require( './lib' ),
 	fs = require( 'fs' ),
 	nodePath = require( 'path' );
 
@@ -91,7 +92,6 @@ function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
 	}
 }
 
-
 // Iterate over every item that has at least 1 Recipe.
 for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	var item = ItemDatabase.find( itemCode );
@@ -105,3 +105,9 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	// Add discovered icon of this item (small PNG image) into "upload these icons" list.
 	prepareUpload( 'Item_icon_' + itemCode + '.png', item.inventoryIcon, item.asset );
 }
+
+// Upload icons of research nodes.
+// Generate Cargo database of all research nodes.
+ResearchTreeDatabase.forEach( ( node ) => {
+	prepareUpload( 'Node_icon_' + node.id + '.png', node.icon );
+} );

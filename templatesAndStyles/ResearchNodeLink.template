@@ -1,10 +1,12 @@
-[[{{{1}}} tree#{{{2}}}|{{{2}}} ({{{1}}} tree)]]<noinclude>
+{{#if: {{{3|}}}|{{#ifexist:File:Node_icon_{{{3}}}.png|[[File:Node_icon_{{{3}}}.png|24x24px|link=]]}}}}<!--
+-->[[{{{1}}} tree#{{{2}}}|{{{2}}} ({{{1}}} tree)]]<noinclude>
 
 Helper template to create wikitext link to Research Tree Node.
 
-Usage: <nowiki>{{ResearchNodeLink|Geology|Silversmithing}}</nowiki> = {{ResearchNodeLink|Geology|Silversmithing}}.
+Usage: <nowiki>{{ResearchNodeLink|Armor and Weapons|Tungsten Equipment|fu_warcraft.tungstengear}}</nowiki> = {{ResearchNodeLink|Armor and Weapons|Tungsten Equipment|fu_warcraft.tungstengear}}.
 * First parameter is name of the tree.
 * Second parameter is name of the node.
+* Third parameter (optional) is the part of icon's name (they are uploaded automatically), in this case [[:File:Node icon fu_warcraft.tungstengear.png]].
 
 [[Category:Cargo templates]]
 </noinclude>
