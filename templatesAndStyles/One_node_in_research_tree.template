@@ -1,5 +1,5 @@
 <div style="border: 1px solid #c9c9c9; padding: 0 0 5px 10px; margin-bottom: 2px;">
-=== {{{name}}} ===
+=== {{#ifexist: File:Node_icon_{{#invoke:String|replace|{{{id|}}}|:|.}}.png|[[File:Node_icon_{{#invoke:String|replace|{{{id|}}}|:|.}}.png|32x32px|link=]]}}{{{name}}} ===
 
 {{{description}}}{{#if: {{{unlocks|}}}|<div>'''Unlocks''': {{{unlocks}}}.</div>}}
 

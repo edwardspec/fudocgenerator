@@ -3,14 +3,14 @@ __NOEDITSECTION__{{TOC right}}
 {{#cargo_query:
 tables=research_node
 |where=tree="{{{1}}}"
-|fields=name,description,unlocksWikitext=unlocks,childrenWikitext=children,parentsWikitext=parents,priceWikitext=price
+|fields=id,name,description,unlocksWikitext=unlocks,childrenWikitext=children,parentsWikitext=parents,priceWikitext=price
 |format=template
 |named args=yes
 |template=One node in research tree
 |limit=500
 |more results text=
 |default=
-}}<includeonly>[[Category:Research trees]]</includeonly><noinclude>
+}}<includeonly>{{#if: {{{nocat|}}}||[[Category:Research trees]]}}</includeonly><noinclude>
 
 This template shows the entire page about one Research Tree (list of all nodes in is), e.g. <nowiki>{{All nodes in research tree|Agriculture}}</nowiki>.
 
