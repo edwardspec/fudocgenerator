@@ -245,6 +245,13 @@ function p.Main( frame )
 		} }
 	end
 
+	if metadata.blockHealth then
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+			'[[File:Noun project 528.svg|16px|left|link=]] Block hitpoints',
+			metadata.blockHealth
+		} }
+	end
+
 	local primaryAbility = describeAbility( metadata, true )
 	if primaryAbility then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = primaryAbility }
