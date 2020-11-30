@@ -122,7 +122,13 @@
 		"artifact5": "Ancient Artifact/5",
 		"fuchocolatechipcookie2": "Chocolate Chip Cookies (sugar)",
 		"fu_crewbed3": "Crew Bunk (Wall) (+2)",
-		"crewshop": "Hiring Office"
+		"crewshop": "Hiring Office",
+		"blackblock": "... (block)",
+		"energyjavelin": "Energy Javelin (vanilla)",
+		"medievalcandle": "Candle (Glitch)",
+		"madnesseyejelly": "Gelatinous Eye (purple)",
+		"madnesseyeslime": "Gelatinous Eye (green)",
+		"madnessjellyking": "Gelatinous Eye (king)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
