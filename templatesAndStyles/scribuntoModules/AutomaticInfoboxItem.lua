@@ -262,6 +262,16 @@ function p.Main( frame )
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = altAbility }
 	end
 
+	if metadata.powerMultiplier and metadata.protection and metadata.maxEnergy and metadata.maxHealth then
+		-- Armor
+		local bonus = '[[File:Damage icon.png|24px|link=|alt=Damage]] ' .. metadata.powerMultiplier .. '%' ..
+			'\n\n[[File:Defence icon.png|24px|link=|alt=Defense]] ' .. metadata.protection ..
+			'\n\n[[File:Energy icon.png|24px|link=|alt=Energy]] ' .. metadata.maxEnergy ..
+			'\n\n[[File:Health icon.png|24px|link=|alt=Health]] ' .. metadata.maxHealth
+
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Bonus', bonus } }
+	end
+
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Rarity', row.rarity } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Price', row.price } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Stack size', row.stackSize } }
