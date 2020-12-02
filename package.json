@@ -1,5 +1,10 @@
 {
   "private": true,
+  "name": "fudocgenerator",
+  "description": "Tools to generate documentation for SB mod \"Frackin' Universe\".",
+  "version": "0.0.1",
+  "license": "GPL-3.0-or-later",
+  "author": "Edward Chernenko <edwardspec@gmail.com>",
   "dependencies": {
     "@subspace/jump-consistent-hash": "^1.1.1",
     "cli-progress": "^3.8.2",
