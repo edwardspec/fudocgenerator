@@ -238,6 +238,20 @@ function p.Main( frame )
 		end
 	end
 
+	if metadata.shipFuel then
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+			'[[File:Node_icon_fu_engineering.spacebasic.png|32px|left|link=]] Ship fuel',
+			metadata.shipFuel
+		} }
+	end
+
+	if metadata.mechFuel then
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+			'[[File:Node_icon_fu_engineering.mechsbasic.png|32px|left|link=]] Mech fuel',
+			metadata.mechFuel
+		} }
+	end
+
 	if metadata.slotCount then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
 			'[[File:Farm-Fresh box open.png|32px|left|link=]] Slot count',
