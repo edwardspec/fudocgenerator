@@ -239,6 +239,27 @@ function p.Main( frame )
 				( foodValue or 20 ) .. '<br><small>(' .. animalDiet .. ')</small>'
 			} }
 		end
+
+		-- Display non-standard rotting time (values different from the default 3h20m).
+		local rottingInfo, rotInfoColor
+		if metadata.noRotting then
+			rotInfoColor = 'green' -- Beneficial
+			rottingInfo = 'This food doesn\'t rot.'
+		elseif metadata.rotMinutes then
+			local rotMinutes = tonumber( metadata.rotMinutes )
+
+			rottingInfo = mw.getContentLanguage():formatDuration( 60 * rotMinutes )
+			if rotMinutes > 200 then
+				rotInfoColor = 'green' -- Better than default
+			else
+				rotInfoColor = '#bb0000' -- Worse than default
+			end
+		end
+
+		if rottingInfo then
+			rottingInfo = '<span style="font-weight: bold; color:' .. rotInfoColor .. '">' .. rottingInfo .. '</span>'
+			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Rotting', rottingInfo } }
+		end
 	end
 
 	if metadata.shipFuel then
