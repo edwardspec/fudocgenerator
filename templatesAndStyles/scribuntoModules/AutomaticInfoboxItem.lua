@@ -209,8 +209,11 @@ function p.Main( frame )
 		end
 	end
 
+	-- Remove "+N Fuel" from description, because we show "Ship fuel" as a separate row (see below).
+	local description = string.gsub( row.description, '%s+%+%d+ Fuel', '' )
+
 	ret = ret .. frame:expandTemplate{ title = 'infobox/title', args = { row.name } }
-	ret = ret .. frame:expandTemplate{ title = 'infobox/line', args = { row.description } }
+	ret = ret .. frame:expandTemplate{ title = 'infobox/line', args = { description } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Category', row.category } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Tier', row.tier } }
 
@@ -240,7 +243,7 @@ function p.Main( frame )
 
 	if metadata.shipFuel then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'[[File:Node_icon_fu_engineering.spacebasic.png|32px|left|link=]] Ship fuel',
+			'[[File:Linearicons_rocket.svg|32px|left|link=]] Ship fuel',
 			metadata.shipFuel
 		} }
 	end
