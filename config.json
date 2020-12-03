@@ -128,7 +128,15 @@
 		"medievalcandle": "Candle (Glitch)",
 		"madnesseyejelly": "Gelatinous Eye (purple)",
 		"madnesseyeslime": "Gelatinous Eye (green)",
-		"madnessjellyking": "Gelatinous Eye (king)"
+		"madnessjellyking": "Gelatinous Eye (king)",
+		"apexflagpole": "Apex Flag (Prop Pack)",
+		"avianflagpole": "Avian Flag (Prop Pack)",
+		"pirateflagpole": "Pirate Flag (Prop Pack)",
+		"glitchflagpole": "Glitch Flag (Prop Pack)",
+		"humanflagpole": "Human Flag (Prop Pack)",
+		"hylotlflagpole": "Hylotl Flag (Prop Pack)",
+		"novakidflagpole": "Novakid Flag (Prop Pack)",
+		"protectorateflagpole": "Protectorate Flag (Prop Pack)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
