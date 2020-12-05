@@ -9,8 +9,8 @@
 
 'use strict';
 
-const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, MonsterDatabase,
-	ResultsWriter, TreasurePoolDatabase, util } = require( './lib' );
+const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, PlanetDatabase,
+	MonsterDatabase, ResultsWriter, TreasurePoolDatabase, util } = require( './lib' );
 
 /* -------------------------------------------------------------------------------------------- */
 
@@ -70,5 +70,10 @@ for ( var poolName of RecipeDatabase.listMentionedTreasurePools() ) {
 
 	ResultsWriter.writeTreasurePool( pool );
 }
+
+PlanetDatabase.forEach( ( planet ) => {
+	// Temporary
+	console.log( planet.toCargoDatabase() );
+} );
 
 ResultsWriter.finalize();
