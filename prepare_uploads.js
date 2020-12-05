@@ -107,7 +107,6 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 }
 
 // Upload icons of research nodes.
-// Generate Cargo database of all research nodes.
 ResearchTreeDatabase.forEach( ( node ) => {
 	prepareUpload( 'Node_icon_' + node.id + '.png', node.icon );
 } );
