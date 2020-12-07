@@ -15,14 +15,14 @@ _table = armorset
 |protection = Float
 |energy = Float
 |health = Float
-|physicalRes = Integer
-|radioactiveRes = Integer
-|poisonRes = Integer
-|electricRes = Integer
-|fireRes = Integer
-|iceRes = Integer
-|cosmicRes = Integer
-|shadowRes = Integer
+|physical = Integer
+|radioactive = Integer
+|poison = Integer
+|electric = Integer
+|fire = Integer
+|ice = Integer
+|cosmic = Integer
+|shadow = Integer
 }}
 
 This table describes an "armor set", i.e. combination of [[Category:Head armor|head armor]], [[Category:Chest armor|chest armor]] and [[Category:Legs armor|legs armor]].
@@ -32,7 +32,7 @@ Notes about fields:
 ; head, chest, legs : IDs of the items. Can be empty for 1-piece and 2-piece sets.
 ; headPage, chestPage, legsPage : Title of the article about these items. Can be empty.
 ; damage : Same as <code>powerMultiplier</code> in the sources.
-; Resistances (e.g. <code>iceRes</code>) - integer number of percents ("6" means 6%).
+; Resistances (e.g. <code>ice</code>) - integer number of percents ("6" means 6%).
 
 [[Category:Cargo templates]]
 </noinclude>

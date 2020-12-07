@@ -7,7 +7,7 @@
  * Usage: node generate.js
  */
 
-const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
+const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase,
 	ResultsWriter, util } = require( './lib' );
 
 /*-------------------------------------------------------------------------------------------- */
@@ -35,6 +35,11 @@ RecipeDatabase.forEach( ( recipe ) => {
 // Generate Cargo database of all research nodes.
 ResearchTreeDatabase.forEach( ( node ) => {
 	ResultsWriter.writeResearchNode( node );
+} );
+
+// Generate Cargo database of all known armor sets.
+ArmorSetDatabase.forEach( ( armorSet ) => {
+	ResultsWriter.writeArmorSet( armorSet );
 } );
 
 ResultsWriter.finalize();
