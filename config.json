@@ -136,7 +136,16 @@
 		"humanflagpole": "Human Flag (Prop Pack)",
 		"hylotlflagpole": "Hylotl Flag (Prop Pack)",
 		"novakidflagpole": "Novakid Flag (Prop Pack)",
-		"protectorateflagpole": "Protectorate Flag (Prop Pack)"
+		"protectorateflagpole": "Protectorate Flag (Prop Pack)",
+		"rock01": "Rough Stone (rock01)",
+		"rock02": "Rough Stone (rock02)",
+		"rock03": "Rough Stone (rock03)",
+		"rock04": "Rough Stone (rock04)",
+		"rock12": "Rough Stone (rock12)",
+		"rock15": "Rough Stone (rock15)",
+		"rock17": "Rough Stone (rock17)",
+		"rock19": "Rough Stone (rock19)",
+		"rock20": "Rough Stone (rock20)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
