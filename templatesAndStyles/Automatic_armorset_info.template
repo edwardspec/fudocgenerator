@@ -1,0 +1,38 @@
+<noinclude>{{#cargo_declare:
+_table = armorset
+|id = String
+|tier = Float
+|rarity = String
+|price = Integer
+|setBonus = String
+|head = String
+|headPage = Page
+|chest = String
+|chestPage = Page
+|legs = String
+|legsPage = Page
+|damage = Float
+|protection = Float
+|energy = Float
+|health = Float
+|physicalRes = Integer
+|radioactiveRes = Integer
+|poisonRes = Integer
+|electricRes = Integer
+|fireRes = Integer
+|iceRes = Integer
+|cosmicRes = Integer
+|shadowRes = Integer
+}}
+
+This table describes an "armor set", i.e. combination of [[Category:Head armor|head armor]], [[Category:Chest armor|chest armor]] and [[Category:Legs armor|legs armor]].
+
+Notes about fields:
+; id : This ID doesn't exist in-game! This is a string that is common to IDs of all items in this set (for example, <code>fuquantumadv</code> for the set with [[Morphite Chestpiece MK2]], because ID of that item is <cide>fuquantum'''chest'''adv</code>).
+; head, chest, legs : IDs of the items. Can be empty for 1-piece and 2-piece sets.
+; headPage, chestPage, legsPage : Title of the article about these items. Can be empty.
+; damage : Same as <code>powerMultiplier</code> in the sources.
+; Resistances (e.g. <code>iceRes</code>) - integer number of percents ("6" means 6%).
+
+[[Category:Cargo templates]]
+</noinclude>
