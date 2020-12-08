@@ -3,12 +3,20 @@ name: Main testsuite (eslint, luacheck)
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  run-npm-test:
+  build-eslint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Run "npm test'
+      - name: Run "npm test"
         run: |
           npm install
           npm test
-
+  build-luacheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run luacheck
+        run: |
+          sudo apt install luarocks
+          sudo luarocks install luacheck
+          luacheck .
