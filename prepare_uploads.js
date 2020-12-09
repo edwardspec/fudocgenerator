@@ -120,8 +120,8 @@ function unpackSpriteUncached( absolutePathToSprite ) {
  * Discover the full path (e.g. /usr/src/FrackinUniverse/items/generic/crafting/algaegreen.png)
  * of an image that is referenced in "inventoryIcon", "dualImage", etc. keys of JSON asset files.
  * @param {string|undefined} relativePath Value of "inventoryIcon" key, or "dualImage" key, etc.
- * @param {LoadedAsset|null} If not null, relativePath that doesn't start with "/" is considered
- * to be relative to this asset's directory.
+ * @param {LoadedAsset|null} relativeToAsset If not null, relativePath that doesn't start with "/"
+ * is considered to be relative to this asset's directory.
  * @return {string|false} Full path to existing image (if found) or false (if not found).
  */
 function locateImage( relativePath, relativeToAsset ) {
