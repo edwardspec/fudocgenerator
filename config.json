@@ -252,6 +252,8 @@
 		"Stab",
 		"Warspear Combo",
 		"Whip Crack"
-	]
-}
+	],
 
+	"@doc": "Console command to invoke convert. We use it in \"prepare_uploads.js\" to cut sprites into individual images.",
+	"imageMagickConvertCommand": "convert"
+}
