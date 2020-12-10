@@ -258,20 +258,22 @@ function p.Main( frame )
 
 		if rottingInfo then
 			rottingInfo = '<span style="font-weight: bold; color:' .. rotInfoColor .. '">' .. rottingInfo .. '</span>'
-			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Rotting', rottingInfo } }
+			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+				'[[List of foods by rotting time|Rotting]]', rottingInfo
+			} }
 		end
 	end
 
 	if metadata.shipFuel then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'[[File:Linearicons_rocket.svg|32px|left|link=]] Ship fuel',
+			'[[File:Linearicons_rocket.svg|32px|left|link=]] [[Acceptable Ship Fuel|Ship fuel]]',
 			metadata.shipFuel
 		} }
 	end
 
 	if metadata.mechFuel then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'[[File:Node_icon_fu_engineering.mechsbasic.png|32px|left|link=]] Mech fuel',
+			'[[File:Node_icon_fu_engineering.mechsbasic.png|32px|left|link=]] [[Acceptable Mech Fuel|Mech fuel]]',
 			metadata.mechFuel
 		} }
 	end
