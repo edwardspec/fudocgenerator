@@ -41,6 +41,36 @@ function unpackSprite( absolutePathToSprite ) {
 }
 
 /**
+ * Returns path to .frames file (which describes how to cut a sprite image) or false if not found.
+ * @param {string} absolutePathToSprite
+ * @return {string|false}
+ */
+function findFramesFile( absolutePathToSprite ) {
+	// TODO: refactor this (we know the relative path in one of the callers, shouldn't recalculate it).
+	var relativePath = absolutePathToSprite
+		.replace( config.pathToVanilla, '' )
+		.replace( config.pathToMod, '' );
+
+	var relativeDir = nodePath.dirname( relativePath );
+
+	// If image is called "something.png", then its .frames file should be called "something.frames".
+	// Fallback (if not found): file called "default.frames" in the same directory as the image.
+	var filenameCandidates = [
+		nodePath.basename( relativePath ).replace( /\.[^.]+$/, '.frames' ),
+		'default.frames'
+	];
+	for ( var possibleFilename of filenameCandidates ) {
+		var possiblePath = util.findInModOrVanilla( relativeDir + '/' + possibleFilename );
+		if ( possiblePath ) {
+			// Found the file!
+			return possiblePath;
+		}
+	}
+
+	return false;
+}
+
+/**
  * Uncached version of unpackSprite().
  * @param {string} absolutePathToSprite
  * @return {Object} Format: { "codeOfFrame1": filename1, "codeOfFrame2": filename2, ... }
@@ -51,24 +81,23 @@ function unpackSpriteUncached( absolutePathToSprite ) {
 	}
 
 	// Load the .frames file, which contains information about size and count of individual images.
-	var framesConfPath = absolutePathToSprite.replace( /\.[^.]+$/, '.frames' );
+	var framesConfPath = findFramesFile( absolutePathToSprite );
+	if ( !framesConfPath ) {
+		util.log( '[error] Missing .frames file for ' + absolutePathToSprite );
+		return {};
+	}
+
 	var framesConf;
 	try {
 		framesConf = util.loadModFile( framesConfPath );
 	} catch ( error ) {
-		// This is not a sprite.
-		// TODO: consider treating the entire image as 1 frame called "idle" (default frame),
-		// because there are items (e.g. lunariwhip.activeitem) that use "idle" frame of non-sprite.
-		// For example:
-		// return { 'idle': absolutePathToSprite };
-
-		util.log( '[warn] .frames file not loaded: ' + framesConfPath + ': ' + error.message );
+		util.log( '[error] Failed to load .frames file: ' + framesConfPath + ': ' + error.message );
 		return {};
 	}
 
 	if ( !framesConf.frameGrid ) {
 		// Not yet implemented. Currently we only support "frameGrid" sprites.
-		// TODO: add support for "frameList" sprites.
+		// TODO: add support for "frameList" sprites (low-prio, they are only used for several armors).
 		return {};
 	}
 
@@ -77,7 +106,7 @@ function unpackSpriteUncached( absolutePathToSprite ) {
 	fs.mkdirSync( cachePath, { recursive: true } );
 
 	var grid = framesConf.frameGrid,
-		[ width, height ] = grid.dimensions
+		[ width, height ] = grid.dimensions;
 
 	var result = childProcess.spawnSync(
 		config.imageMagickConvertCommand,
@@ -143,25 +172,20 @@ function locateImage( relativePath, relativeToAsset ) {
 	}
 
 	// We look for this image in both mod and vanilla. Image from the mod always has priority.
-	var pathCandidates = [
-		config.pathToMod + '/' + path,
-		config.pathToVanilla + '/' + path,
-	];
-	for ( var possiblePath of pathCandidates ) {
-		if ( fs.existsSync( possiblePath ) ) {
-			// Found the image!
-			if ( frame ) {
-				possiblePath = unpackSprite( possiblePath )[frame] || false;
-			}
-
-			return possiblePath;
-		}
+	var possiblePath = util.findInModOrVanilla( path );
+	if ( !possiblePath ) {
+		// Not found (neither in vanilla nor in the mod).
+		util.log( '[warning] Asset ' + ( relativeToAsset ? relativeToAsset.filename + ' ' : '' )  +
+			'refers to nonexistent image: ' + path );
+		return false;
 	}
 
-	// Not found (in neither vanilla nor mod).
-	util.log( '[warning] Asset ' + ( relativeToAsset ? relativeToAsset.filename + ' ' : '' )  +
-		'refers to nonexistent image: ' + path );
-	return false;
+	// Found the image!
+	if ( frame ) {
+		possiblePath = unpackSprite( possiblePath )[frame] || false;
+	}
+
+	return possiblePath;
 }
 
 /**
