@@ -51,14 +51,26 @@ function findFramesFile( absolutePathToSprite ) {
 		.replace( config.pathToVanilla, '' )
 		.replace( config.pathToMod, '' );
 
-	var relativeDir = nodePath.dirname( relativePath );
+	var relativeDir = nodePath.dirname( relativePath ),
+		basename = nodePath.basename( relativePath ).replace( /\.[^.]+$/, '.frames' );
 
 	// If image is called "something.png", then its .frames file should be called "something.frames".
 	// Fallback (if not found): file called "default.frames" in the same directory as the image.
 	var filenameCandidates = [
-		nodePath.basename( relativePath ).replace( /\.[^.]+$/, '.frames' ),
+		basename,
 		'default.frames'
 	];
+
+	// Also look for "something.frames" in parent directories. This is often used for armors,
+	// which have only one "chest.frames" in parent directory (instead of many "chest.frames" files).
+	var stepsUp = relativeDir.split( '/' ).length - 1,
+		parentDir = '';
+	for ( var i = 0; i < stepsUp; i ++ ) {
+		parentDir = '../' + parentDir;
+		filenameCandidates.push( parentDir + basename );
+	}
+
+	// Choose the first file that exists.
 	for ( var possibleFilename of filenameCandidates ) {
 		var possiblePath = util.findInModOrVanilla( relativeDir + '/' + possibleFilename );
 		if ( possiblePath ) {
