@@ -124,6 +124,30 @@ local function describeAbility( metadata, isPrimary )
 	return { fieldName, ret }
 end
 
+-- Based on item metadata, return wikitext that describes rotting status of this food.
+-- @param {table} metadata Result of queryItemMetadata()
+-- @return {string|nil}
+function p.DescribeRotting( metadata )
+	local rottingInfo, rotInfoColor
+	if metadata.noRotting then
+		rotInfoColor = 'green' -- Beneficial
+		rottingInfo = 'This food doesn\'t rot.'
+	elseif metadata.rotMinutes then
+		local rotMinutes = tonumber( metadata.rotMinutes )
+
+		rottingInfo = mw.getContentLanguage():formatDuration( 60 * rotMinutes )
+		if rotMinutes > 200 then
+			rotInfoColor = 'green' -- Better than default
+		else
+			rotInfoColor = '#bb0000' -- Worse than default
+		end
+	else
+		return nil
+	end
+
+	return '<span style="font-weight: bold; color:' .. rotInfoColor .. '">' .. rottingInfo .. '</span>'
+end
+
 -- Print the automatic infobox of item. (based on [[Special:CargoTables/item]])
 -- Usage: {{#invoke: AutomaticInfoboxItem|Main|carbonpickaxe}}
 -- First parameter: item ID, e.g. "aentimber".
@@ -241,23 +265,8 @@ function p.Main( frame )
 		end
 
 		-- Display non-standard rotting time (values different from the default 3h20m).
-		local rottingInfo, rotInfoColor
-		if metadata.noRotting then
-			rotInfoColor = 'green' -- Beneficial
-			rottingInfo = 'This food doesn\'t rot.'
-		elseif metadata.rotMinutes then
-			local rotMinutes = tonumber( metadata.rotMinutes )
-
-			rottingInfo = mw.getContentLanguage():formatDuration( 60 * rotMinutes )
-			if rotMinutes > 200 then
-				rotInfoColor = 'green' -- Better than default
-			else
-				rotInfoColor = '#bb0000' -- Worse than default
-			end
-		end
-
+		local rottingInfo = p.DescribeRotting( metadata )
 		if rottingInfo then
-			rottingInfo = '<span style="font-weight: bold; color:' .. rotInfoColor .. '">' .. rottingInfo .. '</span>'
 			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
 				'[[List of foods by rotting time|Rotting]]', rottingInfo
 			} }

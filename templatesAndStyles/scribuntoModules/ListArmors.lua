@@ -1,7 +1,7 @@
 local p = {}
 local cargo = mw.ext.cargo
 
--- Print the list of all armor sets in the game. (based on [[Special:CargoTables/item]])
+-- Print the list of all armor sets in the game. (based on [[Special:CargoTables/armorset]])
 -- Usage: {{#invoke: ListArmors|ListAllSets}}
 function p.ListAllSets()
 	-- Perform a SQL query to the Cargo database.
