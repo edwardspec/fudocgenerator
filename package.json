@@ -13,6 +13,7 @@
     "fs": "^0.0.2",
     "lodash": "^4.17.20",
     "mwbot": "^1.0.10",
+    "picomatch": "^2.2.2",
     "strip-json-comments": "^3.1.1"
   },
   "devDependencies": {
