@@ -8,7 +8,7 @@ local describeRotting = require( 'Module:AutomaticInfoboxItem' ).DescribeRotting
 function p.ListAllFoods()
 	-- Perform a SQL query to the Cargo database.
 	local tables = 'item,recipe'
-	local fields = 'wikiPage,description,category,rarity,price,stackSize,id,wikitext'
+	local fields = 'wikiPage,description,category,rarity,price,stackSize,id,station,wikitext'
 	local queryOpt = {
 		join = 'recipe.outputs__full=item.id',
 		where = 'category IN ("food", "preparedFood", "drink", "medicine")',
@@ -60,9 +60,9 @@ function p.ListAllFoods()
 		end
 
 		ret = ret .. '|-\n' ..
-			'|| [[' .. row.wikiPage .. ']]' ..
+			'||[[' .. row.wikiPage .. ']]' ..
 			'||' .. ( extraInfo.foodValue or '' ) ..
-			'||\n' .. row.wikitext .. '\n' ..
+			'||\n[[' .. row.station .. ']]\n' .. row.wikitext .. '\n' ..
 			'||\n' .. row.description .. '\n' ..
 			'||' .. rottingInfo ..
 			'||' .. row.category ..
