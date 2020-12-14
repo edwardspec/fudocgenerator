@@ -243,6 +243,30 @@
 		"wiretool": "item"
 	},
 
+	"@doc": "It true, then assets with unknown extensions (not in extensionToAssetType) will also be loaded. This is useless for generate.js, but can be needed in linter scripts, etc.",
+	"loadUnknownAssets": false,
+
+	"@doc": "Filenames that match these patterns will be skipped when loadding JSON assets.",
+	"ignoreAssetPatterns": {
+		"notJson": [
+			"tests/**",
+			"a_modders/**",
+			"dungeons/**.json",
+			"_previewimage",
+			"**/*.{lua,png,xcf,wav,ogg,txt,md,ase,aseprite,tsx,ttf,xb1,aup,ico,tmx,pdn,zip,au,old,unused}"
+		],
+		"brokenVanillaAssets": [
+			"cursors/reticle.cursor",
+			"monsters/dungeon/glitchspider/default.frames"
+		],
+		"notNeededToGenerateDocumentation": [
+			"projectiles/**/*.config{,.patch}",
+			"species/*namegen.config{,.patch}",
+			"**/wild*seed.object{,.patch}",
+			"dungeons/**"
+		]
+	},
+
 	"@doc": "Names of weapon abilities that are so trivial/evident (e.g. Bow Shot for primary of most bows) that there is no benefit in mentioning their name as Special Ability in the infobox. These names won't be included into the Cargo database.",
 	"trivialWeaponAbilities": [
 		"Bow Shot",
