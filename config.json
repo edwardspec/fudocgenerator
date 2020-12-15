@@ -145,7 +145,11 @@
 		"rock15": "Rough Stone (rock15)",
 		"rock17": "Rough Stone (rock17)",
 		"rock19": "Rough Stone (rock19)",
-		"rock20": "Rough Stone (rock20)"
+		"rock20": "Rough Stone (rock20)",
+		"elduukhar7-codex": "Elduukhar Life 1 (codex)",
+		"elduukhar8-codex": "Elduukhar Life 2 (codex)",
+		"elduukhar9-codex": "Elduukhar Life 3 (codex)",
+		"elduukhar10-codex": "Elduukhar Life 4 (codex)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
@@ -214,6 +218,7 @@
 		"beamaxe": "item",
 		"biome": "biome",
 		"chest": "item",
+		"codex": "item",
 		"config": "config",
 		"consumable": "item",
 		"currency": "item",

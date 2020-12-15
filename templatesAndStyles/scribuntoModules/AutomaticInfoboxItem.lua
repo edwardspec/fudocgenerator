@@ -336,6 +336,12 @@ function p.Main( frame )
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'ID', row.id } }
 
 	ret = ret .. '\n|}'
+
+	-- For codexes only: add a top-level ==Section== with hidden text.
+	if metadata.codexText then
+		ret = ret .. '\n== Contents ==\n{{Codex|text=' .. metadata.codexText:gsub( '|', '{{!}}' ) .. '}}\n'
+	end
+
 	return ret
 end
 
