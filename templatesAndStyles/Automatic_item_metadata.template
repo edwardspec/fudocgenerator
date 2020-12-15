@@ -4,7 +4,7 @@ _table = item_metadata
 |prop = String
 |value = String
 }}
-This table is supplementary to [[Special:CargoTable/items|item]] table (defined in {{tl|Automatic item info}}). It contains item properties that only make sense for a small subset of items, such as "food value" for consumables or "elemental type" for weapons.
+This table is supplementary to [[Special:CargoTables/items|item]] table (defined in {{tl|Automatic item info}}). It contains item properties that only make sense for a small subset of items, such as "food value" for consumables or "elemental type" for weapons.
 
 These properties (if found in the database by item ID) may be used/printed in [[Module:AutomaticInfoboxItem]].
 

@@ -1,0 +1,11 @@
+<noinclude>{{#cargo_declare:
+_table = codex_text
+|id = String
+|text = Text
+}}
+This table is supplementary to [[Special:CargoTables/items|item]] table (defined in {{tl|Automatic item info}}).
+
+It contains text of Codex items (which is too long to fit into the String field of [[Special:CargoTables/item_metadata]]). This text used/printed in [[Module:AutomaticInfoboxItem]].
+
+[[Category:Cargo templates]]
+</noinclude>

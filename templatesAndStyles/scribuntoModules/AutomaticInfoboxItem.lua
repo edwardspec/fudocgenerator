@@ -336,6 +336,15 @@ function p.Main( frame )
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'ID', row.id } }
 
 	ret = ret .. '\n|}'
+
+	-- For codexes only: add a top-level ==Section== with hidden text.
+	if row.category == 'codex' then
+		local row = ( cargo.query( 'codex_text', 'text', { where = 'id="' .. id .. '"' } ) or {} )[1]
+		if row then
+			ret = ret .. '\n== Contents ==\n' .. frame:expandTemplate{ title = 'Codex', args = { text = row.text } }
+		end
+	end
+
 	return ret
 end
 
