@@ -341,7 +341,9 @@ function p.Main( frame )
 	if row.category == 'codex' then
 		local row = ( cargo.query( 'codex_text', 'text', { where = 'id="' .. id .. '"' } ) or {} )[1]
 		if row then
-			ret = ret .. '\n== Contents ==\n' .. frame:expandTemplate{ title = 'Codex', args = { text = row.text } }
+			ret = ret .. frame:expandTemplate{ title = 'Spoiler', args = { nocat = 1 } } ..
+				'\n== Contents ==\n' ..
+				frame:expandTemplate{ title = 'Codex', args = { text = row.text } }
 		end
 	end
 

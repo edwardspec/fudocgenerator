@@ -1,3 +1,4 @@
+
 /* Styles for automatically generated documentation about extraction recipes */
 
 .recipe {
@@ -18,4 +19,42 @@
 
 .recipe-input {
 	background-color: #ccffcc;
+}
+
+.recipe .selflink {
+	font-weight: normal;
+	font-style: italic;
+	font-size: 105%;
+}
+
+.unlockedby {
+	background-color: white;
+	border: 1px solid #9f9f9f;
+	padding: 5px 10px;
+}
+
+.unlockedby img {
+	margin-right: 5px;
+}
+
+.codex-text {
+	border-style: solid;
+	border-color: #c9c9c9;
+	padding: 10px;
+	max-width: 580px;
+	min-height: 20px;
+}
+
+.codex-text #mw-collapsible-toggle {
+	float: none;
+}
+
+/* Redlinks to tag categories should be shown as normal links */
+.infobox-tag a.new, .infobox-tag a.new:visited { color: #0645ad; }
+
+/* Make images like "Item_icon_mechenergyfield.png" be at least 32x32 when in the infobox */
+.infobox img[src*="/Item_icon"] {
+  min-width: 32px;
+  min-height: 32px;
+  object-fit: contain;
 }
