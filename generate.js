@@ -24,8 +24,20 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 		continue;
 	}
 
+	if ( item.isCodex() ) {
+		// Codexes will be handled below.
+		continue;
+	}
+
 	ResultsWriter.writeItem( item );
 }
+
+// Write all non-vanilla codexes (regardless of whether they have a recipe or not). Skip vanilla codexes.
+ItemDatabase.forEach( ( itemCode, item ) => {
+	if ( item.isNonVanillaCodex() ) {
+		ResultsWriter.writeItem( item );
+	}
+} );
 
 // Generate Cargo database of all known recipes.
 RecipeDatabase.forEach( ( recipe ) => {

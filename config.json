@@ -171,8 +171,8 @@
 		"item": 70,
 		"recipe": 90,
 		"node": 15,
-		"armorset": 10,
-		"codex": 5
+		"armorset": 9,
+		"codex": 10
 	},
 
 	"@doc": "Maximum size (in kilobytes) of page with {{#cargo_store:}} directives. If the chunk exceeds that, it will be forcefully split with no regard for Consistent Hashing. MediaWiki is not optimized for handling large pages, so we must be responsible and keep this value relatively low (e.g. 50).",
