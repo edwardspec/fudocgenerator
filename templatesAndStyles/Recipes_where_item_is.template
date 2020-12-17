@@ -1,21 +1,8 @@
-<includeonly>
-{{#cargo_query:
-tables=recipe, crafting_station_order__stations=Sorting
-|join on=recipe.station=Sorting._value
-|order by=CASE WHEN Sorting._position IS NULL THEN 9999 ELSE Sorting._position END, recipe.station
-|where={{{role}}} HOLDS "{{{item}}}"
-|default=
-|intro=
-<div></div>
-== {{{header}}} ==
-|group by=station
-|format = template
-|fields=station,TRIM("{{{item}}}")=item,TRIM("{{{role}}}")=role
-|template = Recipes for item at
-|named args = yes
-}}</includeonly><noinclude>
+<includeonly>{{#invoke: ListRecipes|RecipesWhereItemIs}}</includeonly><noinclude>
 
-This template shows [[Template:Recipes for item at]] for ALL crafting stations where item A can be either created (<code>role=outputs</code>) or spent (<code>role=inputs</code>). This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
+This template shows "Used for" or "How to obtain" section for an item.
+
+This will show ALL recipes where item A can be either created (<code>role=outputs</code>) or spent (<code>role=inputs</code>). This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
 
 __NOTOC__
 Usage:

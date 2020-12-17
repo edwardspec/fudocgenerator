@@ -11,6 +11,7 @@ codes = true -- Show luacheck's error/warning codes.
 
 -- Globals from Scrinbuto API:
 read_globals = {
-	"mw"
+	"mw",
+	"unpack", -- No table.unpack() in Scribunto, see https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#unpack
 }
 
