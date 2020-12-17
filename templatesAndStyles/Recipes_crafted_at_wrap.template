@@ -1,5 +1,0 @@
-{{{1}}}<noinclude>
-Helper template for [[Template:Recipes crafted at]].
-
-Cargo doesn't parse intro= parameter as wikitext unless format=template is used. So we use format=template (with this as template) instead of format=list, which would otherwise be sufficient.
-</noinclude>

@@ -1,18 +1,9 @@
-<!-- This comment ensures that "==" would start at the new line -->
-{{#cargo_query:
-tables=recipe
-|where=station="{{{1}}}"
-|default=
-|intro=
-== Items crafted here ==
-<div></div> <!-- workaround to prevent the line with "==" from being concatenated with following lines, which would break the header -->
-|format=template <!-- Normally format=list would be enough, but it causes "intro" to not be parsed as wikitext, while format=template enforces full parsing -->
-|template=Template:Recipes crafted at/wrap
-|fields=wikitext
-}}<noinclude>
+{{#invoke:ListRecipes|RecipesCraftedAt}}<noinclude>
 This template shows "Items crafted here" section for a crafting station. This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
 
 Usage: <code><nowiki>{{Recipes crafted at|Wooden Workbench}}</nowiki></code>.
+
+Optional parameter: <nowiki>header=Some text</nowiki> - will use "Some text" instead of "Items crafted here" as the header text.
 
 [[Category:Cargo templates]]
 </noinclude>
