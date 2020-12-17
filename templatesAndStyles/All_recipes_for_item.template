@@ -1,13 +1,13 @@
-{{Item unlocked by|{{{id}}}}}<!--
--->{{Recipes where item is|item={{{id}}}|role=outputs|header=How to obtain}}<!--
+{{Recipes where item is|item={{{id}}}|role=outputs|header=How to obtain}}<!--
 -->{{Recipes where item is|item={{{id}}}|role=inputs|header=Used for}}<!--
--->{{Recipes crafted at|{{{name}}}}}<!--
+-->{{#if: {{{nostation|}}}||{{Recipes crafted at|{{{name}}}}}}}<!--
 
 --><noinclude>
 This template shows ALL recipes where this item is a part of.
 Parameters:
 ; id : Item ID, e.g. "ironore". This is used to obtain recipes that use and/or produce this item.
 ; name : Human-readable name of the item. This is only used for crafting stations (to show "Items crafted here" section).
+; nostation : (optional) If parameter `nostation=1` is specified, then "Items crafted here" section is not shown. This is used for pages like [[Growing Tray]] (where showing it makes little sense) or for pages with quote (") in their name, such as [["Beautiful Attempt" Movie Billboard]].
 
 Usage:
 * <code><nowiki>{{All recipes for item|id=fu_carbon|name=Carbon}}</nowiki></code>

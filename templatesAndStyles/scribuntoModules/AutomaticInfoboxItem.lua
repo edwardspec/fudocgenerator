@@ -335,7 +335,7 @@ function p.Main( frame )
 	-- Item ID is last, because very few people need it
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'ID', row.id } }
 
-	ret = ret .. '\n|}'
+	ret = ret .. '\n|}\n' .. frame:expandTemplate{ title = 'Item unlocked by', args = { row.id } }
 
 	-- For codexes only: add a top-level ==Section== with text, prepended by {{Spoiler}} template
 	if row.category == 'codex' then
