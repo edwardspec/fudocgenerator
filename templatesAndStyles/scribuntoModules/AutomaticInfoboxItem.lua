@@ -337,13 +337,13 @@ function p.Main( frame )
 
 	ret = ret .. '\n|}'
 
-	-- For codexes only: add a top-level ==Section== with hidden text.
+	-- For codexes only: add a top-level ==Section== with text, prepended by {{Spoiler}} template
 	if row.category == 'codex' then
-		local row = ( cargo.query( 'codex_text', 'text', { where = 'id="' .. id .. '"' } ) or {} )[1]
-		if row then
+		local codexRow = ( cargo.query( 'codex_text', 'text', { where = 'id="' .. id .. '"' } ) or {} )[1]
+		if codexRow then
 			ret = ret .. frame:expandTemplate{ title = 'Spoiler', args = { nocat = 1 } } ..
 				'\n== Contents ==\n' ..
-				frame:expandTemplate{ title = 'Codex', args = { text = row.text } }
+				frame:expandTemplate{ title = 'Codex', args = { text = codexRow.text } }
 		end
 	end
 
