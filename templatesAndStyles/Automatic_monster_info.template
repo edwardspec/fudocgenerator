@@ -1,0 +1,30 @@
+<noinclude>{{#cargo_declare:
+_table = monster
+|id = String
+|name = String
+|description = String
+|capturable = Boolean
+<!-- Stats -->
+|health = Float
+|protection = Float
+<!-- Touch damage -->
+|damage = Float
+<!-- Resistances -->
+|physical = Integer
+|radioactive = Integer
+|poison = Integer
+|electric = Integer
+|fire = Integer
+|ice = Integer
+|cosmic = Integer
+|shadow = Integer
+}}
+
+This table describes monsters (including non-hostile ones like [[Farm Beasts]]), as described in <code>*.monstertype</code> files.
+
+Notes about fields:
+; Resistances (e.g. <code>ice</code>) - integer number of percents ("6" means 6%).
+; damage - this is '''touch damage'''. We don't collect the damage of ranged projectiles, stomping/charging attacks, etc., because their mechanics can greatly vary, and the number alone won't be helpful without a human-written explanation of how exactly is this monster attacking.
+
+[[Category:Cargo templates]]
+</noinclude>
