@@ -178,7 +178,15 @@
 		"greg7-codex": "Experimental Vaccine 5 (codex)",
 		"greg8-codex": "Experimental Vaccine 6 (codex)",
 		"greg9-codex": "Experimental Vaccine 7 (codex)",
-		"greg10-codex": "Experimental Vaccine 8 (codex)"
+		"greg10-codex": "Experimental Vaccine 8 (codex)",
+		"raptoregg": "Dinosaur Egg (Erichiraptor)",
+		"raptoregg2": "Dinosaur Egg (Corvulraptor)",
+		"raptoregg3": "Dinosaur Egg (Reliraptor)",
+		"raptoregg4": "Dinosaur Egg (Dilophiraptor)",
+		"raptoregg5": "Dinosaur Egg (Gariraptor)",
+		"gooshoategg": "Shoat Egg (goo)",
+		"greenshoategg": "Shoat Egg (green)",
+		"slimeshoategg": "Shoat Egg (slime)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
@@ -197,7 +205,8 @@
 		"luridmagazine3-codex",
 		"luridmagazine4-codex",
 		"fuhca5-codex",
-		"funightarhistory7-codex"
+		"funightarhistory7-codex",
+		"fuincubator"
 	],
 
 	"@doc": "Into how many Chunk subpages to split the {{#cargo_store:}} directives. This is necessary for performance (so that the entire Cargo database is not overwritten every time one item gets modified). Note: increasing/decreasing this variable shouldn't be frequent (keeping this number the same allows Consistent Hashing to minimize the number of edits). Note: actual number of chunks will be slightly higher than this value, because their size is additionally limited by 'cargoMaxChunkSizeKBytes' variable.",
