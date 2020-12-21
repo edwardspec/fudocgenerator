@@ -15,18 +15,11 @@ module.exports = {
 	},
 	rules: {
 		// This must be fixed.
-		camelcase: 'off',
-		'no-loop-func': 'off',
-		'no-new-wrappers': 'off',
-		'max-statements-per-line': 'off',
-		'no-return-assign': 'off',
-		'no-shadow': 'off',
-		'no-tabs': 'off',
-		'no-underscore-dangle': 'off',
 		'no-use-before-define': 'off',
 
 		// Might enable this later.
 		eqeqeq: 'off',
+		'no-loop-func': 'off', // Only matters for async callbacks, many false positives for synchronous.
 
 		// Necessary to skip, e.g. process.exit() may be necessary for linter.
 		'mediawiki/valid-package-file-require': 'off',

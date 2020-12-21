@@ -35,9 +35,9 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 }
 
 // Write all non-vanilla codexes (regardless of whether they have a recipe or not). Skip vanilla codexes.
-ItemDatabase.forEach( ( itemCode, item ) => {
-	if ( item.isNonVanillaCodex() ) {
-		ResultsWriter.writeItem( item );
+ItemDatabase.forEach( ( itemCode2, item2 ) => {
+	if ( item2.isNonVanillaCodex() ) {
+		ResultsWriter.writeItem( item2 );
 	}
 } );
 
