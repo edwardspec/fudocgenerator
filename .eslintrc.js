@@ -32,6 +32,7 @@ module.exports = {
 		'mediawiki/valid-package-file-require': 'off',
 		'no-console': 'off',
 		'no-process-exit': 'off',
+		'jsdoc/no-undefined-types': 'off', // Don't want to add unnecessary require() just to use a class in JSDoc annotation
 
 		// Don't want to apply these.
 		'array-bracket-spacing': 'off',
