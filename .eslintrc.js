@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
 	env: {
 		node: true,
@@ -9,10 +11,7 @@ module.exports = {
 		'wikimedia/language/es2020'
 	],
 	parserOptions: {
-		ecmaVersion: 11,
-		ecmaFeatures: {
-			impliedStrict: true
-		}
+		ecmaVersion: 11
 	},
 	rules: {
 		// This must be fixed.

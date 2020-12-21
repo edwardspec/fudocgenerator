@@ -7,6 +7,8 @@
  * Usage: node generate.js
  */
 
+'use strict';
+
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, MonsterDatabase,
 	ResultsWriter, util } = require( './lib' );
 

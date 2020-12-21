@@ -6,6 +6,8 @@
  * Usage: node prepare_uploads.js
  */
 
+'use strict';
+
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
 	WikiStatusCache, config, util } = require( './lib' ),
 	fs = require( 'fs' ),

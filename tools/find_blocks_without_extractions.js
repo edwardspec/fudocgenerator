@@ -2,6 +2,8 @@
  * Find all blocks without extraction/sifting/crushing/smelting recipes.
  */
 
+'use strict';
+
 const { ItemDatabase, RecipeDatabase } = require( '../lib' );
 
 // These stations count as "automatic processing" (extraction, sifting, etc.) by this script.
