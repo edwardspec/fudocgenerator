@@ -209,8 +209,7 @@ function locateImage( relativePath, relativeToAsset ) {
 /**
  * @param {string} targetTitle Name of File: page in the wiki, e.g. "Item_icon_ironore.png".
  * @param {string|undefined} relativePath Value of "inventoryIcon" key, or "dualImage" key, etc.
- * @param {LoadedAsset|null} Asset that contains that "inventoryIcon", "dualImage", etc.
- * @param relativeToAsset
+ * @param {LoadedAsset|null} relativeToAsset Asset that contains that "inventoryIcon", "dualImage", etc.
  */
 function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
 	// Normalize the title (space and underscore are the same, so let's avoid spaces in filenames).
