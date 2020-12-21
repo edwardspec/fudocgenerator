@@ -10,6 +10,7 @@
     "@subspace/jump-consistent-hash": "^1.1.1",
     "cli-progress": "^3.8.2",
     "deepmerge": "^4.2.2",
+    "eslint-config-wikimedia": "^0.17.0",
     "fs": "^0.0.2",
     "lodash": "^4.17.20",
     "mwbot": "^1.0.10",
