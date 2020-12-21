@@ -18,7 +18,7 @@ if ( !filenamesToCheck ) {
 	process.exit( 1 );
 }
 
-console.log( "Checking " + filenamesToCheck.length + " JSON files." );
+console.log( 'Checking ' + filenamesToCheck.length + ' JSON files.' );
 
 // Print all errors to stdout.
 util.log = ( msg ) => process.stderr.write( msg + '\n' );

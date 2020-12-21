@@ -9,12 +9,12 @@
 'use strict';
 
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
-	WikiStatusCache, config, util } = require( './lib' ),
+		WikiStatusCache, config, util } = require( './lib' ),
 	fs = require( 'fs' ),
 	childProcess = require( 'child_process' ),
 	nodePath = require( 'path' );
 
-/*-----------------------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------------------- */
 
 // A symlink will be created in this directory for each image that needs to be uploaded.
 // This directory can then be provided to "pwb.py upload", and it will upload everything there.
@@ -23,7 +23,7 @@ fs.rmSync( outputPath, { recursive: true, force: true } );
 fs.mkdirSync( outputPath + '/all', { recursive: true } );
 fs.mkdirSync( outputPath + '/onlyNew', { recursive: true } );
 
-/*-----------------------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------------------- */
 
 // Cache used by unpackSprite().
 // Format: { "filenameOfSprite1": result1, ... }.
@@ -31,6 +31,7 @@ var unpackedSprites = {};
 
 /**
  * Use ImageMagick (convert tool) to cut the sprite (images glued into one) into individual images.
+ *
  * @param {string} absolutePathToSprite
  * @return {Object} Format: { "codeOfFrame1": filename1, "codeOfFrame2": filename2, ... }
  */
@@ -44,6 +45,7 @@ function unpackSprite( absolutePathToSprite ) {
 
 /**
  * Returns path to .frames file (which describes how to cut a sprite image) or false if not found.
+ *
  * @param {string} absolutePathToSprite
  * @return {string|false}
  */
@@ -67,7 +69,7 @@ function findFramesFile( absolutePathToSprite ) {
 	// which have only one "chest.frames" in parent directory (instead of many "chest.frames" files).
 	var stepsUp = relativeDir.split( '/' ).length - 1,
 		parentDir = '';
-	for ( var i = 0; i < stepsUp; i ++ ) {
+	for ( var i = 0; i < stepsUp; i++ ) {
 		parentDir = '../' + parentDir;
 		filenameCandidates.push( parentDir + basename );
 	}
@@ -86,6 +88,7 @@ function findFramesFile( absolutePathToSprite ) {
 
 /**
  * Uncached version of unpackSprite().
+ *
  * @param {string} absolutePathToSprite
  * @return {Object} Format: { "codeOfFrame1": filename1, "codeOfFrame2": filename2, ... }
  */
@@ -162,6 +165,7 @@ function unpackSpriteUncached( absolutePathToSprite ) {
 /**
  * Discover the full path (e.g. /usr/src/FrackinUniverse/items/generic/crafting/algaegreen.png)
  * of an image that is referenced in "inventoryIcon", "dualImage", etc. keys of JSON asset files.
+ *
  * @param {string|undefined} relativePath Value of "inventoryIcon" key, or "dualImage" key, etc.
  * @param {LoadedAsset|null} relativeToAsset If not null, relativePath that doesn't start with "/"
  * is considered to be relative to this asset's directory.
@@ -189,7 +193,7 @@ function locateImage( relativePath, relativeToAsset ) {
 	var possiblePath = util.findInModOrVanilla( path );
 	if ( !possiblePath ) {
 		// Not found (neither in vanilla nor in the mod).
-		util.log( '[warning] Asset ' + ( relativeToAsset ? relativeToAsset.filename + ' ' : '' )  +
+		util.log( '[warning] Asset ' + ( relativeToAsset ? relativeToAsset.filename + ' ' : '' ) +
 			'refers to nonexistent image: ' + path );
 		return false;
 	}
@@ -206,6 +210,7 @@ function locateImage( relativePath, relativeToAsset ) {
  * @param {string} targetTitle Name of File: page in the wiki, e.g. "Item_icon_ironore.png".
  * @param {string|undefined} relativePath Value of "inventoryIcon" key, or "dualImage" key, etc.
  * @param {LoadedAsset|null} Asset that contains that "inventoryIcon", "dualImage", etc.
+ * @param relativeToAsset
  */
 function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
 	// Normalize the title (space and underscore are the same, so let's avoid spaces in filenames).

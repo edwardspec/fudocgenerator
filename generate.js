@@ -12,7 +12,7 @@
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, MonsterDatabase,
 	ResultsWriter, util } = require( './lib' );
 
-/*-------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------- */
 
 // Generate the wikitext for each item that has at least 1 Recipe.
 // Then send the results to ResultsWriter.write().

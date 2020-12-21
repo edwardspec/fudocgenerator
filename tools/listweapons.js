@@ -57,7 +57,7 @@ for ( var item of buildscriptItems ) {
 	var line = '|-\n|' + ( item.level || '?' ) + ' || ' + item.itemName + ' || [[' + util.cleanDescription( item.shortdescription ) + ']] ';
 
 	if ( item.level === undefined ) {
-		line += '|| ' + item.price +  ' || ? || ?';
+		line += '|| ' + item.price + ' || ? || ?';
 	} else {
 		var priceWithoutMultiplier = item.price / tierToMult[item.level];
 
