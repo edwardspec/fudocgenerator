@@ -284,6 +284,7 @@
 		"object": "item",
 		"painttool": "item",
 		"patch": "patch",
+		"questtemplate": "quest",
 		"recipe": "recipe",
 		"species": "species",
 		"thrownitem": "item",
