@@ -1,4 +1,4 @@
-{{#if: {{{3|}}}|{{#ifexist:File:Node_icon_{{{3}}}.png|[[File:Node_icon_{{{3}}}.png|24x24px|link=|alt=]]}}}}<!--
+{{#if: {{{3|}}}|{{#ifeq:{{{1}}}|No||[[File:Node_icon_{{{3}}}.png|24x24px|link=|alt=]]}}}}<!--
 -->[[{{{1}}} tree#{{{2}}}|{{{2}}} ({{{1}}} tree)]]<noinclude>
 
 Helper template to create wikitext link to Research Tree Node.
