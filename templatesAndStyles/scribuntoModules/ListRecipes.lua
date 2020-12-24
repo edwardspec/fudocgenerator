@@ -5,6 +5,7 @@ local cargo = mw.ext.cargo
 local OrderOfCraftingStations = {
 	{ nil, {
 		'Growing Tray',
+		'Incubator',
 		'Upgrade crafting station'
 	} },
 	{ 'Reactor fuel', {
@@ -17,6 +18,7 @@ local OrderOfCraftingStations = {
 		'Precursor Reactor'
 	} },
 	{ 'Extractions', {
+		'Honey Extractor',
 		'Extraction Lab',
 		'Extraction Lab MKII',
 		'Quantum Extractor',
@@ -46,6 +48,8 @@ local OrderOfCraftingStations = {
 		'Bee Refuge',
 		'Bug House',
 		'Farm Beasts',
+		'Monster drops',
+		'Monster drops (hunting)',
 		'Moth Trap',
 		'Moth Trap II',
 		'Lobster Trap',
