@@ -30,6 +30,12 @@ fs.mkdirSync( outputPath + '/onlyNew', { recursive: true } );
  * @param {LoadedAsset|null} relativeToAsset Asset that contains that "inventoryIcon", "dualImage", etc.
  */
 function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
+	if ( !relativePath ) {
+		// No image. We check this here for convenience (to call prepareUpload() on keys
+		// like item.inventoryIcon or node.icon without double-checking presence of these keys.
+		return;
+	}
+
 	// Normalize the title (space and underscore are the same, so let's avoid spaces in filenames).
 	// Also  ":" is not a valid symbol for MediaWiki images names, so replace it with "."
 	// (this is necessary for pseudo-items like "prototyper:3").
