@@ -23,8 +23,8 @@ _table = monster
 This table describes monsters (including non-hostile ones like [[Farm Beasts]]), as described in <code>*.monstertype</code> files.
 
 Notes about fields:
-; Resistances (e.g. <code>ice</code>) - integer number of percents ("6" means 6%).
-; damage - this is '''touch damage'''. We don't collect the damage of ranged projectiles, stomping/charging attacks, etc., because their mechanics can greatly vary, and the number alone won't be helpful without a human-written explanation of how exactly is this monster attacking.
+; Resistances (e.g. <code>ice</code>) : Integer number of percents ("6" means 6%).
+; damage : This is '''touch damage'''. We don't collect the damage of ranged projectiles, stomping/charging attacks, etc., because their mechanics can greatly vary, and the number alone won't be helpful without a human-written explanation of how exactly is this monster attacking.
 
 [[Category:Cargo templates]]
 </noinclude>
