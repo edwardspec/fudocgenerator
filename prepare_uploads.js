@@ -8,7 +8,7 @@
 
 'use strict';
 
-const { ImageFinder, ItemDatabase, RecipeDatabase, ResearchTreeDatabase,
+const { ImageFinder, ItemDatabase, RecipeDatabase, ResearchTreeDatabase, MonsterDatabase,
 		WikiStatusCache, config, util } = require( './lib' ),
 	fs = require( 'fs' );
 
@@ -67,4 +67,9 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 // Upload icons of research nodes.
 ResearchTreeDatabase.forEach( ( node ) => {
 	prepareUpload( 'Node_icon_' + node.id + '.png', node.icon );
+} );
+
+// Upload images of monsters.
+MonsterDatabase.forEach( ( monster ) => {
+	prepareUpload( 'Monster_body_' + monster.type + '.png', monster.bodyImage );
 } );

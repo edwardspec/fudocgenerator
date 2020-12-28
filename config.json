@@ -282,6 +282,7 @@
 		"material": "material",
 		"matitem": "item",
 		"miningtool": "item",
+		"monsterpart": "monsterpart",
 		"monstertype": "monster",
 		"npctype": "npc",
 		"object": "item",

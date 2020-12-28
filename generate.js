@@ -56,11 +56,9 @@ ArmorSetDatabase.forEach( ( armorSet ) => {
 	ResultsWriter.writeArmorSet( armorSet );
 } );
 
-
-// Generate Cargo database of all known armor sets.
+// Generate Cargo database of all known monsters.
 MonsterDatabase.forEach( ( monster ) => {
 	ResultsWriter.writeMonster( monster );
 } );
-
 
 ResultsWriter.finalize();
