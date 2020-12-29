@@ -124,6 +124,9 @@ function p.Main( frame )
 		resistBegin .. '[[File:Shadow (Attack).png|24px|link=|Shadow resistance|alt=Shadow]]&nbsp;' .. row.shadow .. resistEnd
 	} }
 
+	-- Monster ID is last, because very few people need it
+	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'ID', row.id } }
+
 	ret = ret .. '\n|}\n'
 	return ret
 end
