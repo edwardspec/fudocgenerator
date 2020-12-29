@@ -1,9 +1,8 @@
 <noinclude>Shows '''infobox''' (table with [Special:CargoTables/item|information about items]] that was automatically gathered by a bot.
 
-Usage: <nowiki>{{Automatic Infobox item|fu_carbon}}</nowiki>, where <code>fu_carbon</code> is item ID.
+Usage: <nowiki>{{Automatic infobox item|fu_carbon}}</nowiki>, where <code>fu_carbon</code> is item ID.
 
-Additionally an image can be added: <nowiki>{{Automatic Infobox item|fu_carbon|image=Something.png}}</nowiki> or <nowiki>{{Automatic Infobox item|fu_carbon|image=Something.png|image_size=300px}}</nowiki>.
+Additionally an image can be added: <nowiki>{{Automatic infobox item|fu_carbon|image=Something.png}}</nowiki> or <nowiki>{{Automatic infobox item|fu_carbon|image=Something.png|image_size=300px}}</nowiki>.
 
 [[Category:Cargo templates]]
-</noinclude><includeonly>{{#invoke:AutomaticInfoboxItem|Main}}
-{{TOC right}}</includeonly>
+</noinclude><includeonly>{{#invoke:AutomaticInfoboxItem|Main}}{{#if: {{{notoc|}}}||{{TOC right}}}}</includeonly>

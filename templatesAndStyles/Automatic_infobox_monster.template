@@ -1,0 +1,8 @@
+<noinclude>Shows '''infobox''' (table with [Special:CargoTables/monster|information about monsters]] that was automatically gathered by a bot.
+
+Usage: <nowiki>{{Automatic infobox monster|poptop}}</nowiki>, where <code>poptop</code> is monster ID.
+
+If some monster doesn't have an image (or if automatically uploaded image doesn't look that good), you can specify a manually uploaded image: <nowiki>{{Automatic infobox monster|poptop|image=Something.png}}</nowiki> or <nowiki>{{Automatic infobox monster|poptop|image=Something.png|image_size=300px}}</nowiki>.
+
+[[Category:Cargo templates]]
+</noinclude><includeonly>{{#invoke:AutomaticInfoboxMonster|Main}}{{#if: {{{notoc|}}}||{{TOC right}}}}</includeonly>
