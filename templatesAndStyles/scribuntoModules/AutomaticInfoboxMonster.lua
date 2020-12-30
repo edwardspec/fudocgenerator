@@ -93,7 +93,7 @@ function p.Main( frame )
 	if row.capturable == '1' then
 		captureStatus = 'Yes [[File:Filled capture pod.png|32px|link=|alt=]]'
 	else
-		captureStatus = 'No [[File:Dead capture pod.png|32px|link=|alt=]]'
+		captureStatus = 'No [[File:Not capturable icon3.png|18px|link=|alt=]]'
 	end
 
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Capturable?', captureStatus } }
