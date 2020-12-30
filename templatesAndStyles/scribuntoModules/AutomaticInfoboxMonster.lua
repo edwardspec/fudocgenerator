@@ -91,7 +91,7 @@ function p.Main( frame )
 
 	local captureStatus
 	if row.capturable == '1' then
-		captureStatus = 'Yes [[File:Filled capture pod.png|32px|link=|alt=]]'
+		captureStatus = 'Yes [[File:Capturable icon.png|18px|link=|alt=]]'
 	else
 		captureStatus = 'No [[File:Not capturable icon3.png|18px|link=|alt=]]'
 	end
