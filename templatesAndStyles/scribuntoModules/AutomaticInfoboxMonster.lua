@@ -82,6 +82,8 @@ function p.Main( frame )
 			imageParams['width'] = args['image_size']
 		end
 		ret = ret .. frame:expandTemplate{ title = 'infobox/image', args = imageParams }
+	elseif not nocat then
+		ret = ret .. '\n[[Category:Monster pages without image]]\n'
 	end
 
 	ret = ret .. frame:expandTemplate{ title = 'infobox/title', args = { row.name } }
