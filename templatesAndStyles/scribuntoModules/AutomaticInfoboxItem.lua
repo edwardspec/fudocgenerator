@@ -196,40 +196,64 @@ function p.Main( frame )
 
 	-- Format "row" (information about item: row.name, row.description, etc.) as wikitext.
 	ret = ret .. '{| class="infobox"\n'
+
+	-- Check if there are images that can be added automatically.
+	-- Most obtainable items have "File:Item_icon_<id>.png" (their 16x16 inventory icon).
+	local foundImages = {}
+	local normalizedId = string.gsub( row.id, ':', '.' )
+
+	-- Possible image 1: Inventory icon.
+	local iconTitle = mw.title.new( 'Item icon ' .. normalizedId .. '.png', 6 )
+	if iconTitle.fileExists then
+		table.insert( foundImages, iconTitle.text )
+	end
+
+	-- Possible image 2: image explicitly specified by a human editor (image=Something.png parameter).
 	if image then
-		local imageParams = { image }
-		if args['image_size'] then
-			imageParams['width'] = args['image_size']
+		table.insert( foundImages, image )
+	end
+
+	-- Possible image 3: depiction of placed blocks (3x3 grid). These are uploaded manually (not by the bot).
+	if row.category == "block" then
+		local blockImageTitle = mw.title.new( 'Block image ' .. normalizedId .. '.png', 6 )
+		if blockImageTitle.fileExists then
+			table.insert( foundImages, blockImageTitle.text )
 		end
-		ret = ret .. frame:expandTemplate{ title = 'infobox/image', args = imageParams }
-	else
-		-- Check if there are images that can be added automatically.
-		-- Most obtainable items have "File:Item_icon_<id>.png" (their 16x16 inventory icon).
-		local normalizedId = string.gsub( row.id, ':', '.' )
-		local iconTitle = mw.title.new( 'Item icon ' .. normalizedId .. '.png', 6 )
-		if iconTitle.fileExists then
-			-- Also check if we have "3x3 placed blocks" image: "Block_image_<id>.png".
-			local hasBlockImage = false
-			local blockImageTitle
-			if row.category == "block" then
-				blockImageTitle = mw.title.new( 'Block image ' .. normalizedId .. '.png', 6 )
-				hasBlockImage = blockImageTitle.fileExists
-			end
+	end
 
-			if not hasBlockImage then
-				-- If we don't have a block image, then inventory icon uses {{infobox/image}} (entire row of the infobox).
-				ret = ret .. frame:expandTemplate{ title = 'infobox/image', args = { iconTitle.text } }
-			else
-				-- If we have a block image, then we display it side-to-side with inventory icon (in the same row of the infobox).
-				ret = ret .. '|-\n'
-				ret = ret .. '| style="vertical-align: middle; text-align: right" | [[File:' .. iconTitle.text .. ']]\n'
-				ret = ret .. '| style="vertical-align: middle; text-align: left" | [[File:' .. blockImageTitle.text .. ']]\n'
+	-- Possible image 4: image of placeable object, e.g. furniture. These are auto-uploaded by the bot.
+	local placedImageTitle = mw.title.new( 'Item image ' .. normalizedId .. '.png', 6 )
+	if placedImageTitle.fileExists then
+		table.insert( foundImages, placedImageTitle.text )
+	end
 
-				-- For Extension:OpenGraphMeta:
-				-- because we didn't use {{infobox/image}}, we must call {{#setmainimage:}} explicitly.
-				-- We use block image here, because it's larger than an icon.
-				frame:callParserFunction( '#setmainimage', { blockImageTitle.text } )
+	if #foundImages > 0 then
+		if #foundImages == 1 then
+			-- If we only have one image, then it uses {{infobox/image}} (entire row of the infobox).
+			local imageParams = { foundImages[1] }
+			if args['image_size'] then
+				imageParams['width'] = args['image_size']
 			end
+			ret = ret .. frame:expandTemplate{ title = 'infobox/image', args = imageParams }
+		else
+			-- If we have 2+ images (e.g. inventory icon and placeable image),
+			-- then we display them side-to-side with inventory icon (in the same row of the infobox).
+			-- Note: if we have 3 or more images, then only the first two are shown.
+			ret = ret .. '|-\n'
+			ret = ret .. '| style="vertical-align: middle; text-align: right" | [[File:' .. foundImages[1] .. ']]\n'
+			ret = ret .. '| style="vertical-align: middle; text-align: left" | [[File:' .. foundImages[2]
+
+			if args['image_size'] then
+				-- Allow human editor to override the width of second image.
+				-- First image is very likely an inventory icon and therefore doesn't need this.
+				ret = ret .. '|' .. args['image_size']
+			end
+			ret = ret .. ']]\n'
+
+			-- For Extension:OpenGraphMeta:
+			-- because we didn't use {{infobox/image}}, we must call {{#setmainimage:}} explicitly.
+			-- We use block image here, because it's larger than an icon.
+			frame:callParserFunction( '#setmainimage', { foundImages[2] } )
 		end
 	end
 
