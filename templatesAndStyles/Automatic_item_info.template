@@ -15,7 +15,7 @@ _table = item
 |upgradeable = Boolean
 |unlocks = List (,) of String
 }}
-This table is used by {{tl|Automatic infobox item}} to auto-populate the fields of {{tl|Infobox item}} based on [[Special:Prefixindex/Template:Automatic item info|information gathered by bot]].
+This table is used by {{tl|Automatic infobox item}} to auto-populate the fields of "infobox" template based on [[Special:CargoTables/item|information gathered by bot]].
 
 [[Category:Cargo templates]]
 </noinclude>
