@@ -62,6 +62,12 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 
 	// Add discovered icon of this item (small PNG image) into "upload these icons" list.
 	prepareUpload( 'Item_icon_' + itemCode + '.png', item.inventoryIcon, item.asset );
+
+	// Add image of the placeable object (such as Extraction Lab or Wooden Crate), if any.
+	var placedObject = ( item.orientations || [] )[0];
+	if ( placedObject ) {
+		prepareUpload( 'Item_image_' + itemCode + '.png', placedObject.dualImage, item.asset );
+	}
 }
 
 // Upload icons of research nodes.

@@ -232,7 +232,6 @@
 
 	"@doc": "List of asset keys that we don't use anywhere. They won't be stored in the cache, which slightly improves the loading time.",
 	"ignoredAssetKeys": [
-		"orientations",
 		"colorOptions",
 		"paneLayout",
 		"gui",
