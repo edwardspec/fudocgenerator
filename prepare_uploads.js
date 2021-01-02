@@ -66,7 +66,19 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	// Add image of the placeable object (such as Extraction Lab or Wooden Crate), if any.
 	var placedObject = ( item.orientations || [] )[0];
 	if ( placedObject ) {
-		prepareUpload( 'Item_image_' + itemCode + '.png', placedObject.dualImage, item.asset );
+		var placedImage = placedObject.dualImage;
+		if ( !placedImage && placedObject.imageLayers ) {
+			// When there are multiple layers (in most cases it's 1 fullbright and 1 non-fullbright),
+			// we use the image from the first non-fullbright layer (if any).
+			for ( var layer of placedObject.imageLayers ) {
+				if ( !layer.fullbright ) {
+					placedImage = layer.image;
+					break;
+				}
+			}
+		}
+
+		prepareUpload( 'Item_image_' + itemCode + '.png', placedImage, item.asset );
 	}
 }
 
