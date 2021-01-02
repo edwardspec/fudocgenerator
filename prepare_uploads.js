@@ -52,6 +52,12 @@ function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
 
 // Iterate over every item that has at least 1 Recipe.
 for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
+	if ( itemCode.endsWith( ':1' ) ) {
+		// Skip first stage of multi-stage items, e.g. "craftingmedical:1",
+		// because this is the same item as "craftingmedical".
+		continue;
+	}
+
 	var item = ItemDatabase.find( itemCode );
 	if ( !item ) {
 		// Must be tolerant to bad input (ignore unknown items, continue with known items),
@@ -64,8 +70,9 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	prepareUpload( 'Item_icon_' + itemCode + '.png', item.inventoryIcon, item.asset );
 
 	// Add image of the placeable object (such as Extraction Lab or Wooden Crate), if any.
+	var placedImage = item.placementImage;
 	var placedObject = ( item.orientations || [] )[0];
-	if ( placedObject ) {
+	if ( !placedImage && placedObject ) {
 		var placedImage = placedObject.dualImage;
 		if ( !placedImage && placedObject.imageLayers ) {
 			// When there are multiple layers (in most cases it's 1 fullbright and 1 non-fullbright),
@@ -77,9 +84,8 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 				}
 			}
 		}
-
-		prepareUpload( 'Item_image_' + itemCode + '.png', placedImage, item.asset );
 	}
+	prepareUpload( 'Item_image_' + itemCode + '.png', placedImage, item.asset );
 }
 
 // Upload icons of research nodes.
