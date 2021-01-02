@@ -12,12 +12,19 @@ function p.Main( frame )
 	end
 
 	local filename = title.text
-	local iconItemId = string.match( filename, 'Item icon (.*).png' )
-	if iconItemId then
+	filename = string.gsub( filename, ' ', '_' ) -- For IDs with underscore
+	filename = string.gsub( filename, '%.', ':' ) -- For pseudo-items like "prototyper:3"
+
+	local itemId = string.match( filename, 'Item_icon_(.*).png' )
+	if itemId then
 		-- Inventory icon.
-		iconItemId = string.gsub( iconItemId, ' ', '_' ) -- For IDs with underscore
-		iconItemId = string.gsub( iconItemId, '%.', ':' ) -- For pseudo-items like "prototyper:3"
-		return frame:expandTemplate{ title = 'Inventory icon description', args = { iconItemId } }
+		return frame:expandTemplate{ title = 'Inventory icon description', args = { itemId } }
+	end
+
+	itemId = string.match( filename, 'Item_image_(.*).png' )
+	if itemId then
+		-- Image of placeable object (e.g. furniture).
+		return frame:expandTemplate{ title = 'Placeable image description', args = { itemId } }
 	end
 
 	-- TODO: here we can later add icons of research nodes, etc.
