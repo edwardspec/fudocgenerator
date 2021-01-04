@@ -1,6 +1,22 @@
 local p = {}
 local cargo = mw.ext.cargo
 
+-- Convenience method: format the string "pageName1,pageName2,pageName3" as wikitext links.
+-- @param {string} commaSeparatedTitles
+-- @return {string}
+local function showPageLinks( commaSeparatedTitles )
+	if commaSeparatedTitles == '' then
+		return ''
+	end
+
+	local links = {}
+	for _, pageName in ipairs( mw.text.split( commaSeparatedTitles, ',' ) ) do
+		table.insert( links, '[[' .. pageName .. ']]' )
+	end
+
+	return table.concat( links, '<br>' )
+end
+
 -- Print the list of all armor sets in the game. (based on [[Special:CargoTables/armorset]])
 -- Usage: {{#invoke: ListArmors|ListAllSets}}
 function p.ListAllSets()
@@ -32,9 +48,9 @@ function p.ListAllSets()
 
 	for _, row in ipairs( rows ) do
 		ret = ret .. '|-\n|' .. row.tier .. '||' .. row.rarity ..
-			'||' .. ( row.headPage ~= '' and '[[' .. row.headPage .. ']]' or '' )  ..
-			'||' .. ( row.chestPage ~= '' and '[[' .. row.chestPage .. ']]' or '' ) ..
-			'||' .. ( row.legsPage ~= '' and '[[' .. row.legsPage .. ']]' or '' ) ..
+			'||' .. showPageLinks( row.headPage ) ..
+			'||' .. showPageLinks( row.chestPage ) ..
+			'||' .. showPageLinks( row.legsPage ) ..
 			'||' .. row.damage .. '%' ..
 			'||' .. row.protection ..
 			'||' .. row.energy ..
