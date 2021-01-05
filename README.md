@@ -42,10 +42,12 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 
 ### TODO (things to improve)
 
+- support extra parameters of output items that are in some .recipe files (for example, recipe of Apple Sapling).
 - gather status effects for food and other consumables.
 - automatically gather information of which biomes have which plants, seeds, ores, etc.
 - gather information about planets: possible biomes, daylight level, tier, gravity, etc.
-- gather information about monsters and what they drop.
+- precreate missing articles about monsters.
+- precreate missing pages about armor sets (assuming we need these pages).
 - improve handling of situations when multiple items have the same visible name (e.g. "Ancient Artifact"). They should have separate articles, but the challenge is that auto-detecting "how to name these pages?" heavily depends on type of item. Such logic already exists for certain types of items (like decorative foods).
 - support using 1 article for 2+ items, which is useful for vertical/horizontal and compact/non-compact wires (e.g. "Compact AND Gate"), as well as for items like "Human Flag (Prop Pack)".
 - support color cores in descriptions, etc. (like "^green;Some green text^reset;")
