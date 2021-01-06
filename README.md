@@ -32,6 +32,8 @@ or (see below about "only new files"):
 
 This will not overwrite existing images.
 
+NOTE: it's highly recommended to run some PNG-optimization tool (like "optipng" or "pngcrush") on the images in "filesToUpload" directory (before uploading them), because ImageMagick (which we use to crop sprites) doesn't do this "out of the box".
+
 ### Generating "only new" files for Pywikibot
 
 Because Pywikibot is not caching "does this page/image exist?", trying to reupload thousands of images (even though the image does exist, and the upload will be skipped) can be rather slow. To avoid this, you can run the following script:
@@ -42,7 +44,6 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 
 ### TODO (things to improve)
 
-- support extra parameters of output items that are in some .recipe files (for example, recipe of Apple Sapling).
 - gather status effects for food and other consumables.
 - automatically gather information of which biomes have which plants, seeds, ores, etc.
 - gather information about planets: possible biomes, daylight level, tier, gravity, etc.
