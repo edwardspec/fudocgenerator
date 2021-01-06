@@ -73,7 +73,7 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	var placedImage = item.placementImage;
 	var placedObject = ( item.orientations || [] )[0];
 	if ( !placedImage && placedObject ) {
-		var placedImage = placedObject.dualImage;
+		placedImage = placedObject.dualImage;
 		if ( !placedImage && placedObject.imageLayers ) {
 			// When there are multiple layers (in most cases it's 1 fullbright and 1 non-fullbright),
 			// we use the image from the first non-fullbright layer (if any).
