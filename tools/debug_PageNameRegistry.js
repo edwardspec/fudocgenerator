@@ -13,7 +13,7 @@ RecipeDatabase.load();
 PageNameRegistry.resolve();
 
 // Some specific tests.
-console.log(
+console.log( [
 	PageNameRegistry.getTitleFor( ItemDatabase.find( 'spookypie' ) ),
 	PageNameRegistry.getTitleFor( ItemDatabase.find( 'spookypieobject' ) )
-);
+].join( ', ' ) );
