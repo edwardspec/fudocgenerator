@@ -14,6 +14,6 @@ PageNameRegistry.resolve();
 
 // Some specific tests.
 console.log( [
-	PageNameRegistry.getTitleFor( ItemDatabase.find( 'spookypie' ) ),
-	PageNameRegistry.getTitleFor( ItemDatabase.find( 'spookypieobject' ) )
+	PageNameRegistry.getTitleFor( ItemDatabase.find( 'zerchtable' ) ),
+	PageNameRegistry.getTitleFor( ItemDatabase.find( 'zerchesiumtable' ) )
 ].join( ', ' ) );
