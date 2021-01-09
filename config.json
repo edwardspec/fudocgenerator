@@ -210,7 +210,8 @@
 		"fuhca5-codex",
 		"funightarhistory7-codex",
 		"fuincubator",
-		"liquidmercury"
+		"liquidmercury",
+		"imperviumfurnitureplating"
 	],
 
 	"@doc": "Into how many Chunk subpages to split the {{#cargo_store:}} directives. This is necessary for performance (so that the entire Cargo database is not overwritten every time one item gets modified). Note: increasing/decreasing this variable shouldn't be frequent (keeping this number the same allows Consistent Hashing to minimize the number of edits). Note: actual number of chunks will be slightly higher than this value, because their size is additionally limited by 'cargoMaxChunkSizeKBytes' variable.",
