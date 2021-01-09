@@ -52,12 +52,6 @@ function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
 
 // Iterate over every item that has at least 1 Recipe.
 for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
-	if ( itemCode.endsWith( ':1' ) ) {
-		// Skip first stage of multi-stage items, e.g. "craftingmedical:1",
-		// because this is the same item as "craftingmedical".
-		continue;
-	}
-
 	var item = ItemDatabase.find( itemCode );
 	if ( !item ) {
 		// Must be tolerant to bad input (ignore unknown items, continue with known items),
