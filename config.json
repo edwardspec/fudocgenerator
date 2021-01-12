@@ -214,6 +214,21 @@
 		"imperviumfurnitureplating"
 	],
 
+	"@doc": "Map of monster ID to wikipage title. This is only needed for monsters with ambiguous names (e.g. ice/fire/poison/electric baby fluffalos are all called Fluffalo Calf).",
+	"overrideMonsterPageTitles": {
+		"electricfluffalobaby": "Baby Electric Fluffalo",
+		"firefluffalobaby": "Baby Fire Fluffalo",
+		"icefluffalobaby": "Baby Ice Fluffalo",
+		"mooshibaby": "Mooshi Calf",
+		"poisonfluffalobaby": "Baby Poison Fluffalo"
+	},
+
+	"@doc": "List of monster IDs to skip. For example, the mod uses \"fumooshi\" monster instead of vanilla \"mooshi\", so vanilla monster can be skipped.",
+	"ignoredMonsters": [
+		"mooshi",
+		"mooshibaby"
+	],
+
 	"@doc": "These items will be recognized, but won't get an article.",
 	"itemsThatDoNotNeedAnArticle": [
 		"crewshop:2"
