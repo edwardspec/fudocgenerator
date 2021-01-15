@@ -217,10 +217,14 @@
 	"@doc": "Map of monster ID to wikipage title. This is only needed for monsters with ambiguous names (e.g. ice/fire/poison/electric baby fluffalos are all called Fluffalo Calf).",
 	"overrideMonsterPageTitles": {
 		"electricfluffalobaby": "Baby Electric Fluffalo",
+		"erchiusghost2": "Erchius Ghost (Lightless)",
+		"erchiusghost3": "Erchius Ghost (Gas Giant)",
 		"firefluffalobaby": "Baby Fire Fluffalo",
 		"icefluffalobaby": "Baby Ice Fluffalo",
 		"mooshibaby": "Mooshi Calf",
-		"poisonfluffalobaby": "Baby Poison Fluffalo"
+		"poisonfluffalobaby": "Baby Poison Fluffalo",
+		"SIV_shipGlitchThrusterPadSmall": "Ship Thruster Pad (Glitch) (small)",
+		"SIV_shipNovakidUnderEngineSmall": "Novakid Hull Under (small)"
 	},
 
 	"@doc": "List of monster IDs to skip. For example, the mod uses \"fumooshi\" monster instead of vanilla \"mooshi\", so vanilla monster can be skipped.",
