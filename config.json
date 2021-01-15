@@ -188,7 +188,8 @@
 		"slimeshoategg": "Shoat Egg (slime)",
 		"nightaranvil:2": "Nightar Replicator (stage 2)",
 		"nightaranvil:3": "Nightar Replicator (stage 3)",
-		"nightaranvil:4": "Nightar Replicator (stage 4)"
+		"nightaranvil:4": "Nightar Replicator (stage 4)",
+		"miningdrone": "Mining Drone (Peacekeeper)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
