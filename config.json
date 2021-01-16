@@ -228,7 +228,12 @@
 		"crewcontract_hobo": "Hobo Contract (quest reward)",
 		"slopedtethydeplating": "Tethyde Plating (sloped)",
 		"futoolbox2": "Toolbox (white)",
-		"irradiumchestlarge": "Irradium Chest (container)"
+		"irradiumchestlarge": "Irradium Chest (container)",
+		"slimehide": "Slime Chest (container)",
+		"unsmashableprismrockhumanoid": "Prism Crystal (humanoid)",
+		"unsmashableprismrockpenguin": "Prism Crystal (penguin)",
+		"invisibleslimechest": "Invisible Shirt (Slime)",
+		"invisibleslimelegs": "Invisible Pants (Slime)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
@@ -261,7 +266,6 @@
 		"erchiusghost3": "Erchius Ghost (Gas Giant)",
 		"firefluffalobaby": "Baby Fire Fluffalo",
 		"icefluffalobaby": "Baby Ice Fluffalo",
-		"mooshibaby": "Mooshi Calf",
 		"poisonfluffalobaby": "Baby Poison Fluffalo",
 		"pteropodsummoned": "Hunter Pteropod (summon of Thorn Rifle)",
 		"ignomesummon": "Ignome (summon of Pyreite Broadsword)",
@@ -275,7 +279,17 @@
 		"firerangedminion": "Ancient Guardian/Fire Ranged Minion",
 		"icerangedminion": "Ancient Guardian/Ice Ranged Minion",
 		"electricrangedminion": "Ancient Guardian/Electric Ranged Minion",
-		"poisonrangedminion": "Ancient Guardian/Poison Ranged Minion"
+		"poisonrangedminion": "Ancient Guardian/Poison Ranged Minion",
+		"pangolin": "Pangolin",
+		"ixolingsulphuricbaby": "Baby Sulphuric Ixoling",
+		"fudodofarmironbaby": "Baby Ironbeak",
+		"gooshoat": "Shoat (goo)",
+		"gooshoatbaby": "Shoat Lamb (goo)",
+		"greenshoat": "Shoat (green)",
+		"greenshoatbaby": "Shoat Lamb (green)",
+		"slimeshoat": "Shoat (slime)",
+		"slimeshoatbaby": "Shoat Lamb (slime)",
+		"bighairyfrankbabyrad": "Widow (Irradiated)"
 	},
 
 	"@doc": "List of monster IDs to skip. For example, the mod uses \"fumooshi\" monster instead of vanilla \"mooshi\", so vanilla monster can be skipped.",
@@ -289,7 +303,16 @@
 		"iceguardianboss",
 		"poisonguardianboss",
 		"shadowguardianboss",
-		"guardianminion"
+		"guardianminion",
+		"poisonfluffalo",
+		"icefluffalo",
+		"firefluffalo",
+		"electricfluffalo",
+		"robothen",
+		"hen",
+		"robothenbaby",
+		"henbaby",
+		"fluffalo"
 	],
 
 	"@doc": "These items will be recognized, but won't get an article.",
