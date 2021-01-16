@@ -225,7 +225,9 @@
 		"fu_byostechstationdeco": "S.A.I.L Interface (decorative)",
 		"imperialchestlong": "Mantizi Chest (long)",
 		"crewcontract_hobo": "Hobo Contract (quest reward)",
-		"slopedtethydeplating": "Tethyde Plating (sloped)"
+		"slopedtethydeplating": "Tethyde Plating (sloped)",
+		"futoolbox2": "Toolbox (white)",
+		"irradiumchestlarge": "Irradium Chest (container)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
@@ -263,7 +265,16 @@
 		"pteropodsummoned": "Hunter Pteropod (summon of Thorn Rifle)",
 		"ignomesummon": "Ignome (summon of Pyreite Broadsword)",
 		"gasbag2": "Gas Bag (pet)",
-		"megaburrower": "Doomwyrm"
+		"megaburrower": "Doomwyrm",
+		"poisonparatail": "Poison Paratail",
+		"fuguardianminion": "Ancient Guardian/Minion",
+		"largeminion": "Ancient Guardian/Large Minion",
+		"collidingminion": "Ancient Guardian/Colliding Minion",
+		"shadowrangedminion": "Ancient Guardian/Shadow Ranged Minion",
+		"firerangedminion": "Ancient Guardian/Fire Ranged Minion",
+		"icerangedminion": "Ancient Guardian/Ice Ranged Minion",
+		"electricrangedminion": "Ancient Guardian/Electric Ranged Minion",
+		"poisonrangedminion": "Ancient Guardian/Poison Ranged Minion"
 	},
 
 	"@doc": "List of monster IDs to skip. For example, the mod uses \"fumooshi\" monster instead of vanilla \"mooshi\", so vanilla monster can be skipped.",
@@ -271,7 +282,13 @@
 		"miningdrone",
 		"mooshi",
 		"mooshibaby",
-		"tentaclecometsporefu"
+		"tentaclecometsporefu",
+		"electricguardianboss",
+		"fireguardianboss",
+		"iceguardianboss",
+		"poisonguardianboss",
+		"shadowguardianboss",
+		"guardianminion"
 	],
 
 	"@doc": "These items will be recognized, but won't get an article.",
