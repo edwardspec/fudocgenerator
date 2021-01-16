@@ -221,7 +221,12 @@
 		"swtjc_wp_sequencer3bitvinputs": "3-Bit Sequencer (With Inputs) (vertical)",
 		"swtjc_wp_sequencer4bitv": "4-Bit Sequencer (vertical)",
 		"swtjc_wp_sequencer4bitvinputs": "4-Bit Sequencer (With Inputs) (vertical)",
-		"relay": "Relay (vanilla)"
+		"relay": "Relay (vanilla)",
+		"fu_byostechstationdeco": "S.A.I.L Interface (decorative)",
+		"imperialchestlong": "Mantizi Chest (long)",
+		"crewcontract_hobo": "Hobo Contract (quest reward)",
+		"slopedtethydeplating": "Tethyde Plating (sloped)",
+		"woodenbroom": "Broom (decorative)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
@@ -243,7 +248,8 @@
 		"funightarhistory7-codex",
 		"fuincubator",
 		"liquidmercury",
-		"imperviumfurnitureplating"
+		"imperviumfurnitureplating",
+		"fissionfurnacenew"
 	],
 
 	"@doc": "Map of monster ID to wikipage title. This is only needed for monsters with ambiguous names (e.g. ice/fire/poison/electric baby fluffalos are all called Fluffalo Calf).",
@@ -252,7 +258,6 @@
 		"erchiusghost2": "Erchius Ghost (Lightless)",
 		"erchiusghost3": "Erchius Ghost (Gas Giant)",
 		"firefluffalobaby": "Baby Fire Fluffalo",
-		"fu_byostechstationdeco": "S.A.I.L Interface (decorative)",
 		"icefluffalobaby": "Baby Ice Fluffalo",
 		"mooshibaby": "Mooshi Calf",
 		"poisonfluffalobaby": "Baby Poison Fluffalo",
