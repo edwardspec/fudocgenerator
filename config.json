@@ -258,7 +258,8 @@
 		"poisonfluffalobaby": "Baby Poison Fluffalo",
 		"pteropodsummoned": "Hunter Pteropod (summon of Thorn Rifle)",
 		"ignomesummon": "Ignome (summon of Pyreite Broadsword)",
-		"gasbag2": "Gas Bag (pet)"
+		"gasbag2": "Gas Bag (pet)",
+		"megaburrower": "Doomwyrm"
 	},
 
 	"@doc": "List of monster IDs to skip. For example, the mod uses \"fumooshi\" monster instead of vanilla \"mooshi\", so vanilla monster can be skipped.",
