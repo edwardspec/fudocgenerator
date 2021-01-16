@@ -405,7 +405,8 @@
 			"projectiles/**/*.config{,.patch}",
 			"species/*namegen.config{,.patch}",
 			"**/wild*seed.object{,.patch}",
-			"dungeons/**"
+			"dungeons/**",
+			"objects/biome/smashablerocks/**"
 		]
 	},
 
