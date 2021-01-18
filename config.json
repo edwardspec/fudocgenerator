@@ -234,7 +234,9 @@
 		"unsmashableprismrockhumanoid": "Prism Crystal (humanoid)",
 		"unsmashableprismrockpenguin": "Prism Crystal (penguin)",
 		"invisibleslimechest": "Invisible Shirt (Slime)",
-		"invisibleslimelegs": "Invisible Pants (Slime)"
+		"invisibleslimelegs": "Invisible Pants (Slime)",
+		"leadguitar": "Lead Guitar (instrument)",
+		"valkyriehelm": "Valkyrie Helm (cosmetic)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
