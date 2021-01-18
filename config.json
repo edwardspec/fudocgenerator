@@ -451,6 +451,7 @@
 		"harvestingtool": "item",
 		"head": "item",
 		"inspectiontool": "item",
+		"instrument": "item",
 		"item": "item",
 		"legs": "item",
 		"liqitem": "item",
