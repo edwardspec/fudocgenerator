@@ -1,0 +1,11 @@
+{{All recipes for item|id=pool:{{{1}}}|nostation=1}}<!--
+
+--><noinclude>
+This template shows ALL recipes where this TreasurePool is a part of.
+
+Usage: <code><nowiki>{{All recipes for monster|instrument}}</nowiki></code>, where <code>instrument</code> is the unique code of the TreasurePool.
+
+This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
+
+[[Category:Cargo templates]]
+</noinclude>
