@@ -10,7 +10,7 @@
 'use strict';
 
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, MonsterDatabase,
-	ResultsWriter, util } = require( './lib' );
+	ResultsWriter, TreasurePoolDatabase, util } = require( './lib' );
 
 /* -------------------------------------------------------------------------------------------- */
 
@@ -60,5 +60,15 @@ ArmorSetDatabase.forEach( ( armorSet ) => {
 MonsterDatabase.forEach( ( monster ) => {
 	ResultsWriter.writeMonster( monster );
 } );
+
+for ( var poolName of RecipeDatabase.listMentionedTreasurePools() ) {
+	var pool = TreasurePoolDatabase.find( poolName );
+	if ( !pool ) {
+		util.log( '[error] Unknown TreasurePool in the recipe: ' + poolName );
+		continue;
+	}
+
+	ResultsWriter.writeTreasurePool( pool );
+}
 
 ResultsWriter.finalize();
