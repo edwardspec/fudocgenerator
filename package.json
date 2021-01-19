@@ -8,6 +8,7 @@
   "dependencies": {
     "@nodelib/fs.walk": "^1.2.6",
     "@subspace/jump-consistent-hash": "^1.1.1",
+    "change-case": "^4.1.2",
     "cli-progress": "^3.8.2",
     "deepmerge": "^4.2.2",
     "eslint-config-wikimedia": "^0.17.0",
