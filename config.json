@@ -317,7 +317,9 @@
 		"poptopmadnesspet": "Poptop (pet)",
 		"kluexbossstatue": "Kluex Avatar (immobile)",
 		"fupoptopfarm": "Farmable Poptop",
-		"tarslime": "Ecto Slime (Tar)"
+		"tarslime": "Ecto Slime (Tar)",
+		"madnesstoken2": "Unknown Artifact (voxel)",
+		"dbladelong": "Tek Blade (two-handed)"
 	},
 
 	"@doc": "List of monster IDs to skip. For example, the mod uses \"fumooshi\" monster instead of vanilla \"mooshi\", so vanilla monster can be skipped.",
