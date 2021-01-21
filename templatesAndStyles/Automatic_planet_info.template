@@ -13,8 +13,9 @@ _table = planet
 This table lists all types of planets.
 
 NOTE:
-* detailed information about '''layers''' (which biomes can be on the surface/underground/core, etc.) is in another Cargo table (see {{Automatic layer info}}).
-* detailed information about '''biomes''' (including primary biome!) is in another Cargo table (see {{Automatic biome info}}).
+* detailed information about '''layers''' (which regions can be on the surface/underground/core, etc.) is in another Cargo table (see {{tl|Automatic layer info}}).
+* information about '''regions''' is in another Cargo table (see {{tl|Automatic region info}}).
+* detailed information about '''biomes''' (including primary biome!) is in another Cargo table (see {{tl|Automatic biome info}}).
 
 TODO: maybe add "possible_stars" list here? (normally we would create Cargo table for stars, but we don't really need any other information about them except "which planets can this star have").
 
