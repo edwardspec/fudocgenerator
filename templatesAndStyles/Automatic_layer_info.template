@@ -2,7 +2,7 @@
 _table = layer
 |planet = String
 |layer = String
-|primaryRegions = List (,) of String
+|primaryRegion = List (,) of String
 |secondaryRegions = List (,) of String
 |dungeons = List (,) of String
 }}<noinclude>
