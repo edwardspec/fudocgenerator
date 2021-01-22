@@ -235,7 +235,9 @@
 		"invisibleslimechest": "Invisible Shirt (Slime)",
 		"invisibleslimelegs": "Invisible Pants (Slime)",
 		"leadguitar": "Lead Guitar (instrument)",
-		"valkyriehelm": "Valkyrie Helm (cosmetic)"
+		"valkyriehelm": "Valkyrie Helm (cosmetic)",
+		"madnesstoken2": "Unknown Artifact (voxel)",
+		"dbladelong": "Tek Blade (two-handed)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
@@ -302,13 +304,15 @@
 		"fleshreaper2": "Flesh Reaper (yellow)",
 		"fleshreaper3": "Flesh Reaper (red)",
 		"futinybee": "Tiny Giant Bee",
-		"futinybeered": "Tiny Giant Bee (red)",
+		"futinybeered": "Red Bee",
 		"horror2": "Floating Horror (madness monster)",
 		"ocumeraboss": "Ocumera (boss)",
 		"pandorasboxcottonbophomegrown": "Cottonbop (friendly)",
 		"pandorasboxerchiusorelitcaptive": "Erchius Orelit (pet)",
-		"spheresnake": "Distortion Snake",
-		"spheresnake2": "Distortion Snake (ranged)",
+		"sonicsnake": "Sonicsnake",
+		"spikesnake": "Spikesnake",
+		"spheresnake": "Spheresnake",
+		"spheresnake2": "Spheresnake2",
 		"futwigun2": "Ancient Cannon (minion of Precursor Warbot)",
 		"motherpoptop2": "Mama Knifetop",
 		"adultpoptopfiremadness": "Magmatop Omega (pet)",
@@ -316,8 +320,9 @@
 		"kluexbossstatue": "Kluex Avatar (immobile)",
 		"fupoptopfarm": "Farmable Poptop",
 		"tarslime": "Ecto Slime (Tar)",
-		"madnesstoken2": "Unknown Artifact (voxel)",
-		"dbladelong": "Tek Blade (two-handed)"
+		"aquasnake": "Aquasnake",
+		"fuheavydrone": "Heavy War Drone",
+		"futrifangle": "Precursor Trifangle"
 	},
 
 	"@doc": "List of monster IDs to skip. For example, the mod uses \"fumooshi\" monster instead of vanilla \"mooshi\", so vanilla monster can be skipped.",
@@ -380,7 +385,8 @@
 		"noxcapture",
 		"helicultist",
 		"trifangle",
-		"mamalilodon"
+		"mamalilodon",
+		"alienqueenminionspawn"
 	],
 
 	"@doc": "These items will be recognized, but won't get an article.",
