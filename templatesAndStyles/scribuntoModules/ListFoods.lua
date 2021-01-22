@@ -62,7 +62,7 @@ function p.ListAllFoods()
 
 	-- Show a table of all foods.
 	local ret = '{| class="wikitable sortable"\n' ..
-		'|-\n! Item !! Food value !! Recipe !! Description !! Rotting !! Category !! Rarity !! Price !! Stack size\n'
+		'|-\n! class="unsortable" |\n! Item !! Food value !! Recipe !! Description !! Rotting !! Category !! Rarity !! Price !! Stack size\n'
 
 	for _, itemName in ipairs( sortedItemNames ) do
 		local row = itemNameToRow[itemName]
@@ -79,6 +79,7 @@ function p.ListAllFoods()
 		end
 
 		ret = ret .. '|-\n' ..
+			'||[[File:Item_icon_' .. row.id .. '.png|32px|alt=]]' ..
 			'||[[' .. row.wikiPage .. ']]' ..
 			'||' .. ( extraInfo.foodValue or '-' ) ..
 			'||\n' .. row.recipes ..
