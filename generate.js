@@ -10,7 +10,8 @@
 'use strict';
 
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, PlanetDatabase,
-	MonsterDatabase, RegionDatabase, ResultsWriter, TreasurePoolDatabase, util } = require( './lib' );
+	BiomeDatabase, MonsterDatabase, RegionDatabase,
+	ResultsWriter, TreasurePoolDatabase, util } = require( './lib' );
 
 /* -------------------------------------------------------------------------------------------- */
 
@@ -77,6 +78,10 @@ PlanetDatabase.forEach( ( planet ) => {
 
 RegionDatabase.forEach( ( region ) => {
 	ResultsWriter.writeRegion( region );
+} );
+
+BiomeDatabase.forEach( ( biome ) => {
+	ResultsWriter.writeBiome( biome );
 } );
 
 ResultsWriter.finalize();
