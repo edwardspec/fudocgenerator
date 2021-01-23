@@ -188,7 +188,7 @@ function p.Main( frame )
 		-- Sanity check: if the item got renamed in-game, then an article with old name can still have the infobox.
 		-- Add such article into the tracking category:
 		if row.wikiPage ~= mw.title.getCurrentTitle().text then
-			ret = ret .. '[[Category:Item pages where title is different from item name in the infobox]]'
+			ret = ret .. '[[Category:Item pages where title is different from expected]]'
 		end
 
 		ret = ret .. '\n'

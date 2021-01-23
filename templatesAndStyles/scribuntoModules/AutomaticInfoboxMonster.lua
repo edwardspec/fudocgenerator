@@ -20,7 +20,7 @@ local statDefaults = {
 -- @return {table} Database row.
 local function queryMonster( monsterId )
 	local tables = 'monster'
-	local fields = 'name,description,capturable,health,protection,damage,physical,radioactive,poison,electric,fire,ice,cosmic,shadow,id'
+	local fields = 'name,wikiPage,description,capturable,health,protection,damage,physical,radioactive,poison,electric,fire,ice,cosmic,shadow,id'
 	local queryOpt = {
 		where = 'id="' .. monsterId .. '"',
 		limit = 1
@@ -69,6 +69,10 @@ function p.Main( frame )
 	local ret = ''
 	if not nocat then
 		ret = ret .. '[[Category:Monsters]]\n'
+
+		if row.wikiPage ~= mw.title.getCurrentTitle().text then
+			ret = ret .. '[[Category:Monster pages where title is different from expected]]\n'
+		end
 	end
 
 	-- Format "row" (information about monster: row.name, row.description, etc.) as wikitext.
