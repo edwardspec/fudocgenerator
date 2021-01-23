@@ -1,7 +1,8 @@
 {{DISPLAYTITLE:TreasurePool:{{{1}}}}}<!--
--->{{Recipes where item is|item=pool:{{{1}}}|role=inputs|header=Contents|noGroupHeaders=1}}<!--
+-->{{TOC right}}<!--
 -->{{Recipes where item is|item=pool:{{{1}}}|role=outputs|header=How to obtain}}<!--
---><noinclude>
+-->{{Recipes where item is|item=pool:{{{1}}}|role=inputs|header=Contents|noGroupHeaders=1}}<!--
+--><includeonly>{{#if: {{{nocat|}}}||[[Category:Treasure pools]]}}</includeonly><noinclude>
 This template shows ALL recipes where this TreasurePool is a part of.
 
 Usage: <code><nowiki>{{All recipes for monster|instrument}}</nowiki></code>, where <code>instrument</code> is the unique code of the TreasurePool.
