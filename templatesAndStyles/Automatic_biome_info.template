@@ -2,9 +2,8 @@
 _table = biome
 |id = String
 |name = String
-|mainBlock = String
-|subBlocks = List (,) of String
 |weatherPools = List (,) of String
+|statusEffects = List (,) of String
 }}<noinclude>
 
 This table lists all biomes.
