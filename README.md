@@ -47,6 +47,8 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 - gather status effects for food and other consumables.
 - automatically gather information of which biomes have which plants, seeds, ores, etc.
 - gather information about planets: possible biomes, daylight level, tier, gravity, etc.
+- ImageFinder: support image paths with parameters like "?flipx".
+- Infobox templates: add links to pages with similar names (e.g. page "Lobster (monster)" should automatically link to "Lobster" and "Lobster (decorative)", and vise versa) - this can be implemented by querying Cargo tables by item.wikiPage and monster.wikiPage fields.
 - precreate missing pages about armor sets (assuming we need these pages).
 - support using 1 article for 2+ items, which is useful for vertical/horizontal and compact/non-compact wires (e.g. "Compact AND Gate"), as well as for items like "Human Flag (Prop Pack)".
 - support color codes in descriptions, etc. (like "^green;Some green text^reset;")
