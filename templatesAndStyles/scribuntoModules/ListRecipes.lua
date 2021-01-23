@@ -53,7 +53,8 @@ local OrderOfCraftingStations = {
 		'Moth Trap',
 		'Moth Trap II',
 		'Lobster Trap',
-		'Pest Trap'
+		'Pest Trap',
+		'Treasure pool'
 	} }
 }
 
@@ -103,6 +104,7 @@ function p.RecipesWhereItemIs( frame )
 	local itemId = args.item
 	local role = args.role
 	local header = args.header
+	local noGroupHeaders = args.noGroupHeaders
 
 	if not itemId then
 		return '<span class="error">RecipesWhereItemIs: item= parameter is mandatory.</span>'
@@ -155,7 +157,7 @@ function p.RecipesWhereItemIs( frame )
 		end
 
 		if sectionText ~= '' then
-			if sectionHeader then
+			if sectionHeader and not noGroupHeaders then
 				ret = ret .. '<h3>' .. sectionHeader .. '</h3>'
 			end
 

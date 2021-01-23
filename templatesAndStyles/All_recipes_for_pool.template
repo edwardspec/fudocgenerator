@@ -1,5 +1,5 @@
 {{DISPLAYTITLE:TreasurePool:{{{1}}}}}<!--
--->{{Recipes where item is|item=pool:{{{1}}}|role=inputs|header=Contents}}<!--
+-->{{Recipes where item is|item=pool:{{{1}}}|role=inputs|header=Contents|noGroupHeaders=1}}<!--
 -->{{Recipes where item is|item=pool:{{{1}}}|role=outputs|header=How to obtain}}<!--
 --><noinclude>
 This template shows ALL recipes where this TreasurePool is a part of.
