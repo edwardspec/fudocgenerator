@@ -1,0 +1,12 @@
+{{DISPLAYTITLE:TreasurePool:{{{1}}}}}<!--
+-->{{Recipes where item is|item=pool:{{{1}}}|role=inputs|header=Contents}}<!--
+-->{{Recipes where item is|item=pool:{{{1}}}|role=outputs|header=How to obtain}}<!--
+--><noinclude>
+This template shows ALL recipes where this TreasurePool is a part of.
+
+Usage: <code><nowiki>{{All recipes for monster|instrument}}</nowiki></code>, where <code>instrument</code> is the unique code of the TreasurePool.
+
+This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
+
+[[Category:Cargo templates]]
+</noinclude>

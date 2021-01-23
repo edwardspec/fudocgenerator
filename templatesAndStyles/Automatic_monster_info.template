@@ -2,6 +2,7 @@
 _table = monster
 |id = String
 |name = String
+|wikiPage = Page
 |description = String
 |capturable = Boolean
 <!-- Stats -->
