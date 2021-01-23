@@ -2,25 +2,8 @@
 _table = biome
 |id = String
 |name = String
-|mainBlock = String
-|subBlocks = List (,) of String
 |weatherPools = List (,) of String
-
-
-<!--
-
-TODO: decide on a schema. This data is extremely non-linear
-(there are things like "list of monsters" and "list of plants" that can be turned into key=>chance maps,
-but they also have an additional parameter "how many of the pool to choose"),
-then there are skyOptions (although the only non-decorative information there is dayLightColor, which affects Solar-powered plants),
-etc.
-
-Can create separate tables for those,
-or maybe consider just using a generic table with fields "key", "poolId", "subkey" and "value"?
-
--->
-
-
+|statusEffects = List (,) of String
 }}<noinclude>
 
 This table lists all biomes.
@@ -28,6 +11,12 @@ This table lists all biomes.
 See also:
 * information about '''planets''' (name, tier, gravity, etc.) is in another Cargo table (see {{Automatic planet info}}).
 * information about '''layers''' (which biomes can be on the surface/underground/core, etc.) is in another Cargo table (see {{Automatic layer info}}).
+
+NOTE:
+* data "list of monsters" and "list of plants" has non-linear format (each key has a chance, and there are rules like "choose 3 monsters out of these 5"), so it's not stored here. Instead it's stored in "recipe" table, where "inputs" are biome pseudo-item, and outputs are blocks, monster pseudo-items, etc.
+
+TODO:
+* decide how to store things like skyOptions (assuming we need it in non-wikitext format: the only non-decorative information there is dayLightColor, which affects Solar-powered plants).
 
 [[Category:Cargo templates]]
 </noinclude>

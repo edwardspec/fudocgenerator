@@ -2,17 +2,17 @@
 _table = layer
 |planet = String
 |layer = String
-|biomeRole = String (allowed values=main,subbiome)
-|biome = String
-|oceanLiquid = List (,) of String
-|caveLiquid = List (,) of String
+|primaryRegion = List (,) of String
+|secondaryRegions = List (,) of String
+|dungeons = List (,) of String
 }}<noinclude>
 
-This table tells "which layers of which planets contain which biomes".
+This table tells "which layers of which planets contain which regions".
 
 See also:
-* information about '''planets''' (name, tier, gravity, etc.) is in another Cargo table (see {{Automatic layer info}}).
-* detailed information about '''biomes''' (including primary biome!) is in another Cargo table (see {{Automatic biome info}}).
+* information about '''planets''' (name, tier, gravity, etc.) is in another Cargo table (see {{tl|Automatic layer info}}).
+* information about '''regions''' is in another Cargo table (see {{tl|Automatic region info}}).
+* detailed information about '''biomes''' (including primary biome!) is in another Cargo table (see {{tl|Automatic biome info}}).
 
 [[Category:Cargo templates]]
 </noinclude>

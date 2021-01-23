@@ -9,7 +9,8 @@
 
 'use strict';
 
-const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, MonsterDatabase,
+const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, PlanetDatabase,
+	BiomeDatabase, MonsterDatabase, RegionDatabase,
 	ResultsWriter, TreasurePoolDatabase, util } = require( './lib' );
 
 /* -------------------------------------------------------------------------------------------- */
@@ -70,5 +71,17 @@ for ( var poolName of RecipeDatabase.listMentionedTreasurePools() ) {
 
 	ResultsWriter.writeTreasurePool( pool );
 }
+
+PlanetDatabase.forEach( ( planet ) => {
+	ResultsWriter.writePlanet( planet );
+} );
+
+RegionDatabase.forEach( ( region ) => {
+	ResultsWriter.writeRegion( region );
+} );
+
+BiomeDatabase.forEach( ( biome ) => {
+	ResultsWriter.writeBiome( biome );
+} );
 
 ResultsWriter.finalize();

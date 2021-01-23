@@ -1,0 +1,17 @@
+<noinclude>{{#cargo_declare:
+_table = region
+|id = String
+|biome = String
+|oceanLiquid = List (,) of String
+|caveLiquid = List (,) of String
+}}<noinclude>
+
+This table lists possible planetary regions. Each layer of planet has two arrays of IDs of these "regions" (primary and secondary).
+
+See also:
+* information about '''planets''' (name, tier, gravity, etc.) is in another Cargo table (see {{tl|Automatic planet info}}).
+* information about '''layers''' is in another Cargo table (see {{tl|Automatic layer info}}).
+* detailed information about '''biomes''' (including primary biome!) is in another Cargo table (see {{tl|Automatic biome info}}).
+
+[[Category:Cargo templates]]
+</noinclude>
