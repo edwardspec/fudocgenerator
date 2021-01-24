@@ -54,11 +54,13 @@ local function queryRegions( arrayOfRegionNames )
 	end
 
 	local tables = 'region,biome'
-	local fields = 'oceanLiquid,caveLiquid,biome,name,weatherPools,statusEffects'
+	local fields = 'oceanLiquid,caveLiquid,biome,name=biomeName,weatherPools,statusEffects,region.id=id'
 	local queryOpt = {
-		where = 'id IN (' .. table.concat( quotedRegionNames, ',' ) .. ')',
-		join_on = 'biome.id=region.biome'
+		where = 'region.id IN (' .. table.concat( quotedRegionNames, ',' ) .. ')',
+		join = 'biome.id=region.biome',
+		limit = 5000
 	}
+
 	return cargo.query( tables, fields, queryOpt ) or {}
 end
 
@@ -79,6 +81,43 @@ local function addColorToGravity( gravity )
 	end
 
 	return gravity
+end
+
+-- Based on information about planetary region, return wikitext that describes this region.
+-- @param {table} metadata One of the elements of array that was returned by queryRegions().
+-- @return {string}
+local function describeRegion( info )
+	if not info then
+		-- TODO: handle this elsewhere.
+		return '<div style="display: inline-block; margin: 5px;"><span class="error">Unknown region</span></div>'
+	end
+
+	local ret = '<b>[[' .. info.biomeName .. ']]</b>'
+	if info.oceanLiquid ~= '' then
+		-- TODO: add links to liquids (and possibly icons).
+		ret = ret .. '\n* Ocean liquid: ' .. string.gsub( info.caveLiquid, ',', ', ' )
+	end
+	if info.caveLiquid ~= '' then
+		-- TODO: add links to liquids (and possibly icons).
+		ret = ret .. '\n* Cave liquid: ' .. string.gsub( info.caveLiquid, ',', ', ' )
+	end
+
+	-- TODO: don't show status effects for non-primary biomes.
+	-- (because status effects from subbiomes are not applied)
+	if info.statusEffects ~= '' then
+		ret = ret .. '\n* Status effects: ' .. string.gsub( info.statusEffects, ',', ', ' )
+	end
+
+	-- TODO: this likely doesn't need to be show in the region (there should be "possible weathers" below instead),
+	-- and we should show the contents of weather pool (not just its name).
+	if info.weatherPools ~= '' then
+		ret = ret .. '\n* Weather pools: ' .. string.gsub( info.weatherPools, ',', ', ' )
+	end
+
+	ret = ret .. '\n* biomeId=' .. info.biome .. ', regionId=' .. info.id
+	ret = ret .. '\n'
+
+	return '<div class="regioninfo" style="border: 1px solid #333; padding: 5px 0 2px 5px; margin: 5px; display: inline-block; width: 350px; min-height: 100px;">' .. ret .. '</div>'
 end
 
 -- Print information about planet and list all possible regions in all its layers.
@@ -133,9 +172,42 @@ function p.Main( frame )
 	-- Find all layers
 	ret = ret .. '<h3>Layers</h3>'
 
-	local layerNameToInfo = {}
+	local mentionedRegions = {} -- { "regionName1": true, ... }
+	local layerNameToInfo = {} -- { "surface: { ... }, "subsurface": { ... }, ... }
 	for _, layerInfo in ipairs( queryAllLayers( planetType ) ) do
+		if layerInfo.primaryRegion == '' then
+			layerInfo.primaryRegion = {}
+		else
+			layerInfo.primaryRegion = mw.text.split( layerInfo.primaryRegion, ',' )
+		end
+
+		if layerInfo.secondaryRegions == '' then
+			layerInfo.secondaryRegions = {}
+		else
+			layerInfo.secondaryRegions = mw.text.split( layerInfo.secondaryRegions, ',' )
+		end
+
 		layerNameToInfo[layerInfo.layer] = layerInfo
+
+		-- Remember the list of regions,
+		-- so that we can obtain the information about all of them in 1 SQL query.
+		for _, regionName in ipairs( layerInfo.primaryRegion ) do
+			mentionedRegions[regionName] = true
+		end
+
+		for _, regionName in ipairs( layerInfo.secondaryRegions ) do
+			mentionedRegions[regionName] = true
+		end
+	end
+
+	local uniqueRegionNames = {} -- { "regionName1", "regionName2", ... }
+	for regionName in pairs( mentionedRegions ) do
+		table.insert( uniqueRegionNames, regionName );
+	end
+
+	local regionNameToInfo = {} -- { "tidewaterfloor": { ... }, ... }
+	for _, regionInfo in ipairs( queryRegions( uniqueRegionNames ) ) do
+		regionNameToInfo[regionInfo.id] = regionInfo
 	end
 
 	ret = ret .. '\n{| class="wikitable"\n! Layer !! Primary region !! Secondary regions !! Dungeons'
@@ -147,9 +219,17 @@ function p.Main( frame )
 			-- Fallback for worlds that lack some layers.
 			ret  = ret .. '\n| colspan="3" style="text-align: center; font-style: italic;background-color: #eee;" | Nothing in this layer'
 		else
-			ret = ret .. '\n| ' .. string.gsub( layerInfo.primaryRegion, ',', ', ' ) ..
-				'\n| ' .. string.gsub( layerInfo.secondaryRegions, ',', ', ' ) ..
-				'\n| ' .. string.gsub( layerInfo.dungeons, ',', ', ' )
+			ret = ret .. '\n| style="vertical-align: top;" | '
+			for _, regionName in ipairs( layerInfo.primaryRegion ) do
+				ret = ret .. describeRegion( regionNameToInfo[regionName] )
+			end
+
+			ret = ret .. '\n| style="vertical-align: top;" | '
+			for _, regionName in ipairs( layerInfo.secondaryRegions ) do
+				ret = ret .. describeRegion( regionNameToInfo[regionName] )
+			end
+
+			ret = ret .. '\n| style="vertical-align: top;" | ' .. string.gsub( layerInfo.dungeons, ',', ', ' )
 		end
 	end
 	ret = ret .. '\n|}\n'
