@@ -64,25 +64,6 @@ local function queryRegions( arrayOfRegionNames )
 	return cargo.query( tables, fields, queryOpt ) or {}
 end
 
--- Format the gravity number: add green color if less than 80, red if 100 or more.
--- (here 80 is the most comfortable gravity - the gravity of starting Garden planet)
--- @param {integer} gravity
--- @param {string}
-local function addColorToGravity( gravity )
-	local color
-	if gravity < 80 then
-		color = 'green'
-	elseif gravity >= 100 then
-		color = '#bb0000'
-	end
-
-	if color then
-		gravity = '<span style="color:' .. color .. '">' .. gravity .. '</span>'
-	end
-
-	return gravity
-end
-
 -- Based on information about planetary region, return wikitext that describes this region.
 -- @param {table} metadata One of the elements of array that was returned by queryRegions().
 -- @return {string}
@@ -154,9 +135,9 @@ function p.Main( frame )
 	ret = ret .. '<h2>Details</h2>\n'
 	ret = ret .. '* <b>Name</b>: ' .. row.name .. '\n'
 	if row.minGravity ~= '' then
-		ret = ret .. '* <b>Gravity</b>: ' .. addColorToGravity( tonumber( row.minGravity ) )
+		ret = ret .. '* <b>Gravity</b>: ' .. row.minGravity
 		if row.minGravity ~= row.maxGravity then
-			ret = ret .. ' - ' .. addColorToGravity( tonumber( row.maxGravity ) )
+			ret = ret .. ' - ' .. row.maxGravity
 		end
 		ret = ret .. '\n'
 	end
