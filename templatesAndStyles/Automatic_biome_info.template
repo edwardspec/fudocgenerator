@@ -2,6 +2,7 @@
 _table = biome
 |id = String
 |name = String
+|wikiPage = Page
 |weatherPools = List (,) of String
 |statusEffects = List (,) of String
 }}<noinclude>
