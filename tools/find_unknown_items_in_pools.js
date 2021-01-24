@@ -1,21 +1,15 @@
 /**
- * List all mentions of nonexistent items in TreasurePools that are mentioned in recipes.
+ * List all mentions of nonexistent items in TreasurePools.
  */
 
 'use strict';
 
-var { TreasurePoolDatabase, ItemDatabase, RecipeDatabase } = require( '../lib' );
+var { TreasurePoolDatabase, ItemDatabase } = require( '../lib' );
 
 // { itemCode1: [ poolName1, poolName2, ... ] }
 var missingItemsToPools = {};
 
-for ( var poolName of RecipeDatabase.listMentionedTreasurePools() ) {
-	var pool = TreasurePoolDatabase.find( poolName );
-	if ( !pool ) {
-		console.log( '[error] Unknown TreasurePool in the recipe: ' + poolName );
-		continue;
-	}
-
+TreasurePoolDatabase.forEach( ( pool ) => {
 	pool.getPossibleOutputs().getItemCodes().forEach( ( itemCode ) => {
 		if ( !ItemDatabase.find( itemCode ) ) {
 			// Unknown item.
@@ -26,6 +20,6 @@ for ( var poolName of RecipeDatabase.listMentionedTreasurePools() ) {
 			missingItemsToPools[itemCode].push( pool.name );
 		}
 	} );
-}
+} );
 
 console.log( missingItemsToPools );
