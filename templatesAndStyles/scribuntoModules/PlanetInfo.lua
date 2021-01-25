@@ -175,10 +175,15 @@ local function describeRegion( regionName, isPrimarySurface )
 	-- TODO: add image of every biome (if it exists).
 	ret = ret .. '\n[[File:Icewastewiki.jpg|250px]]\n'
 
-	ret = ret .. '\n<small>biomeId: ' .. info.biome .. ', regionId: ' .. info.id .. '</small>'
-	ret = ret .. '\n'
+	if info.id == info.biome then
+		ret = ret .. '\n<small>biome/region ID: ' .. info.biome .. '</small>'
+	else
+		ret = ret .. '\n<small>biome ID: ' .. info.biome .. '<br>' ..
+			'region ID: ' .. info.id .. '</small>'
+	end
 
-	return '<div class="regioninfo" style="vertical-align: top; border: 1px solid #333; padding: 5px 0 2px 5px; margin: 5px; display: inline-block; width: 350px; min-height: 100px;">' .. ret .. '</div>'
+	ret = ret .. '\n'
+	return '<div class="regioninfo" style="vertical-align: top; border: 1px solid #333; padding: 5px 2px 2px 5px; margin: 5px; display: inline-block; min-width: 260px; min-height: 100px;">' .. ret .. '</div>'
 end
 
 -- Print information about planet and list all possible regions in all its layers.
@@ -267,7 +272,7 @@ function p.Main( frame )
 	for _, layerName in ipairs( OrderOfShownLayers ) do
 		local layerInfo = layerNameToInfo[layerName]
 
-		ret = ret .. '\n|-\n! ' .. mw.getContentLanguage():ucfirst( layerName )
+		ret = ret .. '\n|-\n! style="vertical-align: top; font-size: 125%; font-weight: normal;" | ' .. mw.getContentLanguage():ucfirst( layerName )
 		if not layerInfo then
 			-- Fallback for worlds that lack some layers.
 			ret  = ret .. '\n| colspan="3" style="text-align: center; font-style: italic;background-color: #eee;" | Nothing in this layer'
