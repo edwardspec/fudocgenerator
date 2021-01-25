@@ -54,7 +54,7 @@ local function queryRegions( arrayOfRegionNames )
 	end
 
 	local tables = 'region,biome'
-	local fields = 'oceanLiquid,caveLiquid,biome,name=biomeName,weatherPools,statusEffects,region.id=id'
+	local fields = 'oceanLiquid,caveLiquid,biome,wikiPage=biomePage,weatherPools,statusEffects,region.id=id'
 	local queryOpt = {
 		where = 'region.id IN (' .. table.concat( quotedRegionNames, ',' ) .. ')',
 		join = 'biome.id=region.biome',
@@ -64,35 +64,56 @@ local function queryRegions( arrayOfRegionNames )
 	return cargo.query( tables, fields, queryOpt ) or {}
 end
 
--- Based on information about planetary region, return wikitext that describes this region.
--- @param {table} metadata One of the elements of array that was returned by queryRegions().
--- @return {string}
-local function describeRegion( info )
-	if not info then
-		-- TODO: handle this elsewhere.
-		return '<div style="display: inline-block; margin: 5px;"><span class="error">Unknown region</span></div>'
+-- { "tidewaterfloor": { ... }, ... }
+local regionNameToInfo = {}
+
+-- @param {table} regionsToLoad Format: { "regionName1": true, "regionName2": true, ... }
+local function loadTheseRegions( regionsToLoad )
+	local uniqueRegionNames = {} -- { "regionName1", "regionName2", ... }
+	for regionName in pairs( regionsToLoad ) do
+		table.insert( uniqueRegionNames, regionName );
 	end
 
-	local ret = '<b>[[' .. info.biomeName .. ']]</b>'
+	for _, regionInfo in ipairs( queryRegions( uniqueRegionNames ) ) do
+		regionNameToInfo[regionInfo.id] = regionInfo
+	end
+end
+
+-- Based on information about planetary region, return wikitext that describes this region.
+-- @param {string} Name of region. This must have been passed to loadTheseRegions() earlier.
+-- @param {string} isPrimarySurface True if we we need to show weather and status effects.
+-- @return {string}
+local function describeRegion( regionName, isPrimarySurface )
+	local info = regionNameToInfo[regionName]
+	if not info then
+		return '<div style="display: inline-block; margin: 5px;"><span class="error">Unknown region: <code>' ..
+			regionName .. '</code></span></div>'
+	end
+
+	-- Note: if biome is called "Something (variant)", but the official biomeName is "Something",
+	-- then we don't hide "(variant) from readers (so we don't need biome.name field in this link).
+	local ret = '<b>[[' .. info.biomePage .. ']]</b>'
 	if info.oceanLiquid ~= '' then
 		-- TODO: add links to liquids (and possibly icons).
-		ret = ret .. '\n* Ocean liquid: ' .. string.gsub( info.caveLiquid, ',', ', ' )
+		ret = ret .. '\n* <b><big>Ocean liquid</big></b>: ' .. string.gsub( info.oceanLiquid, ',', ', ' )
 	end
 	if info.caveLiquid ~= '' then
 		-- TODO: add links to liquids (and possibly icons).
 		ret = ret .. '\n* Cave liquid: ' .. string.gsub( info.caveLiquid, ',', ', ' )
 	end
 
-	-- TODO: don't show status effects for non-primary biomes.
-	-- (because status effects from subbiomes are not applied)
-	if info.statusEffects ~= '' then
-		ret = ret .. '\n* Status effects: ' .. string.gsub( info.statusEffects, ',', ', ' )
-	end
+	-- Show weather and status effects, but only for primary regions of Surface layer,
+	-- because status effects and weather from subbiomes are not applied.
+	if isPrimarySurface then
+		if info.statusEffects ~= '' then
+			ret = ret .. '\n* Status effects: ' .. string.gsub( info.statusEffects, ',', ', ' )
+		end
 
-	-- TODO: this likely doesn't need to be show in the region (there should be "possible weathers" below instead),
-	-- and we should show the contents of weather pool (not just its name).
-	if info.weatherPools ~= '' then
-		ret = ret .. '\n* Weather pools: ' .. string.gsub( info.weatherPools, ',', ', ' )
+		-- TODO: this likely doesn't need to be show in the region (there should be "possible weathers" below instead),
+		-- and we should show the contents of weather pool (not just its name).
+		if info.weatherPools ~= '' then
+			ret = ret .. '\n* Weather pools: ' .. string.gsub( info.weatherPools, ',', ', ' )
+		end
 	end
 
 	ret = ret .. '\n* biomeId=' .. info.biome .. ', regionId=' .. info.id
@@ -181,15 +202,7 @@ function p.Main( frame )
 		end
 	end
 
-	local uniqueRegionNames = {} -- { "regionName1", "regionName2", ... }
-	for regionName in pairs( mentionedRegions ) do
-		table.insert( uniqueRegionNames, regionName );
-	end
-
-	local regionNameToInfo = {} -- { "tidewaterfloor": { ... }, ... }
-	for _, regionInfo in ipairs( queryRegions( uniqueRegionNames ) ) do
-		regionNameToInfo[regionInfo.id] = regionInfo
-	end
+	loadTheseRegions( mentionedRegions )
 
 	ret = ret .. '\n{| class="wikitable"\n! Layer !! Primary region !! Secondary regions !! Dungeons'
 	for _, layerName in ipairs( OrderOfShownLayers ) do
@@ -202,12 +215,12 @@ function p.Main( frame )
 		else
 			ret = ret .. '\n| style="vertical-align: top;" | '
 			for _, regionName in ipairs( layerInfo.primaryRegion ) do
-				ret = ret .. describeRegion( regionNameToInfo[regionName] )
+				ret = ret .. describeRegion( regionName, layerName == 'surface' )
 			end
 
 			ret = ret .. '\n| style="vertical-align: top;" | '
 			for _, regionName in ipairs( layerInfo.secondaryRegions ) do
-				ret = ret .. describeRegion( regionNameToInfo[regionName] )
+				ret = ret .. describeRegion( regionName, false )
 			end
 
 			ret = ret .. '\n| style="vertical-align: top;" | ' .. string.gsub( layerInfo.dungeons, ',', ', ' )
