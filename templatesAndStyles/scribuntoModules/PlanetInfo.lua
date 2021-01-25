@@ -133,25 +133,25 @@ function p.Main( frame )
 	-- Planets don't have enough information to need a full infobox.
 	-- (most of the specifics are in biome pages, not in planet pages)
 	ret = ret .. '<h2>Details</h2>\n'
-	ret = ret .. '* <b>Name</b>: ' .. row.name .. '\n'
+	ret = ret .. '\n* <b>Name</b>: ' .. row.name
+	ret = ret .. '\n* <b>Tier</b>: ' .. row.minTier .. ' - ' .. row.maxTier
+
 	if row.minGravity ~= '' then
-		ret = ret .. '* <b>Gravity</b>: ' .. row.minGravity
+		ret = ret .. '\n* <b>Gravity</b>: ' .. row.minGravity
 		if row.minGravity ~= row.maxGravity then
 			ret = ret .. ' - ' .. row.maxGravity
 		end
-		ret = ret .. '\n'
 	end
 
 	if row.minDayLight ~= '' then
-		ret = ret .. '* <b>Light level (day)</b>: ' .. row.minDayLight
+		ret = ret .. '\n* <b>Light level (day)</b>: ' .. row.minDayLight
 		if row.minDayLight ~= row.maxDayLight then
 			ret = ret .. ' - ' .. row.maxDayLight
 		end
-		ret = ret .. '\n'
 	end
 
 	-- Find all layers
-	ret = ret .. '<h3>Layers</h3>'
+	ret = ret .. '\n<h3>Layers</h3>'
 
 	local mentionedRegions = {} -- { "regionName1": true, ... }
 	local layerNameToInfo = {} -- { "surface: { ... }, "subsurface": { ... }, ... }
