@@ -74,9 +74,30 @@ local function loadTheseRegions( regionsToLoad )
 		table.insert( uniqueRegionNames, regionName );
 	end
 
-	for _, regionInfo in ipairs( queryRegions( uniqueRegionNames ) ) do
-		regionNameToInfo[regionInfo.id] = regionInfo
+	for _, info in ipairs( queryRegions( uniqueRegionNames ) ) do
+		if info.oceanLiquid ~= '' then
+			info.oceanLiquidItems = mw.text.split( info.oceanLiquid, ',' )
+		end
+
+		if info.caveLiquid ~= '' then
+			info.caveLiquidItems = mw.text.split( info.caveLiquid, ',' )
+		end
+
+		regionNameToInfo[info.id] = info
 	end
+end
+
+-- Given the array of item codes, return wikitext that shows their links and/or icons.
+-- @param {string} E.g. { "ff_mercury", "liquidoil" }
+-- @return {string}
+local function showItemList( itemCodes )
+	local ret = ''
+	for _, itemCode in ipairs( itemCodes ) do
+		-- TODO: add human-readable name and link.
+		ret = ret .. '[[File:Item_icon_' .. itemCode .. '.png|16px|alt=' .. itemCode .. ']] '
+	end
+
+	return ret
 end
 
 -- Based on information about planetary region, return wikitext that describes this region.
@@ -93,13 +114,11 @@ local function describeRegion( regionName, isPrimarySurface )
 	-- Note: if biome is called "Something (variant)", but the official biomeName is "Something",
 	-- then we don't hide "(variant) from readers (so we don't need biome.name field in this link).
 	local ret = '<b>[[' .. info.biomePage .. ']]</b>'
-	if info.oceanLiquid ~= '' then
-		-- TODO: add links to liquids (and possibly icons).
-		ret = ret .. '\n* <b><big>Ocean liquid</big></b>: ' .. string.gsub( info.oceanLiquid, ',', ', ' )
+	if info.oceanLiquidItems then
+		ret = ret .. '\n* <b><big>Ocean liquid</big></b>: ' .. showItemList( info.oceanLiquidItems )
 	end
-	if info.caveLiquid ~= '' then
-		-- TODO: add links to liquids (and possibly icons).
-		ret = ret .. '\n* Cave liquid: ' .. string.gsub( info.caveLiquid, ',', ', ' )
+	if info.caveLiquidItems then
+		ret = ret .. '\n* Cave liquid: ' .. showItemList( info.caveLiquidItems )
 	end
 
 	-- Show weather and status effects, but only for primary regions of Surface layer,
