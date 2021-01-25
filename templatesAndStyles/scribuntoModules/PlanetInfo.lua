@@ -116,10 +116,13 @@ local function describeRegion( regionName, isPrimarySurface )
 		end
 	end
 
-	ret = ret .. '\n* biomeId=' .. info.biome .. ', regionId=' .. info.id
+	-- TODO: add image of every biome (if it exists).
+	ret = ret .. '\n[[File:Icewastewiki.jpg|250px]]\n'
+
+	ret = ret .. '\n<small>biomeId: ' .. info.biome .. ', regionId: ' .. info.id .. '</small>'
 	ret = ret .. '\n'
 
-	return '<div class="regioninfo" style="border: 1px solid #333; padding: 5px 0 2px 5px; margin: 5px; display: inline-block; width: 350px; min-height: 100px;">' .. ret .. '</div>'
+	return '<div class="regioninfo" style="vertical-align: top; border: 1px solid #333; padding: 5px 0 2px 5px; margin: 5px; display: inline-block; width: 350px; min-height: 100px;">' .. ret .. '</div>'
 end
 
 -- Print information about planet and list all possible regions in all its layers.
