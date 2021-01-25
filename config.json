@@ -326,7 +326,8 @@
 		"tarmicroslime": "Ecto Slime (Tar Micro)",
 		"magmamicroslime": "Magma Slime (Micro)",
 		"microslime": "Slime (Micro)",
-		"futinybee2": "Tiny Bee"
+		"futinybee2": "Tiny Bee",
+		"fuhugebiped": "Mega-Fauna"
 	},
 
 	"@doc": "List of monster IDs to skip. For example, the mod uses \"fumooshi\" monster instead of vanilla \"mooshi\", so vanilla monster can be skipped.",
