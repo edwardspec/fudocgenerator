@@ -64,27 +64,66 @@ local function queryRegions( arrayOfRegionNames )
 	return cargo.query( tables, fields, queryOpt ) or {}
 end
 
+-- Table populated in batchLoadTheseItemLinks() and used in showItemList()
+-- { "liquidwater": "[[Water]]" }
+local itemCodeToLink = {}
+
+-- Populate the table "itemCodeToLink" (which is later used in showItemList) in 1 SQL query.
+-- @param {table} itemCodesToLoad Format: { "itemCode1": true, ... }
+local function batchLoadTheseItemLinks( itemCodesToLoad )
+	-- Wrap all item codes in quotes.
+	-- These are not user-supplied (they come from Cargo database and are known to be valid), so this is enough.
+	local quotedItemCodes = {} -- { "itemCode1", "itemCode2", ... }
+	for itemCode in pairs( itemCodesToLoad ) do
+		table.insert( quotedItemCodes, '"' .. itemCode .. '"' );
+	end
+
+	local rows = cargo.query( 'item', 'id,wikiPage', {
+		where = 'id IN (' .. table.concat( quotedItemCodes, ',' ) .. ')'
+	} ) or {}
+
+	for _, row in ipairs( rows ) do
+		itemCodeToLink[row.id] = '[[File:Item_icon_' .. row.id .. '.png|16px' ..
+			'|alt=' .. row.wikiPage .. '|link=' .. row.wikiPage .. ']] '
+	end
+end
+
+-- Table populated by batchLoadTheseRegions() and used in describeRegion().
 -- { "tidewaterfloor": { ... }, ... }
 local regionNameToInfo = {}
 
+-- Populate the table "regionNameToInfo" (which is later used in describeRegion) in 1 SQL query.
 -- @param {table} regionsToLoad Format: { "regionName1": true, "regionName2": true, ... }
-local function loadTheseRegions( regionsToLoad )
+local function batchLoadTheseRegions( regionsToLoad )
 	local uniqueRegionNames = {} -- { "regionName1", "regionName2", ... }
 	for regionName in pairs( regionsToLoad ) do
 		table.insert( uniqueRegionNames, regionName );
 	end
 
+	local mentionedLiquids = {}
+
 	for _, info in ipairs( queryRegions( uniqueRegionNames ) ) do
 		if info.oceanLiquid ~= '' then
 			info.oceanLiquidItems = mw.text.split( info.oceanLiquid, ',' )
+
+			-- Remember the mentioned liquids, they will be used in batchLoadTheseItemLinks().
+			for _, liquid in ipairs( info.oceanLiquidItems ) do
+				mentionedLiquids[liquid] = true
+			end
 		end
 
 		if info.caveLiquid ~= '' then
 			info.caveLiquidItems = mw.text.split( info.caveLiquid, ',' )
+
+			for _, liquid in ipairs( info.caveLiquidItems ) do
+				mentionedLiquids[liquid] = true
+			end
 		end
 
 		regionNameToInfo[info.id] = info
 	end
+
+	batchLoadTheseItemLinks( mentionedLiquids )
 end
 
 -- Given the array of item codes, return wikitext that shows their links and/or icons.
@@ -93,15 +132,13 @@ end
 local function showItemList( itemCodes )
 	local ret = ''
 	for _, itemCode in ipairs( itemCodes ) do
-		-- TODO: add human-readable name and link.
-		ret = ret .. '[[File:Item_icon_' .. itemCode .. '.png|16px|alt=' .. itemCode .. ']] '
+		ret = ret .. ( itemCodeToLink[itemCode] or itemCode ) .. ' '
 	end
-
 	return ret
 end
 
 -- Based on information about planetary region, return wikitext that describes this region.
--- @param {string} Name of region. This must have been passed to loadTheseRegions() earlier.
+-- @param {string} Name of region. This must have been passed to batchLoadTheseRegions() earlier.
 -- @param {string} isPrimarySurface True if we we need to show weather and status effects.
 -- @return {string}
 local function describeRegion( regionName, isPrimarySurface )
@@ -224,7 +261,7 @@ function p.Main( frame )
 		end
 	end
 
-	loadTheseRegions( mentionedRegions )
+	batchLoadTheseRegions( mentionedRegions )
 
 	ret = ret .. '\n{| class="wikitable"\n! Layer !! Primary region !! Secondary regions !! Dungeons'
 	for _, layerName in ipairs( OrderOfShownLayers ) do
