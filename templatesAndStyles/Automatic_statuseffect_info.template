@@ -1,0 +1,12 @@
+<noinclude>{{#cargo_declare:
+_table = statuseffect
+|id = String
+|name = String
+|defaultDuration = Float
+|hasIcon = Boolean
+}}<noinclude>
+
+This table lists all known status effects.
+
+[[Category:Cargo templates]]
+</noinclude>

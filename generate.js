@@ -10,7 +10,7 @@
 'use strict';
 
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, PlanetDatabase,
-	BiomeDatabase, MonsterDatabase, RegionDatabase, WeatherPoolDatabase,
+	BiomeDatabase, MonsterDatabase, RegionDatabase, WeatherPoolDatabase, StatusEffectDatabase,
 	ResultsWriter, TreasurePoolDatabase, util } = require( './lib' );
 
 /* -------------------------------------------------------------------------------------------- */
@@ -86,6 +86,10 @@ BiomeDatabase.forEach( ( biome ) => {
 
 WeatherPoolDatabase.forEach( ( weatherPool ) => {
 	ResultsWriter.writeWeatherPool( weatherPool );
+} );
+
+StatusEffectDatabase.forEach( ( statusEffect ) => {
+	ResultsWriter.writeStatusEffect( statusEffect );
 } );
 
 ResultsWriter.finalize();
