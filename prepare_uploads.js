@@ -9,8 +9,9 @@
 'use strict';
 
 const { ImageFinder, ItemDatabase, RecipeDatabase, ResearchTreeDatabase, MonsterDatabase,
-		WikiStatusCache, config, util } = require( './lib' ),
-	fs = require( 'fs' );
+	AssetDatabase, WikiStatusCache, config, util } = require( './lib' );
+
+const fs = require( 'fs' );
 
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -91,3 +92,9 @@ ResearchTreeDatabase.forEach( ( node ) => {
 MonsterDatabase.forEach( ( monster ) => {
 	prepareUpload( 'Monster_body_' + monster.type + '.png', monster.bodyImage );
 } );
+
+// Upload icons of weathers.
+var displayWeathers = AssetDatabase.getData( 'interface/cockpit/cockpit.config' ).displayWeathers;
+for ( var [ weatherCode, weatherInfo ] of Object.entries( displayWeathers ) ) {
+	prepareUpload( 'Weather_icon_' + weatherCode + '.png', weatherInfo.icon );
+}
