@@ -119,8 +119,14 @@ function p.RecipesWhereItemIs( frame )
 	end
 
 	-- Perform a SQL query to the Cargo database.
+	local where = role .. ' HOLDS ' .. ' "' .. itemId .. '"'
+	if not string.match( itemId, '^biome:' ) then
+		-- Temporary (until biome pages are ready): hide recipes like "biome -> blocks" on non-biome pages.
+		where = where .. ' AND inputs__full NOT LIKE "biome:%"'
+	end
+
 	local rows = cargo.query( 'recipe', 'station,wikitext', {
-		where = role .. ' HOLDS ' .. ' "' .. args.item .. '"',
+		where = where,
 		limit = 5000
 	} ) or {}
 	if not rows[1] then
