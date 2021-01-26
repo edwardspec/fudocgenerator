@@ -275,7 +275,7 @@ function p.Main( frame )
 
 	batchLoadTheseRegions( mentionedRegions )
 
-	ret = ret .. '\n{| class="wikitable"\n! Layer !! Primary region !! Secondary regions !! Dungeons'
+	ret = ret .. '\n{| class="wikitable"\n! Layer\n! style="width:250px;" | Primary region\n! Secondary regions !! Dungeons'
 	for _, layerName in ipairs( OrderOfShownLayers ) do
 		local layerInfo = layerNameToInfo[layerName]
 
@@ -294,7 +294,7 @@ function p.Main( frame )
 				ret = ret .. describeRegion( regionName, false )
 			end
 
-			ret = ret .. '\n| style="vertical-align: top;" | ' .. string.gsub( layerInfo.dungeons, ',', ', ' )
+			ret = ret .. '\n| style="vertical-align: top;" | ' .. string.gsub( layerInfo.dungeons, ',', '<br>' )
 		end
 	end
 	ret = ret .. '\n|}\n'
