@@ -9,7 +9,7 @@
 'use strict';
 
 const { ImageFinder, ItemDatabase, RecipeDatabase, ResearchTreeDatabase, MonsterDatabase,
-	AssetDatabase, WikiStatusCache, config, util } = require( './lib' );
+	StatusEffectDatabase, AssetDatabase, WikiStatusCache, config, util } = require( './lib' );
 
 const fs = require( 'fs' );
 
@@ -98,3 +98,8 @@ var displayWeathers = AssetDatabase.getData( 'interface/cockpit/cockpit.config' 
 for ( var [ weatherCode, weatherInfo ] of Object.entries( displayWeathers ) ) {
 	prepareUpload( 'Weather_icon_' + weatherCode + '.png', weatherInfo.icon );
 }
+
+// Upload images of status effects.
+StatusEffectDatabase.forEach( ( effect ) => {
+	prepareUpload( 'Status_icon_' + effect.name + '.png', effect.icon );
+} );
