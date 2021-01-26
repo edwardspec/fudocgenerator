@@ -145,7 +145,23 @@ local function describeRegion( regionName, isPrimarySurface )
 		-- TODO: this likely doesn't need to be show in the region (there should be "possible weathers" below instead),
 		-- and we should show the contents of weather pool (not just its name).
 		if info.weatherPools ~= '' then
-			ret = ret .. '\n* Weather pools: ' .. string.gsub( info.weatherPools, ',', ', ' )
+			ret = ret .. '\n<h4>Weather pools:</h4>'
+
+			-- Because our Cargo database doesn't have planets like Unknown or Superdense (would be useless),
+			-- most planets won't have more than 1-2 primary biomes, so we can do 1 SQL query per each,
+			-- and batch-loading the weatherpools from different "primary surface" regions is unnecessary.
+			local quotedPoolIds = {}
+			for _, poolName in ipairs( mw.text.split( info.weatherPools, ',' ) ) do
+				table.insert( quotedPoolIds, '"' .. poolName .. '"' )
+			end
+
+			local rows = cargo.query( 'weatherpool', 'wikitext', {
+				where = 'id IN (' .. table.concat( quotedPoolIds, ',' ) .. ')',
+				orderBy = 'id'
+			}) or {}
+			for index, row in ipairs( rows ) do
+				ret = ret .. "\n'''Type " .. index .. "'''\n" .. row.wikitext .. '\n'
+			end
 		end
 	end
 
