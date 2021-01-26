@@ -196,7 +196,10 @@ function p.Main( frame )
 	-- (most of the specifics are in biome pages, not in planet pages)
 	ret = ret .. '<h2>Details</h2>\n'
 	ret = ret .. '\n* <b>Name</b>: ' .. row.name
-	ret = ret .. '\n* <b>Tier</b>: ' .. row.minTier .. ' - ' .. row.maxTier
+	ret = ret .. '\n* <b>Tier</b>: ' .. row.minTier
+	if row.minTier ~= row.maxTier then
+		ret = ret .. ' - ' .. row.maxTier
+	end
 
 	if row.minGravity ~= '' then
 		ret = ret .. '\n* <b>Gravity</b>: ' .. row.minGravity
