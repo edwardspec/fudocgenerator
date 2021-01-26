@@ -555,7 +555,8 @@
 		"tillingtool": "item",
 		"treasurepools": "treasurepools",
 		"weaponability": "ability",
-		"wiretool": "item"
+		"wiretool": "item",
+		"spawntypes": "spawntypes"
 	},
 
 	"@doc": "It true, then assets with unknown extensions (not in extensionToAssetType) will also be loaded. This is useless for generate.js, but can be needed in linter scripts, etc.",
