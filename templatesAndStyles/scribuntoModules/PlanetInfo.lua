@@ -106,7 +106,7 @@ local function showItemList( itemCodes )
 	local ret = ''
 	for _, itemCode in ipairs( itemCodes ) do
 		ret = ret .. LinkBatch.GetItemLink( itemCode, {
-			icon = 'ifExists',
+			icon = true,
 			text = false,
 			hideParentheses = false
 		} ) .. ' '
@@ -149,7 +149,7 @@ local function describeRegion( regionName, isPrimarySurface )
 			for _, effectCode in ipairs( effects ) do
 				ret = ret .. '\n* ' .. LinkBatch.GetEffectLink( effectCode, {
 					nolink = true,
-					icon = true
+					icon = 'ifExists'
 				} )
 			end
 		end

@@ -21,6 +21,10 @@ local hasWikiPageField = {
 	item = true
 }
 
+local hasHasIconField = {
+	statuseffect = true
+}
+
 -- Status of all Items, etc. that were added via add(). See add() for its format.
 local linkCache = {}
 
@@ -64,6 +68,10 @@ local function lazyLoadGroup( cargoTable )
 		fields = fields .. ',wikiPage'
 	end
 
+	if hasHasIconField[cargoTable] then
+		fields = fields .. ',hasIcon'
+	end
+
 	local rows = cargo.query( cargoTable, fields, {
 		where = 'id IN (' .. table.concat( quotedIds, ',' ) .. ')'
 	} ) or {}
@@ -73,6 +81,7 @@ local function lazyLoadGroup( cargoTable )
 
 		linkData.displayName = row.name
 		linkData.wikiPage = row.wikiPage or row.name
+		linkData.hasIcon = row.hasIcon == '1'
 		linkData.loaded = true
 	end
 
@@ -90,7 +99,7 @@ end
 -- @param {table} renderOptions Default: { icon = false, text = true, hideParentheses = true, iconWidth = "16px", nolink = false }
 -- @return {string}
 local function getLink( cargoTable, id, renderOptions )
-	renderOptions = renderOptions or {}
+	local renderOptions = renderOptions or {}
 	local group = getOrMakeGroup( cargoTable )
 	local linkData = group[id]
 
@@ -112,7 +121,11 @@ local function getLink( cargoTable, id, renderOptions )
 	local filename = string.format( iconFilenameFormat[cargoTable], id )
 	if renderOptions.icon == 'ifExists' then
 		-- "Include icon only if it exists" mode
-		renderOptions.icon = mw.title.new( filename, 6 ).fileExists
+		if hasHasIconField[cargoTable] then
+			renderOptions.icon = linkData.hasIcon
+		else
+			renderOptions.icon = mw.title.new( filename, 6 ).fileExists
+		end
 	end
 
 	-- Make a wikitext link.
