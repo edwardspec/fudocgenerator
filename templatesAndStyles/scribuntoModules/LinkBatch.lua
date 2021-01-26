@@ -109,10 +109,15 @@ local function getLink( cargoTable, id, renderOptions )
 		return '<span class="error">Unknown ' .. cargoTable .. ': <code>' .. id .. '</code></span>'
 	end
 
+	local filename = string.format( iconFilenameFormat[cargoTable], id )
+	if renderOptions.icon == 'ifExists' then
+		-- "Include icon only if it exists" mode
+		renderOptions.icon = mw.title.new( filename, 6 ).fileExists
+	end
+
 	-- Make a wikitext link.
 	local ret = ''
 	if renderOptions.icon then
-		local filename = string.format( iconFilenameFormat[cargoTable], id )
 		ret = ret .. '[[File:' .. filename .. '|alt=' .. linkData.wikiPage ..
 			'|' .. ( renderOptions.iconWidth or '16px' ) .. '|link='
 

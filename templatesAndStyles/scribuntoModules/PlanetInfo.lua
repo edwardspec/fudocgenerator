@@ -106,7 +106,7 @@ local function showItemList( itemCodes )
 	local ret = ''
 	for _, itemCode in ipairs( itemCodes ) do
 		ret = ret .. LinkBatch.GetItemLink( itemCode, {
-			icon = true,
+			icon = 'ifExists',
 			text = false,
 			hideParentheses = false
 		} ) .. ' '
