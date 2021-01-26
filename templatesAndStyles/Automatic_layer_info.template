@@ -5,6 +5,7 @@ _table = layer
 |primaryRegion = List (,) of String
 |secondaryRegions = List (,) of String
 |dungeons = List (,) of String
+|dungeonNames = List (,) of String
 }}<noinclude>
 
 This table tells "which layers of which planets contain which regions".

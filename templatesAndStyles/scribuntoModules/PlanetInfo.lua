@@ -35,7 +35,7 @@ end
 -- @return {table} Array of database rows (all layers).
 local function queryAllLayers( planetType )
 	local tables = 'layer'
-	local fields = 'layer,primaryRegion,secondaryRegions,dungeons'
+	local fields = 'layer,primaryRegion,secondaryRegions,dungeonNames=dungeons'
 	local queryOpt = {
 		where = 'planet="' .. planetType .. '"'
 	}
@@ -294,7 +294,10 @@ function p.Main( frame )
 				ret = ret .. describeRegion( regionName, false )
 			end
 
-			ret = ret .. '\n| style="vertical-align: top;" | ' .. string.gsub( layerInfo.dungeons, ',', '<br>' )
+			ret = ret .. '\n| style="vertical-align: top;" | '
+			for _, dungeonName in ipairs( mw.text.split( layerInfo.dungeons, ',' ) ) do
+				ret = ret .. '\n* ' .. dungeonName
+			end
 		end
 	end
 	ret = ret .. '\n|}\n'
