@@ -13,7 +13,12 @@ local cargo = mw.ext.cargo
 -- Name of uploaded image, depending on ID of Item, Monster, etc.
 -- Used by getLink() if the icon was requested.
 local iconFilenameFormat = {
-	item = 'Item_icon_%s.png'
+	item = 'Item_icon_%s.png',
+	statuseffect = 'Status_icon_%s.png'
+}
+
+local hasWikiPageField = {
+	item = true
 }
 
 -- Status of all Items, etc. that were added via add(). See add() for its format.
@@ -54,7 +59,12 @@ local function lazyLoadGroup( cargoTable )
 		return
 	end
 
-	local rows = cargo.query( cargoTable, 'id,name,wikiPage', {
+	local fields = 'id,name'
+	if hasWikiPageField[cargoTable] then
+		fields = fields .. ',wikiPage'
+	end
+
+	local rows = cargo.query( cargoTable, fields, {
 		where = 'id IN (' .. table.concat( quotedIds, ',' ) .. ')'
 	} ) or {}
 
@@ -62,7 +72,7 @@ local function lazyLoadGroup( cargoTable )
 		local linkData = group[row.id]
 
 		linkData.displayName = row.name
-		linkData.wikiPage = row.wikiPage
+		linkData.wikiPage = row.wikiPage or row.name
 		linkData.loaded = true
 	end
 
@@ -77,7 +87,7 @@ local function lazyLoadGroup( cargoTable )
 end
 
 -- @param {string} get
--- @param {renderOptions} Default: { icon = false, text = true, hideParentheses = true, iconWidth = "16px" }
+-- @param {table} renderOptions Default: { icon = false, text = true, hideParentheses = true, iconWidth = "16px", nolink = false }
 -- @return {string}
 local function getLink( cargoTable, id, renderOptions )
 	renderOptions = renderOptions or {}
@@ -103,18 +113,29 @@ local function getLink( cargoTable, id, renderOptions )
 	local ret = ''
 	if renderOptions.icon then
 		local filename = string.format( iconFilenameFormat[cargoTable], id )
-		ret = ret .. '[[File:' .. filename .. '|alt=' .. linkData.wikiPage .. '|link=' .. linkData.wikiPage ..
-			'|' .. ( renderOptions.iconWidth or '16px' ) .. ']] '
+		ret = ret .. '[[File:' .. filename .. '|alt=' .. linkData.wikiPage ..
+			'|' .. ( renderOptions.iconWidth or '16px' ) .. '|link='
+
+		if not renderOptions.nolink then
+			ret = ret .. linkData.wikiPage
+		end
+
+		ret = ret .. ']] '
 	end
 
 	if renderOptions.text ~= false then
-		ret = ret .. '[[' .. linkData.wikiPage
-		if renderOptions.hideParentheses ~= false and linkData.wikiPage ~= linkData.displayName then
-			-- Normally we make links like [[Something (decorative)|Something]], hiding "(decorative)" part,
-			-- but this can be disabled via { hideParentheses = false }
-			ret = ret .. '|' .. linkData.displayName
+		if renderOptions.nolink then
+			-- Text only.
+			ret = ret .. linkData.displayName
+		else
+			ret = ret .. '[[' .. linkData.wikiPage
+			if renderOptions.hideParentheses ~= false and linkData.wikiPage ~= linkData.displayName then
+				-- Normally we make links like [[Something (decorative)|Something]], hiding "(decorative)" part,
+				-- but this can be disabled via { hideParentheses = false }
+				ret = ret .. '|' .. linkData.displayName
+			end
+			ret = ret .. ']]'
 		end
-		ret = ret .. ']]'
 	end
 
 	return ret
@@ -125,9 +146,21 @@ function p.AddItem( itemCode )
 	add( 'item', itemCode )
 end
 
+-- @param {string} effectCode
+function p.AddEffect( effectCode )
+	add( 'statuseffect', effectCode )
+end
+
 -- @param {string} itemCode
+-- @param {table} renderOptions
 function p.GetItemLink( itemCode, renderOptions )
 	return getLink( 'item', itemCode, renderOptions )
+end
+
+-- @param {string} effectCode
+-- @param {table} renderOptions
+function p.GetEffectLink( effectCode, renderOptions )
+	return getLink( 'statuseffect', effectCode, renderOptions )
 end
 
 return p

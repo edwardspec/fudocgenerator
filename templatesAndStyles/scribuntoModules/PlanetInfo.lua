@@ -139,13 +139,23 @@ local function describeRegion( regionName, isPrimarySurface )
 	-- because status effects and weather from subbiomes are not applied.
 	if isPrimarySurface then
 		if info.statusEffects ~= '' then
-			ret = ret .. '\n* Status effects: ' .. string.gsub( info.statusEffects, ',', ', ' )
+			ret = ret .. '\n<h4>Status effects</h4>'
+
+			local effects = mw.text.split( info.statusEffects, ',' )
+			for _, effectCode in ipairs( effects ) do
+				LinkBatch.AddEffect( effectCode )
+			end
+
+			for _, effectCode in ipairs( effects ) do
+				ret = ret .. '\n* ' .. LinkBatch.GetEffectLink( effectCode, {
+					nolink = true,
+					icon = true
+				} )
+			end
 		end
 
-		-- TODO: this likely doesn't need to be show in the region (there should be "possible weathers" below instead),
-		-- and we should show the contents of weather pool (not just its name).
 		if info.weatherPools ~= '' then
-			ret = ret .. '\n<h4>Weather pools:</h4>'
+			ret = ret .. '\n<h4>Weather pools</h4>'
 
 			-- Because our Cargo database doesn't have planets like Unknown or Superdense (would be useless),
 			-- most planets won't have more than 1-2 primary biomes, so we can do 1 SQL query per each,
