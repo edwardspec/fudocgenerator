@@ -149,7 +149,8 @@ local function describeRegion( regionName, isPrimarySurface )
 			for _, effectCode in ipairs( effects ) do
 				ret = ret .. '\n* ' .. LinkBatch.GetEffectLink( effectCode, {
 					nolink = true,
-					icon = 'ifExists'
+					icon = 'ifExists',
+					allowUnknown = true
 				} )
 			end
 		end

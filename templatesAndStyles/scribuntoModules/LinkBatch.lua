@@ -96,8 +96,10 @@ local function lazyLoadGroup( cargoTable )
 end
 
 -- @param {string} get
--- @param {table} renderOptions Default: { icon = false, text = true, hideParentheses = true, iconWidth = "16px", nolink = false }
+-- @param {table} renderOptions
 -- @return {string}
+--
+--  Default options: { icon = false, text = true, hideParentheses = true, iconWidth = "16px", nolink = false, allowUnknown = false }
 local function getLink( cargoTable, id, renderOptions )
 	local renderOptions = renderOptions or {}
 	local group = getOrMakeGroup( cargoTable )
@@ -115,7 +117,12 @@ local function getLink( cargoTable, id, renderOptions )
 
 	if linkData.notFound then
 		-- Unknown item, etc.
-		return '<span class="error">Unknown ' .. cargoTable .. ': <code>' .. id .. '</code></span>'
+		if not renderOptions.allowUnknown then
+			return '<span class="error">Unknown ' .. cargoTable .. ': <code>' .. id .. '</code></span>'
+		end
+
+		-- Fallback
+		linkData = { displayName = id, wikiPage = id }
 	end
 
 	local filename = string.format( iconFilenameFormat[cargoTable], id )
