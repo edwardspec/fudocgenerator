@@ -135,6 +135,16 @@ local function describeRegion( regionName, isPrimarySurface )
 		ret = ret .. '\n* Cave liquid: ' .. showItemList( info.caveLiquidItems )
 	end
 
+	-- TODO: add image of every biome (if it exists).
+	ret = ret .. '\n[[File:Icewastewiki.jpg|250px]]\n'
+
+	if info.id == info.biome then
+		ret = ret .. '\n<small>biome/region ID: ' .. info.biome .. '</small>'
+	else
+		ret = ret .. '\n<small>biome ID: ' .. info.biome .. '<br>' ..
+			'region ID: ' .. info.id .. '</small>'
+	end
+
 	-- Show weather and status effects, but only for primary regions of Surface layer,
 	-- because status effects and weather from subbiomes are not applied.
 	if isPrimarySurface then
@@ -174,16 +184,6 @@ local function describeRegion( regionName, isPrimarySurface )
 				ret = ret .. "\n'''Type " .. index .. "'''\n" .. row.wikitext .. '\n'
 			end
 		end
-	end
-
-	-- TODO: add image of every biome (if it exists).
-	ret = ret .. '\n[[File:Icewastewiki.jpg|250px]]\n'
-
-	if info.id == info.biome then
-		ret = ret .. '\n<small>biome/region ID: ' .. info.biome .. '</small>'
-	else
-		ret = ret .. '\n<small>biome ID: ' .. info.biome .. '<br>' ..
-			'region ID: ' .. info.id .. '</small>'
 	end
 
 	ret = ret .. '\n'
