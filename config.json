@@ -468,7 +468,8 @@
 		"armorset": 4,
 		"codex": 3,
 		"monster": 4,
-		"planet": 8
+		"planet": 8,
+		"weather": 1
 	},
 
 	"@doc": "Maximum size (in kilobytes) of page with {{#cargo_store:}} directives. If the chunk exceeds that, it will be forcefully split with no regard for Consistent Hashing. MediaWiki is not optimized for handling large pages, so we must be responsible and keep this value relatively low.",

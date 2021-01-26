@@ -1,0 +1,10 @@
+<noinclude>{{#cargo_declare:
+_table = weatherpool
+|id = String
+|wikitext = Wikitext
+}}<noinclude>
+
+This table lists all known weather pools (from <code>weather.config</code>).
+
+[[Category:Cargo templates]]
+</noinclude>
