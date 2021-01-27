@@ -327,7 +327,8 @@
 		"magmamicroslime": "Magma Slime (Micro)",
 		"microslime": "Slime (Micro)",
 		"futinybee2": "Tiny Bee",
-		"fuhugebiped": "Mega-Fauna"
+		"fuhugebiped": "Mega-Fauna",
+		"shoggoth": "Shoggoth"
 	},
 
 	"@doc": "List of monster IDs to skip. For example, the mod uses \"fumooshi\" monster instead of vanilla \"mooshi\", so vanilla monster can be skipped.",
@@ -386,7 +387,8 @@
 		"helicultist",
 		"trifangle",
 		"mamalilodon",
-		"alienqueenminionspawn"
+		"alienqueenminionspawn",
+		"shoggoth2"
 	],
 
 	"@doc": "Map of biome ID to wikipage title. This is only needed for biomes with ambiguous names (e.g. there are two variants of Arboreal Underground: on Primeval and Volcanic Primeval planets).",
