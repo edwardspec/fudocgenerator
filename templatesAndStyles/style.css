@@ -1,4 +1,3 @@
-
 /* Styles for automatically generated documentation about extraction recipes */
 
 .recipe {
@@ -8,7 +7,6 @@
 }
 
 .recipe td {
-	width: 50%;
 	border: 1px solid #a2a9b1;
 	padding: 0.2em 0.4em;
 	vertical-align: top;
@@ -19,6 +17,7 @@
 
 .recipe-input {
 	background-color: #ccffcc;
+	width: 200px;
 }
 
 .recipe .selflink {
@@ -40,13 +39,14 @@
 .codex-text {
 	border-style: solid;
 	border-color: #c9c9c9;
-	padding: 10px;
+	padding: 20px;
 	max-width: 580px;
 	min-height: 20px;
+	font-size: 105%;
 }
 
-.codex-text #mw-collapsible-toggle {
-	float: none;
+.codex-text hr {
+	margin: 20px 0;
 }
 
 /* Redlinks to tag categories should be shown as normal links */
@@ -57,4 +57,12 @@
   min-width: 32px;
   min-height: 32px;
   object-fit: contain;
+}
+
+/* Make images like "Item_image_zerchbookcase.png" be at least 128x64px when in the infobox */
+.infobox img[src*="/Item_image"] {
+  min-width: 128px;
+  min-height: 64px;
+  object-fit: contain;
+  object-position: 0% 50%;
 }
