@@ -560,6 +560,7 @@
 		"thrownitem": "item",
 		"tillingtool": "item",
 		"treasurepools": "treasurepools",
+		"treasurechests": "config",
 		"weaponability": "ability",
 		"wiretool": "item",
 		"spawntypes": "spawntypes"
