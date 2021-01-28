@@ -21,6 +21,10 @@ module.exports = {
 		eqeqeq: 'off',
 		'no-loop-func': 'off', // Only matters for async callbacks, many false positives for synchronous.
 
+		// Default is { "destructuring": "any" }, which is annoying in "for ( let [ key, value ] of ... )" loops,
+		// where only one of key/value might be eligible for "const".
+		'prefer-const': [ 'error', { destructuring: 'all' } ],
+
 		// Necessary to skip, e.g. process.exit() may be necessary for linter.
 		'mediawiki/valid-package-file-require': 'off',
 		'no-console': 'off',
