@@ -239,7 +239,11 @@
 		"leadguitar": "Lead Guitar (instrument)",
 		"valkyriehelm": "Valkyrie Helm (cosmetic)",
 		"madnesstoken2": "Unknown Artifact (voxel)",
-		"dbladelong": "Tek Blade (two-handed)"
+		"dbladelong": "Tek Blade (two-handed)",
+		"device1": "Ancient Device (furniture)",
+		"metallicmachine3": "Data Storage (furniture)",
+		"raptorneststorage": "Raptor Nest (container)",
+		"invisiblelight": "Invisible Ship Light"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
