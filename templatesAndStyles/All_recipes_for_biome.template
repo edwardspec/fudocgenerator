@@ -1,0 +1,12 @@
+{{TOC right}}<!--
+-->{{#invoke: BiomeInfo|OnWhatPlanets|{{{1}}}}}<!--
+-->{{Recipes where item is|item=biome:{{{1}}}|role=inputs|header=Contents|noGroupHeaders=1}}<!--
+--><includeonly>{{#if: {{{nocat|}}}||[[Category:Biomes]]}}</includeonly><noinclude>
+This template shows ALL recipes where this Biome is a part of.
+
+Usage: <code><nowiki>{{All recipes for biome|garden}}</nowiki></code>, where <code>garden</code> is the ID of the biome.
+
+This information is obtained from Cargo database ([[Special:CargoTables/recipe|recipe]], [[Special:CargoTables/planet|planet]], [[Special:CargoTables/layer|layer]] and [[Special:CargoTables/region|region]] tables).
+
+[[Category:Cargo templates]]
+</noinclude>
