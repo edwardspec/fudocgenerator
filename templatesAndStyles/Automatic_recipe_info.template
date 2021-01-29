@@ -4,6 +4,7 @@ _table = recipe
 |inputs = List (,) of String
 |outputs = List (,) of String
 |wikitext = Wikitext
+|prio = Integer
 }}
 
 This table is used to automatically show "list of recipes that produce/need this item" on the item pages.
