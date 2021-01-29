@@ -1,0 +1,16 @@
+<noinclude>Shows '''biome infobox''' - top-right table with biome screenshot (uploaded by human editors) and "Found on planets" information (automatically gathered by the bot).
+
+Usage: <nowiki>{{Automatic infobox biome|garden}}</nowiki>, where <code>garden</code> is biome ID.
+
+Optional parameter <code>name</code> allows to override the header (default header is "Biome: (name of page where this infobox is used)"). For example, <nowiki>{{Automatic infobox biome|ffhive|name=Biome: Hive}}</nowiki>.
+
+[[Category:Cargo templates]]
+</noinclude><includeonly>
+{| class="infobox"
+{{Infobox/title| {{{name|Biome: {{PAGENAME}}}}} }}
+{{Infobox/line|1=<div class="placeholder-image">[[File:Biome image {{{1}}}.jpg|450px]]</div>}}
+{{Infobox/field|Found on planets| {{#invoke: BiomeInfo|OnWhatPlanets|{{{1}}}}} }}
+ |}
+<templatestyles src="PlanetInfo.css" /><!--
+-->{{#if: {{{notoc|}}}||{{TOC right}}}}<!--
+-->{{#if: {{{nocat|}}}||[[Category:Biomes]]}}</includeonly></includeonly>

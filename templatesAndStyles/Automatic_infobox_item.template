@@ -1,4 +1,4 @@
-<noinclude>Shows '''infobox''' (table with [Special:CargoTables/item|information about items]] that was automatically gathered by a bot.
+<noinclude>Shows '''infobox''' (table with [[Special:CargoTables/item|information about items]]) that was automatically gathered by a bot.
 
 Usage: <nowiki>{{Automatic infobox item|fu_carbon}}</nowiki>, where <code>fu_carbon</code> is item ID.
 

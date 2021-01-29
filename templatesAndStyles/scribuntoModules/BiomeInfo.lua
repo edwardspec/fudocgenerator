@@ -92,7 +92,7 @@ function p.OnWhatPlanets( frame )
 		end
 	end
 
-	return 'Found on planets: ' .. table.concat( links, ', ' ) .. '.'
+	return table.concat( links, ', ' )
 end
 
 return p
