@@ -135,8 +135,8 @@ local function describeRegion( regionName, isPrimarySurface )
 		ret = ret .. '\n* Cave liquid: ' .. showItemList( info.caveLiquidItems )
 	end
 
-	-- TODO: add image of every biome (if it exists).
-	ret = ret .. '\n[[File:Icewastewiki.jpg|250px]]\n'
+	-- Add image of every biome (if it exists), placeholder if it doesn't.
+	ret = ret .. '\n<div class="placeholder-image">[[File:Biome_image_' .. info.biome .. '.jpg|250px|alt=|]]</div>\n'
 
 	if info.id == info.biome then
 		ret = ret .. '\n<small>biome/region ID: ' .. info.biome .. '</small>'
@@ -149,7 +149,7 @@ local function describeRegion( regionName, isPrimarySurface )
 	-- because status effects and weather from subbiomes are not applied.
 	if isPrimarySurface then
 		if info.statusEffects ~= '' then
-			ret = ret .. '\n<h4>Status effects</h4>'
+			ret = ret .. '\n<h5>Status effects</h5>'
 
 			local effects = mw.text.split( info.statusEffects, ',' )
 			for _, effectCode in ipairs( effects ) do
@@ -166,7 +166,7 @@ local function describeRegion( regionName, isPrimarySurface )
 		end
 
 		if info.weatherPools ~= '' then
-			ret = ret .. '\n<h4>Weather pools</h4>'
+			ret = ret .. '\n<h5>Weather pools</h5>'
 
 			-- Because our Cargo database doesn't have planets like Unknown or Superdense (would be useless),
 			-- most planets won't have more than 1-2 primary biomes, so we can do 1 SQL query per each,
@@ -187,7 +187,7 @@ local function describeRegion( regionName, isPrimarySurface )
 	end
 
 	ret = ret .. '\n'
-	return '<div class="regioninfo" style="vertical-align: top; border: 1px solid #333; padding: 5px 2px 2px 5px; margin: 5px; display: inline-block; min-width: 260px; min-height: 100px;">' .. ret .. '</div>'
+	return '<div class="regioninfo">' .. ret .. '</div>'
 end
 
 -- Print information about planet and list all possible regions in all its layers.
@@ -218,6 +218,9 @@ function p.Main( frame )
 	if not nocat then
 		ret = ret .. '[[Category:Planets]]\n'
 	end
+
+	-- Add styles
+	ret = ret .. frame:extensionTag { name = 'templatestyles', args = { src = 'PlanetInfo.css' } }
 
 	-- Planets don't have enough information to need a full infobox.
 	-- (most of the specifics are in biome pages, not in planet pages)
@@ -275,14 +278,14 @@ function p.Main( frame )
 
 	batchLoadTheseRegions( mentionedRegions )
 
-	ret = ret .. '\n{| class="wikitable"\n! Layer\n! style="width:250px;" | Primary region\n! Secondary regions !! Dungeons'
+	ret = ret .. '\n{| class="wikitable planetlayers"\n! Layer\n! style="width:250px;" | Primary region\n! Secondary regions !! Dungeons'
 	for _, layerName in ipairs( OrderOfShownLayers ) do
 		local layerInfo = layerNameToInfo[layerName]
 
-		ret = ret .. '\n|-\n! style="vertical-align: top; font-size: 125%; font-weight: normal;" | ' .. mw.getContentLanguage():ucfirst( layerName )
+		ret = ret .. '\n|-\n! class="layername" | <h4>' .. mw.getContentLanguage():ucfirst( layerName ) .. '</h4>'
 		if not layerInfo then
 			-- Fallback for worlds that lack some layers.
-			ret  = ret .. '\n| colspan="3" style="text-align: center; font-style: italic;background-color: #eee;" | Nothing in this layer'
+			ret  = ret .. '\n| colspan="3" class="emptylayer" | Nothing in this layer'
 		else
 			ret = ret .. '\n| style="vertical-align: top;" | '
 			for _, regionName in ipairs( layerInfo.primaryRegion ) do

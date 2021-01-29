@@ -1,0 +1,48 @@
+/* Styles used by [[Module:PlanetInfo]] */
+
+/* For nonexistent images inside .placeholder-image,
+ * hide the text of redlink and instead show "Upload an image!" placeholder.
+ */
+.placeholder-image .new {
+	display: inline-block;
+	min-width: 250px;
+	min-height: 50px;
+	background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/UploadAnImageShort.svg/200px-UploadAnImageShort.svg.png') no-repeat;
+	background-position: center;
+	color: transparent;
+	font-size: 0;
+}
+
+.placeholder-image {
+	line-height: 0;
+}
+
+/* Block that surrounds each "possible region" card */
+.regioninfo {
+	vertical-align: top;
+	border: 1px solid #333;
+	padding: 5px 2px 2px 5px;
+	margin: 5px;
+	display: inline-block;
+	min-width: 260px;
+	min-height: 100px;
+}
+
+.layername {
+	vertical-align: top;
+	font-size: 125%;
+	font-weight: normal;
+}
+
+.planetlayers td,
+.planetlayers th {
+	vertical-align: top;
+}
+
+/* "Nothing in this layer" message */
+.planetlayers .emptylayer {
+	text-align: center;
+	font-style: italic;
+	background-color: #eee;
+	vertical-align: middle;
+}
