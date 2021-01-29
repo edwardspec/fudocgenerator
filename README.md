@@ -49,6 +49,7 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 - gather information about planets: possible biomes, daylight level, tier, gravity, etc.
 - ImageFinder: support image paths with parameters like "?flipx".
 - Infobox templates: add links to pages with similar names (e.g. page "Lobster (monster)" should automatically link to "Lobster" and "Lobster (decorative)", and vise versa) - this can be implemented by querying Cargo tables by item.wikiPage and monster.wikiPage fields.
+- if some recipe has aggressive and friendly spawntypes of the same monster (e.g. Mega-Fauna), then mark friendly ones as "(friendly)". Note: we can't do this in RecipeSide.addSpawnType() via quantityAttributes.subtype, because we don't want to show "(friendly)" subtype for monsters that are always friendly.
 - precreate missing pages about armor sets (assuming we need these pages).
 - support using 1 article for 2+ items, which is useful for vertical/horizontal and compact/non-compact wires (e.g. "Compact AND Gate"), as well as for items like "Human Flag (Prop Pack)".
 - support color codes in descriptions, etc. (like "^green;Some green text^reset;")
