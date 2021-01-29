@@ -1,7 +1,9 @@
-{{TOC right}}<!--
+<templatestyles src="PlanetInfo.css" /><!--
+--><includeonly>{{TOC right}}<!--
 -->{{#invoke: BiomeInfo|OnWhatPlanets|{{{1}}}}}<!--
+--><div class="placeholder-image">[[File:Biome_image_{{{1}}}.jpg|thumb|500px|left|alt=|]]</div><br clear="left"/><!--
 -->{{Recipes where item is|item=biome:{{{1}}}|role=inputs|header=Contents|noGroupHeaders=1}}<!--
---><includeonly>{{#if: {{{nocat|}}}||[[Category:Biomes]]}}</includeonly><noinclude>
+-->{{#if: {{{nocat|}}}||[[Category:Biomes]]}}</includeonly><noinclude>
 This template shows ALL recipes where this Biome is a part of.
 
 Usage: <code><nowiki>{{All recipes for biome|garden}}</nowiki></code>, where <code>garden</code> is the ID of the biome.

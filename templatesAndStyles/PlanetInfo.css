@@ -1,4 +1,4 @@
-/* Styles used by [[Module:PlanetInfo]] */
+/* Styles used by [[Module:PlanetInfo]] and [[Template:All recipes for biome]] */
 
 /* For nonexistent images inside .placeholder-image,
  * hide the text of redlink and instead show "Upload an image!" placeholder.
@@ -15,6 +15,10 @@
 
 .placeholder-image {
 	line-height: 0;
+}
+
+.placeholder-image .thumbinner {
+	min-width: 250px;
 }
 
 /* Block that surrounds each "possible region" card */
