@@ -10,6 +10,7 @@ Optional parameter <code>name</code> allows to override the header (default head
 {{Infobox/title| {{{name|Biome: {{PAGENAME}}}}} }}
 {{Infobox/line|1=<div class="placeholder-image">[[File:Biome image {{{1}}}.jpg|450px]]</div>}}
 {{Infobox/field|Found on planets| {{#invoke: BiomeInfo|OnWhatPlanets|{{{1}}}}} }}
+{{Infobox/field|ID| {{{1}}} }}
  |}
 <templatestyles src="PlanetInfo.css" /><!--
 -->{{#if: {{{notoc|}}}||{{TOC right}}}}<!--
