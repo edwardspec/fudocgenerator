@@ -1,0 +1,11 @@
+{{#invoke: PlanetInfo|Main}}<noinclude>
+This template shows all automatically gathered information about a planet: its layers, tier, non-default gravity, etc.
+
+Note that it doesn't show contents of the primary biome (see {{tl|All recipes for biome}} instead).
+
+Usage: <code><nowiki>{{All recipes for planet|garden}}</nowiki></code>, where <code>garden</code> is the ID of the planet (same as in <code>terrestrial_worlds.config.patch</code>).
+
+This information is obtained from Cargo tables [[Special:CargoTables/planet]], [[Special:CargoTables/layer]], [[Special:CargoTables/region]] and [[Special:CargoTables/biome]].
+
+[[Category:Cargo templates]]
+</noinclude>
