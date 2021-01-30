@@ -35,6 +35,14 @@ local OrderOfCraftingStations = {
 		'Autopsy Table',
 		'Psionic Amplifier'
 	} },
+	{ 'Exploration', {
+		'Biome blocks',
+		'Biome chests',
+		'Biome monsters',
+		'Biome objects',
+		'Drops from breakable objects',
+		'Treasure pool'
+	} },
 	{ 'Environment', {
 		'Liquid Collector',
 		'Atmospheric Condenser',
@@ -53,8 +61,7 @@ local OrderOfCraftingStations = {
 		'Moth Trap',
 		'Moth Trap II',
 		'Lobster Trap',
-		'Pest Trap',
-		'Treasure pool'
+		'Pest Trap'
 	} }
 }
 
@@ -120,11 +127,6 @@ function p.RecipesWhereItemIs( frame )
 
 	-- Perform a SQL query to the Cargo database.
 	local where = role .. ' HOLDS ' .. ' "' .. itemId .. '"'
-	if not string.match( itemId, '^biome:' ) then
-		-- Temporary (until biome pages are ready): hide recipes like "biome -> blocks" on non-biome pages.
-		where = where .. ' AND inputs__full NOT LIKE "biome:%"'
-	end
-
 	local rows = cargo.query( 'recipe', 'station,wikitext', {
 		where = where,
 		limit = 5000
