@@ -474,7 +474,8 @@
 	"ignoredBiomes": [
 		"ffbonecaves",
 		"futentaclet10",
-		"lunarbase"
+		"lunarbase",
+		"shoggothbiome"
 	],
 
 	"@doc": "These items will be recognized, but won't get an article.",
