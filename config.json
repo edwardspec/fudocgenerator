@@ -580,7 +580,9 @@
 		"treasurechests": "config",
 		"weaponability": "ability",
 		"wiretool": "item",
-		"spawntypes": "spawntypes"
+		"spawntypes": "spawntypes",
+		"modularstem": "stem",
+		"modularfoliage": "foliage"
 	},
 
 	"@doc": "It true, then assets with unknown extensions (not in extensionToAssetType) will also be loaded. This is useless for generate.js, but can be needed in linter scripts, etc.",
