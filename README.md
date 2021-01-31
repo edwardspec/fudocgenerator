@@ -44,7 +44,6 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 
 ### TODO (things to improve)
 
-- some vanilla biomes have "subRegion" array in terrestial_worlds.config (regions), we must add those regions to layers alongside their parent region.
 - gather status effects for food and other consumables.
 - automatically gather information of which biomes have which trees and ores.
 - gather daylight level of planets.
