@@ -44,9 +44,10 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 
 ### TODO (things to improve)
 
+- some vanilla biomes have "subRegion" array in terrestial_worlds.config (regions), we must add those regions to layers alongside their parent region.
 - gather status effects for food and other consumables.
-- automatically gather information of which biomes have which plants, seeds, ores, etc.
-- gather information about planets: possible biomes, daylight level, tier, gravity, etc.
+- automatically gather information of which biomes have which trees and ores.
+- gather daylight level of planets.
 - ImageFinder: support image paths with parameters like "?flipx".
 - Infobox templates: add links to pages with similar names (e.g. page "Lobster (monster)" should automatically link to "Lobster" and "Lobster (decorative)", and vise versa) - this can be implemented by querying Cargo tables by item.wikiPage and monster.wikiPage fields.
 - if some recipe has aggressive and friendly spawntypes of the same monster (e.g. Mega-Fauna), then mark friendly ones as "(friendly)". Note: we can't do this in RecipeSide.addSpawnType() via quantityAttributes.subtype, because we don't want to show "(friendly)" subtype for monsters that are always friendly.
