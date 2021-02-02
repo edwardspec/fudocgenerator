@@ -624,6 +624,6 @@
 	"@doc": "Console command to invoke convert. We use it in \"prepare_uploads.js\" to cut sprites into individual images.",
 	"imageMagickConvertCommand": "convert",
 
-	"@doc": "List of MediaWiki namespace numbers that must be supported by WikiStatusCache.pageExists(). For each of them [update_status_cache.js] will download the list of all pages there. Currently we need: articles (NS_MAIN=0), files (NS_FILE=6), categories (NS_CATEGORY=14) and TreasurePool namespace (3000).",
-	"namespacesForPageExistsCache": [ 0, 6, 14, 3000 ]
+	"@doc": "List of MediaWiki namespace numbers that must be supported by WikiStatusCache.pageExists(). For each of them [update_status_cache.js] will download the list of all pages there. Currently we need: articles (0), files (6), templates (10), categories (14) and TreasurePool namespace (3000).",
+	"namespacesForPageExistsCache": [ 0, 6, 10, 14, 3000 ]
 }
