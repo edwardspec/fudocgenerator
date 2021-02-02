@@ -138,11 +138,13 @@ local function describeRegion( regionName, isPrimarySurface )
 	-- Add image of every biome (if it exists), placeholder if it doesn't.
 	ret = ret .. '\n<div class="placeholder-image">[[File:Biome_image_' .. info.biome .. '.jpg|250px|alt=|]]</div>\n'
 
-	if info.id == info.biome then
+	-- Strip suffix like ":2" or ":3" from pseudo-regions like "core:2" (for regions that have 2+ biomes).
+	local regionCode = string.gsub( info.id, ':.+', '' )
+	if regionCode == info.biome then
 		ret = ret .. '\n<small>biome/region ID: ' .. info.biome .. '</small>'
 	else
 		ret = ret .. '\n<small>biome ID: ' .. info.biome .. '<br>' ..
-			'region ID: ' .. info.id .. '</small>'
+			'region ID: ' .. regionCode .. '</small>'
 	end
 
 	-- Show weather and status effects, but only for primary regions of Surface layer,

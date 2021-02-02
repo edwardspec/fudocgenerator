@@ -44,7 +44,6 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 
 ### TODO (things to improve)
 
-- handle some vanilla planetary regions (e.g. "deepunderground" or "core") having more than one biome, where the possible biome(s) depend on the planet tier.
 - don't use config.ignoredMonsters to skip vanilla monsters that were replaced by FU monsters (e.g. fufluffalo/fluffalo), because vanilla monsters can still be in "biome -> monsters" recipes, rendering them incorrect if these monsters are missing from MonsterDatabase. Instead, introduce config.identicalMonsters, which would translate Recipe.addMonster('fluffalo') into adding "fufluffalo", etc.
 - logging: suppress "unknown item" log errors about wild seeds and other purposely ignored items. Instead have 1 log entry with the list of all ignored items that were searched for, and another log entry for ignored items that weren't found (to detect typos in config.ignoredItems, etc.).
 - add item code of captured insect items (e.g. Tidefly) into itemCodes of Recipe, so that their "biome -> monsters" recipes would be shown in "How to obtain" sections for "captured insect" item.
