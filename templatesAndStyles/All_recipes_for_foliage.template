@@ -1,0 +1,11 @@
+{{All recipes for item|id=foliage:{{{1}}}|nostation=1}}<!--
+
+--><noinclude>
+This template shows ALL recipes where this tree foliage (which defines the top part of the tree) is a part of.
+
+Usage: <code><nowiki>{{All recipes for foliage|steamspring}}</nowiki></code>, where <code>steamspring</code> is ID of the foliage.
+
+This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
+
+[[Category:Cargo templates]]
+</noinclude>

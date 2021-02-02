@@ -41,6 +41,8 @@ local OrderOfCraftingStations = {
 		'Biome monsters',
 		'Biome objects',
 		'Drops from breakable objects',
+		'Biome trees',
+		'Drops from trees',
 		'Treasure pool'
 	} },
 	{ 'Environment', {

@@ -11,7 +11,7 @@
 
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, PlanetDatabase,
 	BiomeDatabase, MonsterDatabase, RegionDatabase, WeatherPoolDatabase, StatusEffectDatabase,
-	ResultsWriter, TreasurePoolDatabase, util } = require( './lib' );
+	ResultsWriter, TreasurePoolDatabase, SaplingDatabase, util } = require( './lib' );
 
 /* -------------------------------------------------------------------------------------------- */
 
@@ -90,6 +90,10 @@ WeatherPoolDatabase.forEach( ( weatherPool ) => {
 
 StatusEffectDatabase.forEach( ( statusEffect ) => {
 	ResultsWriter.writeStatusEffect( statusEffect );
+} );
+
+SaplingDatabase.forEach( ( saplingPart ) => {
+	ResultsWriter.writeSaplingPart( saplingPart );
 } );
 
 ResultsWriter.finalize();

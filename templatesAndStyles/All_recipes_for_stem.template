@@ -1,0 +1,11 @@
+{{All recipes for item|id=stem:{{{1}}}|nostation=1}}<!--
+
+--><noinclude>
+This template shows ALL recipes where this tree stem (which defines the bottom part of the tree) is a part of.
+
+Usage: <code><nowiki>{{All recipes for stem|steamspring}}</nowiki></code>, where <code>steamspring</code> is ID of the stem.
+
+This information is obtained from [[Special:CargoTables/recipe|Cargo database]].
+
+[[Category:Cargo templates]]
+</noinclude>
