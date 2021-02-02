@@ -1,6 +1,7 @@
-{{All recipes for item|id=foliage:{{{1}}}|nostation=1}}<!--
-
---><noinclude>
+{{TOC right}}<!--
+-->{{Recipes where item is|item=foliage:{{{1}}}|role=inputs|header=Used for|noGroupHeaders=1}}<!--
+-->{{Recipes where item is|item=foliage:{{{1}}}|role=outputs|header=How to obtain}}<!--
+--><includeonly>{{#if: {{{nocat|}}}||[[Category:Tree foliage]]}}</includeonly><noinclude>
 This template shows ALL recipes where this tree foliage (which defines the top part of the tree) is a part of.
 
 Usage: <code><nowiki>{{All recipes for foliage|steamspring}}</nowiki></code>, where <code>steamspring</code> is ID of the foliage.

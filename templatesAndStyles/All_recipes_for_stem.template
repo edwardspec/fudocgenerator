@@ -1,4 +1,7 @@
-{{All recipes for item|id=stem:{{{1}}}|nostation=1}}<!--
+{{TOC right}}<!--
+-->{{Recipes where item is|item=stem:{{{1}}}|role=inputs|header=Used for|noGroupHeaders=1}}<!--
+-->{{Recipes where item is|item=stem:{{{1}}}|role=outputs|header=How to obtain}}<!--
+--><includeonly>{{#if: {{{nocat|}}}||[[Category:Tree stems]]}}</includeonly><!--
 
 --><noinclude>
 This template shows ALL recipes where this tree stem (which defines the bottom part of the tree) is a part of.
