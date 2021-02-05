@@ -21,7 +21,7 @@ local OrderOfShownLayers = {
 -- @return {table} Database row.
 local function queryPlanet( planetType )
 	local tables = 'planet'
-	local fields = 'name,minTier,maxTier,minGravity,maxGravity,minDayLight,maxDayLight,id'
+	local fields = 'name,stars,minTier,maxTier,minGravity,maxGravity,minDayLight,maxDayLight,id'
 	local queryOpt = {
 		where = 'id="' .. planetType .. '"',
 		limit = 1
@@ -246,6 +246,8 @@ function p.Main( frame )
 			ret = ret .. ' - ' .. row.maxDayLight
 		end
 	end
+
+	ret = ret .. '\n* <b>Found around stars</b>: ' .. string.gsub( row.stars, ',', ', ' )
 
 	-- Find all layers
 	ret = ret .. '\n<h3>Layers</h3>'
