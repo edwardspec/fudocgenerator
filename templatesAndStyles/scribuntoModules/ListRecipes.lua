@@ -14,6 +14,7 @@ local OrderOfCraftingStations = {
 		'Hydraulic Dynamo',
 		'Fission Reactor',
 		'Small Fusion Reactor',
+		'Large Fusion Reactor',
 		'Quantum Reactor',
 		'Precursor Reactor'
 	} },
