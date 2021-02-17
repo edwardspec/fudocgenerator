@@ -25,7 +25,7 @@ function p.OnWhatPlanets( frame )
 	local fields
 	local queryOpt = {
 		join = 'layer.primaryRegion HOLDS region.id',
-		where = 'region.biome="' .. biomeCode .. '"'
+		where = 'region.biome="' .. biomeCode .. '" AND planet IS NOT NULL'
 	}
 
 	-- First find the planets where this is a primary biome.
@@ -40,8 +40,10 @@ function p.OnWhatPlanets( frame )
 	queryOpt.join = 'layer.secondaryRegions HOLDS region.id'
 
 	for _, row in ipairs( cargo.query( tables, fields, queryOpt ) or {} ) do
-		local competitors = mw.text.split( row.competitors, ',' )
-		possiblePlanets[row.planet] = #competitors
+		if row.competitors then
+			local competitors = mw.text.split( row.competitors, ',' )
+			possiblePlanets[row.planet] = #competitors
+		end
 	end
 
 	-- Remove an empty row that Cargo queries with HOLDS might create when they find nothing.
