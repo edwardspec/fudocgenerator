@@ -5,7 +5,7 @@ local cargo = mw.ext.cargo
 -- @param {string} commaSeparatedTitles
 -- @return {string}
 local function showPageLinks( commaSeparatedTitles )
-	if commaSeparatedTitles == '' then
+	if not commaSeparatedTitles then
 		return ''
 	end
 
@@ -47,7 +47,7 @@ function p.ListAllSets()
 		'!! Set bonus !! Total price\n'
 
 	for _, row in ipairs( rows ) do
-		ret = ret .. '|-\n|' .. row.tier .. '||' .. row.rarity ..
+		ret = ret .. '|-\n|' .. ( row.tier or '' ) .. '||' .. row.rarity ..
 			'||' .. showPageLinks( row.headPage ) ..
 			'||' .. showPageLinks( row.chestPage ) ..
 			'||' .. showPageLinks( row.legsPage ) ..

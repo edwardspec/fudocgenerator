@@ -78,7 +78,7 @@ local function batchLoadTheseRegions( regionsToLoad )
 	end
 
 	for _, info in ipairs( queryRegions( uniqueRegionNames ) ) do
-		if info.oceanLiquid ~= '' then
+		if info.oceanLiquid then
 			info.oceanLiquidItems = mw.text.split( info.oceanLiquid, ',' )
 
 			-- Remember the mentioned liquids, they will be used in batchLoadTheseItemLinks().
@@ -87,7 +87,7 @@ local function batchLoadTheseRegions( regionsToLoad )
 			end
 		end
 
-		if info.caveLiquid ~= '' then
+		if info.caveLiquid then
 			info.caveLiquidItems = mw.text.split( info.caveLiquid, ',' )
 
 			for _, liquid in ipairs( info.caveLiquidItems ) do
@@ -150,7 +150,7 @@ local function describeRegion( regionName, isPrimarySurface )
 	-- Show weather and status effects, but only for primary regions of Surface layer,
 	-- because status effects and weather from subbiomes are not applied.
 	if isPrimarySurface then
-		if info.statusEffects ~= '' then
+		if info.statusEffects then
 			ret = ret .. '\n<h5>Status effects</h5>'
 
 			local effects = mw.text.split( info.statusEffects, ',' )
@@ -167,7 +167,7 @@ local function describeRegion( regionName, isPrimarySurface )
 			end
 		end
 
-		if info.weatherPools ~= '' then
+		if info.weatherPools then
 			ret = ret .. '\n<h5>Weather pools</h5>'
 
 			-- Because our Cargo database doesn't have planets like Unknown or Superdense (would be useless),
@@ -233,14 +233,14 @@ function p.Main( frame )
 		ret = ret .. ' - ' .. row.maxTier
 	end
 
-	if row.minGravity ~= '' then
+	if row.minGravity then
 		ret = ret .. '\n* <b>Gravity</b>: ' .. row.minGravity
 		if row.minGravity ~= row.maxGravity then
 			ret = ret .. ' - ' .. row.maxGravity
 		end
 	end
 
-	if row.minDayLight ~= '' then
+	if row.minDayLight then
 		ret = ret .. '\n* <b>Light level (day)</b>: ' .. row.minDayLight
 		if row.minDayLight ~= row.maxDayLight then
 			ret = ret .. ' - ' .. row.maxDayLight
@@ -255,13 +255,13 @@ function p.Main( frame )
 	local mentionedRegions = {} -- { "regionName1": true, ... }
 	local layerNameToInfo = {} -- { "surface: { ... }, "subsurface": { ... }, ... }
 	for _, layerInfo in ipairs( queryAllLayers( planetType ) ) do
-		if layerInfo.primaryRegion == '' then
+		if not layerInfo.primaryRegion then
 			layerInfo.primaryRegion = {}
 		else
 			layerInfo.primaryRegion = mw.text.split( layerInfo.primaryRegion, ',' )
 		end
 
-		if layerInfo.secondaryRegions == '' then
+		if not layerInfo.secondaryRegions then
 			layerInfo.secondaryRegions = {}
 		else
 			layerInfo.secondaryRegions = mw.text.split( layerInfo.secondaryRegions, ',' )
@@ -302,7 +302,7 @@ function p.Main( frame )
 			end
 
 			ret = ret .. '\n| style="vertical-align: top;" | '
-			for _, dungeonName in ipairs( mw.text.split( layerInfo.dungeons, ',' ) ) do
+			for _, dungeonName in ipairs( mw.text.split( layerInfo.dungeons or '', ',' ) ) do
 				ret = ret .. '\n* ' .. dungeonName
 			end
 		end
