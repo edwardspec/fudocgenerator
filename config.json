@@ -260,7 +260,8 @@
 		"rainforestchest2": "Rainforest Chest (black)",
 		"cavechest": "Rock Chest (container)",
 		"precursortinyswitchkey": "Tiny Keyed Screen (switch)",
-		"toxicwasteback": "Toxic Waste (cosmetic backpack)"
+		"toxicwasteback": "Toxic Waste (cosmetic backpack)",
+		"burrowerrang": "Burrower (weapon)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
