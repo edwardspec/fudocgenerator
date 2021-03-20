@@ -383,10 +383,8 @@
 		"squidbeastnodrop",
 		"pandorasboxerchlingspawn",
 		"pandorasboxqueennocttop",
-		"chiropterror",
 		"omnicannon2",
 		"futwigunboss",
-		"omnicannon",
 		"gorillaking",
 		"minishoggothold",
 		"minishoggoth2",
@@ -412,6 +410,12 @@
 		"alienqueenminionspawn",
 		"shoggoth2"
 	],
+
+	"@doc": "List of monster IDs to treat as identical. For example, the mod adds \"fumooshi\" monster as a replacement of vanilla \"mooshi\" (to avoid mod conflicts), but it also patches vanilla \"mooshi\" to have the same parameters, because some vanilla biomes still use \"mooshi\". In this situation it's safe to show (in recipes, etc.) that these biomes have \"fumooshi\", even if they technically have \"mooshi\".",
+	"identicalMonsters": {
+		"chiropterror": "fuchiropterror",
+		"omnicannon": "fuomnicannon"
+	},
 
 	"@doc": "Map of biome ID to wikipage title. This is only needed for biomes with ambiguous names (e.g. there are two variants of Arboreal Underground: on Primeval and Volcanic Primeval planets).",
 	"overrideBiomePageTitles": {
