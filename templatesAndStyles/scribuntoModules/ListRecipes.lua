@@ -68,6 +68,11 @@ local OrderOfCraftingStations = {
 	} }
 }
 
+-- Optional text to add between the station header (e.g. "Extraction Lab") and the text of recipes.
+local ExtraTextBeforeRecipesOfStation = {
+	['Extraction Lab'] = "''These extractions work with [[Hand Mill]] too.''"
+}
+
 -- Print the "Items crafted here" section for a crafting station. (based on [[Special:CargoTables/recipe]])
 -- Usage: {{#invoke: ListRecipes|RecipesCraftedAt|Human-readable name of crafting station}}
 -- Optional parameters:
@@ -159,7 +164,9 @@ function p.RecipesWhereItemIs( frame )
 			local recipes = stationNameToRecipes[stationName]
 
 			if recipes then
-				sectionText = sectionText .. '<h4>[[' .. stationName .. ']]</h4>' .. table.concat( recipes )
+				sectionText = sectionText .. '<h4>[[' .. stationName .. ']]</h4>' ..
+					( ExtraTextBeforeRecipesOfStation[stationName] or '' ) ..
+					table.concat( recipes )
 
 				-- Remove this station from "stationNameToRecipes" list. The only stations that will remain
 				-- are those not listed in OrderOfCraftingStations (they will be handled below).
