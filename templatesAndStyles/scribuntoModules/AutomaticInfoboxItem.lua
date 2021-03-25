@@ -258,7 +258,7 @@ function p.Main( frame )
 	end
 
 	-- Remove "+N Fuel" from description, because we show "Ship fuel" as a separate row (see below).
-	local description = string.gsub( row.description, '%s+%+%d+ Fuel', '' )
+	local description = string.gsub( row.description or '', '%s+%+%d+ Fuel', '' )
 
 	ret = ret .. frame:expandTemplate{ title = 'infobox/title', args = { row.name } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/line', args = { description } }
