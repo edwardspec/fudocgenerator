@@ -164,9 +164,14 @@ function p.RecipesWhereItemIs( frame )
 			local recipes = stationNameToRecipes[stationName]
 
 			if recipes then
-				sectionText = sectionText .. '<h4>[[' .. stationName .. ']]</h4>' ..
-					( ExtraTextBeforeRecipesOfStation[stationName] or '' ) ..
-					table.concat( recipes )
+				local extraTextBefore = ExtraTextBeforeRecipesOfStation[stationName] or ''
+				if extraTextBefore ~= '' then
+					-- Must wrap this text in <div>,
+					-- otherwise Extension:Description2 would write it into the description <meta> tag.
+					extraTextBefore = '<div>' .. extraTextBefore .. '</div>'
+				end
+
+				sectionText = sectionText .. '<h4>[[' .. stationName .. ']]</h4>' .. extraTextBefore .. table.concat( recipes )
 
 				-- Remove this station from "stationNameToRecipes" list. The only stations that will remain
 				-- are those not listed in OrderOfCraftingStations (they will be handled below).
