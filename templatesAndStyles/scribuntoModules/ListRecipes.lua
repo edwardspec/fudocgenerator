@@ -208,9 +208,9 @@ function p.RecipesWhereItemIs( frame )
 		-- "Crafting" header is only needed for items that also have extraction recipes, etc.
 		-- Many items have ONLY crafting recipes, and we don't need to show this header for them.
 		if ret ~= '' then
-			ret = ret .. '<h3>Crafting</h3>'
+			craftingRecipes = '<h3>Crafting</h3>' .. craftingRecipes
 		end
-		ret = ret .. craftingRecipes
+		ret = craftingRecipes .. ret
 	end
 
 	return '<h2>' .. header .. '</h2>' .. ret
