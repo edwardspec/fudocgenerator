@@ -15,6 +15,12 @@ const { ItemDatabase } = require( '../lib' );
 var wordToFilenames = new Map();
 
 ItemDatabase.forEach( ( itemCode, item ) => {
+	var asset = item.asset;
+	if ( asset.vanilla && !asset.patched ) {
+		// Skip vanilla assets that are not patched by the mod.
+		return;
+	}
+
 	// TODO: possibly add monster description, codex text, etc.
 	var stringsToCheck = [
 		item.description
@@ -30,7 +36,7 @@ ItemDatabase.forEach( ( itemCode, item ) => {
 			wordToFilenames.set( word, filenames );
 		}
 
-		filenames.add( item.asset.filename );
+		filenames.add( asset.filename );
 	} );
 } );
 
