@@ -3,7 +3,8 @@ local cargo = mw.ext.cargo
 
 -- Stations will be in this order and these subsections in the results of RecipesWhereItemIs().
 local OrderOfCraftingStations = {
-	{ nil, {
+	-- These stations are shown before the "Crafting" section:
+	{ '', {
 		'Growing Tray',
 		'Incubator',
 		'Upgrade crafting station'
@@ -18,6 +19,11 @@ local OrderOfCraftingStations = {
 		'Quantum Reactor',
 		'Precursor Reactor'
 	} },
+
+	-- "Crafting" section is autopopulated with all stations that are not listed in other subsections.
+	{ 'Crafting', {} },
+
+	-- These stations will be shown AFTER the "Crafting" section:
 	{ 'Extractions', {
 		'Honey Extractor',
 		'Extraction Lab',
@@ -155,7 +161,9 @@ function p.RecipesWhereItemIs( frame )
 	end
 
 	-- Print all per-station subheaders in correct order.
-	local ret = ''
+	local sectionToWikitext = {} -- E.g. { "Reactor fuel": "text1" }, { "Extractions": "text2" }, ... }
+	local hasNonCraftingRecipes = false -- Set to true if at least 1 non-crafting recipe is found.
+
 	for _, stationsGroup in ipairs( OrderOfCraftingStations ) do
 		local sectionHeader, stationNames = unpack( stationsGroup )
 
@@ -176,16 +184,11 @@ function p.RecipesWhereItemIs( frame )
 				-- Remove this station from "stationNameToRecipes" list. The only stations that will remain
 				-- are those not listed in OrderOfCraftingStations (they will be handled below).
 				stationNameToRecipes[stationName] = nil
+				hasNonCraftingRecipes = true
 			end
 		end
 
-		if sectionText ~= '' then
-			if sectionHeader and not noGroupHeaders then
-				ret = ret .. '<h3>' .. sectionHeader .. '</h3>'
-			end
-
-			ret = ret .. sectionText
-		end
+		sectionToWikitext[sectionHeader] = sectionText
 	end
 
 	-- Additionally print recipes of all stations that weren't in "OrderOfCraftingStations" array.
@@ -205,15 +208,26 @@ function p.RecipesWhereItemIs( frame )
 			craftingRecipes = craftingRecipes .. '<h4>[[' .. stationName .. ']]</h4>' .. table.concat( recipes )
 		end
 
-		-- "Crafting" header is only needed for items that also have extraction recipes, etc.
-		-- Many items have ONLY crafting recipes, and we don't need to show this header for them.
-		if ret ~= '' then
-			craftingRecipes = '<h3>Crafting</h3>' .. craftingRecipes
-		end
-		ret = craftingRecipes .. ret
+		sectionToWikitext['Crafting'] = craftingRecipes
 	end
 
-	return '<h2>' .. header .. '</h2>' .. ret
+	local ret = '<h2>' .. header .. '</h2>'
+	for _, stationsGroup in ipairs( OrderOfCraftingStations ) do
+		local sectionHeader = unpack( stationsGroup )
+		local sectionText = sectionToWikitext[sectionHeader]
+
+		if sectionText ~= '' then
+			-- "Crafting" header is only needed for items that also have extraction recipes, etc.
+			-- Many items have ONLY crafting recipes, and we don't need to show this header for them.
+			if not noGroupHeaders and sectionHeader ~= '' and not ( sectionHeader == 'Crafting' and not hasNonCraftingRecipes ) then
+				ret = ret .. '<h3>' .. sectionHeader .. '</h3>'
+			end
+
+			ret = ret .. sectionText
+		end
+	end
+
+	return ret
 end
 
 return p
