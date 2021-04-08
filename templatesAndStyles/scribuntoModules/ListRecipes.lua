@@ -76,7 +76,7 @@ local OrderOfCraftingStations = {
 
 -- Optional text to add between the station header (e.g. "Extraction Lab") and the text of recipes.
 local ExtraTextBeforeRecipesOfStation = {
-	['Extraction Lab'] = "''These extractions work with [[Hand Mill]] too.''"
+	['Extraction Lab'] = "''or [[Hand Mill]]''"
 }
 
 -- Print the "Items crafted here" section for a crafting station. (based on [[Special:CargoTables/recipe]])
