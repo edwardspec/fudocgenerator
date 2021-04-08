@@ -179,7 +179,15 @@ function p.RecipesWhereItemIs( frame )
 					extraTextBefore = '<div>' .. extraTextBefore .. '</div>'
 				end
 
-				sectionText = sectionText .. '<h4>[[' .. stationName .. ']]</h4>' .. extraTextBefore .. table.concat( recipes )
+				local joinedRecipes = table.concat( recipes )
+				if stationName == 'Treasure pool' and header == 'How to obtain' then
+					-- Hide the treasure pools until the user clicks "Show" button.
+					-- These sections are often extremely long, and people need to read them far less often than other sections.
+					joinedRecipes = '<div class="mw-collapsible mw-collapsed toccolours" style="width:450px; min-height:2em;">' ..
+						joinedRecipes .. '</div>'
+				end
+
+				sectionText = sectionText .. '<h4>[[' .. stationName .. ']]</h4>' .. extraTextBefore .. joinedRecipes
 
 				-- Remove this station from "stationNameToRecipes" list. The only stations that will remain
 				-- are those not listed in OrderOfCraftingStations (they will be handled below).
