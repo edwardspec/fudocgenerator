@@ -183,7 +183,7 @@ function p.RecipesWhereItemIs( frame )
 				if stationName == 'Treasure pool' and header == 'How to obtain' then
 					-- Hide the treasure pools until the user clicks "Show" button.
 					-- These sections are often extremely long, and people need to read them far less often than other sections.
-					joinedRecipes = '<div class="mw-collapsible mw-collapsed toccolours treasurepool" style="width:450px; min-height:2em;">' ..
+					joinedRecipes = '<div class="mw-collapsible mw-collapsed toccolours treasurepool">' ..
 						joinedRecipes .. '</div>'
 				end
 
