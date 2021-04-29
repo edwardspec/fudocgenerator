@@ -10,7 +10,7 @@ Usage:
 
 ### Using with pywikibot to automatically create/update pages
 
-`generate.py` creates an import file for Pywikibot (see https://www.mediawiki.org/wiki/Manual:Pywikibot/pagefromfile.py for details).
+`generate.js` creates an import file for Pywikibot (see https://www.mediawiki.org/wiki/Manual:Pywikibot/pagefromfile.py for details).
 
 You can use Pywikibot in the following way to autocreate pages:
 ```bash
