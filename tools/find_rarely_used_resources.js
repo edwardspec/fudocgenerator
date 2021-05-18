@@ -9,6 +9,11 @@ const { ItemDatabase, RecipeDatabase } = require( '../lib' );
 var itemCodeToUses = new Map();
 
 RecipeDatabase.forEach( ( recipe ) => {
+	if ( [ 'Extraction Lab', 'Extraction Lab MKII', 'Quantum Extractor' ].includes( recipe.station ) ) {
+		// Ignore extractors.
+		return;
+	}
+
 	recipe.inputs.getItemCodes().forEach( ( itemCode ) => {
 		var count = itemCodeToUses.get( itemCode ) || 0;
 		itemCodeToUses.set( itemCode, count + 1 );
