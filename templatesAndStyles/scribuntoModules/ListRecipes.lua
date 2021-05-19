@@ -17,7 +17,8 @@ local OrderOfCraftingStations = {
 		'Small Fusion Reactor',
 		'Large Fusion Reactor',
 		'Quantum Reactor',
-		'Precursor Reactor'
+		'Precursor Reactor',
+		'Neuro-Psionic Generator'
 	} },
 
 	-- "Crafting" section is autopopulated with all stations that are not listed in other subsections.
