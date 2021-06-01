@@ -8,6 +8,7 @@ Usage: <code><nowiki>{{ItemPageCategory|in-game category}}</nowiki></code>
 
 [[Category:Cargo templates]]
 </noinclude><includeonly>{{#switch: {{{1|}}}
+| actionFigure = [[Category:Figurines]]
 | armcannon = [[Category:Arm cannons]]
 | artifact = [[Category:Artifacts]]
 | assaultRifle = [[Category:Assault rifles]]
@@ -34,7 +35,7 @@ Usage: <code><nowiki>{{ItemPageCategory|in-game category}}</nowiki></code>
 | crossbow = [[Category:Crossbows]]
 | currency|resourceItem = [[Category:Currency]]
 | dagger = [[Category:Daggers]]
-| decorative|breakable|pot|decoration = [[Category:Decorative items]]
+| decorative|breakable|pot|decoration|Decoration = [[Category:Decorative items]]
 | door = [[Category:Doors]]
 | drink = [[Category:Drinks]]
 | energy = [[Category:Energy weapons]]
@@ -70,6 +71,7 @@ Usage: <code><nowiki>{{ItemPageCategory|in-game category}}</nowiki></code>
 | musicalInstrument = [[Category:Musical instruments]]
 | mysteriousReward|Now just $19.95! = [[Category:Mysterious rewards]]
 | other|generic = [[Category:Other items]]
+| petbed = [[Category:Pet beds]]
 | petCollar = [[Category:Pet collars]]
 | petfood = [[Category:Pet food]]
 | pistol|Pistol = [[Category:Pistols]]
