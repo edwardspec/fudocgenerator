@@ -259,7 +259,16 @@
 		"cavechest": "Rock Chest (container)",
 		"precursortinyswitchkey": "Tiny Keyed Screen (switch)",
 		"toxicwasteback": "Toxic Waste (cosmetic backpack)",
-		"burrowerrang": "Burrower (weapon)"
+		"burrowerrang": "Burrower (weapon)",
+		"nightardagger:2": "Peerless Nightar Blade (dagger)",
+		"nightardagger:3": "Legendary Nightar Blade (dagger)",
+		"electricslimetendrils3:2": "Electric Slime Tendrils IV",
+		"fireslimetendrils3:2": "Fire Slime Tendrils IV",
+		"iceslimetendrils3:2": "Ice Slime Tendrils IV",
+		"impactslimetendrils3:2": "Impact Slime Tendrils IV",
+		"poisonslimetendrils3:2": "Poison Slime Tendrils IV",
+		"slimetendrils3:2": "Slime Tendrils IV",
+		"burrowerrang:2": "Giant Worm (FU)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
@@ -281,13 +290,15 @@
 		"fissionfurnacenew",
 		"stonemace2",
 		"mysterioustrashbag",
-		"cavedetector"
+		"cavedetector",
+		"mobiusrifle2"
 	],
 
 	"@doc": "List of item IDs of pseudo-items (such as stages of upgradeable crafting stations) that should be skipped.",
 	"ignoredUpgrades": [
 		"crewshop:2",
-		"soluskatana:2"
+		"soluskatana:2",
+		"xithricitescythe:2"
 	],
 
 	"@doc": "Map of monster ID to wikipage title. This is only needed for monsters with ambiguous names (e.g. ice/fire/poison/electric baby fluffalos are all called Fluffalo Calf).",
