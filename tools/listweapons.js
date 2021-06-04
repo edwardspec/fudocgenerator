@@ -5,7 +5,7 @@
 'use strict';
 
 const process = require( 'process' ),
-	{ ItemDatabase, util } = require( '../lib' );
+	{ ItemDatabase, RemoveBadSymbols, util } = require( '../lib' );
 
 var mode;
 switch ( process.argv[2] ) {
@@ -54,7 +54,7 @@ console.log( '<!-- Buildscript items: ' + buildscriptItems.length + ' -->' );
 console.log( '{| class="wikitable sortable"\n!Tier\n!ID\n!Name\n!Price\n!Price multiplied by tier-based multiplier\n!Price at tier 8' );
 
 for ( var item of buildscriptItems ) {
-	var line = '|-\n|' + ( item.level || '?' ) + ' || ' + item.itemName + ' || [[' + util.cleanDescription( item.shortdescription ) + ']] ';
+	var line = '|-\n|' + ( item.level || '?' ) + ' || ' + item.itemName + ' || [[' + RemoveBadSymbols.fromName( item.shortdescription ) + ']] ';
 
 	if ( item.level === undefined ) {
 		line += '|| ' + item.price + ' || ? || ?';
