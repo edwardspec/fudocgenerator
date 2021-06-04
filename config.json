@@ -284,6 +284,11 @@
 		"cavedetector"
 	],
 
+	"@doc": "List of item IDs of pseudo-items (such as stages of upgradeable crafting stations) that should be skipped.",
+	"ignoredUpgrades": [
+		"soluskatana:2"
+	],
+
 	"@doc": "Map of monster ID to wikipage title. This is only needed for monsters with ambiguous names (e.g. ice/fire/poison/electric baby fluffalos are all called Fluffalo Calf).",
 	"overrideMonsterPageTitles": {
 		"electricfluffalobaby": "Electric Fluffalo Calf",
