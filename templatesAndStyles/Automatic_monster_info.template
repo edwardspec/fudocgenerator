@@ -4,21 +4,21 @@ _table = monster
 |name = String
 |wikiPage = Page
 |description = String
-|capturable = Boolean
+|capturable = String
 <!-- Stats -->
-|health = Float
-|protection = Float
+|health = String
+|protection = String
 <!-- Touch damage -->
-|damage = Float
+|damage = String
 <!-- Resistances -->
-|physical = Integer
-|radioactive = Integer
-|poison = Integer
-|electric = Integer
-|fire = Integer
-|ice = Integer
-|cosmic = Integer
-|shadow = Integer
+|physical = String
+|radioactive = String
+|poison = String
+|electric = String
+|fire = String
+|ice = String
+|cosmic = String
+|shadow = String
 }}
 
 This table describes monsters (including non-hostile ones like [[Farm Beasts]]), as described in <code>*.monstertype</code> files.

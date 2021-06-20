@@ -2,8 +2,8 @@
 _table = statuseffect
 |id = String
 |name = String
-|defaultDuration = Float
-|hasIcon = Boolean
+|defaultDuration = String
+|hasIcon = String
 }}<noinclude>
 
 This table lists all known status effects.

@@ -1,9 +1,9 @@
 <noinclude>{{#cargo_declare:
 _table = armorset
 |id = String
-|tier = Float
+|tier = String
 |rarity = String
-|price = Integer
+|price = String
 |setBonus = String
 |head = List (,) of String
 |headPage = List (,) of Page

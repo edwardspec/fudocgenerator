@@ -3,12 +3,12 @@ _table = planet
 |id = String
 |name = String
 |stars = List (,) of String
-|minTier = Float
-|maxTier = Float
-|minGravity = Integer
-|maxGravity = Integer
-|minDayLight = Float
-|maxDayLight = Float
+|minTier = String
+|maxTier = String
+|minGravity = String
+|maxGravity = String
+|minDayLight = String
+|maxDayLight = String
 }}<noinclude>
 
 This table lists all types of planets.
