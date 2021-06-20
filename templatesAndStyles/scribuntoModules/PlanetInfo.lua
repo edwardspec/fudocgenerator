@@ -303,7 +303,9 @@ function p.Main( frame )
 
 			ret = ret .. '\n| style="vertical-align: top;" | '
 			for _, dungeonName in ipairs( mw.text.split( layerInfo.dungeons, ',' ) ) do
-				ret = ret .. '\n* ' .. dungeonName
+				if dungeonName ~= '' then
+					ret = ret .. '\n* ' .. dungeonName
+				end
 			end
 		end
 	end
