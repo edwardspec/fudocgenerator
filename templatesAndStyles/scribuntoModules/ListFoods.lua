@@ -68,6 +68,11 @@ function p.ListAllFoods()
 		local row = itemNameToRow[itemName]
 		local extraInfo = metadata[row.id] or {}
 
+		local stackSize = row.stackSize
+		if stackSize == '' then
+			stackSize = '1'
+		end
+
 		local rottingInfo = noRottingInfo
 		if extraInfo.foodValue then -- Food without foodValue won't rot.
 			rottingInfo = describeRotting( extraInfo ) or defaultRottingInfo
@@ -83,7 +88,7 @@ function p.ListAllFoods()
 			'||' .. row.category ..
 			'||' .. row.rarity ..
 			'||' .. row.price ..
-			'||' .. ( row.stackSize or '1' ) .. '\n'
+			'||' .. stackSize .. '\n'
 	end
 
 	ret = ret .. '\n|}'

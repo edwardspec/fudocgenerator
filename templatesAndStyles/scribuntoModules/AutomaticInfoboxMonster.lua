@@ -1,6 +1,20 @@
 local p = {}
 local cargo = mw.ext.cargo
 
+local statDefaults = {
+	health = 1,
+	protection = 0,
+	damage = 0,
+	physical = 0,
+	radioactive = 0,
+	poison = 0,
+	electric = 0,
+	fire = 0,
+	ice = 0,
+	cosmic = 0,
+	shadow = 0
+}
+
 -- Perform a SQL query to "monster" table in the Cargo database (see Special:CargoTables/monster).
 -- @param {string} monsterId
 -- @return {table} Database row.
@@ -14,6 +28,13 @@ local function queryMonster( monsterId )
 	local row = ( cargo.query( tables, fields, queryOpt ) or {} )[1]
 	if not row then
 		return nil
+	end
+
+	-- Add default values for stats.
+	for fieldName, defaultValue in pairs( statDefaults ) do
+		if row[fieldName] == '' then
+			row[fieldName] = defaultValue
+		end
 	end
 
 	return row
@@ -83,15 +104,15 @@ function p.Main( frame )
 
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
 		'[[File:Health icon.png|24px|left|link=|alt=]] Health',
-		row.health or '1'
+		row.health
 	} }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
 		'[[File:Defence icon.png|24px|left|link=|alt=]] Defense',
-		row.protection or '0'
+		row.protection
 	} }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
 		'[[File:Damage icon.png|24px|left|link=|alt=]] Touch damage',
-		row.damage or '0'
+		row.damage
 	} }
 
 	-- TODO: move inline CSS into TemplateStyles or something
@@ -99,14 +120,14 @@ function p.Main( frame )
 	local resistEnd = '</span> '
 
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Resistances',
-		resistBegin .. '[[File:Physical (Attack).png|24px|link=|Physical resistance|alt=Physical]]&nbsp;' .. ( row.physical or '0' ) .. resistEnd ..
-		resistBegin .. '[[File:Radioactive (Attack).png|24px|link=|Radioactive resistance|alt=Radioactive]]&nbsp;' .. ( row.radioactive or '0' ) .. resistEnd ..
-		resistBegin .. '[[File:Poison (Attack).png|24px|link=|Poison resistance|alt=Poison]]&nbsp;' .. ( row.poison or '0' ) .. resistEnd ..
-		resistBegin .. '[[File:Electric (Attack).png|24px|link=|Electric resistance|alt=Electric]]&nbsp;' .. ( row.electric or '0' ) .. resistEnd ..
-		resistBegin .. '[[File:Fire (Attack).png|24px|link=|Fire resistance|alt=Fire]]&nbsp;' .. ( row.fire or '0' ) .. resistEnd ..
-		resistBegin .. '[[File:Frost (Attack).png|24px|link=|Ice resistance|alt=Ice]]&nbsp;' .. ( row.ice or '0' ) .. resistEnd ..
-		resistBegin .. '[[File:Cosmic (Attack).png|24px|link=|Cosmic resistance|alt=Cosmic]]&nbsp;' .. ( row.cosmic or '0' ) .. resistEnd ..
-		resistBegin .. '[[File:Shadow (Attack).png|24px|link=|Shadow resistance|alt=Shadow]]&nbsp;' .. ( row.shadow or '0' ) .. resistEnd
+		resistBegin .. '[[File:Physical (Attack).png|24px|link=|Physical resistance|alt=Physical]]&nbsp;' .. row.physical .. resistEnd ..
+		resistBegin .. '[[File:Radioactive (Attack).png|24px|link=|Radioactive resistance|alt=Radioactive]]&nbsp;' .. row.radioactive .. resistEnd ..
+		resistBegin .. '[[File:Poison (Attack).png|24px|link=|Poison resistance|alt=Poison]]&nbsp;' .. row.poison .. resistEnd ..
+		resistBegin .. '[[File:Electric (Attack).png|24px|link=|Electric resistance|alt=Electric]]&nbsp;' .. row.electric .. resistEnd ..
+		resistBegin .. '[[File:Fire (Attack).png|24px|link=|Fire resistance|alt=Fire]]&nbsp;' .. row.fire .. resistEnd ..
+		resistBegin .. '[[File:Frost (Attack).png|24px|link=|Ice resistance|alt=Ice]]&nbsp;' .. row.ice .. resistEnd ..
+		resistBegin .. '[[File:Cosmic (Attack).png|24px|link=|Cosmic resistance|alt=Cosmic]]&nbsp;' .. row.cosmic .. resistEnd ..
+		resistBegin .. '[[File:Shadow (Attack).png|24px|link=|Shadow resistance|alt=Shadow]]&nbsp;' .. row.shadow .. resistEnd
 	} }
 
 	-- Monster ID is last, because very few people need it
