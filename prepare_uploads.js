@@ -11,7 +11,8 @@
 const { ImageFinder, ItemDatabase, RecipeDatabase, ResearchTreeDatabase, MonsterDatabase,
 	StatusEffectDatabase, AssetDatabase, WikiStatusCache, config, util } = require( './lib' );
 
-const fs = require( 'fs' );
+const fs = require( 'fs' ),
+	cliProgress = require( 'cli-progress' );
 
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -24,6 +25,8 @@ fs.mkdirSync( outputPath + '/onlyNew', { recursive: true } );
 
 /* ----------------------------------------------------------------------------------------------- */
 
+// Queue used by prepareUpload().
+var uploadsToPrepare = [];
 
 /**
  * @param {string} targetTitle Name of File: page in the wiki, e.g. "Item_icon_ironore.png".
@@ -33,7 +36,7 @@ fs.mkdirSync( outputPath + '/onlyNew', { recursive: true } );
 function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
 	if ( !relativePath ) {
 		// No image. We check this here for convenience (to call prepareUpload() on keys
-		// like item.inventoryIcon or node.icon without double-checking presence of these keys.
+		// like item.inventoryIcon or node.icon without double-checking presence of these keys).
 		return;
 	}
 
@@ -42,13 +45,8 @@ function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
 	// (this is necessary for pseudo-items like "prototyper:3").
 	targetTitle = targetTitle.replace( ' ', '_' ).replace( ':', '.' );
 
-	var absolutePath = ImageFinder.locateImage( relativePath, relativeToAsset );
-	if ( absolutePath ) {
-		fs.symlinkSync( absolutePath, outputPath + '/all/' + targetTitle );
-		if ( !WikiStatusCache.pageExists( 'File:' + targetTitle ) ) {
-			fs.symlinkSync( absolutePath, outputPath + '/onlyNew/' + targetTitle );
-		}
-	}
+	// Delay processing until we know the total number of images (necessary to show a progress bar).
+	uploadsToPrepare.push( [ targetTitle, relativePath, relativeToAsset ] );
 }
 
 // Iterate over every item that has at least 1 Recipe.
@@ -102,4 +100,26 @@ for ( var [ weatherCode, weatherInfo ] of Object.entries( displayWeathers ) ) {
 // Upload images of status effects.
 StatusEffectDatabase.forEach( ( effect ) => {
 	prepareUpload( 'Status_icon_' + effect.name + '.png', effect.icon );
+} );
+
+// Process all images that were previously queued by prepareUpload().
+var progressBar = new cliProgress.Bar( {
+	stopOnComplete: true,
+	barsize: 20,
+	format: '[{bar}] {percentage}% | {value}/{total} | {target}'
+} );
+progressBar.start( uploadsToPrepare.length, 0, { target: '' } );
+
+uploadsToPrepare.forEach( ( task ) => {
+	var [ targetTitle, relativePath, relativeToAsset ] = task;
+
+	progressBar.increment( { target: targetTitle } );
+
+	var absolutePath = ImageFinder.locateImage( relativePath, relativeToAsset );
+	if ( absolutePath ) {
+		fs.symlinkSync( absolutePath, outputPath + '/all/' + targetTitle );
+		if ( !WikiStatusCache.pageExists( 'File:' + targetTitle ) ) {
+			fs.symlinkSync( absolutePath, outputPath + '/onlyNew/' + targetTitle );
+		}
+	}
 } );
