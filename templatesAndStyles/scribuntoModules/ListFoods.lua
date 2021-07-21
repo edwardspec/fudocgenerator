@@ -7,11 +7,11 @@ local describeRotting = require( 'Module:AutomaticInfoboxItem' ).DescribeRotting
 -- Usage: {{#invoke: ListFoods|ListAllFoods}}
 function p.ListAllFoods()
 	-- Perform a SQL query to the Cargo database.
-	local tables = 'item,recipe'
+	local tables = 'recipe,item'
 	local fields = 'wikiPage,description,category,rarity,price,stackSize,id,station,wikitext'
 	local queryOpt = {
-		join = 'recipe.outputs__full=item.id',
-		where = 'category IN ("food", "preparedFood", "drink", "medicine") AND station<>"Plating Table"',
+		join = 'recipe.outputs HOLDS item.id',
+		where = 'category IN ("food", "preparedFood", "drink", "medicine") AND station NOT IN ("Plating Table", "Monster drops", "Monster drops (hunting)", "Treasure pool", "Drops from breakable objects")',
 		limit = 5000
 	}
 	local itemRecipeRows = cargo.query( tables, fields, queryOpt ) or {}
