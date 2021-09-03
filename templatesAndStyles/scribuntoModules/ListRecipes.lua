@@ -69,7 +69,7 @@ local OrderOfCraftingStations = {
 		'Monster drops',
 		'Monster drops (hunting)',
 		'Moth Trap',
-		'Moth Trap II',
+		'Moth Trap (Large)',
 		'Lobster Trap',
 		'Pest Trap'
 	} }
