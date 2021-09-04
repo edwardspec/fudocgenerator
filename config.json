@@ -621,6 +621,9 @@
 		]
 	},
 
+	"@doc": "Link to GitHub repositor. Used for external links to some assets (such as OGG music files).",
+	"githubLink": "https://github.com/sayterdarkwynd/FrackinUniverse",
+
 	"@doc": "Names of weapon abilities that are so trivial/evident (e.g. Bow Shot for primary of most bows) that there is no benefit in mentioning their name as Special Ability in the infobox. These names won't be included into the Cargo database.",
 	"trivialWeaponAbilities": [
 		"Bow Shot",
