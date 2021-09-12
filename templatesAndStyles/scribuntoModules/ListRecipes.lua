@@ -59,7 +59,7 @@ local OrderOfCraftingStations = {
 		'Well',
 		'Wooden Water Tower',
 		'Water Generator',
-		'Xian Well'
+		'X\'ian Well'
 	} },
 	{ 'Animals', {
 		'Apiary',
