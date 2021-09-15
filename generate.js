@@ -11,7 +11,7 @@
 
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, PlanetDatabase,
 	BiomeDatabase, MonsterDatabase, RegionDatabase, WeatherPoolDatabase, StatusEffectDatabase,
-	ResultsWriter, TreasurePoolDatabase, SaplingDatabase, util } = require( './lib' );
+	ResultsWriter, TreasurePoolDatabase, SaplingDatabase, BotUpdatedPages, util } = require( './lib' );
 
 /* -------------------------------------------------------------------------------------------- */
 
@@ -94,6 +94,10 @@ StatusEffectDatabase.forEach( ( statusEffect ) => {
 
 SaplingDatabase.forEach( ( saplingPart ) => {
 	ResultsWriter.writeSaplingPart( saplingPart );
+} );
+
+BotUpdatedPages.forEach( ( page ) => {
+	ResultsWriter.overwritePage( page.getTitle(), page.getText() );
 } );
 
 ResultsWriter.finalize();
