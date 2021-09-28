@@ -6,7 +6,7 @@ local cargo = mw.ext.cargo
 function p.ListAllTenants()
 	-- Perform a SQL query to the Cargo database.
 	local tables = 'tenant'
-	local fields = 'name,tagsWikitext'
+	local fields = 'name,tagsWikitext,rentPool'
 	local queryOpt = {
 		limit = 5000,
 		orderBy = 'name'
@@ -16,10 +16,11 @@ function p.ListAllTenants()
 	-- Show a table of all tenants
 	-- Resistances must be in the same order as displayed in-game.
 	local ret = '{| class="wikitable sortable"\n' ..
-		'|-\n! Tenant !! Requirements\n'
+		'|-\n! Tenant !! Requirements !! Rent\n'
 
 	for _, row in ipairs( rows ) do
-		ret = ret .. '|-\n|' .. row.name .. '||' .. row.tagsWikitext .. '\n'
+		ret = ret .. '|-\n|' .. row.name .. '||' .. row.tagsWikitext ..
+			'|| [[TreasurePool:' .. row.rentPool .. '|' .. row.rentPool .. ']]\n'
 	end
 
 	ret = ret .. '\n|}'

@@ -4,6 +4,7 @@ _table = tenant
 |name = String
 |tags = List (,) of String
 |tagsWikitext = String
+|rentPool = String
 }}<noinclude>
 
 This table lists all known tenants.
