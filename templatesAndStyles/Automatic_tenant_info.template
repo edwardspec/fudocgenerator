@@ -1,0 +1,14 @@
+<noinclude>{{#cargo_declare:
+_table = tenant
+|id = String
+|name = String
+|tags = List (,) of String
+|tagsWikitext = String
+}}<noinclude>
+
+This table lists all known tenants.
+: `tags` is a machine-readable list of [[:Category:Items by colony tag|colony tags]] that are necessary to summon this tenant. (this list doesn't include quantities)
+: `tagsWikitext` is a human-readable list of tags, including the needed quantities and a wikitext link to ColonyTag categories.
+
+[[Category:Cargo templates]]
+</noinclude>

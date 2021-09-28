@@ -507,7 +507,8 @@
 		"monster": 4,
 		"planet": 8,
 		"weather": 1,
-		"status": 4
+		"status": 4,
+		"tenant": 1
 	},
 
 	"@doc": "Maximum size (in kilobytes) of page with {{#cargo_store:}} directives. If the chunk exceeds that, it will be forcefully split with no regard for Consistent Hashing. MediaWiki is not optimized for handling large pages, so we must be responsible and keep this value relatively low.",
@@ -587,6 +588,7 @@
 		"recipe": "recipe",
 		"species": "species",
 		"statuseffect": "statuseffect",
+		"tenant": "tenant",
 		"thrownitem": "item",
 		"tillingtool": "item",
 		"treasurepools": "treasurepools",
