@@ -31,7 +31,7 @@ function p.ListAllTenants( frame )
 		'|-\n! Tenant !! Requirements !! Rent\n'
 
 	for _, row in ipairs( rows ) do
-		ret = ret .. '|-\n|' .. row.name .. '||' .. row.tagsWikitext ..
+		ret = ret .. '|-\n| <span id="' .. row.name .. '">' .. row.name .. '</span> ||' .. row.tagsWikitext ..
 			'|| [[TreasurePool:' .. row.rentPool .. '|' .. row.rentPool .. ']]\n'
 	end
 
