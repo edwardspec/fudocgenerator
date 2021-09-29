@@ -3,7 +3,7 @@ _table = tenant
 |id = String
 |name = String
 |tags = List (,) of String
-|tagsWikitext = String
+|tagsWikitext = Wikitext
 |rentPool = String
 }}<noinclude>
 
