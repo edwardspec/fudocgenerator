@@ -1,0 +1,7 @@
+<noinclude>
+This template is included into item categories like [[:Category:ColonyTag:glitch]]. It shows a list of tenants that require this colony tag.
+
+Usage: <code><nowiki>{{ColonyTagCategory|glitch}}</nowiki></code>, where <code>glitch</code> is a colony tag.
+
+</noinclude>{{#invoke: ListTenants|ListAllTenants|{{{1}}}}}
+[[Category:Items by colony tag|{{{1|?}}}]]
