@@ -41,6 +41,7 @@ local OrderOfCraftingStations = {
 		'Liquid Mixer',
 		'Xeno Research Lab',
 		'Erchius Converter',
+		'Faulty Erchius Converter',
 		'Autopsy Table',
 		'Psionic Amplifier'
 	} },
