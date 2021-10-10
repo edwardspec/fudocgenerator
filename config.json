@@ -393,7 +393,6 @@
 		"futinybeered2",
 		"squidbeastnodrop",
 		"pandorasboxerchlingspawn",
-		"pandorasboxqueennocttop",
 		"omnicannon2",
 		"futwigunboss",
 		"gorillaking",
@@ -429,7 +428,8 @@
 		"electricfluffalo": "fuelectricfluffalo",
 		"firefluffalo": "fufirefluffalo",
 		"icefluffalo": "fuicefluffalo",
-		"poisonfluffalo": "fupoisonfluffalo"
+		"poisonfluffalo": "fupoisonfluffalo",
+		"pandorasboxqueennocttop": "pandorasboxadultnocttop"
 	},
 
 	"@doc": "Map of biome ID to wikipage title. This is only needed for biomes with ambiguous names (e.g. there are two variants of Arboreal Underground: on Primeval and Volcanic Primeval planets).",
