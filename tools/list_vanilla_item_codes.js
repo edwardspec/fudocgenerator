@@ -8,7 +8,12 @@ var { ItemDatabase } = require( '../lib' );
 
 var itemCodesUnsorted = [];
 ItemDatabase.forEach( ( itemCode, item ) => {
-	if ( item.asset.vanilla ) {
+	if ( itemCode.includes( ':' ) ) {
+		// Pseudo-item (e.g. a stage of multi-stage crafting stations)
+		return;
+	}
+
+	if ( item.asset.vanilla || item.asset.overwrittenVanilla ) {
 		itemCodesUnsorted.push( itemCode );
 	}
 } );
