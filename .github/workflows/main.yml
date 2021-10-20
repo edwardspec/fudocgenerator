@@ -1,0 +1,13 @@
+name: eslint
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build-eslint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: RUN -- npm test
+        run: |
+          npm install
+          npm test
