@@ -49,7 +49,6 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 - add item code of captured insect items (e.g. Tidefly) into itemCodes of Recipe, so that their "biome -> monsters" recipes would be shown in "How to obtain" sections for "captured insect" item.
 - gather status effects for food and other consumables.
 - automatically gather information of which biomes have which ores (and at which tier).
-- gather daylight level of planets.
 - gather brightness (and/or color) of light sources like Torch and Candle.
 - ImageFinder: support image paths with parameters like "?flipx".
 - Infobox templates: add links to pages with similar names (e.g. page "Lobster (monster)" should automatically link to "Lobster" and "Lobster (decorative)", and vise versa) - this can be implemented by querying Cargo tables by item.wikiPage and monster.wikiPage fields.
