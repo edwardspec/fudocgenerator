@@ -46,7 +46,6 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 
 - fix handling of item pages where item name contains single quote symbols ('), which have a special meaning for Pywikibot.
 - logging: suppress "unknown item" log errors about wild seeds and other purposely ignored items. Instead have 1 log entry with the list of all ignored items that were searched for, and another log entry for ignored items that weren't found (to detect typos in config.ignoredItems, etc.).
-- add item code of captured insect items (e.g. Tidefly) into itemCodes of Recipe, so that their "biome -> monsters" recipes would be shown in "How to obtain" sections for "captured insect" item.
 - gather status effects for food and other consumables.
 - automatically gather information of which biomes have which ores (and at which tier).
 - gather brightness (and/or color) of light sources like Torch and Candle.
