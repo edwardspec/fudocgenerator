@@ -54,6 +54,5 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 - if some recipe has aggressive and friendly spawntypes of the same monster (e.g. Mega-Fauna), then mark friendly ones as "(friendly)". Note: we can't do this in RecipeSide.addSpawnType() via quantityAttributes.subtype, because we don't want to show "(friendly)" subtype for monsters that are always friendly.
 - precreate missing pages about armor sets (assuming we need these pages).
 - support using 1 article for 2+ items, which is useful for vertical/horizontal and compact/non-compact wires (e.g. "Compact AND Gate"), as well as for items like "Human Flag (Prop Pack)".
-- support color codes in descriptions, etc. (like "^green;Some green text^reset;")
 - guess maxStack for items that don't have it listed, but which have understandable maxStack? (e.g. 1000 for all blocks and liquids)
 - consider storing all templates/styles in "templatesAndStyles" category as one Pywikibot import file? Reasons: 1) it's becoming increasingly inconvenient to keep them in sync in-wiki and in the Git repository, 2) some templates have "/" in their name, which can't be a part of filename (and is currently substrituted by "_"), meaning that pagename and filename are not always the same.
