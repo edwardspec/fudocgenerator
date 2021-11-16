@@ -4,7 +4,10 @@
 
 'use strict';
 
-var { ItemDatabase } = require( '../lib' );
+var { config, ItemDatabase } = require( '../lib' );
+
+// Don't skip any items.
+config.ignoredItems = [];
 
 var itemCodesUnsorted = [];
 ItemDatabase.forEach( ( itemCode, item ) => {
