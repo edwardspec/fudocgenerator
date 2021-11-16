@@ -48,6 +48,7 @@ local OrderOfCraftingStations = {
 	{ 'Exploration', {
 		'Biome blocks',
 		'Biome chests',
+		'Biome fish',
 		'Biome monsters',
 		'Biome objects',
 		'Drops from breakable objects',
@@ -68,6 +69,7 @@ local OrderOfCraftingStations = {
 		'Bee Refuge',
 		'Bug House',
 		'Farm Beasts',
+		'Fishing',
 		'Monster drops',
 		'Monster drops (hunting)',
 		'Moth Trap',
