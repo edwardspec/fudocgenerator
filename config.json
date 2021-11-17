@@ -418,7 +418,8 @@
 		"mamalilodon",
 		"alienqueenminionspawn",
 		"shoggoth2",
-		"seedspawn"
+		"seedspawn",
+		"dolphin2"
 	],
 
 	"@doc": "List of monster IDs to treat as identical. For example, the mod adds \"fumooshi\" monster as a replacement of vanilla \"mooshi\" (to avoid mod conflicts), but it also patches vanilla \"mooshi\" to have the same parameters, because some vanilla biomes still use \"mooshi\". In this situation it's safe to show (in recipes, etc.) that these biomes have \"fumooshi\", even if they technically have \"mooshi\".",
