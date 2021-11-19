@@ -14,9 +14,6 @@ module.exports = {
 		ecmaVersion: 11
 	},
 	rules: {
-		// This must be fixed.
-		'no-use-before-define': 'off',
-
 		// Might enable this later.
 		eqeqeq: 'off',
 		'no-loop-func': 'off', // Only matters for async callbacks, many false positives for synchronous.

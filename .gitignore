@@ -2,3 +2,4 @@ node_modules
 debug.log
 RESULT
 schemaversion.txt
+.eslintcache
