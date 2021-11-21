@@ -101,10 +101,12 @@ TenantDatabase.forEach( ( tenant ) => {
 	ResultsWriter.writeTenant( tenant );
 } );
 
+FunctionsDatabase.forEach( ( func ) => {
+	ResultsWriter.writeFunction( func );
+} );
+
 BotUpdatedPages.forEach( ( page ) => {
 	ResultsWriter.overwritePage( page.getTitle(), page.getText() );
 } );
-
-ResultsWriter.writeToCargo( FunctionsDatabase );
 
 ResultsWriter.finalize();
