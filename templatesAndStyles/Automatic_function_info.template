@@ -3,6 +3,7 @@ _table = function
 |id = String
 |param = Float
 |value = Float
+|derivative = Float
 }}<noinclude>
 
 This table lists all known scaling functions (e.g. from <code>leveling/levelingmultipliers.functions</code>) of type <code>linear/clamp</code>.
