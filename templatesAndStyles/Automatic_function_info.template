@@ -1,0 +1,13 @@
+<noinclude>{{#cargo_declare:
+_table = function
+|id = String
+|param = Float
+|value = Float
+}}<noinclude>
+
+This table lists all known scaling functions (e.g. from <code>leveling/levelingmultipliers.functions</code>) of type <code>linear/clamp</code>.
+
+The only other type of functions is  <code>linear/warp</code>, and we don't need them for now.
+
+[[Category:Cargo templates]]
+</noinclude>
