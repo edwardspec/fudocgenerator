@@ -116,9 +116,10 @@ end
 
 -- Based on information about planetary region, return wikitext that describes this region.
 -- @param {string} Name of region. This must have been passed to batchLoadTheseRegions() earlier.
--- @param {string} isPrimarySurface True if we we need to show weather and status effects.
+-- @param {bool} isPrimarySurface True if we we need to show weather and status effects.
+-- @param {bool} withImages True if biome screenshots should be shown.
 -- @return {string}
-local function describeRegion( regionName, isPrimarySurface )
+local function describeRegion( regionName, isPrimarySurface, withImages )
 	local info = regionNameToInfo[regionName]
 	if not info then
 		return '<div style="display: inline-block; margin: 5px;"><span class="error">Unknown region: <code>' ..
@@ -136,7 +137,9 @@ local function describeRegion( regionName, isPrimarySurface )
 	end
 
 	-- Add image of every biome (if it exists), placeholder if it doesn't.
-	ret = ret .. '\n<div class="placeholder-image">[[File:Biome_image_' .. info.biome .. '.jpg|250px|alt=|]]</div>\n'
+	if withImages then
+		ret = ret .. '\n<div class="placeholder-image">[[File:Biome_image_' .. info.biome .. '.jpg|250px|alt=|]]</div>\n'
+	end
 
 	-- Strip suffix like ":2" or ":3" from pseudo-regions like "core:2" (for regions that have 2+ biomes).
 	local regionCode = string.gsub( info.id, ':.+', '' )
@@ -205,6 +208,7 @@ function p.Main( frame )
 
 	local planetType = args[1] or 'nosuchplanet'
 	local nocat = args['nocat'] or false
+	local withImages = not ( planetType == 'superdense' or planetType == 'ffunknown' )
 
 	-- Perform a SQL query to the Cargo database (see Special:CargoTables/planet).
 	local row = queryPlanet( planetType )
@@ -252,6 +256,10 @@ function p.Main( frame )
 	-- Find all layers
 	ret = ret .. '\n<h3>Layers</h3>'
 
+	if not withImages then
+		ret = ret .. '\n<i>Screenshots not shown (too many biomes).</i>'
+	end
+
 	local mentionedRegions = {} -- { "regionName1": true, ... }
 	local layerNameToInfo = {} -- { "surface: { ... }, "subsurface": { ... }, ... }
 	for _, layerInfo in ipairs( queryAllLayers( planetType ) ) do
@@ -293,12 +301,12 @@ function p.Main( frame )
 		else
 			ret = ret .. '\n| style="vertical-align: top;" | '
 			for _, regionName in ipairs( layerInfo.primaryRegion ) do
-				ret = ret .. describeRegion( regionName, layerName == 'surface' )
+				ret = ret .. describeRegion( regionName, layerName == 'surface', withImages )
 			end
 
 			ret = ret .. '\n| style="vertical-align: top;" | '
 			for _, regionName in ipairs( layerInfo.secondaryRegions ) do
-				ret = ret .. describeRegion( regionName, false )
+				ret = ret .. describeRegion( regionName, false, withImages )
 			end
 
 			ret = ret .. '\n| style="vertical-align: top;" | '
