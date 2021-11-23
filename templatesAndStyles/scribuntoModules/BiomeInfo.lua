@@ -25,7 +25,7 @@ function p.OnWhatPlanets( frame )
 	local fields
 	local queryOpt = {
 		join = 'layer.primaryRegion HOLDS region.id',
-		where = 'region.biome="' .. biomeCode .. '" AND planet IS NOT NULL'
+		where = 'region.biome="' .. biomeCode .. '" AND planet IS NOT NULL AND planet NOT IN ("ffunknown", "superdense", "shadow")'
 	}
 
 	-- First find the planets where this is a primary biome.
