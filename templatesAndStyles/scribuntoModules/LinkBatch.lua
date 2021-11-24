@@ -81,7 +81,7 @@ local function lazyLoadGroup( cargoTable )
 
 		linkData.displayName = row.name
 		linkData.wikiPage = row.wikiPage or row.name
-		linkData.hasIcon = row.hasIcon == '1'
+		linkData.hasIcon = row.hasIcon == 'true'
 		linkData.loaded = true
 	end
 
