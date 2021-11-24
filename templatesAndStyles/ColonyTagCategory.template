@@ -3,5 +3,5 @@ This template is included into item categories like [[:Category:ColonyTag:glitch
 
 Usage: <code><nowiki>{{ColonyTagCategory|glitch}}</nowiki></code>, where <code>glitch</code> is a colony tag.
 
-</noinclude>{{#invoke: ListTenants|ListAllTenants|{{{1}}}}}
-[[Category:Items by colony tag|{{{1|?}}}]]
+</noinclude><includeonly>{{#invoke: ListTenants|ListAllTenants|{{{1}}}}}
+[[Category:Items by colony tag|{{{1|?}}}]]</includeonly>
