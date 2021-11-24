@@ -1,5 +1,6 @@
 local p = {}
 local cargo = mw.ext.cargo
+local LinkBatch = require( 'Module:LinkBatch' )
 
 -- Get HTML of pretty-printed list of tags.
 -- @param {string} tagsString Comma-separated tags. Example: "ranged,tool,mininggun,mininglaser".
@@ -322,6 +323,27 @@ function p.Main( frame )
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
 			'[[File:Noun project 528.svg|16px|left|link=]] Block hitpoints',
 			metadata.blockHealth
+		} }
+	end
+
+	if metadata.tileEffects then
+		local effects = mw.text.split( metadata.tileEffects, ',' )
+		for _, effectCode in ipairs( effects ) do
+			LinkBatch.AddEffect( effectCode )
+		end
+
+		local effectLinks = {}
+		for _, effectCode in ipairs( effects ) do
+			table.insert( effectLinks, LinkBatch.GetEffectLink( effectCode, {
+				nolink = true,
+				icon = 'ifExists',
+				allowUnknown = true
+			} ) )
+		end
+
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+			'[[File:VisualEditor - Icon - Alert.svg|16px|left|link=]] Effects',
+			table.concat( effectLinks, '\n' )
 		} }
 	end
 
