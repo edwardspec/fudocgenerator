@@ -338,7 +338,7 @@ function p.Main( frame )
 				nolink = true,
 				icon = 'ifExists',
 				allowUnknown = true
-			} ) )
+			} ) .. '[[Category:TileEffect:' .. effectCode .. ']]' )
 		end
 
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
