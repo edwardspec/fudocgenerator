@@ -21,7 +21,7 @@ local OrderOfShownLayers = {
 -- @return {table} Database row.
 local function queryPlanet( planetType )
 	local tables = 'planet'
-	local fields = 'name,stars,minTier,maxTier,minGravity,maxGravity,minDayLight,maxDayLight,id'
+	local fields = 'name,stars,minTier,maxTier,minGravity,maxGravity,minDayLight,maxDayLight,dayLightDistribution,id'
 	local queryOpt = {
 		where = 'id="' .. planetType .. '"',
 		limit = 1
@@ -247,7 +247,7 @@ function p.Main( frame )
 	if row.minDayLight ~= '' then
 		ret = ret .. '\n* <b>Light level (day)</b>: ' .. row.minDayLight
 		if row.minDayLight ~= row.maxDayLight then
-			ret = ret .. ' - ' .. row.maxDayLight
+			ret = ret .. ' - ' .. row.maxDayLight .. ': ' .. row.dayLightDistribution
 		end
 	end
 
