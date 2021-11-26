@@ -244,14 +244,14 @@ function p.Main( frame )
 		end
 	end
 
+	ret = ret .. '\n* <b>Found around stars</b>: ' .. string.gsub( row.stars, ',', ', ' )
+
 	if row.minDayLight ~= '' then
 		ret = ret .. '\n* <b>Light level (day)</b>: ' .. row.minDayLight
 		if row.minDayLight ~= row.maxDayLight then
 			ret = ret .. ' - ' .. row.maxDayLight .. ': ' .. row.dayLightDistribution
 		end
 	end
-
-	ret = ret .. '\n* <b>Found around stars</b>: ' .. string.gsub( row.stars, ',', ', ' )
 
 	-- Find all layers
 	ret = ret .. '\n<h3>Layers</h3>'
