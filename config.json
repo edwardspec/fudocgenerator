@@ -556,6 +556,9 @@
 	"@doc": "URL of the MediaWiki API that should be used in [update_status_cache.js] script. Leave as empty string to disable cache updates.",
 	"mediawikiApiUrl": "https://frackinuniverse.miraheze.org/w/api.php",
 
+	"@doc": "How many times to retry HTTP requests that failed due to network errors, etc.",
+	"mwbotMaxRetries": 3,
+
 	"@doc": "List of file extensions that should be loaded as JSON assets. Maps them to internal type (e.g. '.miningtool' files have the type 'item').",
 	"extensionToAssetType": {
 		"activeitem": "item",
