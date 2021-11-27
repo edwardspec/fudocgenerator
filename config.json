@@ -559,6 +559,9 @@
 	"@doc": "How many times to retry HTTP requests that failed due to network errors, etc.",
 	"mwbotMaxRetries": 3,
 
+	"@doc": "How many milliseconds to wait between sending two HTTP requests.",
+	"mwbotDelayBetweenRequests": 250,
+
 	"@doc": "List of file extensions that should be loaded as JSON assets. Maps them to internal type (e.g. '.miningtool' files have the type 'item').",
 	"extensionToAssetType": {
 		"activeitem": "item",
