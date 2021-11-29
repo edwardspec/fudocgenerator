@@ -118,7 +118,9 @@ uploadsToPrepare.forEach( ( task ) => {
 	var absolutePath = ImageFinder.locateImage( relativePath, relativeToAsset );
 	if ( absolutePath ) {
 		fs.symlinkSync( absolutePath, outputPath + '/all/' + targetTitle );
-		if ( !WikiStatusCache.pageExists( 'File:' + targetTitle ) ) {
+
+		var size = fs.statSync( absolutePath ).size;
+		if ( !WikiStatusCache.fileHasChecksum( targetTitle, size ) ) {
 			fs.symlinkSync( absolutePath, outputPath + '/onlyNew/' + targetTitle );
 		}
 	}
