@@ -649,6 +649,15 @@
 		"Whip Crack"
 	],
 
+	"@doc": "Treasure pools used by extremely common breakable objects (such as capsules) that should be excluded from biome recipes, because they are present in most biomes.",
+	"ignoredSmashPools": [
+		"capsule",
+		"capsuleBig",
+		"capsuleMed",
+		"capsuleSmall",
+		"smashMoney"
+	],
+
 	"@doc": "Maps difficult-to-read (on bright background) font colors (such as ^yellow;) to font colors that are suitable for a wiki page.",
 	"replacedFontColors": {
 		"#a5ff00": "#a5dd00",
