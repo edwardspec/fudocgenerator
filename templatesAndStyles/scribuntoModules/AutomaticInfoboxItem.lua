@@ -365,6 +365,38 @@ function p.Main( frame )
 			'\n\n[[File:Health icon.png|24px|link=|alt=Health]] ' .. metadata.maxHealth
 
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Bonus', bonus } }
+
+		-- What other armor pieces are necessary for this set? (usually 3 items: head/chest/legs)
+		local setQueryFields = 'headPage__full=head,chestPage__full=chest,legsPage__full=legs'
+		local setQueryOpt = {
+			where = 'head HOLDS "' .. id .. '" OR chest HOLDS "' .. id .. '" OR legs HOLDS "' .. id .. '"',
+			limit = 1
+		}
+		local setRow = ( cargo.query( 'armorset', setQueryFields, setQueryOpt ) or {} )[1]
+
+		if setRow then
+			local armorset = ''
+
+			if setRow.head ~= '' then
+				for _, linkTarget in ipairs( mw.text.split( setRow.head, ',' ) ) do
+					armorset = armorset .. '[[File:Museum icon Military.png|16px|link=]] [[' .. linkTarget .. ']]<br>'
+				end
+			end
+
+			if setRow.chest ~= '' then
+				for _, linkTarget in ipairs( mw.text.split( setRow.chest, ',' ) ) do
+					armorset = armorset .. '[[File:Rpb clothing icon.svg|16px|link=]] [[' .. linkTarget .. ']]<br>'
+				end
+			end
+
+			if setRow.legs ~= '' then
+				for _, linkTarget in ipairs( mw.text.split( setRow.legs, ',' ) ) do
+					armorset = armorset .. '[[File:Android Emoji 1f45f.svg|16px|link=]] [[' .. linkTarget .. ']]<br>'
+				end
+			end
+
+			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'In set with', armorset } }
+		end
 	end
 
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Rarity', row.rarity } }
