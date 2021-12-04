@@ -59,10 +59,19 @@ local OrderOfCraftingStations = {
 	{ 'Environment', {
 		'Liquid Collector',
 		'Atmospheric Condenser',
+		'Entropic Converter',
 		'Well',
 		'Wooden Water Tower',
 		'Water Generator',
 		'X\'ian Well'
+	} },
+	{ 'Tenants', {
+		'Blood Drive',
+		'Drug Diffuser',
+		'Hidden Camera Network',
+		'Psionic Harvester',
+		'Recycling Center',
+		'Sewage Storage'
 	} },
 	{ 'Animals', {
 		'Apiary',
