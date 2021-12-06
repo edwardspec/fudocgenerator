@@ -277,14 +277,14 @@ function p.Main( frame )
 
 		if edibleByHuman and foodValue then
 			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-				'[[File:Rpb food icon.svg|16px|left|link=]] Food value',
+				'[[File:Rpb food icon.svg|16px|left|link=|alt=]] Food value',
 				foodValue
 			} }
 		end
 
 		if animalDiet then
 			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-				'[[File:Nutrition (583) - The Noun Project.svg|24px|left|link=]] Farm beast food value',
+				'[[File:Nutrition (583) - The Noun Project.svg|24px|left|link=|alt=]] Farm beast food value',
 				( foodValue or 20 ) .. '<br><small>(' .. animalDiet .. ')</small>'
 			} }
 		end
@@ -300,28 +300,28 @@ function p.Main( frame )
 
 	if metadata.shipFuel then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'[[File:Linearicons_rocket.svg|32px|left|link=]] [[Acceptable Ship Fuel|Ship fuel]]',
+			'[[File:Linearicons_rocket.svg|32px|left|link=|alt=]] [[Acceptable Ship Fuel|Ship fuel]]',
 			metadata.shipFuel
 		} }
 	end
 
 	if metadata.mechFuel then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'[[File:Node_icon_fu_engineering.mechsbasic.png|32px|left|link=]] [[Acceptable Mech Fuel|Mech fuel]]',
+			'[[File:Node_icon_fu_engineering.mechsbasic.png|32px|left|link=|alt=]] [[Acceptable Mech Fuel|Mech fuel]]',
 			metadata.mechFuel
 		} }
 	end
 
 	if metadata.slotCount then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'[[File:Farm-Fresh box open.png|32px|left|link=]] Slot count',
+			'[[File:Farm-Fresh box open.png|32px|left|link=|alt=]] Slot count',
 			metadata.slotCount
 		} }
 	end
 
 	if metadata.blockHealth then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'[[File:Noun project 528.svg|16px|left|link=]] Block hitpoints',
+			'[[File:Noun project 528.svg|16px|left|link=|alt=]] Block hitpoints',
 			metadata.blockHealth
 		} }
 	end
@@ -342,7 +342,7 @@ function p.Main( frame )
 		end
 
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'[[File:VisualEditor - Icon - Alert.svg|16px|left|link=]] Effects',
+			'[[File:VisualEditor - Icon - Alert.svg|16px|left|link=|alt=]] Effects',
 			table.concat( effectLinks, '\n' )
 		} }
 	end
@@ -359,10 +359,10 @@ function p.Main( frame )
 
 	if metadata.powerMultiplier and metadata.protection and metadata.maxEnergy and metadata.maxHealth then
 		-- Armor
-		local bonus = '[[File:Damage icon.png|24px|link=|alt=Damage]] ' .. metadata.powerMultiplier .. '%' ..
-			'\n\n[[File:Defence icon.png|24px|link=|alt=Defense]] ' .. metadata.protection ..
-			'\n\n[[File:Energy icon.png|24px|link=|alt=Energy]] ' .. metadata.maxEnergy ..
-			'\n\n[[File:Health icon.png|24px|link=|alt=Health]] ' .. metadata.maxHealth
+		local bonus = '[[File:Damage icon.png|24px|link=|Damage]] ' .. metadata.powerMultiplier .. '%' ..
+			'\n\n[[File:Defence icon.png|24px|link=|Defense]] ' .. metadata.protection ..
+			'\n\n[[File:Energy icon.png|24px|link=|Energy]] ' .. metadata.maxEnergy ..
+			'\n\n[[File:Health icon.png|24px|link=|Health]] ' .. metadata.maxHealth
 
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Bonus', bonus } }
 
@@ -379,19 +379,19 @@ function p.Main( frame )
 
 			if setRow.head ~= '' then
 				for _, linkTarget in ipairs( mw.text.split( setRow.head, ',' ) ) do
-					armorset = armorset .. '[[File:Museum icon Military.png|16px|link=]] [[' .. linkTarget .. ']]<br>'
+					armorset = armorset .. '[[File:Museum icon Military.png|head|16px|link=]] [[' .. linkTarget .. ']]<br>'
 				end
 			end
 
 			if setRow.chest ~= '' then
 				for _, linkTarget in ipairs( mw.text.split( setRow.chest, ',' ) ) do
-					armorset = armorset .. '[[File:Rpb clothing icon.svg|16px|link=]] [[' .. linkTarget .. ']]<br>'
+					armorset = armorset .. '[[File:Rpb clothing icon.svg|chest|16px|link=]] [[' .. linkTarget .. ']]<br>'
 				end
 			end
 
 			if setRow.legs ~= '' then
 				for _, linkTarget in ipairs( mw.text.split( setRow.legs, ',' ) ) do
-					armorset = armorset .. '[[File:Android Emoji 1f45f.svg|16px|link=]] [[' .. linkTarget .. ']]<br>'
+					armorset = armorset .. '[[File:Android Emoji 1f45f.svg|legs|16px|link=]] [[' .. linkTarget .. ']]<br>'
 				end
 			end
 
