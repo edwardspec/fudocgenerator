@@ -321,7 +321,7 @@ function p.Main( frame )
 
 	if metadata.blockHealth then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'[[File:Noun project 528.svg|16px|left|link=|alt=]] Block hitpoints',
+			'[[File:Noun project 528.svg|16px|left|link=|alt=]] [[List of blocks by durability|Block hitpoints]]',
 			metadata.blockHealth
 		} }
 	end
