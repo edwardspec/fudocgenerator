@@ -500,13 +500,14 @@
 		"shoggothbiome"
 	],
 
-	"@doc": "Map of planet ID to human-readable name. Only used for Gas Giants (which are all named the same).",
+	"@doc": "Map of planet ID to human-readable name. Only used for Gas Giants (which are all named the same) and to rename Lush to Garden.",
 	"overridePlanetNames": {
 		"fugasgiant": "Gas Giant",
 		"fugasgiant2": "Proto Giant",
 		"fugasgiant3": "Flame Giant",
 		"fugasgiant4": "Ice Giant",
-		"fugasgiant5": "Toxic Giant"
+		"fugasgiant5": "Toxic Giant",
+		"garden": "Garden"
 	},
 
 	"@doc": "Into how many Chunk subpages to split the {{#cargo_store:}} directives. This is necessary for performance (so that the entire Cargo database is not overwritten every time one item gets modified). Note: increasing/decreasing this variable shouldn't be frequent (keeping this number the same allows Consistent Hashing to minimize the number of edits). Note: actual number of chunks will be slightly higher than this value, because their size is additionally limited by 'cargoMaxChunkRowsCount' and 'cargoMaxChunkSizeKBytes' variables.",
