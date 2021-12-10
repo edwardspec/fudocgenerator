@@ -63,22 +63,7 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	prepareUpload( 'Item_icon_' + itemCode + '.png', item.inventoryIcon, item.asset );
 
 	// Add image of the placeable object (such as Extraction Lab or Wooden Crate), if any.
-	var placedImage = item.placementImage;
-	var placedObject = ( item.orientations || [] )[0];
-	if ( !placedImage && placedObject ) {
-		placedImage = placedObject.dualImage || placedObject.image;
-		if ( !placedImage && placedObject.imageLayers ) {
-			// When there are multiple layers (in most cases it's 1 fullbright and 1 non-fullbright),
-			// we use the image from the first non-fullbright layer (if any).
-			for ( var layer of placedObject.imageLayers ) {
-				if ( !layer.fullbright ) {
-					placedImage = layer.image;
-					break;
-				}
-			}
-		}
-	}
-	prepareUpload( 'Item_image_' + itemCode + '.png', placedImage, item.asset );
+	prepareUpload( 'Item_image_' + itemCode + '.png', item.getPlacedImage(), item.asset );
 }
 
 // Upload icons of research nodes.
