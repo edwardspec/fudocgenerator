@@ -85,6 +85,13 @@ local OrderOfCraftingStations = {
 		'Moth Trap (Large)',
 		'Lobster Trap',
 		'Pest Trap'
+	} },
+	{ 'Spacestations', {
+		'Racial Space Station Terminal (any)',
+		'Racial Space Station Terminal (medical)',
+		'Racial Space Station Terminal (military)',
+		'Racial Space Station Terminal (scientific)',
+		'Racial Space Station Terminal (trading)'
 	} }
 }
 
