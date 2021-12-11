@@ -87,7 +87,7 @@ local OrderOfCraftingStations = {
 		'Pest Trap'
 	} },
 	{ 'Spacestations', {
-		'Racial Space Station Terminal (any)',
+		'Any Station Terminal',
 		'Racial Space Station Terminal (medical)',
 		'Racial Space Station Terminal (military)',
 		'Racial Space Station Terminal (scientific)',
@@ -99,6 +99,14 @@ local OrderOfCraftingStations = {
 local ExtraTextBeforeRecipesOfStation = {
 	['Extraction Lab'] = "''or [[Hand Mill]]''",
 	['Xeno Research Lab'] = "''or [[Sprouting Table]]''"
+}
+
+-- Shorter version of some crafting station names (for TOC to not be too long).
+local RenamedStationHeaders = {
+	['Racial Space Station Terminal (medical)'] = 'Medical Station Terminal',
+	['Racial Space Station Terminal (military)'] = 'Military Station Terminal',
+	['Racial Space Station Terminal (scientific)'] = 'Scientific Station Terminal',
+	['Racial Space Station Terminal (trading)'] = 'Trading Station Terminal'
 }
 
 -- Print the "Items crafted here" section for a crafting station. (based on [[Special:CargoTables/recipe]])
@@ -209,7 +217,8 @@ function p.RecipesWhereItemIs( frame )
 						joinedRecipes .. '</div>'
 				end
 
-				sectionText = sectionText .. '<h4>[[' .. stationName .. ']]</h4>' .. extraTextBefore .. joinedRecipes
+				sectionText = sectionText .. '<h4>[[' .. ( RenamedStationHeaders[stationName] or stationName ) .. ']]</h4>' ..
+					extraTextBefore .. joinedRecipes
 
 				-- Remove this station from "stationNameToRecipes" list. The only stations that will remain
 				-- are those not listed in OrderOfCraftingStations (they will be handled below).
