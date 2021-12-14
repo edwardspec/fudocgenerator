@@ -1,0 +1,1 @@
+<noinclude>An icon to show light color. Usage: <nowiki>{{LightColor|#aa99bb}}</nowiki>.</noinclude><div style="background: radial-gradient({{{1|#ffffff}}}, black); width: 32px; height: 32px; display: inline-block; vertical-align: middle;"></div>

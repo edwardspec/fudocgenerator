@@ -326,6 +326,13 @@ function p.Main( frame )
 		} }
 	end
 
+	if metadata.lightLevel and metadata.lightColor then
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+			'Light',
+			metadata.lightLevel .. ' ' .. frame:expandTemplate{ title = 'LightColor', args = { metadata.lightColor } }
+		} }
+	end
+
 	if metadata.tileEffects then
 		local effects = mw.text.split( metadata.tileEffects, ',' )
 		for _, effectCode in ipairs( effects ) do
