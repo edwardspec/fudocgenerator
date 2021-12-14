@@ -2,6 +2,7 @@
 _table = weatherpool
 |id = String
 |wikitext = Wikitext
+|averageWindPower = String
 }}<noinclude>
 
 This table lists all known weather pools (from <code>weather.config</code>).
