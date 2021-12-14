@@ -328,7 +328,7 @@ function p.Main( frame )
 
 	if metadata.lightLevel and metadata.lightColor then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
-			'Light',
+			'[[List of lights|Light]]',
 			metadata.lightLevel .. ' ' .. frame:expandTemplate{ title = 'LightColor', args = { metadata.lightColor } }
 		} }
 	end
