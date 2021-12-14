@@ -23,7 +23,7 @@ function p.ListLights( frame )
 	local queryOpt = {
 		limit = 5000,
 		where = where,
-		orderBy = '(0+level) DESC',
+		orderBy = '(0+level) DESC,name',
 		join = 'lightColor.id=item.id, lightColor.id=lightLevel.id'
 	}
 
