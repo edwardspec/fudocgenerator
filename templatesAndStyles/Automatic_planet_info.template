@@ -10,6 +10,8 @@ _table = planet
 |minDayLight = String
 |maxDayLight = String
 |dayLightDistribution = Text
+|minWind = String
+|maxWind = String
 }}<noinclude>
 
 This table lists all types of planets.
