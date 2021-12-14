@@ -21,7 +21,7 @@ local OrderOfShownLayers = {
 -- @return {table} Database row.
 local function queryPlanet( planetType )
 	local tables = 'planet'
-	local fields = 'name,stars,minTier,maxTier,minGravity,maxGravity,minDayLight,maxDayLight,dayLightDistribution,id'
+	local fields = 'name,stars,minTier,maxTier,minGravity,maxGravity,minDayLight,maxDayLight,dayLightDistribution,minWind,maxWind,windDistribution,id'
 	local queryOpt = {
 		where = 'id="' .. planetType .. '"',
 		limit = 1
@@ -250,6 +250,13 @@ function p.Main( frame )
 		ret = ret .. '\n* <b>Light level (day)</b>: ' .. row.minDayLight
 		if row.minDayLight ~= row.maxDayLight then
 			ret = ret .. ' - ' .. row.maxDayLight .. ': ' .. row.dayLightDistribution
+		end
+	end
+
+	if row.minWind ~= '' then
+		ret = ret .. '\n* <b>Average output of [[Wind Turbine]]</b>: ' .. row.minWind .. 'W'
+		if row.minWind ~= row.maxWind then
+			ret = ret .. ' - ' .. row.maxWind .. 'W: ' .. row.windDistribution
 		end
 	end
 
