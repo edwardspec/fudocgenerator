@@ -181,12 +181,14 @@ local function describeRegion( regionName, isPrimarySurface, withImages )
 				table.insert( quotedPoolIds, '"' .. poolName .. '"' )
 			end
 
-			local rows = cargo.query( 'weatherpool', 'wikitext', {
+			local rows = cargo.query( 'weatherpool', 'wikitext, averageWindPower', {
 				where = 'id IN (' .. table.concat( quotedPoolIds, ',' ) .. ')',
 				orderBy = 'id'
 			}) or {}
 			for index, row in ipairs( rows ) do
-				ret = ret .. "\n'''Type " .. index .. "'''\n" .. row.wikitext .. '\n'
+				ret = ret .. "\n'''Type " .. index .. "''' " ..
+					'<i><small>(average [[Wind Turbine|wind]]: ' .. row.averageWindPower .. 'W)</small></i>\n' ..
+					row.wikitext .. '\n'
 			end
 		end
 	end
