@@ -12,7 +12,6 @@ _table = item
 |price = String
 |stackSize = String
 |twoHanded = String
-|upgradeable = String
 |unlocks = List (,) of String
 }}
 This table is used by {{tl|Automatic infobox item}} to auto-populate the fields of "infobox" template based on [[Special:CargoTables/item|information gathered by bot]].
