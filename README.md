@@ -47,7 +47,6 @@ Note that this cache will not be updated automatically (this is on purpose, to k
 - logging: suppress "unknown item" log errors about wild seeds and other purposely ignored items. Instead have 1 log entry with the list of all ignored items that were searched for, and another log entry for ignored items that weren't found (to detect typos in config.ignoredItems, etc.).
 - gather status effects for food and other consumables.
 - automatically gather information of which biomes have which ores (and at which tier).
-- gather brightness (and/or color) of light sources like Torch and Candle.
 - ImageFinder: support image paths with parameters like "?flipx".
 - Infobox templates: add links to pages with similar names (e.g. page "Lobster (monster)" should automatically link to "Lobster" and "Lobster (decorative)", and vise versa) - this can be implemented by querying Cargo tables by item.wikiPage and monster.wikiPage fields.
 - if some recipe has aggressive and friendly spawntypes of the same monster (e.g. Mega-Fauna), then mark friendly ones as "(friendly)". Note: we can't do this in RecipeSide.addSpawnType() via quantityAttributes.subtype, because we don't want to show "(friendly)" subtype for monsters that are always friendly.
