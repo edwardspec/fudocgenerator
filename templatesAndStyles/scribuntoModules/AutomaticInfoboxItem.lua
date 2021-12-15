@@ -6,13 +6,14 @@ local LinkBatch = require( 'Module:LinkBatch' )
 -- @param {string} tagsString Comma-separated tags. Example: "ranged,tool,mininggun,mininglaser".
 -- @param {string} categoryPrefix String between "Category:" and ":<tag here>" in links to categories. Example: "ColonyTag".
 -- @param {bool} nocat If true, categories are not added to the page.
--- @return {string}
+-- @return {table} { html = "resulting html", tags = { tag1 = true, tag2 = true, ... } }
 local function tagCloud( tagsString, categoryPrefix, nocat )
 	if not tagsString or tagsString == '' then
-		return ''
+		return { html = '', tags = {} }
 	end
 
 	local tagsLine = ''
+	local foundTags = {}
 	for _, tag in ipairs( mw.text.split( tagsString, ',' ) ) do
 		local category = 'Category:' .. categoryPrefix .. ':' .. tag
 
@@ -23,9 +24,11 @@ local function tagCloud( tagsString, categoryPrefix, nocat )
 		if not nocat then
 			tagsLine = tagsLine .. '[[' .. category .. ']]'
 		end
+
+		foundTags[tag] = true
 	end
 
-	return tagsLine
+	return { html = tagsLine, tags = foundTags }
 end
 
 -- Perform a SQL query to "item" table in the Cargo database (see Special:CargoTables/item).
@@ -33,7 +36,7 @@ end
 -- @return {table} Database row.
 local function queryItem( itemId )
 	local tables = 'item'
-	local fields = 'name,description,category,tier,rarity,price,stackSize,twoHanded,upgradeable,wikiPage,id,tags,colonyTags'
+	local fields = 'name,description,category,tier,rarity,price,stackSize,twoHanded,wikiPage,id,tags,colonyTags'
 	local queryOpt = {
 		where = 'id="' .. itemId .. '"',
 		limit = 1
@@ -410,12 +413,14 @@ function p.Main( frame )
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Price', row.price } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Stack size', row.stackSize } }
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field/bool', args = { 'Two-handed?', row.twoHanded } }
-	if row.upgradeable == '1' then
+
+	local itemTagCloud = tagCloud( row.tags, 'ItemTag', nocat )
+	if itemTagCloud.tags.upgradeableWeapon or itemTagCloud.tags.upgradeableTool then
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Upgradeable?', 'Yes' } }
 	end
 
-	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Tags', tagCloud( row.tags, 'ItemTag', nocat ) } }
-	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Colony tags', tagCloud( row.colonyTags, 'ColonyTag', nocat ) } }
+	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Tags', itemTagCloud.html } }
+	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Colony tags', tagCloud( row.colonyTags, 'ColonyTag', nocat ).html } }
 
 	-- Item ID is last, because very few people need it
 	ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'ID', row.id } }
