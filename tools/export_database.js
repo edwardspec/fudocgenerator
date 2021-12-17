@@ -11,16 +11,19 @@
 'use strict';
 
 const process = require( 'process' ),
-	argv = process.argv;
+	argv = require( 'minimist' )( process.argv.slice( 2 ) ),
+	lib = require( '../lib' );
 
-if ( argv.length !== 5 ) {
-	process.stderr.write( 'Usage: node export_database.js DatabaseName MapName Field1,Field2,Field3\n' );
+if ( argv._.length !== 3 ) {
+	var usage = 'Usage: node export_database.js DatabaseName MapName Field1,Field2,Field3\n\n' +
+		'Options:\n\t--vanilla\t\tLoad only vanilla assets (without any patches)\n';
+
+	process.stderr.write( usage );
 	process.exit( 1 );
 }
 
-const databaseClass = argv[2],
-	mapName = argv[3],
-	fields = process.argv[4].split( ',' );
+const [ databaseClass, mapName, fieldsArg ] = argv._,
+	fields = fieldsArg.split( ',' );
 
 if ( databaseClass === 'AssetDatabase' || databaseClass === 'ItemDatabase' ) {
 	process.stderr.write( 'Asset/Item databases are not supported.\n' );
@@ -37,6 +40,12 @@ const mapToExport = database[mapName];
 if ( !mapToExport ) {
 	process.stderr.write( 'Unknown map: ' + databaseClass + '.' + mapName + '\n' );
 	process.exit( 1 );
+}
+
+if ( argv.vanilla ) {
+	// If we only need to export vanilla liquids, etc.,
+	// then inform AssetDatabase before it starts loading anything.
+	lib.AssetDatabase.enableVanillaOnlyMode();
 }
 
 // Explicitly load(), because we are not using forEach (it wouldn't tell us the primary field for the key).
