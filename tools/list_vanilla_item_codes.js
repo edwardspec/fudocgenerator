@@ -4,19 +4,18 @@
 
 'use strict';
 
-var { config, ItemDatabase } = require( '../lib' );
+var { config, AssetDatabase, ItemDatabase } = require( '../lib' );
 
 // Don't skip any items.
 config.ignoredItems = [];
 
-var itemCodesUnsorted = [];
-ItemDatabase.forEach( ( itemCode, item ) => {
-	if ( itemCode.includes( ':' ) ) {
-		// Pseudo-item (e.g. a stage of multi-stage crafting stations)
-		return;
-	}
+// Load only vanilla assets.
+AssetDatabase.load( { vanillaOnly: true } );
 
-	if ( item.asset.vanilla || item.asset.overwrittenVanilla ) {
+var itemCodesUnsorted = [];
+ItemDatabase.forEach( ( itemCode ) => {
+	// Include everything except pseudo-items (e.g. stages of multi-stage crafting stations)
+	if ( !itemCode.includes( ':' ) ) {
 		itemCodesUnsorted.push( itemCode );
 	}
 } );
