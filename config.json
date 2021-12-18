@@ -291,7 +291,8 @@
 		"cavedetector",
 		"mobiusrifle2",
 		"scaninteractionexample",
-		"fusuperrewardbag"
+		"fusuperrewardbag",
+		"redsand"
 	],
 
 	"@doc": "List of item IDs of pseudo-items (such as stages of upgradeable crafting stations) that should be skipped.",
@@ -493,6 +494,10 @@
 	"@doc": "List of biome IDs to skip. For example, \"ffbonecaves\" is not used anywhere, but \"bonecaves\" is.",
 	"ignoredBiomes": [
 		"asteroidfield",
+		"extraalpinemission",
+		"extraskymission",
+		"extraoceanfloormission",
+		"extraswampmission",
 		"ffbonecaves",
 		"futentaclet10",
 		"lunarbase",
