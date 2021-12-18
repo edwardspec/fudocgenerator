@@ -240,7 +240,6 @@
 		"device1": "Ancient Device (furniture)",
 		"metallicmachine3": "Data Storage (furniture)",
 		"raptorneststorage": "Raptor Nest (container)",
-		"invisiblelight": "Invisible Ship Light",
 		"fuunderworldchest": "Atropus Chest (red)",
 		"fuunderworldchest2": "Atropus Chest (white)",
 		"divingmaskhead": "Diving Mask (cosmetic)",
@@ -266,7 +265,11 @@
 		"impactslimetendrils3:2": "Impact Slime Tendrils IV",
 		"poisonslimetendrils3:2": "Poison Slime Tendrils IV",
 		"slimetendrils3:2": "Slime Tendrils IV",
-		"burrowerrang:2": "Giant Worm (FU)"
+		"burrowerrang:2": "Giant Worm (FU)",
+		"invisiblelight": "Invisible Ship Light",
+		"shiplight": "Ship Light (small)",
+		"veluushiplight": "Veluuish Ship Light",
+		"xishiplight": "X'i Ship Light"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
