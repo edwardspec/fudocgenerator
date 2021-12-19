@@ -367,6 +367,16 @@ function p.Main( frame )
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = altAbility }
 	end
 
+	if metadata.shieldHealth and metadata.perfectBlockTime then
+		local shieldInfo = 'Shield health: ' .. metadata.shieldHealth ..
+			'\nPerfect block time: ' .. metadata.perfectBlockTime
+
+		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
+			'[[File:Open Iconic shield.svg|16px|left|link=|alt=]] Shield',
+			shieldInfo
+		} }
+	end
+
 	if metadata.powerMultiplier and metadata.protection and metadata.maxEnergy and metadata.maxHealth then
 		-- Armor
 		local bonus = '[[File:Damage icon.png|24px|link=|Damage]] ' .. metadata.powerMultiplier .. '%' ..
