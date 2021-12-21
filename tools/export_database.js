@@ -11,9 +11,8 @@
 
 'use strict';
 
-const { AssetDatabase } = require( '../lib' ),
-	process = require( 'process' ),
-	argv = require( 'minimist' )( process.argv.slice( 2 ) );
+const { argv, AssetDatabase } = require( '../lib' ),
+	process = require( 'process' );
 
 if ( argv._.length !== 2 || argv.help ) {
 	var usage = 'Usage: node export_database.js DatabaseName MapName Field1,Field2,Field3\n\nOptions:' +

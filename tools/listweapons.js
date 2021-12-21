@@ -4,11 +4,10 @@
 
 'use strict';
 
-const process = require( 'process' ),
-	{ ItemDatabase, RemoveBadSymbols, util } = require( '../lib' );
+const { argv, ItemDatabase, RemoveBadSymbols, util } = require( '../lib' );
 
 var mode;
-switch ( process.argv[2] ) {
+switch ( argv._[0] ) {
 	case 'weapon':
 		mode = 'weapon';
 		break;
@@ -18,7 +17,6 @@ switch ( process.argv[2] ) {
 		break;
 
 	default:
-		console.log( process.argv );
 		throw new Error( 'Usage:\n\tnode listweapons.js weapon\n\tnode listweapons.js armor' );
 }
 

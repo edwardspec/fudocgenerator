@@ -8,11 +8,11 @@
 
 'use strict';
 
-const { util } = require( '../lib' ),
+const { argv, util } = require( '../lib' ),
 	process = require( 'process' ),
 	path = require( 'path' );
 
-var filenamesToCheck = process.argv.slice( 2 );
+var filenamesToCheck = argv._;
 if ( !filenamesToCheck ) {
 	process.stderr.write( 'Usage: node lint_json.js FILENAME1 [FILENAME2...]\n' );
 	process.exit( 1 );

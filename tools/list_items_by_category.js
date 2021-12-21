@@ -4,10 +4,9 @@
 
 'use strict';
 
-const { ItemDatabase } = require( '../lib' ),
-	process = require( 'process' );
+const { argv, ItemDatabase } = require( '../lib' );
 
-var category = process.argv[2];
+var category = argv._[0];
 if ( !category ) {
 	throw new Error( 'Usage:\n\tnode list_items_by_category.js CATEGORY\n' );
 }
