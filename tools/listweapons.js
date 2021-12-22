@@ -44,14 +44,12 @@ ItemDatabase.forEach( ( code, item ) => {
 	}
 } );
 
-
 buildscriptItems = buildscriptItems.sort( ( a, b ) => ( b.price - a.price ) );
-
 
 console.log( '<!-- Buildscript items: ' + buildscriptItems.length + ' -->' );
 console.log( '{| class="wikitable sortable"\n!Tier\n!ID\n!Name\n!Price\n!Price multiplied by tier-based multiplier\n!Price at tier 8' );
 
-for ( var item of buildscriptItems ) {
+for ( let item of buildscriptItems ) {
 	var line = '|-\n|' + ( item.level || '?' ) + ' || ' + item.itemName + ' || [[' + RemoveBadSymbols.fromName( item.shortdescription ) + ']] ';
 
 	if ( item.level === undefined ) {

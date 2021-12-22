@@ -6,14 +6,14 @@
 	"pathToVanilla": "/usr/src/Starbound",
 
 	"@doc": "Array of Extractor names. Should be in the same order as outputs in [extractionlab_recipes.config]. Note: Hand Mill shouldn't be listed, because its output is the same as output of tier 1 Extraction Lab.",
-	"extractorStageBuildings":  [
+	"extractorStageBuildings": [
 		"Extraction Lab",
 		"Extraction Lab MKII",
 		"Quantum Extractor"
 	],
 
 	"@doc": "Converts names of recipe groups from [centrifuge_recipes.config] to name of associated Centrifuge-like building. Note: Wooden Centrifuge is currently not handled (itemMapLiquids can't be centrifuged by it, but we still show Any Centrifuge for this group).",
-	"centrifugeRecipeGroups":  {
+	"centrifugeRecipeGroups": {
 		"itemMapPowder": "Sifter",
 		"itemMapRocks": "Rock Crusher",
 		"itemMapFarm": "Any Centrifuge",
@@ -454,7 +454,7 @@
 		"coralreefdark": "Reef (dark)",
 		"corruptmoonunderground": "Corrupt Moon Underground",
 		"crystalswampaether": "Crystalline Swamp (Aether)",
-		"deadwoodmoon" : "Deadwood (moon)",
+		"deadwoodmoon": "Deadwood (moon)",
 		"deepseaventdark": "Deep Sea Vent (dark)",
 		"deepseaventsulphur": "Deep Sea Vent (Sulphuric)",
 		"energyorbforestaether": "Dark Zone (Aether)",

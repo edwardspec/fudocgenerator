@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+	ignorePatterns: [ 'package-lock.json', 'package.json' ],
 	env: {
 		node: true,
 		es2020: true
@@ -31,9 +32,18 @@ module.exports = {
 		'array-bracket-spacing': 'off',
 		'computed-property-spacing': 'off',
 		'max-len': 'off',
-		'no-multiple-empty-lines': 'off',
 		'no-var': 'off',
-		'one-var': 'off',
-		'vars-on-top': 'off'
-	}
+
+		// Misconfiguration of "eslint-config-wikimedia": rule is used, but is not installed via package.json.
+		'es/no-promise-any': 'off'
+	},
+	overrides: [
+		{
+			// Duplicate "@doc" keys in JSON file
+			files: [ 'config.json' ],
+			rules: {
+				'no-dupe-keys': 'off'
+			}
+		}
+	]
 };

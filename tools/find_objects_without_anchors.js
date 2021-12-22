@@ -13,4 +13,3 @@ ItemDatabase.forEach( ( itemCode, item ) => {
 		}
 	} );
 } );
-
