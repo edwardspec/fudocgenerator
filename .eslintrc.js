@@ -16,7 +16,6 @@ module.exports = {
 	},
 	rules: {
 		// Might enable this later.
-		eqeqeq: 'off',
 		'no-loop-func': 'off', // Only matters for async callbacks, many false positives for synchronous.
 
 		// Necessary to skip, e.g. process.exit() may be necessary for linter.

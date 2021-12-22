@@ -11,7 +11,7 @@ const { ResearchTreeDatabase } = require( '../lib' );
 var nodesThatUnlock = {};
 
 ResearchTreeDatabase.forEach( ( node ) => {
-	if ( node.tree == 'No' && node.name != 'Default unlocks' ) {
+	if ( node.tree === 'No' && node.name !== 'Default unlocks' ) {
 		// We ignore race-specific default unlocks,
 		// because it's not an error if these items are also unlocked via the regular ResearchTree.
 		return;
