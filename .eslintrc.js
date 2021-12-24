@@ -29,8 +29,7 @@ module.exports = {
 		// Don't want to apply these.
 		'array-bracket-spacing': 'off',
 		'computed-property-spacing': 'off',
-		'max-len': 'off',
-		'no-var': 'off'
+		'max-len': 'off'
 	},
 	overrides: [
 		{

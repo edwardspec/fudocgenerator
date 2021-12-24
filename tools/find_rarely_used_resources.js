@@ -6,7 +6,7 @@
 
 const { ItemDatabase, RecipeDatabase } = require( '../lib' );
 
-var itemCodeToUses = new Map();
+const itemCodeToUses = new Map();
 
 RecipeDatabase.forEach( ( recipe ) => {
 	if ( [ 'Extraction Lab', 'Extraction Lab MKII', 'Quantum Extractor' ].includes( recipe.station ) ) {
@@ -15,14 +15,14 @@ RecipeDatabase.forEach( ( recipe ) => {
 	}
 
 	recipe.inputs.getItemCodes().forEach( ( itemCode ) => {
-		var count = itemCodeToUses.get( itemCode ) || 0;
+		const count = itemCodeToUses.get( itemCode ) || 0;
 		itemCodeToUses.set( itemCode, count + 1 );
 	} );
 } );
 
 [...itemCodeToUses.entries()].sort( ( a, b ) => a[1] - b[1] ).forEach( ( itemAndCount ) => {
-	var [ itemCode, uses ] = itemAndCount;
-	var item = ItemDatabase.find( itemCode );
+	const [ itemCode, uses ] = itemAndCount;
+	const item = ItemDatabase.find( itemCode );
 	if ( !item ) {
 		// Ignore items not from FU+vanilla (in extraction recipes, etc.),
 		// as well as ignored items (such as wild seeds).

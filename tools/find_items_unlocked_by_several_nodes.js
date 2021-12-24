@@ -8,7 +8,7 @@
 const { ResearchTreeDatabase } = require( '../lib' );
 
 // Format: { itemCode => [ node1, node2, ... ], ... }
-var nodesThatUnlock = {};
+const nodesThatUnlock = {};
 
 ResearchTreeDatabase.forEach( ( node ) => {
 	if ( node.tree === 'No' && node.name !== 'Default unlocks' ) {

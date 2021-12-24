@@ -4,7 +4,7 @@
 
 'use strict';
 
-var { RecipeDatabase, ItemDatabase, PageNameRegistry } = require( '../lib' );
+const { RecipeDatabase, ItemDatabase, PageNameRegistry } = require( '../lib' );
 
 // This will load almost everything - items, monsters, etc.
 RecipeDatabase.load();

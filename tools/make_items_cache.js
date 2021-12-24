@@ -34,7 +34,7 @@ AssetDatabase.forEach( 'item', ( filename, asset ) => {
 		return;
 	}
 
-	var icon = data.inventoryIcon;
+	let icon = data.inventoryIcon;
 	if ( Array.isArray( icon ) ) {
 		icon = icon[0].image;
 	}

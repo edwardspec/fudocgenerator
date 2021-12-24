@@ -4,7 +4,7 @@
 
 'use strict';
 
-var { config, AssetDatabase, ItemDatabase } = require( '../lib' );
+const { config, AssetDatabase, ItemDatabase } = require( '../lib' );
 
 // Don't skip any items.
 config.ignoredItems = [];
@@ -12,7 +12,7 @@ config.ignoredItems = [];
 // Load only vanilla assets.
 AssetDatabase.load( { vanillaOnly: true } );
 
-var itemCodesUnsorted = [];
+const itemCodesUnsorted = [];
 ItemDatabase.forEach( ( itemCode ) => {
 	// Include everything except pseudo-items (e.g. stages of multi-stage crafting stations)
 	if ( !itemCode.includes( ':' ) ) {

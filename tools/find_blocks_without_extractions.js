@@ -7,7 +7,7 @@
 const { ItemDatabase, RecipeDatabase } = require( '../lib' );
 
 // These stations count as "automatic processing" (extraction, sifting, etc.) by this script.
-var processingStations = new Set( [
+const processingStations = new Set( [
 	'Extraction Lab',
 	'Extraction Lab MKII',
 	'Quantum Extractor',
@@ -20,10 +20,10 @@ var processingStations = new Set( [
 	'Arc Smelter'
 ] );
 
-var allBlocks = new Set();
-var blocksWithExtractions = new Set();
-var craftableBlocks = new Set();
-var blocksCraftableIntoSomethingElse = new Set();
+const allBlocks = new Set();
+const blocksWithExtractions = new Set();
+const craftableBlocks = new Set();
+const blocksCraftableIntoSomethingElse = new Set();
 
 ItemDatabase.forEach( ( itemCode, item ) => {
 	if ( item.category !== 'block' ) {
@@ -34,8 +34,8 @@ ItemDatabase.forEach( ( itemCode, item ) => {
 	allBlocks.add( item.itemCode );
 
 	RecipeDatabase.forEach( ( recipe ) => {
-		var isExtraction = processingStations.has( recipe.station );
-		var isRecipeInput = recipe.inputs.getItemCodes().includes( item.itemCode );
+		const isExtraction = processingStations.has( recipe.station );
+		const isRecipeInput = recipe.inputs.getItemCodes().includes( item.itemCode );
 
 		if ( isExtraction && isRecipeInput ) {
 			// This block can be extracted into something.

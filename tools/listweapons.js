@@ -6,7 +6,7 @@
 
 const { argv, ItemDatabase, RemoveBadSymbols, util } = require( '../lib' );
 
-var mode;
+let mode;
 switch ( argv._[0] ) {
 	case 'weapon':
 		mode = 'weapon';
@@ -20,8 +20,8 @@ switch ( argv._[0] ) {
 		throw new Error( 'Usage:\n\tnode listweapons.js weapon\n\tnode listweapons.js armor' );
 }
 
-var buildscriptItems = [];
-var tierToMult = [ 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5 ];
+let buildscriptItems = [];
+const tierToMult = [ 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5 ];
 
 ItemDatabase.forEach( ( code, item ) => {
 	if ( item.builder ) {
@@ -50,12 +50,12 @@ console.log( '<!-- Buildscript items: ' + buildscriptItems.length + ' -->' );
 console.log( '{| class="wikitable sortable"\n!Tier\n!ID\n!Name\n!Price\n!Price multiplied by tier-based multiplier\n!Price at tier 8' );
 
 for ( const item of buildscriptItems ) {
-	var line = '|-\n|' + ( item.level || '?' ) + ' || ' + item.itemName + ' || [[' + RemoveBadSymbols.fromName( item.shortdescription ) + ']] ';
+	let line = '|-\n|' + ( item.level || '?' ) + ' || ' + item.itemName + ' || [[' + RemoveBadSymbols.fromName( item.shortdescription ) + ']] ';
 
 	if ( item.level === undefined ) {
 		line += '|| ' + item.price + ' || ? || ?';
 	} else {
-		var priceWithoutMultiplier = item.price / tierToMult[item.level];
+		const priceWithoutMultiplier = item.price / tierToMult[item.level];
 
 		line += '|| ' + util.trimFloatNumber( priceWithoutMultiplier, 2 );
 		line += '|| ' + item.price;

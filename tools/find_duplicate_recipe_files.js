@@ -4,23 +4,23 @@
 
 'use strict';
 
-var { CraftingStationDatabase, AssetDatabase, RecipeSide } = require( '../lib' );
+const { CraftingStationDatabase, AssetDatabase, RecipeSide } = require( '../lib' );
 
 // { normalizedRecipeString: [ filename1, filename2, ... ], ... }
-var recipes = {};
+const recipes = {};
 
 AssetDatabase.forEach( 'recipe', ( filename, asset ) => {
-	var loadedData = asset.data;
+	const loadedData = asset.data;
 	if ( !CraftingStationDatabase.findByGroups( loadedData.groups ) ) {
 		// Skip recipes that can't be crafted anywhere.
 		return;
 	}
 
 	// Reduce the normal input/output of Recipe to normalized string.
-	var normalize = function ( recipeSide ) {
-		var ret = [];
+	const normalize = function ( recipeSide ) {
+		const ret = [];
 
-		for ( var [ item, counts ] of Object.entries( recipeSide.items ).sort() ) {
+		for ( const [ item, counts ] of Object.entries( recipeSide.items ).sort() ) {
 			ret.push( item + '(' + counts.map( ( count ) => JSON.stringify( count ) ).join( ',' ) + ')' );
 		}
 

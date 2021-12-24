@@ -12,7 +12,7 @@ const { argv, util } = require( '../lib' ),
 	process = require( 'process' ),
 	path = require( 'path' );
 
-var filenamesToCheck = argv._;
+const filenamesToCheck = argv._;
 if ( !filenamesToCheck ) {
 	process.stderr.write( 'Usage: node lint_json.js FILENAME1 [FILENAME2...]\n' );
 	process.exit( 1 );
@@ -23,7 +23,7 @@ console.log( 'Checking ' + filenamesToCheck.length + ' JSON files.' );
 // Print all errors to stdout.
 util.log = ( msg ) => process.stderr.write( msg + '\n' );
 
-var hasError = 0;
+let hasError = 0;
 filenamesToCheck.forEach( ( filename ) => {
 	if ( !util.loadModFile( path.resolve( filename ) ) ) {
 		hasError = 1;

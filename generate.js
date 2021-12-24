@@ -19,8 +19,8 @@ const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, Pl
 // Generate the wikitext for each item that has at least 1 Recipe.
 // Then send the results to ResultsWriter.write().
 
-for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
-	var item = ItemDatabase.find( itemCode );
+for ( const itemCode of RecipeDatabase.listMentionedItemCodes() ) {
+	const item = ItemDatabase.find( itemCode );
 	if ( !item ) {
 		// Must be tolerant to bad input (ignore unknown items, continue with known items),
 		// because a typo somewhere in the mod shouldn't stop the script.
@@ -63,8 +63,8 @@ MonsterDatabase.forEach( ( monster ) => {
 	ResultsWriter.writeMonster( monster );
 } );
 
-for ( var poolName of RecipeDatabase.listMentionedTreasurePools() ) {
-	var pool = TreasurePoolDatabase.find( poolName );
+for ( const poolName of RecipeDatabase.listMentionedTreasurePools() ) {
+	const pool = TreasurePoolDatabase.find( poolName );
 	if ( !pool ) {
 		util.log( '[error] Unknown TreasurePool in the recipe: ' + poolName );
 		continue;

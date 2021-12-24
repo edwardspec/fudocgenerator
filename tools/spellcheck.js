@@ -12,25 +12,25 @@
 const { ItemDatabase } = require( '../lib' );
 
 // Find all words in assets: { "word1": [ "filename1", "filename2", ... ], "word2": [ ... ], ... }
-var wordToFilenames = new Map();
+const wordToFilenames = new Map();
 
 ItemDatabase.forEach( ( itemCode, item ) => {
-	var asset = item.asset;
+	const asset = item.asset;
 	if ( asset.vanilla && !asset.patched ) {
 		// Skip vanilla assets that are not patched by the mod.
 		return;
 	}
 
 	// TODO: possibly add monster description, codex text, etc.
-	var stringsToCheck = [
+	const stringsToCheck = [
 		item.description
 	];
 
-	var words = stringsToCheck.join( ' ' ).match( /[a-z]+/ig ) || [];
+	const words = stringsToCheck.join( ' ' ).match( /[a-z]+/ig ) || [];
 	words.forEach( ( word ) => {
 		word = word.toLowerCase();
 
-		var filenames = wordToFilenames.get( word );
+		let filenames = wordToFilenames.get( word );
 		if ( !filenames ) {
 			filenames = new Set();
 			wordToFilenames.set( word, filenames );

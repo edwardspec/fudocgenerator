@@ -65,7 +65,7 @@ AssetDatabase.forEach( assetType, ( filename, asset ) => {
 		return;
 	}
 
-	var line;
+	let line;
 	if ( argv.plain ) {
 		line = plainValues.join( ',' );
 	} else {

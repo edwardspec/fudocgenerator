@@ -4,7 +4,7 @@
 
 'use strict';
 
-var { ItemDatabase } = require( '../lib' );
+const { ItemDatabase } = require( '../lib' );
 
 ItemDatabase.forEach( ( itemCode, item ) => {
 	( item.orientations || [] ).forEach( ( placement ) => {

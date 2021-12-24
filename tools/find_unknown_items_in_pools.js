@@ -4,10 +4,10 @@
 
 'use strict';
 
-var { TreasurePoolDatabase, ItemDatabase } = require( '../lib' );
+const { TreasurePoolDatabase, ItemDatabase } = require( '../lib' );
 
 // { itemCode1: [ poolName1, poolName2, ... ] }
-var missingItemsToPools = {};
+const missingItemsToPools = {};
 
 TreasurePoolDatabase.forEach( ( pool ) => {
 	pool.getPossibleOutputs().getItemCodes().forEach( ( itemCode ) => {

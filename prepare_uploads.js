@@ -26,7 +26,7 @@ fs.mkdirSync( outputPath + '/onlyNew', { recursive: true } );
 /* ----------------------------------------------------------------------------------------------- */
 
 // Queue used by prepareUpload().
-var uploadsToPrepare = [];
+const uploadsToPrepare = [];
 
 /**
  * @param {string} targetTitle Name of File: page in the wiki, e.g. "Item_icon_ironore.png".
@@ -50,8 +50,8 @@ function prepareUpload( targetTitle, relativePath, relativeToAsset = null ) {
 }
 
 // Iterate over every item that has at least 1 Recipe.
-for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
-	var item = ItemDatabase.find( itemCode );
+for ( const itemCode of RecipeDatabase.listMentionedItemCodes() ) {
+	const item = ItemDatabase.find( itemCode );
 	if ( !item ) {
 		// Must be tolerant to bad input (ignore unknown items, continue with known items),
 		// because a typo somewhere in the mod shouldn't stop the script.
@@ -63,14 +63,14 @@ for ( var itemCode of RecipeDatabase.listMentionedItemCodes() ) {
 	prepareUpload( 'Item_icon_' + itemCode + '.png', item.inventoryIcon, item.asset );
 
 	// Add image of the placeable object (such as Extraction Lab or Wooden Crate), if any.
-	var placedImage = item.placementImage;
-	var placedObject = ( item.orientations || [] )[0];
+	let placedImage = item.placementImage;
+	const placedObject = ( item.orientations || [] )[0];
 	if ( !placedImage && placedObject ) {
 		placedImage = placedObject.dualImage || placedObject.image;
 		if ( !placedImage && placedObject.imageLayers ) {
 			// When there are multiple layers (in most cases it's 1 fullbright and 1 non-fullbright),
 			// we use the image from the first non-fullbright layer (if any).
-			for ( var layer of placedObject.imageLayers ) {
+			for ( const layer of placedObject.imageLayers ) {
 				if ( !layer.fullbright ) {
 					placedImage = layer.image;
 					break;
@@ -92,8 +92,8 @@ MonsterDatabase.forEach( ( monster ) => {
 } );
 
 // Upload icons of weathers.
-var displayWeathers = AssetDatabase.getData( 'interface/cockpit/cockpit.config' ).displayWeathers;
-for ( var [ weatherCode, weatherInfo ] of Object.entries( displayWeathers ) ) {
+const displayWeathers = AssetDatabase.getData( 'interface/cockpit/cockpit.config' ).displayWeathers;
+for ( const [ weatherCode, weatherInfo ] of Object.entries( displayWeathers ) ) {
 	prepareUpload( 'Weather_icon_' + weatherCode + '.png', weatherInfo.icon );
 }
 
@@ -103,7 +103,7 @@ StatusEffectDatabase.forEach( ( effect ) => {
 } );
 
 // Process all images that were previously queued by prepareUpload().
-var progressBar = new cliProgress.Bar( {
+const progressBar = new cliProgress.Bar( {
 	stopOnComplete: true,
 	barsize: 20,
 	format: '[{bar}] {percentage}% | {value}/{total} | {target}'
@@ -111,11 +111,11 @@ var progressBar = new cliProgress.Bar( {
 progressBar.start( uploadsToPrepare.length, 0, { target: '' } );
 
 uploadsToPrepare.forEach( ( task ) => {
-	var [ targetTitle, relativePath, relativeToAsset ] = task;
+	const [ targetTitle, relativePath, relativeToAsset ] = task;
 
 	progressBar.increment( { target: targetTitle } );
 
-	var absolutePath = ImageFinder.locateImage( relativePath, relativeToAsset );
+	const absolutePath = ImageFinder.locateImage( relativePath, relativeToAsset );
 	if ( absolutePath ) {
 		fs.symlinkSync( absolutePath, outputPath + '/all/' + targetTitle );
 		if ( !WikiStatusCache.pageExists( 'File:' + targetTitle ) ) {
