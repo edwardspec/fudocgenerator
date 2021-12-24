@@ -7,6 +7,7 @@
  * node export_database.js liquid name,liquidId,itemDrop,interactions
  * node export_database.js material materialId,materialName,itemDrop,liquidInteractions
  * node export_database.js item materialId --vanilla --plain --uniq
+ * node export_database.js item itemCode,shortdescription,inventoryIcon --plain
  */
 
 'use strict';
@@ -30,24 +31,36 @@ const [ assetType, fieldsArg ] = argv._,
 
 AssetDatabase.load( { vanillaOnly: argv.vanilla } );
 
-var resultLines = [];
+let resultLines = [];
 
 AssetDatabase.forEach( assetType, ( filename, asset ) => {
 	// Export only the requested fields, nothing else.
-	var entity = {};
-	var plainValues = [];
+	let entity = {};
+	let plainValues = [];
+	let fieldsFound = 0;
+
+	const data = asset.data;
 
 	for ( let field of fields ) {
-		let value = asset.data[field];
-		if ( !value ) {
-			continue;
+		let value;
+		if ( field === 'itemCode' ) {
+			// Special handling: objects are considered items, so objects and non-objects can use the same ID field.
+			value = data.itemName || data.objectName;
+		} else {
+			value = asset.data[field];
+		}
+
+		if ( value ) {
+			fieldsFound++;
+			entity[field] = value;
+		} else {
+			value = '';
 		}
 
 		plainValues.push( value );
-		entity[field] = value;
 	}
 
-	if ( plainValues.length === 0 ) {
+	if ( fieldsFound === 0 ) {
 		// This entity doesn't have any of the requested fields.
 		return;
 	}
