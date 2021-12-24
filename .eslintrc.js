@@ -4,16 +4,16 @@ module.exports = {
 	ignorePatterns: [ 'package-lock.json', 'package.json' ],
 	env: {
 		node: true,
-		es2020: true
+		es2021: true
+	},
+	parserOptions: {
+		ecmaVersion: 'latest'
 	},
 	extends: [
 		'wikimedia',
 		'wikimedia/node',
-		'wikimedia/language/es2020'
+		'wikimedia/language/es2021'
 	],
-	parserOptions: {
-		ecmaVersion: 11
-	},
 	rules: {
 		// Might enable this later.
 		'no-loop-func': 'off', // Only matters for async callbacks, many false positives for synchronous.
@@ -31,10 +31,7 @@ module.exports = {
 		'array-bracket-spacing': 'off',
 		'computed-property-spacing': 'off',
 		'max-len': 'off',
-		'no-var': 'off',
-
-		// Misconfiguration of "eslint-config-wikimedia": rule is used, but is not installed via package.json.
-		'es/no-promise-any': 'off'
+		'no-var': 'off'
 	},
 	overrides: [
 		{
