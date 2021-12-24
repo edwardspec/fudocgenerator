@@ -14,7 +14,7 @@ const { argv, AssetDatabase } = require( '../lib' ),
 	nodePath = require( 'path' );
 
 if ( argv.help ) {
-	let usage = 'Usage: node make_items_cache.js\n\nOptions:' +
+	const usage = 'Usage: node make_items_cache.js\n\nOptions:' +
 		'\n\t--vanilla   Load only vanilla assets (without any patches)' +
 		'\n';
 
@@ -24,7 +24,7 @@ if ( argv.help ) {
 
 AssetDatabase.load( { vanillaOnly: argv.vanilla } );
 
-let result = {};
+const result = {};
 
 AssetDatabase.forEach( 'item', ( filename, asset ) => {
 	const data = asset.data,

@@ -17,7 +17,7 @@ ResearchTreeDatabase.forEach( ( node ) => {
 		return;
 	}
 
-	for ( let itemCode of node.unlocks ) {
+	for ( const itemCode of node.unlocks ) {
 		if ( !nodesThatUnlock[itemCode] ) {
 			nodesThatUnlock[itemCode] = [];
 		}
@@ -26,7 +26,7 @@ ResearchTreeDatabase.forEach( ( node ) => {
 	}
 } );
 
-for ( let [ itemCode, nodes ] of Object.entries( nodesThatUnlock ) ) {
+for ( const [ itemCode, nodes ] of Object.entries( nodesThatUnlock ) ) {
 	if ( nodes.length < 2 ) {
 		// Only unlocked by one node.
 		continue;

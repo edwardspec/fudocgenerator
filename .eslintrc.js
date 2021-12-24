@@ -22,7 +22,9 @@ module.exports = {
 
 		// Not exactly against applying these in the future,
 		// but they are very annoying with the current codestyle ("for ( var [ a, b ] of ..." loops, etc.).
-		'prefer-const': 'off',
+		'prefer-const': [ 'error', {
+			destructuring: 'all'
+		} ],
 
 		// Don't want to apply these.
 		'array-bracket-spacing': 'off',

@@ -16,7 +16,7 @@ const { argv, AssetDatabase } = require( '../lib' ),
 	process = require( 'process' );
 
 if ( argv._.length !== 2 || argv.help ) {
-	let usage = 'Usage: node export_database.js AssetType Field1,Field2,Field3\n\nOptions:' +
+	const usage = 'Usage: node export_database.js AssetType Field1,Field2,Field3\n\nOptions:' +
 		'\n\t--vanilla   Load only vanilla assets (without any patches)' +
 		'\n\t--plain     Print comma-separated values instead of JSON' +
 		'\n\t--uniq      Suppress duplicate lines in result.' +
@@ -35,13 +35,13 @@ let resultLines = [];
 
 AssetDatabase.forEach( assetType, ( filename, asset ) => {
 	// Export only the requested fields, nothing else.
-	let entity = {};
-	let plainValues = [];
+	const entity = {};
+	const plainValues = [];
 	let fieldsFound = 0;
 
 	const data = asset.data;
 
-	for ( let field of fields ) {
+	for ( const field of fields ) {
 		let value;
 		if ( field === 'itemCode' ) {
 			// Special handling: objects are considered items, so objects and non-objects can use the same ID field.

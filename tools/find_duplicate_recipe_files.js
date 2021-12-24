@@ -27,7 +27,7 @@ AssetDatabase.forEach( 'recipe', ( filename, asset ) => {
 		return ret.join( ',' );
 	};
 
-	let normalizedRecipe = normalize( RecipeSide.newFromCraftingInput( loadedData.input ) ) +
+	const normalizedRecipe = normalize( RecipeSide.newFromCraftingInput( loadedData.input ) ) +
 		' => ' + normalize( RecipeSide.newFromCraftingInput( loadedData.output ) );
 
 	if ( !recipes[normalizedRecipe] ) {
@@ -37,7 +37,7 @@ AssetDatabase.forEach( 'recipe', ( filename, asset ) => {
 	recipes[normalizedRecipe].push( filename );
 } );
 
-for ( let [ normalizedRecipe, filenames ] of Object.entries( recipes ) ) {
+for ( const [ normalizedRecipe, filenames ] of Object.entries( recipes ) ) {
 	if ( filenames.length > 1 ) {
 		console.log( { filenames: filenames, normalizedInputOutput: normalizedRecipe } );
 	}

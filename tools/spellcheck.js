@@ -41,7 +41,7 @@ ItemDatabase.forEach( ( itemCode, item ) => {
 } );
 
 // Iterate over unique, alphabetically sorted list of words.
-for ( let word of [...wordToFilenames.keys()].sort() ) {
+for ( const word of [...wordToFilenames.keys()].sort() ) {
 	// When you run hunspell with -1 flag, it will only check the first word (before \t).
 	// Everything after that (the list of files where this word is present) is to make error messages
 	// more useful (hunspell with -L flag will print the entire line where it found an unknown word).
