@@ -15,7 +15,7 @@ const { argv, AssetDatabase } = require( '../lib' ),
 	process = require( 'process' );
 
 if ( argv._.length !== 2 || argv.help ) {
-	var usage = 'Usage: node export_database.js DatabaseName MapName Field1,Field2,Field3\n\nOptions:' +
+	let usage = 'Usage: node export_database.js AssetType Field1,Field2,Field3\n\nOptions:' +
 		'\n\t--vanilla   Load only vanilla assets (without any patches)' +
 		'\n\t--plain     Print comma-separated values instead of JSON' +
 		'\n\t--uniq      Suppress duplicate lines in result.' +
