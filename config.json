@@ -269,7 +269,8 @@
 		"invisiblelight": "Invisible Ship Light",
 		"shiplight": "Ship Light (small)",
 		"veluushiplight": "Veluuish Ship Light",
-		"xishiplight": "X'i Ship Light"
+		"xishiplight": "X'i Ship Light",
+		"firstaidkit2": "Mounted First Aid Kit (white)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
