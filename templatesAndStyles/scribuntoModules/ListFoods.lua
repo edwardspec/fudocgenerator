@@ -68,7 +68,7 @@ function p.ListAllFoods()
 		local row = itemNameToRow[itemName]
 		local extraInfo = metadata[row.id] or {}
 
-		local stackSize = row.stackSize
+		local stackSize = row.stackSize or '1'
 		if stackSize == '' then
 			stackSize = '1'
 		end
