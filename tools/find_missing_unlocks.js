@@ -5,7 +5,7 @@
 'use strict';
 
 const { CraftingStationDatabase, ItemDatabase, Recipe, RecipeDatabase,
-	ResearchTreeDatabase, QuestDatabase } = require( '../lib' );
+	ResearchTreeDatabase, TreasurePoolDatabase, QuestDatabase } = require( '../lib' );
 
 // Find items with unlocks.
 var unlockableItems = new Set();
@@ -28,6 +28,16 @@ RecipeDatabase.forEach( ( recipe ) => {
 	recipe.outputs.getAllComponents().forEach( ( component ) => {
 		if ( component.quantity.isBlueprint ) {
 			// Blueprint item ("<something>-recipe") can be found by player.
+			// Note: RecipeDatabase doesn't include unobtainable treasure pools.
+			unlockableItems.add( component.id );
+		}
+	} );
+} );
+
+TreasurePoolDatabase.forEach( ( pool ) => {
+	pool.getPossibleOutputs().getAllComponents().forEach( ( component ) => {
+		if ( component.quantity.isBlueprint ) {
+			// Blueprint item ("<something>-recipe") is in some (possible unobtainable) treasure pool.
 			unlockableItems.add( component.id );
 		}
 	} );
