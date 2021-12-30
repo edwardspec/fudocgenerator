@@ -4,6 +4,8 @@ _table = statuseffect
 |name = String
 |defaultDuration = String
 |hasIcon = String
+|immunityStats = List (,) of String
+|resistWith = String
 }}<noinclude>
 
 This table lists all known status effects.
