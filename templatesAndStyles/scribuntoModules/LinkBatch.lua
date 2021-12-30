@@ -72,6 +72,10 @@ local function lazyLoadGroup( cargoTable )
 		fields = fields .. ',hasIcon'
 	end
 
+	if cargoTable == 'statuseffect' then
+		fields = fields .. ',resistWith'
+	end
+
 	local rows = cargo.query( cargoTable, fields, {
 		where = 'id IN (' .. table.concat( quotedIds, ',' ) .. ')'
 	} ) or {}
@@ -83,6 +87,10 @@ local function lazyLoadGroup( cargoTable )
 		linkData.wikiPage = row.wikiPage or row.name
 		linkData.hasIcon = row.hasIcon == 'true'
 		linkData.loaded = true
+
+		if row.resistWith and row.resistWith ~= '' then
+			linkData.resistWith = row.resistWith
+		end
 	end
 
 	-- Double-check that all entities were loaded.
@@ -160,6 +168,10 @@ local function getLink( cargoTable, id, renderOptions )
 				ret = ret .. '|' .. linkData.displayName
 			end
 			ret = ret .. ']]'
+		end
+
+		if linkData.resistWith then
+			ret = ret .. ' <i>(immune at: ' .. linkData.resistWith .. ')</i>'
 		end
 	end
 
