@@ -32,7 +32,7 @@ local function queryMonster( monsterId )
 
 	-- Add default values for stats.
 	for fieldName, defaultValue in pairs( statDefaults ) do
-		if row[fieldName] == '' then
+		if not row[fieldName] or row[fieldName] == '' then
 			row[fieldName] = defaultValue
 		end
 	end
