@@ -78,7 +78,7 @@ local function batchLoadTheseRegions( regionsToLoad )
 	end
 
 	for _, info in ipairs( queryRegions( uniqueRegionNames ) ) do
-		if info.oceanLiquid ~= '' then
+		if info.oceanLiquid and info.oceanLiquid ~= '' then
 			info.oceanLiquidItems = mw.text.split( info.oceanLiquid, ',' )
 
 			-- Remember the mentioned liquids, they will be used in batchLoadTheseItemLinks().
@@ -87,7 +87,7 @@ local function batchLoadTheseRegions( regionsToLoad )
 			end
 		end
 
-		if info.caveLiquid ~= '' then
+		if info.caveLiquid and info.caveLiquid ~= '' then
 			info.caveLiquidItems = mw.text.split( info.caveLiquid, ',' )
 
 			for _, liquid in ipairs( info.caveLiquidItems ) do
@@ -272,13 +272,13 @@ function p.Main( frame )
 	local mentionedRegions = {} -- { "regionName1": true, ... }
 	local layerNameToInfo = {} -- { "surface: { ... }, "subsurface": { ... }, ... }
 	for _, layerInfo in ipairs( queryAllLayers( planetType ) ) do
-		if layerInfo.primaryRegion == '' then
+		if not layerInfo.primaryRegion or layerInfo.primaryRegion == '' then
 			layerInfo.primaryRegion = {}
 		else
 			layerInfo.primaryRegion = mw.text.split( layerInfo.primaryRegion, ',' )
 		end
 
-		if layerInfo.secondaryRegions == '' then
+		if not layerInfo.secondaryRegions or layerInfo.secondaryRegions == '' then
 			layerInfo.secondaryRegions = {}
 		else
 			layerInfo.secondaryRegions = mw.text.split( layerInfo.secondaryRegions, ',' )
@@ -319,7 +319,7 @@ function p.Main( frame )
 			end
 
 			ret = ret .. '\n| style="vertical-align: top;" | '
-			for _, dungeonName in ipairs( mw.text.split( layerInfo.dungeons, ',' ) ) do
+			for _, dungeonName in ipairs( mw.text.split( layerInfo.dungeons or '', ',' ) ) do
 				if dungeonName ~= '' then
 					ret = ret .. '\n* ' .. dungeonName
 				end
