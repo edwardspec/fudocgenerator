@@ -109,7 +109,7 @@ end
 --
 --  Default options: { icon = false, text = true, hideParentheses = true, iconWidth = "16px", nolink = false, allowUnknown = false }
 local function getLink( cargoTable, id, renderOptions )
-	local renderOptions = renderOptions or {}
+	renderOptions = renderOptions or {}
 	local group = getOrMakeGroup( cargoTable )
 	local linkData = group[id]
 
@@ -134,18 +134,20 @@ local function getLink( cargoTable, id, renderOptions )
 	end
 
 	local filename = string.format( iconFilenameFormat[cargoTable], id )
-	if renderOptions.icon == 'ifExists' then
+
+	local showIcon = renderOptions.icon
+	if showIcon == 'ifExists' then
 		-- "Include icon only if it exists" mode
 		if hasHasIconField[cargoTable] then
-			renderOptions.icon = linkData.hasIcon
+			showIcon = linkData.hasIcon
 		else
-			renderOptions.icon = mw.title.new( filename, 6 ).fileExists
+			showIcon = mw.title.new( filename, 6 ).fileExists
 		end
 	end
 
 	-- Make a wikitext link.
 	local ret = ''
-	if renderOptions.icon then
+	if showIcon then
 		ret = ret .. '[[File:' .. filename .. '|alt=' .. linkData.wikiPage ..
 			'|' .. ( renderOptions.iconWidth or '16px' ) .. '|link='
 
