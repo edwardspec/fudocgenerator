@@ -397,19 +397,19 @@ function p.Main( frame )
 		if setRow then
 			local armorset = ''
 
-			if setRow.head ~= '' then
+			if setRow.head and setRow.head ~= '' then
 				for _, linkTarget in ipairs( mw.text.split( setRow.head, ',' ) ) do
 					armorset = armorset .. '[[File:Museum icon Military.png|head|16px|link=]] [[' .. linkTarget .. ']]<br>'
 				end
 			end
 
-			if setRow.chest ~= '' then
+			if setRow.chest and setRow.chest ~= '' then
 				for _, linkTarget in ipairs( mw.text.split( setRow.chest, ',' ) ) do
 					armorset = armorset .. '[[File:Rpb clothing icon.svg|chest|16px|link=]] [[' .. linkTarget .. ']]<br>'
 				end
 			end
 
-			if setRow.legs ~= '' then
+			if setRow.legs and setRow.legs ~= '' then
 				for _, linkTarget in ipairs( mw.text.split( setRow.legs, ',' ) ) do
 					armorset = armorset .. '[[File:Android Emoji 1f45f.svg|legs|16px|link=]] [[' .. linkTarget .. ']]<br>'
 				end
