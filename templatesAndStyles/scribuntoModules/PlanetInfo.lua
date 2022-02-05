@@ -153,7 +153,7 @@ local function describeRegion( regionName, isPrimarySurface, withImages )
 	-- Show weather and status effects, but only for primary regions of Surface layer,
 	-- because status effects and weather from subbiomes are not applied.
 	if isPrimarySurface then
-		if info.statusEffects ~= '' then
+		if info.statusEffects and info.statusEffects ~= '' then
 			ret = ret .. '\n<h5>Status effects</h5>'
 
 			local effects = mw.text.split( info.statusEffects, ',' )
@@ -170,7 +170,7 @@ local function describeRegion( regionName, isPrimarySurface, withImages )
 			end
 		end
 
-		if info.weatherPools ~= '' then
+		if info.weatherPools and info.weatherPools ~= '' then
 			ret = ret .. '\n<h5>Weather pools</h5>'
 
 			-- Because our Cargo database doesn't have planets like Unknown or Superdense (would be useless),
@@ -239,7 +239,7 @@ function p.Main( frame )
 		ret = ret .. ' - ' .. row.maxTier
 	end
 
-	if row.minGravity ~= '' then
+	if row.minGravity and row.minGravity ~= '' then
 		ret = ret .. '\n* <b>Gravity</b>: ' .. row.minGravity
 		if row.minGravity ~= row.maxGravity then
 			ret = ret .. ' - ' .. row.maxGravity
@@ -248,14 +248,14 @@ function p.Main( frame )
 
 	ret = ret .. '\n* <b>Found around stars</b>: ' .. string.gsub( row.stars, ',', ', ' )
 
-	if row.minDayLight ~= '' then
+	if row.minDayLight and row.minDayLight ~= '' then
 		ret = ret .. '\n* <b>Light level (day)</b>: ' .. row.minDayLight
 		if row.minDayLight ~= row.maxDayLight then
 			ret = ret .. ' - ' .. row.maxDayLight .. ': ' .. row.dayLightDistribution
 		end
 	end
 
-	if row.minWind ~= '' then
+	if row.minWind and row.minWind ~= '' then
 		ret = ret .. '\n* <b>Average output of [[Wind Turbine]]</b>: ' .. row.minWind .. 'W'
 		if row.minWind ~= row.maxWind then
 			ret = ret .. ' - ' .. row.maxWind .. 'W: ' .. row.windDistribution
