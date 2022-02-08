@@ -7,30 +7,18 @@ local describeRotting = require( 'Module:AutomaticInfoboxItem' ).DescribeRotting
 -- Usage: {{#invoke: ListFoods|ListAllFoods}}
 function p.ListAllFoods()
 	-- Perform a SQL query to the Cargo database.
-	local tables = 'recipe,item'
-	local fields = 'wikiPage,description,category,rarity,price,stackSize,id,station,wikitext'
+	local tables = 'item'
+	local fields = 'wikiPage,description,category,rarity,price,stackSize,id'
 	local queryOpt = {
-		join = 'recipe.outputs HOLDS item.id',
-		where = 'category IN ("food", "preparedFood", "drink", "medicine") AND station NOT IN ("Plating Table", "Monster drops", "Monster drops (hunting)", "Treasure pool", "Drops from breakable objects")',
+		where = 'category IN ("food", "preparedFood", "drink", "medicine")',
 		limit = 5000
 	}
-	local itemRecipeRows = cargo.query( tables, fields, queryOpt ) or {}
-
-	-- Group itemRecipeRows by item ID, concatenating all recipes of the same item.
-	local itemRows = {}
-	for _, row in ipairs( itemRecipeRows ) do
-		if not itemRows[row.id] then
-			itemRows[row.id] = row
-		end
-
-		itemRows[row.id].recipes = ( itemRows[row.id].recipes or '' ) ..
-			'[[' .. row.station .. ']]\n' .. row.wikitext .. '\n'
-	end
+	local itemRows = cargo.query( tables, fields, queryOpt ) or {}
 
 	-- Get relevant metadata for all found foods.
 	local foundIds = {} -- { id1, id2, ... }
-	for id in pairs( itemRows ) do
-		table.insert( foundIds, '"' .. id .. '"' )
+	for _, row in ipairs( itemRows ) do
+		table.insert( foundIds, '"' .. row.id .. '"' )
 	end
 
 	local metadataRows = cargo.query( 'item_metadata', 'id,prop,value', {
@@ -54,7 +42,7 @@ function p.ListAllFoods()
 	-- Sort itemRows alphabetically by their row.wikiPage.
 	local sortedItemNames = {}
 	local itemNameToRow = {}
-	for _, row in pairs( itemRows ) do
+	for _, row in ipairs( itemRows ) do
 		table.insert( sortedItemNames, row.wikiPage )
 		itemNameToRow[row.wikiPage] = row
 	end
@@ -62,7 +50,7 @@ function p.ListAllFoods()
 
 	-- Show a table of all foods.
 	local ret = '{| class="wikitable sortable"\n' ..
-		'|-\n! class="unsortable" |\n! Item !! Food value !! Recipe !! Description !! Rotting !! Category !! Rarity !! Price !! Stack size\n'
+		'|-\n! class="unsortable" style="width:34px;" |\n! Item !! Food value !! Description !! Rotting !! Category !! Rarity !! Price !! Stack size\n'
 
 	for _, itemName in ipairs( sortedItemNames ) do
 		local row = itemNameToRow[itemName]
@@ -82,7 +70,6 @@ function p.ListAllFoods()
 			'||[[File:Item_icon_' .. row.id .. '.png|32px|alt=]]' ..
 			'||[[' .. row.wikiPage .. ']]' ..
 			'||' .. ( extraInfo.foodValue or '-' ) ..
-			'||\n' .. row.recipes ..
 			'||\n' .. row.description .. '\n' ..
 			'||' .. rottingInfo ..
 			'||' .. row.category ..
