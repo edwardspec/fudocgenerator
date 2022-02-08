@@ -58,7 +58,7 @@ function p.ListAllFoods()
 
 		local stackSize = row.stackSize or '1'
 		if stackSize == '' then
-			stackSize = '1'
+			stackSize = '1000'
 		end
 
 		local rottingInfo = noRottingInfo
