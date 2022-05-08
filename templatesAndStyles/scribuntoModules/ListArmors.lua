@@ -63,7 +63,7 @@ function p.ListAllSets()
 			'||' .. row.radioactive ..
 			'||' .. row.cosmic ..
 			'||' .. row.shadow ..
-			'||' .. row.setBonus ..
+			'||' .. ( row.setBonus or '' ) ..
 			'\n|' .. row.price .. '\n'
 	end
 
