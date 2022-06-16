@@ -1,6 +1,6 @@
 /**
  * Query the MediaWiki API and update the cache of "which pages exist?".
- * This will later be used by generate.js to create "onlynew" files for Pywikibot.
+ * This will later be used by generate.js to create "onlyNew" files for Pywikibot.
  *
  * Note that this script is never called automatically.
  * When to run it is exclusively up to the user.
