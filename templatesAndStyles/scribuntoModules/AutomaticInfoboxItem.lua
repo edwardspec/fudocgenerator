@@ -455,13 +455,24 @@ function p.Main( frame )
 				dietName = mw.text.trim( dietName )
 				if dietName == 'Raw Meat' then
 					ret = ret .. '[[Category:Raw meat foods]]'
-				elseif dietName == 'Cooked Meat' then
+				end
+
+				if dietName == 'Cooked Meat' then
 					ret = ret .. '[[Category:Cooked meat foods]]'
-				elseif dietName == 'Fish' or dietName == 'Cooked Seafood' then
+				end
+
+				if dietName == 'Fish' or dietName == 'Cooked Seafood' then
 					ret = ret .. '[[Category:Fish foods]]'
-				elseif dietName == 'Plant' or dietName == 'Vegetable' or dietName == 'Fruit' then
+				end
+
+				if dietName == 'Plant' or dietName == 'Vegetable' or dietName == 'Vegetables'
+					or dietName == 'Fruit' or dietName == 'Fruity'
+					or dietName == 'Herbivore' or dietName == 'Herb' or dietName == 'Grain'
+				then
 					ret = ret .. '[[Category:Plant foods]]'
-				elseif dietName == 'Robot' then
+				end
+
+				if dietName == 'Robot' then
 					ret = ret .. '[[Category:Robotic foods]]'
 				end
 			end
