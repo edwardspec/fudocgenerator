@@ -447,6 +447,27 @@ function p.Main( frame )
 		end
 	end
 
+	-- Include pages of edible items into diet-specific categories.
+	if edibleByHuman then
+		local foodTypeInfo = description:match( '>Type: (.*)</span>' )
+		if foodTypeInfo then
+			for _, dietName in ipairs( mw.text.split( foodTypeInfo:gsub( '+', ',' ), ',' ) ) do
+				dietName = mw.text.trim( dietName )
+				if dietName == 'Raw Meat' then
+					ret = ret .. '[[Category:Raw meat foods]]'
+				elseif dietName == 'Cooked Meat' then
+					ret = ret .. '[[Category:Cooked meat foods]]'
+				elseif dietName == 'Fish' or dietName == 'Cooked Seafood' then
+					ret = ret .. '[[Category:Fish foods]]'
+				elseif dietName == 'Plant' or dietName == 'Vegetable' or dietName == 'Fruit' then
+					ret = ret .. '[[Category:Plant foods]]'
+				elseif dietName == 'Robot' then
+					ret = ret .. '[[Category:Robotic foods]]'
+				end
+			end
+		end
+	end
+
 	return ret
 end
 
