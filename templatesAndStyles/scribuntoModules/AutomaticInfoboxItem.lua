@@ -451,10 +451,15 @@ function p.Main( frame )
 	if edibleByHuman then
 		local foodTypeInfo = description:match( '>Type: (.*)</span>' )
 		if foodTypeInfo then
-			for _, dietName in ipairs( mw.text.split( foodTypeInfo:gsub( '+', ',' ), ',' ) ) do
+			foodTypeInfo = foodTypeInfo:gsub( '+', ',' ):gsub( '\\.', '' ):gsub( '?', '' )
+			for _, dietName in ipairs( mw.text.split( foodTypeInfo, ',' ) ) do
 				dietName = mw.text.trim( dietName )
 				if dietName == 'Raw Meat' then
 					ret = ret .. '[[Category:Raw meat foods]]'
+				end
+
+				if dietName == 'Meaty Plant' then
+					ret = ret .. '[[Category:Meaty plant foods]]'
 				end
 
 				if dietName == 'Cooked Meat' then
@@ -474,6 +479,10 @@ function p.Main( frame )
 
 				if dietName == 'Robot' then
 					ret = ret .. '[[Category:Robotic foods]]'
+				end
+
+				if dietName:match( 'Sugar' ) then
+					ret = ret .. '[[Category:Sugar foods]]'
 				end
 			end
 		end
