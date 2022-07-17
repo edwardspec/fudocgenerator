@@ -65,6 +65,7 @@
   min-width: 32px;
   min-height: 32px;
   object-fit: contain;
+  max-width: 128px;
 }
 
 /* Make images like "Item_image_zerchbookcase.png" be at least 128x64px when in the infobox */
