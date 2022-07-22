@@ -561,7 +561,7 @@
 		"frackinuniversemadness": "Metaphysics"
 	},
 
-	"@doc": "List of item IDs of vanilla items that are known to be missing. Needed for some buddy vanilla TreasurePools (normally they would be considered invalid if some item is missing, but not if it's listed in this array).",
+	"@doc": "List of item IDs of vanilla items that are known to be missing. Needed for some buggy vanilla TreasurePools (normally they would be considered invalid if some item is missing, but not if it's listed in this array).",
 	"expectedMissingItems": [
 		"guagmuttaf"
 	],
@@ -670,7 +670,7 @@
 		]
 	},
 
-	"@doc": "Link to GitHub repositor. Used for external links to some assets (such as OGG music files).",
+	"@doc": "Link to GitHub repository. Used for external links to some assets (such as OGG music files).",
 	"githubLink": "https://github.com/sayterdarkwynd/FrackinUniverse",
 
 	"@doc": "Names of weapon abilities that are so trivial/evident (e.g. Bow Shot for primary of most bows) that there is no benefit in mentioning their name as Special Ability in the infobox. These names won't be included into the Cargo database.",
