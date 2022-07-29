@@ -125,19 +125,22 @@ function p.RecipesCraftedAt( frame )
 	end
 
 	-- Perform a SQL query to the Cargo database.
-	local rows = cargo.query( 'recipe', 'wikitext', {
+	-- Note: concatenating hundreds of strings is apparently memory-hungry in Lua,
+	-- doing it to row.wikitext was reaching the Lua memory limit on the page "Biome chests",
+	-- so we avoid using cargo.query() method here.
+	local ret = frame:callParserFunction{ name = '#cargo_query', args = { '',
+		tables = 'recipe',
+		fields = 'wikitext',
 		where = 'station="' .. stationName .. '"',
-		limit = 5000
-	} ) or {}
-	if not rows[1] then
-		-- No recipes found.
-		return ''
+		format = 'list',
+		delimiter = '\n',
+		limit = 5000,
+		default = ''
+	} }
+	if ret ~= '' then
+		ret = '<h2>' .. ( args['header'] or 'Items crafted here' ) .. '</h2>' .. ret
 	end
 
-	local ret = '<h2>' .. ( args['header'] or 'Items crafted here' ) .. '</h2>'
-	for _, row in ipairs( rows ) do
-		ret = ret .. row.wikitext
-	end
 	return ret
 end
 
@@ -267,7 +270,7 @@ function p.RecipesWhereItemIs( frame )
 	end
 
 	-- Add styles
-	ret = ret .. frame:extensionTag { name = 'templatestyles', args = { src = 'ListRecipes.css' } }
+	ret = ret .. frame:extensionTag{ name = 'templatestyles', args = { src = 'ListRecipes.css' } }
 
 	return ret
 end
