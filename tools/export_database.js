@@ -20,6 +20,8 @@ if ( argv._.length !== 2 || argv.help ) {
 		'\n\t--vanilla   Load only vanilla assets (without any patches)' +
 		'\n\t--plain     Print comma-separated values instead of JSON' +
 		'\n\t--uniq      Suppress duplicate lines in result.' +
+		'\n\t--require-all-fields' +
+		'\n\t            List only entities that have ALL of the requested fields.' +
 		'\n';
 
 	process.stderr.write( usage );
@@ -53,6 +55,8 @@ AssetDatabase.forEach( assetType, ( filename, asset ) => {
 		if ( value ) {
 			fieldsFound++;
 			entity[field] = value;
+		} else if ( argv['require-all-fields'] ) {
+			return;
 		} else {
 			value = '';
 		}
