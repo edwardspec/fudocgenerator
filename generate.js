@@ -11,7 +11,7 @@
 
 const { ItemDatabase, RecipeDatabase, ResearchTreeDatabase, ArmorSetDatabase, PlanetDatabase,
 	BiomeDatabase, MonsterDatabase, RegionDatabase, WeatherPoolDatabase, StatusEffectDatabase,
-	ResultsWriter, TreasurePoolDatabase, SaplingDatabase, TenantDatabase, FunctionDatabase,
+	ResultsWriter, TreasurePoolDatabase, SaplingDatabase, TenantDatabase,
 	BotUpdatedPages, util } = require( './lib' );
 
 /* -------------------------------------------------------------------------------------------- */
@@ -99,10 +99,6 @@ SaplingDatabase.forEach( ( saplingPart ) => {
 
 TenantDatabase.forEach( ( tenant ) => {
 	ResultsWriter.writeTenant( tenant );
-} );
-
-FunctionDatabase.forEach( ( func ) => {
-	ResultsWriter.writeFunction( func );
 } );
 
 BotUpdatedPages.forEach( ( page ) => {
