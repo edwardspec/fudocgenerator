@@ -518,8 +518,9 @@
 		"shoggothbiome"
 	],
 
-	"@doc": "Map of planet ID to human-readable name. Only used for Gas Giants (which are all named the same) and to rename Lush to Garden.",
+	"@doc": "Map of planet ID to human-readable name. Only used for Gas Giants (which are all named the same), for land/ocean variants of Aether World and to rename Lush to Garden.",
 	"overridePlanetNames": {
+		"astral": "Aetheric",
 		"fugasgiant": "Gas Giant",
 		"fugasgiant2": "Proto Giant",
 		"fugasgiant3": "Flame Giant",
