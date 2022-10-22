@@ -477,7 +477,7 @@ function p.Main( frame )
 					ret = ret .. '[[Category:Plant foods]]'
 				end
 
-				if dietName == 'Robot' then
+				if dietName == 'Robot' or dietName == 'Robot Food' then
 					ret = ret .. '[[Category:Robotic foods]]'
 				end
 
