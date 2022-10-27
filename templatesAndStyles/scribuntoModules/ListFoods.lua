@@ -36,7 +36,6 @@ function p.ListAllFoods()
 	end
 
 	-- When rotting time is not specified, the food with non-zero foodValue will rot within 200 minutes.
-	local defaultRottingInfo = mw.getContentLanguage():formatDuration( 200 * 60 )
 	local noRottingInfo = describeRotting( { noRotting = 1 } )
 
 	-- Sort itemRows alphabetically by their row.wikiPage.
@@ -63,7 +62,7 @@ function p.ListAllFoods()
 
 		local rottingInfo = noRottingInfo
 		if extraInfo.foodValue then -- Food without foodValue won't rot.
-			rottingInfo = describeRotting( extraInfo ) or defaultRottingInfo
+			rottingInfo = describeRotting( extraInfo )
 		end
 
 		ret = ret .. '|-\n' ..

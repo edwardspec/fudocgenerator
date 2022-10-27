@@ -136,20 +136,23 @@ function p.DescribeRotting( metadata )
 	if metadata.noRotting then
 		rotInfoColor = 'green' -- Beneficial
 		rottingInfo = 'This food doesn\'t rot.'
-	elseif metadata.rotMinutes then
-		local rotMinutes = tonumber( metadata.rotMinutes )
+	else
+		local rotMinutes = tonumber( metadata.rotMinutes or 200 )
 
 		rottingInfo = mw.getContentLanguage():formatDuration( 60 * rotMinutes )
 		if rotMinutes > 200 then
 			rotInfoColor = 'green' -- Better than default
-		else
+		elseif rotMinutes < 200 then
 			rotInfoColor = '#bb0000' -- Worse than default
 		end
-	else
-		return nil
 	end
 
-	return '<span style="font-weight: bold; color:' .. rotInfoColor .. '">' .. rottingInfo .. '</span>'
+	local style = ''
+	if rotInfoColor then
+		style = ' style="font-weight: bold; color: ' .. rotInfoColor .. ';"'
+	end
+
+	return '<span' .. style .. '>' .. rottingInfo .. '</span>'
 end
 
 -- Print the automatic infobox of item. (based on [[Special:CargoTables/item]])
