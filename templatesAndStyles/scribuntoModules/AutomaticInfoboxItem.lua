@@ -295,9 +295,9 @@ function p.Main( frame )
 			} }
 		end
 
-		-- Display non-standard rotting time (values different from the default 3h20m).
-		local rottingInfo = p.DescribeRotting( metadata )
-		if rottingInfo then
+		-- Display rotting time, except for animal-only foods like Oil or Moondust (they don't rot).
+		if edibleByHuman then
+			local rottingInfo = p.DescribeRotting( metadata )
 			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
 				'[[List of foods by rotting time|Rotting]]', rottingInfo
 			} }
