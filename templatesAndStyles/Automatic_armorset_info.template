@@ -25,7 +25,7 @@ _table = armorset
 |shadow = Integer
 }}
 
-This table describes an "armor set", i.e. combination of [[Category:Head armor|head armor]], [[Category:Chest armor|chest armor]] and [[Category:Legs armor|legs armor]].
+This table describes an "armor set", i.e. combination of [[:Category:Head armor|head armor]], [[:Category:Chest armor|chest armor]] and [[:Category:Leg armor|leg armor]].
 
 Notes about fields:
 ; id : This ID doesn't exist in-game! This is a string that is common to IDs of all items in this set (for example, <code>fuquantumadv</code> for the set with [[Morphite Chestpiece MK2]], because ID of that item is <cide>fuquantum'''chest'''adv</code>).
