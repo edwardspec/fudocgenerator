@@ -54,6 +54,7 @@ local OrderOfCraftingStations = {
 		'Drops from breakable objects',
 		'Biome trees',
 		'Drops from trees',
+		'Starting shiplocker',
 		'Treasure pool'
 	} },
 	{ 'Environment', {
