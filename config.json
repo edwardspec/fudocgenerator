@@ -276,7 +276,8 @@
 		"dirtyfossil5": "Fossil/5",
 		"dirtyfossil6": "Fossil/6",
 		"dirtyfossil7": "Fossil/7",
-		"dirtyfossil8": "Fossil/8"
+		"dirtyfossil8": "Fossil/8",
+		"redsand": "Fine Sand (Red Desert)"
 	},
 
 	"@doc": "List of item IDs to skip. This allows us to ignore unobtainable vanilla items in favor of obtainable item from the mod (e.g. Mining Laser).",
@@ -301,8 +302,7 @@
 		"cavedetector",
 		"mobiusrifle2",
 		"scaninteractionexample",
-		"fusuperrewardbag",
-		"redsand"
+		"fusuperrewardbag"
 	],
 
 	"@doc": "List of item IDs of pseudo-items (such as stages of upgradeable crafting stations) that should be skipped.",
