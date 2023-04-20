@@ -585,7 +585,15 @@
 		"glitchDescription",
 		"humanDescription",
 		"hylotlDescription",
-		"novakidDescription"
+		"novakidDescription",
+		"slimepersonDescription",
+		"avaliDescription",
+		"fupeglaciDescription",
+		"fumantiziDescription",
+		"skathDescription",
+		"fukirhosDescription",
+		"feneroxDescription",
+		"thelusianDescription"
 	],
 
 	"@doc": "URL of the MediaWiki API that should be used in [update_status_cache.js] script. Leave as empty string to disable cache updates.",
