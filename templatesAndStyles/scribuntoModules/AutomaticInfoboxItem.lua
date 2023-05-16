@@ -469,7 +469,7 @@ function p.Main( frame )
 					ret = ret .. '[[Category:Cooked meat foods]]'
 				end
 
-				if dietName == 'Fish' or dietName == 'Cooked Seafood' then
+				if dietName == 'Seafood' or dietName == 'Cooked Seafood' then
 					ret = ret .. '[[Category:Fish foods]]'
 				end
 
