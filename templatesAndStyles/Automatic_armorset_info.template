@@ -28,7 +28,7 @@ _table = armorset
 This table describes an "armor set", i.e. combination of [[:Category:Head armor|head armor]], [[:Category:Chest armor|chest armor]] and [[:Category:Leg armor|leg armor]].
 
 Notes about fields:
-; id : This ID doesn't exist in-game! This is a string that is common to IDs of all items in this set (for example, <code>fuquantumadv</code> for the set with [[Morphite Chestpiece MK2]], because ID of that item is <cide>fuquantum'''chest'''adv</code>).
+; id : This ID doesn't exist in-game! This is a string that is common to IDs of all items in this set (for example, <code>fuquantumadv</code> for the set with [[Morphite Chestpiece MK2]], because ID of that item is <code>fuquantum'''chest'''adv</code>).
 ; head, chest, legs : IDs of the items. Can be empty for 1-piece and 2-piece sets.
 ; headPage, chestPage, legsPage : Title of the article about these items. Can be empty.
 ; damage : Same as <code>powerMultiplier</code> in the sources.
