@@ -302,7 +302,8 @@
 		"cavedetector",
 		"mobiusrifle2",
 		"scaninteractionexample",
-		"fusuperrewardbag"
+		"fusuperrewardbag",
+		"ffguide4-codex"
 	],
 
 	"@doc": "List of item IDs of pseudo-items (such as stages of upgradeable crafting stations) that should be skipped.",
