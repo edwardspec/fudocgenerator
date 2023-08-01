@@ -619,6 +619,7 @@
 		"config": "config",
 		"consumable": "item",
 		"currency": "item",
+		"evo": "evolution",
 		"flashlight": "item",
 		"functions": "functions",
 		"harvestingtool": "item",
