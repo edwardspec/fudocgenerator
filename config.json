@@ -706,7 +706,7 @@
 
 	"@doc": "Maps difficult-to-read (on bright background) font colors (such as ^yellow;) to font colors that are suitable for a wiki page.",
 	"replacedFontColors": {
-		"#a5ff00": "#a5dd00",
+		"#a5ff00": "#75ad00",
 		"cyan": "#008888",
 		"#ffd700": "#dfb700",
 		"orange": "#c06500",
