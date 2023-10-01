@@ -369,7 +369,6 @@
 		"tarslime": "Ecto Slime (Tar)",
 		"aquasnake": "Aquasnake",
 		"fuheavydrone": "Heavy War Drone",
-		"futrifangle": "Precursor Trifangle",
 		"ectomicroslime": "Ecto Slime (Micro)",
 		"tarmicroslime": "Ecto Slime (Tar Micro)",
 		"magmamicroslime": "Magma Slime (Micro)",
@@ -427,7 +426,6 @@
 		"noxcapture",
 		"helicultist",
 		"mamalilodon",
-		"alienqueenminionspawn",
 		"shoggoth2",
 		"seedspawn",
 		"dolphin2"
@@ -435,7 +433,6 @@
 
 	"@doc": "List of monster IDs to treat as identical. For example, the mod adds \"fumooshi\" monster as a replacement of vanilla \"mooshi\" (to avoid mod conflicts), but it also patches vanilla \"mooshi\" to have the same parameters, because some vanilla biomes still use \"mooshi\". In this situation it's safe to show (in recipes, etc.) that these biomes have \"fumooshi\", even if they technically have \"mooshi\".",
 	"identicalMonsters": {
-		"chiropterror": "fuchiropterror",
 		"omnicannon": "fuomnicannon",
 		"electricfluffalo": "fuelectricfluffalo",
 		"firefluffalo": "fufirefluffalo",
