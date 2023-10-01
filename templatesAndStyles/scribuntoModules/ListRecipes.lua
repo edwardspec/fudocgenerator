@@ -5,7 +5,6 @@ local cargo = mw.ext.cargo
 local OrderOfCraftingStations = {
 	-- These stations are shown before the "Crafting" section:
 	{ '', {
-		'Contents of openable box',
 		'Growing Tray',
 		'Incubator',
 		'Upgrade crafting station'
@@ -55,7 +54,8 @@ local OrderOfCraftingStations = {
 		'Biome trees',
 		'Drops from trees',
 		'Starting shiplocker',
-		'Treasure pool'
+		'Treasure pool',
+		'Contents of openable box'
 	} },
 	{ 'Environment', {
 		'Liquid Collector',
