@@ -289,9 +289,18 @@ function p.Main( frame )
 		end
 
 		if animalDiet then
+			-- Default food values are defined in [scripts/actions/monsters/farmable.lua]
+			local animalFoodValue = 1 -- Default
+			if foodValue then
+				animalFoodValue = foodValue
+			elseif row.category == 'food' or row.category == 'farmbeastfood' or row.category == 'preparedfood' then
+				-- Default if in these categories
+				animalFoodValue = 10
+			end
+
 			ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = {
 				'[[File:Nutrition (583) - The Noun Project.svg|24px|left|link=|alt=]] Farm beast food value',
-				( foodValue or 20 ) .. '<br><small>(' .. animalDiet .. ')</small>'
+				animalFoodValue .. '<br><small>(' .. animalDiet .. ')</small>'
 			} }
 		end
 
