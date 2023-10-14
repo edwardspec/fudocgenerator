@@ -302,7 +302,8 @@
 		"mobiusrifle2",
 		"scaninteractionexample",
 		"fusuperrewardbag",
-		"ffguide4-codex"
+		"ffguide4-codex",
+		"shojilattice"
 	],
 
 	"@doc": "List of item IDs of pseudo-items (such as stages of upgradeable crafting stations) that should be skipped.",
