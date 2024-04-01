@@ -19,7 +19,7 @@ end
 
 -- Print the list of all armor sets in the game. (based on [[Special:CargoTables/armorset]])
 -- Usage: {{#invoke: ListArmors|ListAllSets}}
-function p.ListAllSets()
+function p.ListAllSets( frame )
 	-- Perform a SQL query to the Cargo database.
 	local tables = 'armorset'
 	local fields = 'tier,rarity,headPage,chestPage,legsPage,damage,protection,energy,health,setBonus,price,physical,radioactive,poison,electric,fire,ice,cosmic,shadow'
@@ -67,7 +67,8 @@ function p.ListAllSets()
 			'\n|' .. row.price .. '\n'
 	end
 
-	ret = ret .. '\n|}'
+	ret = ret .. '\n|}' .. frame:extensionTag { name = 'templatestyles', args = { src = 'ListArmors.css' } }
+
 	return ret
 end
 
