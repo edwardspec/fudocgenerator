@@ -389,12 +389,12 @@ function p.Main( frame )
 		} }
 	end
 
-	if metadata.powerMultiplier and metadata.protection and metadata.maxEnergy and metadata.maxHealth then
+	if metadata.powerMultiplier or metadata.protection or metadata.maxEnergy or metadata.maxHealth then
 		-- Armor
-		local bonus = '[[File:Damage icon.png|24px|link=|Damage]] ' .. metadata.powerMultiplier .. '%' ..
-			'\n\n[[File:Defence icon.png|24px|link=|Defense]] ' .. metadata.protection ..
-			'\n\n[[File:Energy icon.png|24px|link=|Energy]] ' .. metadata.maxEnergy ..
-			'\n\n[[File:Health icon.png|24px|link=|Health]] ' .. metadata.maxHealth
+		local bonus = '[[File:Damage icon.png|24px|link=|Damage]] ' .. ( metadata.powerMultiplier or 0 ) .. '%' ..
+			'\n\n[[File:Defence icon.png|24px|link=|Defense]] ' .. ( metadata.protection or 0 ) ..
+			'\n\n[[File:Energy icon.png|24px|link=|Energy]] ' .. ( metadata.maxEnergy or 0 ) ..
+			'\n\n[[File:Health icon.png|24px|link=|Health]] ' .. ( metadata.maxHealth or 0 )
 
 		ret = ret .. frame:expandTemplate{ title = 'infobox/field', args = { 'Bonus', bonus } }
 
