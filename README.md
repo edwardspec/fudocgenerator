@@ -28,7 +28,7 @@ Running `prepare_uploads.js` will create directory `pywikibot/filesToUpload/all`
 
 `python3 pwb.py upload -always -ignorewarn -abortonwarn:exists /path/to/RESULT/pywikibot/filesToUpload/all -recursive '{{AutoUploadedFileDescription}}'`
 or (see below about "only new files"):
-`python3 pwb.py upload -always -ignorewarn -abortonwarn:exists /path/to/TEST/fudocgenerator/RESULT/pywikibot/filesToUpload/onlyNew -recursive '{{AutoUploadedFileDescription}}'`
+`python3 pwb.py upload -always -ignorewarn -abortonwarn:exists /path/to/RESULT/pywikibot/filesToUpload/onlyNew -recursive '{{AutoUploadedFileDescription}}'`
 
 This will not overwrite existing images.
 
