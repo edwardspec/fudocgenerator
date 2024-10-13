@@ -498,7 +498,8 @@
 		"urbanwasteland2": "Wasteland 2",
 		"wastelandminimoon": "Wasteland Mini Biome (moon)",
 		"wastelandmini": "Wasteland Mini Biome",
-		"zen": "Zen Caves (vanilla)"
+		"zen": "Zen Caves (vanilla)",
+		"ffzen": "Zen Caves"
 	},
 
 	"@doc": "List of biome IDs to skip. For example, \"ffbonecaves\" is not used anywhere, but \"bonecaves\" is.",
