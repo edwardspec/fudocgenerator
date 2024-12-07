@@ -52,7 +52,7 @@ AssetDatabase.forEach( assetType, ( filename, asset ) => {
 			value = asset.data[field];
 		}
 
-		if ( value ) {
+		if ( value !== undefined ) {
 			fieldsFound++;
 			entity[field] = value;
 		} else if ( argv['require-all-fields'] ) {
