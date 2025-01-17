@@ -663,7 +663,9 @@
 		"#ffd700": "#dfb700",
 		"orange": "#c06500",
 		"pink": "#aa6070",
-		"yellow": "#aaaa00"
+		"yellow": "#aaaa00",
+		"#f9f193": "#aaaa00",
+		"#cef400": "#aed400"
 	},
 
 	"@doc": "Console command to invoke convert. We use it in \"prepare_uploads.js\" to cut sprites into individual images.",
