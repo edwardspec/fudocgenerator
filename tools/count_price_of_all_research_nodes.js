@@ -6,15 +6,25 @@
 
 const { ResearchTreeDatabase } = require( '../lib' );
 
-let totalCost = 0;
+let costByItem = {};
 
 ResearchTreeDatabase.forEach( ( node ) => {
-	let researchCost = node.price.getAllComponents()
-		.filter( ( component ) => component.code === 'fuscienceresource' )[0];
+	node.price.getAllComponents().forEach( ( component ) => {
+		let count = component.quantity.count;
+		if ( !count ) {
+			return;
+		}
 
-	if ( researchCost ) {
-		totalCost += researchCost.quantity.count;
-	}
+		if ( !costByItem[component.code] ) {
+			costByItem[component.code] = 0;
+		}
+
+		costByItem[component.code] += count;
+	} );
 } );
 
-console.log( totalCost + ' of Research currency is needed to unlock ALL nodes.' );
+console.log(
+	( costByItem.fuscienceresource || 0 ) + ' of Research currency, ' +
+	( costByItem.fumadnessresource || 0 ) + ' of Madness currency, ' +
+	( costByItem.fugeneticmaterial || 0 ) + ' of Genes currency are needed to unlock ALL nodes.'
+);
