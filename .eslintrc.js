@@ -12,7 +12,7 @@ module.exports = {
 	extends: [
 		'wikimedia',
 		'wikimedia/node',
-		'wikimedia/language/es2021'
+		'wikimedia/language/es2022'
 	],
 	rules: {
 		// Might enable this later.
@@ -22,6 +22,9 @@ module.exports = {
 		'no-console': 'off',
 		'no-process-exit': 'off',
 		'jsdoc/no-undefined-types': 'off', // Don't want to add unnecessary require() just to use a class in JSDoc annotation
+
+		// Unavoidable when loading assets.
+		'security/detect-non-literal-fs-filename': 'off',
 
 		// Not exactly against applying these in the future,
 		// but they are very annoying with the current codestyle ("for ( var [ a, b ] of ..." loops, etc.).
